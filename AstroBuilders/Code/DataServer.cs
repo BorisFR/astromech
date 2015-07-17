@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace AstroBuilders
+{
+	public static class DataServer
+	{
+		private static List<IDataServer> toDo = new List<IDataServer>();
+		private static bool inProgress = false;
+		private static IDataServer current = null;
+		private static int count = 0;
+
+		public static void AddToDo(IDataServer element) {
+			toDo.Add (element);
+			DoJob ();
+		}
+
+		private static void DoJob() {
+			if (inProgress)
+				return;
+			if (toDo.Count == 0)
+				return;
+			inProgress = true;
+			current = toDo [0];
+			System.Diagnostics.Debug.WriteLine ("Processing: " + current.FileName);
+			current.JobDone += Current_JobDone;
+			current.DoDownload ();
+		}
+
+		static void Current_JobDone (bool status)
+		{
+			current.JobDone -= Current_JobDone;
+			current.TriggerData (status);
+			current = null;
+			if (!status) {
+				// on error, try again
+				count++;
+				// but just 3 times
+				if (count > 2) {
+					// abandon
+					toDo.RemoveAt (0);
+					count = 0;
+				}
+			} else {
+				// ok, we've done it
+				toDo.RemoveAt (0);
+				count = 0;
+			}
+			inProgress = false;
+			DoJob ();
+		}
+
+	}
+}

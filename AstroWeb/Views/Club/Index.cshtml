@@ -1,0 +1,24 @@
+﻿@using AstroBuildersModel;
+@using System.Collections.ObjectModel;
+@model ObservableCollection<Club>
+@{
+ViewBag.Title = "R2 Builders - Les clubs";
+}
+
+<table class="table">
+    <thead>
+		<tr class="ui-widget-header ">
+			<th>Logo</th>
+			<th>Nom</th>
+		</tr>
+	</thead>
+
+	<tbody>
+	@foreach (Club club in Model) {
+		<tr>
+		<td><img src="@club.Logo" width="200"/></td>
+		<td>@Html.DisplayFor(cc => club.Title)</td>
+		</tr>
+	}
+	</tbody>
+</table>

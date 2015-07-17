@@ -1,0 +1,55 @@
+﻿using System;
+using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
+
+namespace AstroBuildersModel
+{
+
+	public class NewsGroup : ObservableCollection<News>
+	{
+
+		public NewsGroup(string title) {
+			Title = title;
+		}
+
+		public string Title { get; private set; }
+
+	}
+
+	public class News : IModel, IComparable<News>
+	{
+
+		private DateTime date = new DateTime (2000, 1, 1);
+		public DateTime Date {
+			get { return date; }
+			set {
+				if (value.Equals (date))
+					return;
+				date = value;
+				OnPropertyChanged ("Date");
+			}
+		}
+
+
+		private string detail = string.Empty;
+		public string Detail {
+			get { return detail; }
+			set {
+				if (value.Equals (detail))
+					return;
+				detail = value;
+				OnPropertyChanged ("Detail");
+			}
+		}
+
+		[IgnoreDataMember]
+		public int Year {
+			get { return date.Year; }
+		}
+			
+		// newest date first
+		public int CompareTo (News other) {
+			return other.Date.CompareTo (this.Date);
+		}
+	}
+}

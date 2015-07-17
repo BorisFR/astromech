@@ -1,0 +1,14 @@
+﻿@using AstroBuildersModel;
+@using System.Collections.ObjectModel;
+@model ObservableCollection<News>
+@{
+ViewBag.Title = "R2 Builders - Les Actualités";
+}
+
+	@foreach (News news in Model) {
+		<p>@Html.DisplayFor(cc => news.Date) - @Html.DisplayFor(cc => news.Title)</p>
+		<p>@Html.DisplayFor(cc => news.Detail)</p>
+		<br />
+	}
+
+// <p>@ViewData["Version"] on @ViewData["Runtime"]</p>

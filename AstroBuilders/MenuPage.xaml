@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.MenuPage" 
+Title="MenuPage" xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="{x:Static local:Global.PagePadding}">
+	<ContentPage.Content>
+		<StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Start" BackgroundColor="#dcdcff">
+
+			<Image Source="{local:ImageResource R2BuildersLogo.png}" />
+
+			<ListView x:Name="theList" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Title}" SeparatorVisibility="None">
+		        <ListView.ItemTemplate>
+			        <DataTemplate>
+			        <ImageCell Text="{Binding Title}" Detail="{Binding Detail}" ImageSource="{Binding Image}" TextColor="Black" DetailColor="Accent" />
+			        </DataTemplate>
+		        </ListView.ItemTemplate>
+	        </ListView>
+
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

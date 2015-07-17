@@ -1,0 +1,120 @@
+﻿
+* Fiche user
+================================================
+Un user contient :
+- nom prénom (optionnel)
+- nickname (Unique en base)
+- login (unique en base)
+- password
+- email (optionnel, sert à regénéré un mot de passe perdu)
+
+- date de création du compte
+- date de dernier login
+- nombre de login
+- id de push android/ios/windows
+
+Un #admin peut désigner un #user comme étant un #builder.
+Le #user gagne alors des droits dans l'application.
+1 user = 0 ou 1 builder
+
+
+* Fiche club
+================================================
+L'application connait "l'ensemble" des clubs/associations.
+Un club c'est :
+- un url vers le logo
+- un nom
+
+Stockage sur le site web dans /Content/Clubs
+Image en .png avec transparence.
+
+liste des clubs: http://r2builders.diverstrucs.com/Club
+
+Gestion manuel par #superadmin.
+
+
+* Fiche builder
+================================================
+Une fiche builder contient :
+- nom prénom réel du builder
+- nickname
+- adresse email
+- lieu d'origine
+- un code pays (pour affichage du drapeau correspondant)
+- club d'appartenance (pour l'instant que nous...) <= automatique par l'admin qui promeut le "user" en "builder"
+- lien vers page facebook
+- lien vers blog
+- lien vers l'image de l'avatar
+- un texte descriptif long
+
+- liste des fiches robots appartenant au builder
+
+liste des builders: http://r2builders.diverstrucs.com/Builder
+Visu de la fiche d'un builders : http://r2builders.diverstrucs.com/Builder/NickName => http://r2builders.diverstrucs.com/Builder/Boris
+
+
+* Fiche robot
+================================================
+
+
+
+
+
+* Actualités
+================================================
+Pour le moment, on va uniquement se concentrer sur les sorties événements de nos robots.
+Quand vous êtes sûr qu'un événement va avoir lieu, vous pouvez alors créer une actualité.
+Une actualité comporte :
+- un titre
+- un descriptif (indiquez notament la date de l'événement, ou la période)
+- une date d'affichage
+L'actualité apparaît alors sur la page d'accueil de l'application. 
+Si la date est une date future, l'actualité n'est pas affichée sur l'application.
+
+Une actualité appartient à un "builder" et à donc une appartenance à un club.
+
+Travail d'un builder qui participe à un événement :
+- faire une actu pour dire que l'on va participer à "tel" événement, dès que l'on est certain de la participation.
+- faire une actu pour le jour J, une actu du genre : "Aujourd'hui, les R2 Builders sont au salon xxx".
+
+liste des actus : http://r2builders.diverstrucs.com/ (page d'accueil du site web)
+
+
+* Droits
+================================================
+1/ Un compte nouvellement créé est un utilisateur de base. Aucun droit supplémentaire dans l'application
+2/ Un compte #admin peut changer le statut d'un compte en #builder.
+Le #builder est automatiquement affecté au club de l'admin.
+PROPOSITION :  
+- Ne peuvent être désigné comme #builder que les adhérents de l'association. Charge à l'#admin de vérifier ce statut avant de désigner un compte comme #builder.
+- Si un adhérent cesse de payer sa cotisation, le #builder reste #buildernoncotisant.
+Comme un #admin ne l'est que pour son club, c'est à chacun des clubs de décider de son mode de gestion. Rien n'est automatisé sur ce sujet.
+3/ Un compte #admin peut changer le statut d'un compte #builder en #buildernoncotisant
+4/ un compte #builder est un compte qui a :
+- une fiche builder a renseigner.
+- zéro à n fiches robots, une fiche par robot. Aucune limite sur le nombre de fiches.
+- peut créer des actualités (voir la rubrique idoine).
+5/ un #buildernoncotisant perd le droit de gérer ses actualités. Il ne peut donc plus en créer.
+6/ un #admin peut désigner un #builder comme étant #modo.
+un #builder qui devient #buildernoncotisant perd son statut de #modo.
+7/ un #modo peut administrer les actualités de l'ensemble des #builders (modification / suppression).
+8/ un "superadmin" peut désigner un #builder comme #admin.
+
+La gestion des #superadmin est manuelle et à la discrétion du comité de l'association.
+
+Un #modo est "modo" pour son club et n'a l'autorité que sur son club.
+Un #admin est "admin" pour son club et n'a l'autorité que sur son club.
+Un #superadmin l'est pour l'ensemble des clubs.
+
+
+
+
+
+
+
+TODO :
+================================================
+
+Un utilisateur choisit les actualités de clubs il veut voir. Par défaut il a une vision de l'ensemble des actualités. Il coche/décoche la liste des actualités de clubs qu'il veut suivre.
+
+Les droits par club

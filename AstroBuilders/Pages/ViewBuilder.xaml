@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewBuilder" 
+xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
+	<ContentView.Content>
+		<ScrollView Orientation="Vertical">
+			<StackLayout Orientation="Vertical" BackgroundColor="White">
+				<StackLayout Orientation="Horizontal">
+					<Image Source="http://www.r2builders.fr/forum/download/file.php?avatar=87_1352922053.jpg" />
+					<Image Source="http://r2builders.diverstrucs.com/content/Clubs/R2-BLDR.png" />
+				</StackLayout>
+				<Label Text="Laurent Devendeville" TextColor="Black" />
+				<Label Text="lolo080" TextColor="Black" />
+				<Label Text="Builder's club - R2 Builders Club France" TextColor="Black" />
+				<Label Text="laurent@r2builders.fr" TextColor="Black" />
+				<Label Text="Location - Amiens, France" TextColor="Black" />
+				<Label Text="Droids - 2 droids. (1 R2-D2 still in building stage. 1 R2-M5 complete)" TextColor="Black" />
+				<Label TextColor="Black" Text="I have loved Star Wars since the beginning. I've been collecting Star Wars with busts, statues and artworks for ten years. In January, 2011, I jumped into the R2 Builders Club and started to build my first droid." />
+			</StackLayout>
+		</ScrollView>
+	</ContentView.Content>
+</ContentView>

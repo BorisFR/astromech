@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.PageBuilder" 
+xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="6,24,6,6" BackgroundColor="#E1E1E1">
+	<ContentPage.Content>
+		<ScrollView Orientation="Vertical" BackgroundColor="White" Padding="6">
+			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+
+				<Grid HorizontalOptions="Fill" ColumnSpacing="0" RowSpacing="0">
+			        <Grid.ColumnDefinitions>
+			            <ColumnDefinition Width="100*"/>
+			            <ColumnDefinition Width="100*"/>
+			        </Grid.ColumnDefinitions>
+			        <Grid.RowDefinitions>
+			        	<RowDefinition Height="40" />
+			        	<RowDefinition Height="*" />
+			        </Grid.RowDefinitions>
+
+					<Label Text="{Binding Title}" Font="Bold,Large" HorizontalOptions="StartAndExpand" TextColor="Accent" Grid.ColumnSpan="2" />
+					<Image x:Name="imgClose" Source="{local:ImageResource closewindow.png}" HorizontalOptions="End" WidthRequest="32" HeightRequest="32" Grid.Column="1" />
+
+					<Image Source="{Binding Logo}" WidthRequest="200" Grid.Row="1" />
+					<StackLayout HorizontalOptions="Start" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Column="1" Grid.Row="1">
+						<Label Text="{Binding NickName}" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" />
+						<Image x:Name="imgClub" HorizontalOptions="End"  WidthRequest="100" />
+					</StackLayout>
+
+				</Grid>
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+					<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+						<Label Text="Club du Builder" TextColor="Black" />
+						<Label x:Name="lClub" TextColor="Black" HorizontalOptions="Center" Text="Builder's club" />
+						<Label Text="{Binding Email}" TextColor="Black" />
+						<Label x:Name="lLocation" Text="Location -" TextColor="Black" />
+					</StackLayout>
+				</StackLayout>
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+					<Label x:Name="lDroids" Text="Droïdes -" TextColor="Black" />
+				</StackLayout>
+				<Label Text="{Binding Detail}" TextColor="Black" />
+				<Button Text="Revenir à la liste" Clicked="ButtonClicked" />
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

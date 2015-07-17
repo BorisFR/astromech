@@ -1,0 +1,48 @@
+﻿@using AstroBuildersModel;
+@using System.Collections.ObjectModel;
+@model ObservableCollection<Builder>
+
+@if(Model == null) {
+    ViewBag.Title = "R2 Builders - Builder: " + @ViewData["NickName"];
+} else {
+    ViewBag.Title = "R2 Builders - Les R2 Builders";
+}
+
+@if(Model == null) {
+<h1>@ViewData["Name"]</h1>
+<table>
+<tr>
+<td><image src='@ViewData["Logo"]' width="200" /></td>
+<td><h2>@ViewData["NickName"]</h2><image src='@ViewData["ClubLogo"]' width="100" /></td>
+</tr>
+</table>
+<h3>Club du Builder</h3>
+<p>@ViewData["Club"]</p>
+
+<p>@ViewData["Email"]</p>
+<p>@ViewData["Facebook"]</p>
+<p>@ViewData["Blof"]</p>
+<p>Origine - @ViewData["Location"]</p>
+<p>Droïdes - @ViewData["Droids"]</p>
+<p>@ViewData["Detail"]</p>
+} else {
+
+<table class="table">
+    <thead>
+		<tr class="ui-widget-header ">
+			<th>Avatar</th>
+			<th>Nickname</th>
+		</tr>
+	</thead>
+
+	<tbody>
+	@foreach (Builder builder in Model) {
+		<tr>
+		<td><a href='/Builder/@builder.NickName'><img src="@builder.Logo" width="100"/></a></td>
+		<td><a href='/Builder/@builder.NickName'>@Html.DisplayFor(cc => builder.NickName)</a></td>
+		</tr>
+	}
+	</tbody>
+</table>
+
+}

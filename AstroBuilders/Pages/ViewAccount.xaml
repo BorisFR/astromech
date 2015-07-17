@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewAccount" 
+xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
+	<ContentView.Content>
+	<ScrollView Orientation="Vertical">
+		<StackLayout Orientation="Vertical" Padding="12">
+			<Label Text="Mon compte" Font="Bold,Medium" HorizontalOptions="Center" />
+			<StackLayout x:Name="lConnexion" Orientation="Vertical">
+				<Label Text="Se connecter" Font="Medium" HorizontalOptions="Center" />
+				<Label Text="Identifiant" />
+				<Entry x:Name="entryLogin" Placeholder="identifiant" />
+				<Label Text="Mot de passe" />
+				<Entry x:Name="entryPassword" Placeholder="password" IsPassword="true" />
+				<Button x:Name="btLogin" Text="Connexion" />
+				<Button x:Name="btForget" Text="J'ai oublié mon mot de passe" />
+				<BoxView HeightRequest="4" BackgroundColor="Gray" />
+				<Label Text="Créer mon compte" Font="Medium" HorizontalOptions="Center" />
+				<Label Text="Cela est surtout utile aux R2 Builders. En tant qu'utilisateur, vous avez déjà un accès complet au contenu." TextColor="Accent" HorizontalOptions="Center" />
+				<Label Text="Nom d'utilisateur" />
+				<Entry x:Name="entryCreateNickname" Placeholder="nickname" />
+				<Label Text="Adresse email" />
+				<Label Text="L'adresse email sert uniquement en cas d'oubli du mot de passe. La saisie n'est pas obligatoire." TextColor="Accent" HorizontalOptions="Center" />
+				<Entry x:Name="entryCreateEmail" Placeholder="adresse email" />
+				<Label Text="Identifiant" />
+				<Entry x:Name="entryCreateLogin" Placeholder="identifiant" />
+				<Label Text="Mot de passe" />
+				<Entry x:Name="entryCreatePassword" Placeholder="password" IsPassword="true" />
+				<Button x:Name="btCreate" Text="Création" />
+			</StackLayout>
+			<StackLayout x:Name="lConnected" Orientation="Vertical">
+				<Label x:Name="lUser" Text="Username" />
+				<Button x:Name="btDisconnect" Text="Se déconnecter" />
+				<BoxView HeightRequest="4" BackgroundColor="Gray" />
+				<Label Text="Modifier mon compte" Font="Medium" HorizontalOptions="Center" />
+				<Label Text="Nom d'utilisateur" />
+				<Entry x:Name="entryModifyNickname" Placeholder="nickname" />
+				<Label Text="Adresse email" />
+				<Entry x:Name="entryModifyEmail" Placeholder="adresse email" />
+				<Label Text="Mot de passe (pour validation)" />
+				<Entry x:Name="entryModifyPassword" Placeholder="password" IsPassword="true" />
+				<Button x:Name="btModify" Text="Modifier" />
+				<BoxView HeightRequest="4" BackgroundColor="Gray" />
+				<Label Text="Changer mon mot de passe" Font="Medium" HorizontalOptions="Center" />
+				<Label Text="Ancien mot de passe" />
+				<Entry x:Name="entryOldPassword" Placeholder="ancien mot de passe" IsPassword="true" />
+				<Label Text="Nouveau mot de passe" />
+				<Entry x:Name="entryNewPassword" Placeholder="nouveau mot de passe" IsPassword="true" />
+				<Label Text="Nouveau mot de passe pour vérification" />
+				<Entry x:Name="entryNew2Password" Placeholder="nouveau mot de passe" IsPassword="true" />
+				<Button x:Name="btChangePassword" Text="Changer" />
+			</StackLayout>
+		</StackLayout>
+		</ScrollView>
+	</ContentView.Content>
+</ContentView>
