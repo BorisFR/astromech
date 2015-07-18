@@ -27,7 +27,7 @@ namespace AstroWeb.Controllers
 						Club c = (Club)Helper.AllClubs.GetByGuid<Club> (builder.IdClub);
 						ViewData ["ClubLogo"] = c.Logo;
 						ViewData ["Club"] = c.Title;
-
+						ViewData ["QRcode"] = string.Format ("http://r2builders.diverstrucs.com/Builder/{0}", builder.NickName);
 					}
 				}
 				return View ();

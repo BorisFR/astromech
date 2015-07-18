@@ -171,3 +171,6 @@ https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Vibrate
 https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Settings
 https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/DeviceInfo
 
+web:
+http://zxingnet.codeplex.com => Michael Jahn
+

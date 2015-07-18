@@ -25,6 +25,11 @@
 <p>Origine - @ViewData["Location"]</p>
 <p>Droïdes - @ViewData["Droids"]</p>
 <p>@ViewData["Detail"]</p>
+
+<br />
+<br />
+@Html.GenerateRelayQrCode((string)ViewData["QRcode"])
+
 } else {
 
 <table class="table">
