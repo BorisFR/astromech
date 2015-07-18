@@ -36,13 +36,13 @@ namespace AstroBuilders
 				return;
 			}
 			// load newest data in background
-			Tools.JobDone += Tools_JobDone;
+			Tools.DoneBatch += DoneBatch;
 			Tools.DoDownload (fileName);
 		}
 
-		void Tools_JobDone (bool status)
+		void DoneBatch (bool status)
 		{
-			Tools.JobDone -= Tools_JobDone;
+			Tools.DoneBatch -= DoneBatch;
 			JsonData = Tools.Result;
 			if (status) {
 				Global.Files.SaveFile (fileName, JsonData);

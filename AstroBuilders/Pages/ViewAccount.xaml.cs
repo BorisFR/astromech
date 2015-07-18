@@ -422,6 +422,7 @@ namespace AstroBuilders
 					user.IsAdmin = true;
 					user.IsModo = true;
 				}*/
+				Helper.SettingsSave<User>("User", user);
 				entryLogin.Text = string.Empty;
 				entryPassword.Text = string.Empty;
 				entryOldPassword.Text = string.Empty;

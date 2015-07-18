@@ -15,6 +15,7 @@ namespace AstroBuilders
 	public static class Tools
 	{
 		public static event JobDone JobDone;
+		public static event JobDone DoneBatch;
 
 		private static HttpClient httpClient;
 		private static string res = string.Empty;
@@ -50,7 +51,10 @@ namespace AstroBuilders
 			} catch (Exception err) {
 				System.Diagnostics.Debug.WriteLine ("ERROR: " + err.Message);
 			}
-			JobDone (status);
+			if (JobDone != null)
+				JobDone (status);
+			if (DoneBatch != null)
+				DoneBatch (status);
 		}
 
 		public static void DoCheckUser(User user) {
