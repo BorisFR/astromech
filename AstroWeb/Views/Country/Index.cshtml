@@ -1,0 +1,24 @@
+﻿@using AstroBuildersModel;
+@using System.Collections.ObjectModel;
+@model ObservableCollection<Country>
+@{
+ViewBag.Title = "R2 Builders - Country";
+}
+
+<table class="table">
+    <thead>
+		<tr class="ui-widget-header ">
+			<th>Flag</th>
+			<th>Nom</th>
+		</tr>
+	</thead>
+
+	<tbody>
+	@foreach (Country country in Model) {
+		<tr>
+		<td><img src="@country.Flag" width="100"/></td>
+		<td>@Html.DisplayFor(cc => country.Title)</td>
+		</tr>
+	}
+	</tbody>
+</table>

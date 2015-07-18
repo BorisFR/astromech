@@ -31,6 +31,7 @@ namespace AstroBuildersModel
 		public NewsManager() : base("news.json") {AllNewsGroup = new ObservableCollection<NewsGroup> ();} 
 	}
 
+	public class CountryManager : IManager<Country> { public CountryManager() : base("country.json") {}}
 	public class BuildersManager : IManager<Builder> { public BuildersManager() : base("builders.json") {}}
 	public class ClubsManager : IManager<Club> { public ClubsManager() : base("clubs.json") {}}
 	public class UsersManager : IManager<User> { public UsersManager() : base("users.json") {}}

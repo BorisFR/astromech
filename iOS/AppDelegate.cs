@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Toasts.Forms.Plugin.iOS;
 
 namespace AstroBuilders.iOS
 {
@@ -13,6 +14,7 @@ namespace AstroBuilders.iOS
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init ();
+			ToastNotificatorImplementation.Init();
 
 			// Code for starting up the Xamarin Test Cloud Agent
 			#if ENABLE_TEST_CLOUD

@@ -44,24 +44,36 @@ namespace AstroBuilders
 			All.Add (mg);
 			*/
 
+			/*
 			if (Global.IsConnected && Global.ConnectedUser.IsBuilder) {
 				mg = new MenuGroup ("Menu Builders");
-				mg.Add (new Menu () {
-					Page = MyPage.None,
-					Title = "Ma fiche",
-					Detail = "Gérer ma fiche de présentation",
-					Icon = "account"
-				});
+				mg.Add (new Menu () { Page = MyPage.None, Title = "Ma fiche", Detail = "Gérer ma fiche de présentation", Icon = "account" });
 				mg.Add (new Menu (){ Page = MyPage.None, Title = "Mes robots", 			Detail = "Gérer mes robots", 				Icon = "IA" });
 				//mg.Add (new Menu (){ Page = MyPage.None, Title = "", 					Detail = "", 								Icon = "IA" });
 				All.Add (mg);
 			}
+			*/
 
-
-			if (Global.IsConnected && Global.ConnectedUser.IsAdmin) {
-				mg = new MenuGroup ("Menu Admin");
-				mg.Add (new Menu (){ Page = MyPage.AdminBuilders, Title = "Admin builders", 		Detail = "Gérer qui est builder", 			Icon = "IA" });
-				All.Add (mg);
+			if (Global.IsConnected) {
+				mg = new MenuGroup ("Menu Builder");
+				if (Global.ConnectedUser.IsBuilder) {
+					mg.Add (new Menu () { Page = MyPage.None, Title = "Ma fiche", 			Detail = "Gérer ma fiche de présentation", 	Icon = "account" });
+					mg.Add (new Menu (){ Page = MyPage.None, Title = "Mes robots", 			Detail = "Gérer mes robots", 				Icon = "IA" });
+				}	
+				if (mg.Count > 0)
+					All.Add (mg);
+				mg = new MenuGroup ("Administration");
+				if (Global.ConnectedUser.IsNewser) {
+					mg.Add (new Menu () { Page = MyPage.None, Title = "Mes actualités", 	Detail = "Gérer mes actualités", 			Icon = "IA" });
+				}
+				if (Global.ConnectedUser.IsModo) {
+					mg.Add (new Menu () { Page = MyPage.None, Title = "Toutes les actualités", Detail = "Gérer toutes les actualités", 	Icon = "IA" });
+				}
+				if (Global.ConnectedUser.IsAdmin) {
+					mg.Add (new Menu () { Page = MyPage.AdminBuilders, Title = "Admin builders", Detail = "Gérer qui est builder", 		Icon = "IA" });
+				}
+				if (mg.Count > 0)
+					All.Add (mg);
 			}
 
 		}

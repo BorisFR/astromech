@@ -1,28 +1,24 @@
 ﻿
-* Fiche user
+* Fiche Country
 ================================================
-Un user contient :
-- nom prénom (optionnel)
-- nickname (Unique en base)
-- login (unique en base)
-- password
-- email (optionnel, sert à regénéré un mot de passe perdu)
+- code pays : FRA / BEL / USA
+url drapeau construite (propriété Flag) : /Content/Country/FRA.png
 
-- date de création du compte
-- date de dernier login
-- nombre de login
-- id de push android/ios/windows
+Stockage sur le site web dans /Content/Country
+Image en .png
+http://flagpedia.net pour récupération des images
+https://countrycode.org pour les codes sur 3 lettres
 
-Un #admin peut désigner un #user comme étant un #builder.
-Le #user gagne alors des droits dans l'application.
-1 user = 0 ou 1 builder
+liste des pays : http://r2builders.diverstrucs.com/Country
+
+Gestion manuel par #superadmin.
 
 
 * Fiche club
 ================================================
 L'application connait "l'ensemble" des clubs/associations.
 Un club c'est :
-- un url vers le logo
+- un url complete vers le logo
 - un nom
 
 Stockage sur le site web dans /Content/Clubs
@@ -33,21 +29,53 @@ liste des clubs: http://r2builders.diverstrucs.com/Club
 Gestion manuel par #superadmin.
 
 
+* Fiche user
+================================================
+Un user contient :
+- nom prénom (optionnel)
+- nickname (Unique en base)
+- login (unique en base)
+- password
+- email (optionnel, sert à regénéré un mot de passe perdu) Obligatoire pour recevoir des droits
+- pays (peut être différent de celui du club)
+- liste des clubs suivi pour les actus
+(géré automatiquement)
+- date de création du compte
+- date de dernier login
+- nombre de login
+- id de push android/ios/windows
+- token de connexion (change à chaque connexion)
+- id Builder
+- id club d'appartenance
+- liste des droits
+
+Un #admin peut désigner un #user comme étant un #new #builder #modo.
+Le #user gagne alors des droits dans l'application.
+1 user = 0 ou 1 club
+1 user = 0 ou 1 builder (donc 1 club)
+
+Il n'y a pas de page web qui permette de récupérer la liste des users :)
+Il existe par contre un service data qui permet, à partir d'un token d'admin, de récupérer la liste des users du pays correspondant à l'admin.
+
+
 * Fiche builder
 ================================================
 Une fiche builder contient :
-- nom prénom réel du builder
+- nom prénom réel
 - nickname
 - adresse email
 - lieu d'origine
-- un code pays (pour affichage du drapeau correspondant)
-- club d'appartenance (pour l'instant que nous...) <= automatique par l'admin qui promeut le "user" en "builder"
 - lien vers page facebook
 - lien vers blog
 - lien vers l'image de l'avatar
 - un texte descriptif long
-
 - liste des fiches robots appartenant au builder
+
+- un code pays (pour affichage du drapeau correspondant)
+- club d'appartenance (pour l'instant que nous...) <= automatique par l'admin qui promeut le "user" en "builder"
+
+
+Une fiche builder est créée automatiquement lors de l'affectation du droit #builder par un #admin.
 
 liste des builders: http://r2builders.diverstrucs.com/Builder
 Visu de la fiche d'un builders : http://r2builders.diverstrucs.com/Builder/NickName => http://r2builders.diverstrucs.com/Builder/Boris
@@ -66,12 +94,11 @@ Pour le moment, on va uniquement se concentrer sur les sorties événements de n
 Quand vous êtes sûr qu'un événement va avoir lieu, vous pouvez alors créer une actualité.
 Une actualité comporte :
 - un titre
-- un descriptif (indiquez notament la date de l'événement, ou la période)
-- une date d'affichage
+- un descriptif (indiquez notament la date de l'événement, ou la période ainsi que le lieu)
+- une date d'affichage (Si la date est une date future, l'actualité n'est pas affichée sur l'application)
+- le club pour lequel l'actu est créée (automatiquement affecté au club du builder qui crée l'actu)
+- le builder qui a créé l'actu
 L'actualité apparaît alors sur la page d'accueil de l'application. 
-Si la date est une date future, l'actualité n'est pas affichée sur l'application.
-
-Une actualité appartient à un "builder" et à donc une appartenance à un club.
 
 Travail d'un builder qui participe à un événement :
 - faire une actu pour dire que l'on va participer à "tel" événement, dès que l'on est certain de la participation.
@@ -82,33 +109,46 @@ liste des actus : http://r2builders.diverstrucs.com/ (page d'accueil du site web
 
 * Droits
 ================================================
-1/ Un compte nouvellement créé est un utilisateur de base. Aucun droit supplémentaire dans l'application
-2/ Un compte #admin peut changer le statut d'un compte en #builder.
-Le #builder est automatiquement affecté au club de l'admin.
-PROPOSITION :  
-- Ne peuvent être désigné comme #builder que les adhérents de l'association. Charge à l'#admin de vérifier ce statut avant de désigner un compte comme #builder.
-- Si un adhérent cesse de payer sa cotisation, le #builder reste #buildernoncotisant.
-Comme un #admin ne l'est que pour son club, c'est à chacun des clubs de décider de son mode de gestion. Rien n'est automatisé sur ce sujet.
-3/ Un compte #admin peut changer le statut d'un compte #builder en #buildernoncotisant
-4/ un compte #builder est un compte qui a :
+0/ anonyme
+Visu complête de l'appli.
+Peut avoir des succès, etc...
+Mais tout ceci n'est pas sauvegardé en dehors du smartphone !
+
+1/ Un compte nouvellement créé est un utilisateur de base. 
+Aucun droit supplémentaire dans l'application.
+Par contre, sauvegarde des infos dans le "cloud".
+Infos = succès obtenus, robots vus, etc...
+
+2/ DROIT news
+Permet à un utilisateur de gérer ses propres actualités (pour le club auquel il appartient).
+- peut créer des actualités (voir la rubrique idoine).
+à ne donner qu'à un membre du club (uniquement les adhérents ?)
+
+3/ DROIT builder
+Permet d'avoir une fiche builder.
+Permet de créer et gérer des fiches robots.
 - une fiche builder a renseigner.
 - zéro à n fiches robots, une fiche par robot. Aucune limite sur le nombre de fiches.
-- peut créer des actualités (voir la rubrique idoine).
-5/ un #buildernoncotisant perd le droit de gérer ses actualités. Il ne peut donc plus en créer.
-6/ un #admin peut désigner un #builder comme étant #modo.
-un #builder qui devient #buildernoncotisant perd son statut de #modo.
-7/ un #modo peut administrer les actualités de l'ensemble des #builders (modification / suppression).
-8/ un "superadmin" peut désigner un #builder comme #admin.
 
-La gestion des #superadmin est manuelle et à la discrétion du comité de l'association.
-
+4/ DROIT modo
+Permet de gérer les actus de tout le monde, pour son club.
 Un #modo est "modo" pour son club et n'a l'autorité que sur son club.
+
+5/ DROIT admin
+Permet de donner des droits à un utilisateur.
+Le #newser et #builder est automatiquement affecté au club de l'admin.
 Un #admin est "admin" pour son club et n'a l'autorité que sur son club.
+
+6/ un "superadmin" peut désigner un #builder comme #admin.
+La gestion des #superadmin est manuelle et à la discrétion du comité de l'association.
 Un #superadmin l'est pour l'ensemble des clubs.
 
 
 
 
+* Services data
+================================================
+Les communications du service data sont cryptées AES avec un salt changeant à chaque requête.
 
 
 
@@ -118,3 +158,16 @@ TODO :
 Un utilisateur choisit les actualités de clubs il veut voir. Par défaut il a une vision de l'ensemble des actualités. Il coche/décoche la liste des actualités de clubs qu'il veut suivre.
 
 Les droits par club
+
+
+Package Nuget
+================================================
+Liste des plugins
+https://github.com/xamarin/plugins
+
+https://github.com/aarnott/pclcrypto => Andrew Arnott
+https://github.com/EgorBo/Toasts.Forms.Plugin => EgorBo
+https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Vibrate
+https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Settings
+https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/DeviceInfo
+

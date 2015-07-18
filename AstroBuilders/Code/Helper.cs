@@ -1,11 +1,26 @@
 ﻿using System;
 using PCLCrypto;
 using System.Text;
+using Refractored.Xam.Settings;
+using DeviceInfo.Plugin;
+using DeviceInfo.Plugin.Abstractions;
 
 namespace AstroBuilders
 {
 	public static class Helper
 	{
+
+		public static void SettingsSave<T>(string key, T value) {
+			CrossSettings.Current.AddOrUpdateValue<T>(key, value);
+		}
+
+		public static T SettingsRead<T>(string key, T defaultValue) {
+			return CrossSettings.Current.GetValueOrDefault<T>(key, defaultValue);
+		}
+
+		public static string GenerateAppId { get { return CrossDeviceInfo.Current.GenerateAppId (); } }
+
+		public static IDeviceInfo DeviceInfo{ get { return CrossDeviceInfo.Current; } }
 
 		/*
 		public static string Base64Encode(string plainText) {

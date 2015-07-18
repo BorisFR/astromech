@@ -7,6 +7,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Toasts.Forms.Plugin.Droid;
 
 namespace AstroBuilders.Droid
 {
@@ -19,6 +20,7 @@ namespace AstroBuilders.Droid
 			base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
+			ToastNotificatorImplementation.Init();
 
 			LoadApplication (new App ());
 		}

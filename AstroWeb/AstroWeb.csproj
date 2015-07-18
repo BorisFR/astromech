@@ -83,6 +83,9 @@
     <Folder Include="Code\" />
     <Folder Include="Views\Builder\" />
     <Folder Include="Views\Club\" />
+    <Folder Include="Content\Clubs\" />
+    <Folder Include="Content\Country\" />
+    <Folder Include="Views\Country\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="Code\JsonNetResult.cs" />
     <Compile Include="Controllers\BuilderController.cs" />
     <Compile Include="Controllers\ClubController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -108,6 +112,7 @@
     <Content Include="About.html" />
     <Content Include="Views\Builder\Index.cshtml" />
     <Content Include="Views\Club\Index.cshtml" />
+    <Content Include="Views\Country\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

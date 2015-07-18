@@ -4,4 +4,5 @@
 	<application android:label="AstroBuilders">
 	</application>
 	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.VIBRATE" />
 </manifest>

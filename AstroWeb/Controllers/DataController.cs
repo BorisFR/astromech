@@ -15,6 +15,10 @@ namespace AstroWeb.Controllers
             return View ();
         }
 
+		public JsonResult Country() {
+			return new JsonNetResult (Helper.AllCountry.All);
+		}
+
 		public JsonResult News() {
 			return new JsonNetResult (Helper.AllNews.All);
 		}
@@ -28,6 +32,7 @@ namespace AstroWeb.Controllers
 		}
 
 		public JsonResult Users(string id) {
+			try{
 			Guid toTest = new Guid (id);
 			foreach (User u in Helper.AllUsers.Collection) {
 				if (u.Token == toTest) {
@@ -36,6 +41,8 @@ namespace AstroWeb.Controllers
 					else
 						return new JsonNetResult (null);
 				}
+			}
+			} catch(Exception){
 			}
 			return new JsonNetResult (null);
 		}
@@ -120,6 +127,34 @@ namespace AstroWeb.Controllers
 			} catch (Exception) {
 			}
 			return new JsonNetResult (null);
+		}
+
+
+		public JsonResult UpdateUser(string id, string token) {
+			try {
+				Guid toTest = new Guid (token);
+				foreach (User u in Helper.AllUsers.Collection) {
+					if (u.Token == toTest) {
+						string data = Helper.Decrypt (id);
+						User user = JsonConvert.DeserializeObject<User> (data);
+						if (u.Id.Equals (user.Id)) {
+							foreach (User old in Helper.AllUsers.Collection) {
+								if (old.Id.Equals (user.Id)) {
+									//old.NickName = user.NickName;
+									old.Email = user.Email;
+									old.IdCountry = user.IdCountry;
+									Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
+									return new JsonNetResult (old);
+								}
+							}
+							return new JsonNetResult (false);
+						} else
+							return new JsonNetResult (false);
+					}
+				}
+			} catch (Exception) {
+			}
+			return new JsonNetResult (false);
 		}
 
 	}

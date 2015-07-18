@@ -96,6 +96,7 @@ namespace AstroBuilders
 				if (u.IsBuilder && u.IdBuilder == builder.Id) {
 					theUsers.SelectedItem = u;
 					isAutoselect = true;
+					theUsers.ScrollTo (u, ScrollToPosition.Center, true);
 					break;
 				}
 			}
@@ -128,7 +129,8 @@ namespace AstroBuilders
 				isAutoselect = true;
 				builder = (Builder)Global.AllBuilders.GetByGuid<Builder> (user.IdBuilder);
 				theBuilders.SelectedItem = builder;
-				theBuilders.IsEnabled = false;
+				//theBuilders.IsEnabled = false;
+				theBuilders.ScrollTo (builder, ScrollToPosition.Center, true);
 			} else {
 				isAutoselect = false;
 				if (builder != null) {

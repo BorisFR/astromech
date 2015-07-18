@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace AstroBuildersModel
 {
 	public class User : IModel, IComparable<User>
 	{
+		// toute la gestion d'identification
 
 		private Guid token = Guid.Empty;
 		public Guid Token {
@@ -17,14 +19,14 @@ namespace AstroBuildersModel
 			}
 		}
 
-		private Guid idBuilder = Guid.Empty;
-		public Guid IdBuilder {
-			get { return idBuilder; }
+		private Guid idCountry = Guid.Empty;
+		public Guid IdCountry {
+			get { return idCountry; }
 			set {
-				if (value.Equals (idBuilder))
+				if (value.Equals (idCountry))
 					return;
-				idBuilder = value;
-				OnPropertyChanged ("IdBuilder");
+				idCountry = value;
+				OnPropertyChanged ("IdCountry");
 			}
 		}
 
@@ -69,6 +71,15 @@ namespace AstroBuildersModel
 					return;
 				email = value;
 				OnPropertyChanged ("Email");
+			}
+		}
+
+		private List<Guid> clubs = new List<Guid>();
+		public List<Guid> Clubs {
+			get { return clubs; }
+			set {
+				clubs = value;
+				OnPropertyChanged ("Clubs");
 			}
 		}
 
@@ -135,6 +146,39 @@ namespace AstroBuildersModel
 					return;
 				countLogin = value;
 				OnPropertyChanged ("CountLogin");
+			}
+		}
+
+		private Guid idBuilder = Guid.Empty;
+		public Guid IdBuilder {
+			get { return idBuilder; }
+			set {
+				if (value.Equals (idBuilder))
+					return;
+				idBuilder = value;
+				OnPropertyChanged ("IdBuilder");
+			}
+		}
+
+		private Guid idCub = Guid.Empty;
+		public Guid IdCub {
+			get { return idCub; }
+			set {
+				if (value.Equals (idCub))
+					return;
+				idCub = value;
+				OnPropertyChanged ("IdCub");
+			}
+		}
+
+		private bool isNewser = false;
+		public bool IsNewser {
+			get { return isNewser; }
+			set {
+				if (value.Equals (isNewser))
+					return;
+				isNewser = value;
+				OnPropertyChanged ("IsNewser");
 			}
 		}
 

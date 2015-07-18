@@ -10,7 +10,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 				<Label Text="Identifiant" />
 				<Entry x:Name="entryLogin" Placeholder="identifiant" />
 				<Label Text="Mot de passe" />
-				<Entry x:Name="entryPassword" Placeholder="password" IsPassword="true" />
+				<Entry x:Name="entryPassword" Placeholder="mot de passe" IsPassword="true" />
 				<Button x:Name="btLogin" Text="Connexion" />
 				<Button x:Name="btForget" Text="J'ai oublié mon mot de passe" />
 				<BoxView HeightRequest="4" BackgroundColor="Gray" />
@@ -25,6 +25,9 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 				<Entry x:Name="entryCreateLogin" Placeholder="identifiant" />
 				<Label Text="Mot de passe" />
 				<Entry x:Name="entryCreatePassword" Placeholder="password" IsPassword="true" />
+				<Label Text="Pays" />
+				<Picker x:Name="pickerCreateCountry" Title="Pays" />
+				<Image x:Name="createCountry" WidthRequest="100" HorizontalOptions="Center" />
 				<Button x:Name="btCreate" Text="Création" />
 			</StackLayout>
 			<StackLayout x:Name="lConnected" Orientation="Vertical">
@@ -32,10 +35,15 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 				<Button x:Name="btDisconnect" Text="Se déconnecter" />
 				<BoxView HeightRequest="4" BackgroundColor="Gray" />
 				<Label Text="Modifier mon compte" Font="Medium" HorizontalOptions="Center" />
+				<!---
 				<Label Text="Nom d'utilisateur" />
 				<Entry x:Name="entryModifyNickname" Placeholder="nickname" />
+				-->
 				<Label Text="Adresse email" />
 				<Entry x:Name="entryModifyEmail" Placeholder="adresse email" />
+				<Label Text="Pays" />
+				<Picker x:Name="pickerModifyCountry" Title="Pays" />
+				<Image x:Name="modifyCountry" WidthRequest="100" HorizontalOptions="Center" />
 				<Label Text="Mot de passe (pour validation)" />
 				<Entry x:Name="entryModifyPassword" Placeholder="password" IsPassword="true" />
 				<Button x:Name="btModify" Text="Modifier" />

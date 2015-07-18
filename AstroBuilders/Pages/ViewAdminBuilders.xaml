@@ -13,6 +13,8 @@
         	<RowDefinition Height="120" />
         </Grid.RowDefinitions>
 
+			<Label Text="Admin des Builders" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" />
+
         	<ListView x:Name="theUsers" SeparatorVisibility="None" Header="Users" Grid.Column="0" Grid.Row="1">
 		        <ListView.ItemTemplate>
 			        <DataTemplate>

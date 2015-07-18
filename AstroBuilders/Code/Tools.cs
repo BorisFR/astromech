@@ -105,6 +105,30 @@ namespace AstroBuilders
 			JobDone (status);
 		}
 
+		public static void DoUpdateUser(User user) {
+			res = string.Empty;
+			status = false;
+			RealDoUpdateUser (user);
+		}
+
+		private static async Task RealDoUpdateUser(User user) {
+			try {
+				string url = string.Format("{0}Data/UpdateUser", Global.BaseUrl);
+				Dictionary<string, string> d = new Dictionary<string, string>();
+				d.Add("id", Helper.Encrypt(JsonConvert.SerializeObject (user)));
+				d.Add("token", Global.ConnectedUser.Token.ToString());
+				HttpContent content = new FormUrlEncodedContent(d);
+				var response = await httpClient.PostAsync(url,content);
+				if(response.IsSuccessStatusCode) {
+				}
+				res = await response.Content.ReadAsStringAsync();
+				status = true;
+			} catch (Exception err) {
+				System.Diagnostics.Debug.WriteLine ("ERROR: " + err.Message);
+			}
+			JobDone (status);
+		}
+
 
 		public static void DoCreateBuilderUserLink(User user) {
 			res = string.Empty;

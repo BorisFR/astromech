@@ -1,6 +1,9 @@
 ﻿using System;
 using Xamarin.Forms;
 using AstroBuildersModel;
+using Toasts.Forms.Plugin.Abstractions;
+using Refractored.Xam.Vibrate;
+using Refractored.Xam.Vibrate.Abstractions;
 
 namespace AstroBuilders
 {
@@ -24,6 +27,7 @@ namespace AstroBuilders
 		public static DetailPage DetailPage;
 		public static MenuManager Menus;
 
+		public static CountryManager AllCountry = new CountryManager ();
 		public static NewsManager AllNews = new NewsManager ();
 		public static BuildersManager AllBuilders = new BuildersManager ();
 		public static ClubsManager AllClubs = new ClubsManager ();
@@ -35,12 +39,31 @@ namespace AstroBuilders
 		public static User ConnectedUser = null;
 
 		public static IFiles Files = null;
+		public static IToastNotificator Notificator = null;
+		public static IVibrate Vibrator = null;
+		public static string UniqueAppId = string.Empty;
 
 		public static void DoInit() {
 			Files = DependencyService.Get<IFiles> ();
+			Notificator = DependencyService.Get<IToastNotificator>();
+			Vibrator = CrossVibrate.Current;
+			Helper.SettingsRead<string>("UniqueAppId", string.Empty);
+			if (UniqueAppId.Length == 0) {
+				UniqueAppId = Helper.GenerateAppId;
+				Helper.SettingsSave<string>("UniqueAppId", UniqueAppId);
+			}
 			Tools.DoInit ();
 			Menus = new MenuManager ();
 			Menus.Refresh ();
+
+			IDataServer xa = new IDataServer ("country");
+			xa.DataRefresh +=  delegate(bool status) {
+				System.Diagnostics.Debug.WriteLine("Status: " + xa.FileName + "=" + status);
+				if(!status)
+					return;
+				AllCountry.LoadFromJson(Helper.Decrypt(xa.JsonData));
+			};
+			DataServer.AddToDo (xa);
 
 			IDataServer x = new IDataServer ("news");
 			x.DataRefresh +=  delegate(bool status) {
@@ -70,6 +93,15 @@ namespace AstroBuilders
 			};
 			DataServer.AddToDo (xxx);
 
+		}
+
+		public static void ShowNotification (ToastNotificationType infoType, string title, string message) {
+			Notificator.Notify(infoType, title, message, TimeSpan.FromSeconds(2));
+			DoVibrate ();
+		}
+
+		public static void DoVibrate() {
+			Vibrator.Vibration (500);
 		}
 
 		public static void GotoPage(MyPage page) {

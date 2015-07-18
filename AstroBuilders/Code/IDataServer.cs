@@ -31,8 +31,7 @@ namespace AstroBuilders
 			if (!ForceFreshData && Global.Files.IsExit (fileName)) {
 				System.Diagnostics.Debug.WriteLine ("Read data from file: " + fileName);
 				JsonData = Global.Files.ReadFile (fileName);
-				if (JobDone != null)
-					JobDone (true);
+				JobDone (true);
 				//TriggerData (true);
 				return;
 			}
@@ -48,13 +47,11 @@ namespace AstroBuilders
 			if (status) {
 				Global.Files.SaveFile (fileName, JsonData);
 			}
-			if (JobDone != null)
-				JobDone (Tools.StatusDownload);
+			JobDone (status);
 		}
 
 		public void TriggerData(bool status) {
-			if (DataRefresh != null)
-				DataRefresh (status);
+			DataRefresh (status);
 		}
 
 	}

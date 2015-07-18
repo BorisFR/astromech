@@ -16,7 +16,14 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" xmlns:other="cl
 			<Image Source="{local:ImageResource astromech.png}" Grid.Column="0" Grid.Row="0" />
 			<Image Source="{local:ImageResource R2BuildersBand.png}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" />
 
-			<ListView x:Name="theList" HasUnevenRows="true" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Title}" SeparatorVisibility="None" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+			<ListView x:Name="theList" HasUnevenRows="true" IsGroupingEnabled="true" SeparatorVisibility="None" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+				<ListView.GroupHeaderTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<Label Text="{Binding Title}" Font="Medium, Bold" TextColor="Black" BackgroundColor="#E1E1E1" />
+						</ViewCell>
+					</DataTemplate>
+				</ListView.GroupHeaderTemplate>
 		        <ListView.ItemTemplate>
 			        <DataTemplate>
 			        	<ViewCell>

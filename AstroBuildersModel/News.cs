@@ -18,6 +18,27 @@ namespace AstroBuildersModel
 
 	public class News : IModel, IComparable<News>
 	{
+		private Guid idClub = Guid.Empty;
+		public Guid IdClub {
+			get { return idClub; }
+			set {
+				if (value.Equals (idClub))
+					return;
+				idClub = value;
+				OnPropertyChanged ("IdClub");
+			}
+		}
+
+		private Guid idBuilder = Guid.Empty;
+		public Guid IdBuilder {
+			get { return idBuilder; }
+			set {
+				if (value.Equals (idBuilder))
+					return;
+				idBuilder = value;
+				OnPropertyChanged ("IdBuilder");
+			}
+		}
 
 		private DateTime date = new DateTime (2000, 1, 1);
 		public DateTime Date {

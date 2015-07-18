@@ -9,6 +9,7 @@ namespace AstroWeb
 {
 	public static class Helper
 	{
+		public static CountryManager AllCountry = new CountryManager ();
 		public static NewsManager AllNews = new NewsManager ();
 		public static BuildersManager AllBuilders = new BuildersManager();
 		public static ClubsManager AllClubs = new ClubsManager();
@@ -72,6 +73,7 @@ namespace AstroWeb
 		}
 
 		public static void ReloadData() {
+			AllCountry.LoadFromJson (Tools.LoadTextFile (AllCountry.CollectionName));
 			AllNews.LoadFromJson (Tools.LoadTextFile (AllNews.CollectionName));
 			AllBuilders.LoadFromJson (Tools.LoadTextFile (AllBuilders.CollectionName));
 			AllClubs.LoadFromJson (Tools.LoadTextFile (AllClubs.CollectionName));
@@ -79,6 +81,24 @@ namespace AstroWeb
 		}
 
 		public static void CreateSomeData() {
+			if (AllCountry.Collection.Count == 0) {
+				Country c;
+				// https://countrycode.org
+				c = new Country ();
+				c.Title = "France";
+				c.Code = "FRA";
+				AllCountry.Add (c);
+				c = new Country ();
+				c.Title = "United States of America";
+				c.Code = "USA";
+				AllCountry.Add (c);
+				c = new Country ();
+				c.Title = "Belgium";
+				c.Code = "BEL";
+				AllCountry.Add (c);
+
+				Tools.SaveTextFile (AllCountry.CollectionName, AllCountry.Save ());
+			}
 			if (AllClubs.Collection.Count == 0) {
 				Club c;
 				c = new Club ();
