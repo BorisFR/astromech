@@ -27,6 +27,14 @@ namespace AstroBuilders
 				theFrame.Content = null;
 				theFrame.Content = new ViewAccount ();
 				break;
+			case MyPage.MyBuilder:
+				theFrame.Content = null;
+				theFrame.Content = new ViewMyBuilder ();
+				break;
+			case MyPage.AdminUsers:
+				theFrame.Content = null;
+				theFrame.Content = new ViewAdminUsers ();
+				break;
 			case MyPage.AdminBuilders:
 				theFrame.Content = null;
 				theFrame.Content = new ViewAdminBuilders ();

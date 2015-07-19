@@ -134,17 +134,41 @@ namespace AstroBuilders
 		}
 
 
-		public static void DoCreateBuilderUserLink(User user) {
+		public static void DoUpdateUserByAdmin(User user) {
 			res = string.Empty;
 			status = false;
-			RealDoCreateBuilderUserLink (user);
+			RealDoUpdateUserByAdmin (user);
 		}
 
-		private static async Task RealDoCreateBuilderUserLink(User user) {
+		private static async Task RealDoUpdateUserByAdmin(User user) {
 			try {
 				string url = string.Format("{0}Data/UpdateBuilderUser", Global.BaseUrl);
 				Dictionary<string, string> d = new Dictionary<string, string>();
 				d.Add("id", Helper.Encrypt(JsonConvert.SerializeObject (user)));
+				d.Add("token", Global.ConnectedUser.Token.ToString());
+				HttpContent content = new FormUrlEncodedContent(d);
+				var response = await httpClient.PostAsync(url,content);
+				if(response.IsSuccessStatusCode) {
+				}
+				res = await response.Content.ReadAsStringAsync();
+				status = true;
+			} catch (Exception err) {
+				System.Diagnostics.Debug.WriteLine ("ERROR: " + err.Message);
+			}
+			JobDone (status);
+		}
+
+		public static void DoUpdateBuilder(Builder builder) {
+			res = string.Empty;
+			status = false;
+			RealDoUpdateBuilder (builder);
+		}
+
+		private static async Task RealDoUpdateBuilder(Builder builder) {
+			try {
+				string url = string.Format("{0}Data/UpdateBuilder", Global.BaseUrl);
+				Dictionary<string, string> d = new Dictionary<string, string>();
+				d.Add("id", Helper.Encrypt(JsonConvert.SerializeObject (builder)));
 				d.Add("token", Global.ConnectedUser.Token.ToString());
 				HttpContent content = new FormUrlEncodedContent(d);
 				var response = await httpClient.PostAsync(url,content);

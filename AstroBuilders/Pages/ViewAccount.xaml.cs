@@ -304,6 +304,7 @@ namespace AstroBuilders
 					clickInProgress = false;
 					return;
 				}
+				Helper.SettingsSave<string>("User", JsonConvert.SerializeObject (user));
 				entryCreateLogin.Text = string.Empty;
 				entryCreatePassword.Text = string.Empty;
 				entryCreateNickname.Text = string.Empty;
@@ -311,7 +312,7 @@ namespace AstroBuilders
 				Global.ConnectedUser = user;
 				Global.IsConnected = true;
 				Global.Menus.Refresh ();
-				Global.ShowNotification(Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, "Bienvenue", "Votre compte utilisateur a été créé.");
+				Global.ShowNotification(Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, "Bienvenue", "Votre compte utilisateur a été créé et vous êtes connecté à l'application.");
 			} catch (Exception) {
 				/*
 				message = "Les informations saisies sont erronées. Merci de corriger votre saisie.";
@@ -330,6 +331,7 @@ namespace AstroBuilders
 
 		void BtDisconnect_Clicked (object sender, EventArgs e)
 		{
+			Helper.SettingsSave<string>("User", string.Empty);
 			Global.IsConnected = false;
 			Global.ConnectedUser = null;
 			Global.Menus.Refresh ();
@@ -422,7 +424,7 @@ namespace AstroBuilders
 					user.IsAdmin = true;
 					user.IsModo = true;
 				}*/
-				Helper.SettingsSave<User>("User", user);
+				Helper.SettingsSave<string>("User", JsonConvert.SerializeObject (user));
 				entryLogin.Text = string.Empty;
 				entryPassword.Text = string.Empty;
 				entryOldPassword.Text = string.Empty;

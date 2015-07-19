@@ -13,6 +13,8 @@ namespace AstroBuilders
 		Home,
 		Builders,
 		Account,
+		MyBuilder,
+		AdminUsers,
 		AdminBuilders,
 		About
 	}
@@ -56,7 +58,7 @@ namespace AstroBuilders
 			Menus = new MenuManager ();
 			Menus.Refresh ();
 
-			IDataServer xa = new IDataServer ("country");
+			IDataServer xa = new IDataServer ("country", true);
 			xa.DataRefresh +=  delegate(bool status) {
 				System.Diagnostics.Debug.WriteLine("Status: " + xa.FileName + "=" + status);
 				if(!status)
@@ -65,7 +67,7 @@ namespace AstroBuilders
 			};
 			DataServer.AddToDo (xa);
 
-			IDataServer x = new IDataServer ("news");
+			IDataServer x = new IDataServer ("news", true);
 			x.DataRefresh +=  delegate(bool status) {
 				System.Diagnostics.Debug.WriteLine("Status: " + x.FileName + "=" + status);
 				if(!status)
@@ -75,7 +77,7 @@ namespace AstroBuilders
 			};
 			DataServer.AddToDo (x);
 
-			IDataServer xx = new IDataServer ("builders");
+			IDataServer xx = new IDataServer ("builders", true);
 			xx.DataRefresh +=  delegate(bool status) {
 				System.Diagnostics.Debug.WriteLine("Status: " + xx.FileName + "=" + status);
 				if(!status)
@@ -84,7 +86,7 @@ namespace AstroBuilders
 			};
 			DataServer.AddToDo (xx);
 
-			IDataServer xxx = new IDataServer ("clubs");
+			IDataServer xxx = new IDataServer ("clubs", true);
 			xxx.DataRefresh +=  delegate(bool status) {
 				System.Diagnostics.Debug.WriteLine("Status: " + xxx.FileName + "=" + status);
 				if(!status)
@@ -92,7 +94,16 @@ namespace AstroBuilders
 				AllClubs.LoadFromJson(Helper.Decrypt(xxx.JsonData));
 			};
 			DataServer.AddToDo (xxx);
-
+			/*
+			xa.ForceFreshData = true;
+			DataServer.AddToDo (xa);
+			x.ForceFreshData = true;
+			DataServer.AddToDo (x);
+			xx.ForceFreshData = true;
+			DataServer.AddToDo (xx);
+			xxx.ForceFreshData = true;
+			DataServer.AddToDo (xxx);
+			*/
 		}
 
 		public static void ShowNotification (ToastNotificationType infoType, string title, string message) {

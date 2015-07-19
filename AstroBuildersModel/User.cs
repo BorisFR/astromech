@@ -160,13 +160,13 @@ namespace AstroBuildersModel
 			}
 		}
 
-		private Guid idCub = Guid.Empty;
-		public Guid IdCub {
-			get { return idCub; }
+		private Guid idClub = Guid.Empty;
+		public Guid IdClub {
+			get { return idClub; }
 			set {
-				if (value.Equals (idCub))
+				if (value.Equals (idClub))
 					return;
-				idCub = value;
+				idClub = value;
 				OnPropertyChanged ("IdCub");
 			}
 		}
@@ -207,6 +207,12 @@ namespace AstroBuildersModel
 
 		[IgnoreDataMember]
 		public bool IsBuilder { get { return idBuilder != Guid.Empty; } }
+
+		public User DeepCopy()
+		{
+			User othercopy = (User)this.MemberwiseClone();
+			return othercopy;
+		}
 
 		public int CompareTo (User other) {
 			return -other.NickName.CompareTo (this.NickName);

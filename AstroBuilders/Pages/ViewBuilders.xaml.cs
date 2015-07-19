@@ -24,9 +24,9 @@ namespace AstroBuilders
 			Guid param = (Guid)button.CommandParameter;
 			Builder b = (Builder)Global.AllBuilders.GetByGuid<Builder>(param);
 			Global.CurrentBuilder = b;
-			System.Diagnostics.Debug.WriteLine ("Clicked: " + param.ToString() + "=" + b.NickName);
-			Club c = (Club)Global.AllClubs.GetByGuid<Club>(b.IdClub);
-			System.Diagnostics.Debug.WriteLine ("Club: " + c.Title);
+			//System.Diagnostics.Debug.WriteLine ("Clicked: " + param.ToString() + "=" + b.NickName);
+			//Club c = (Club)Global.AllClubs.GetByGuid<Club>(b.IdClub);
+			//System.Diagnostics.Debug.WriteLine ("Club: " + c.Title);
 			Navigation.PushModalAsync (new PageBuilder (), true);
 		}
 			

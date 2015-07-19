@@ -12,6 +12,8 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 				<Label Text="lolo080" TextColor="Black" />
 				<Label Text="Builder's club - R2 Builders Club France" TextColor="Black" />
 				<Label Text="laurent@r2builders.fr" TextColor="Black" />
+				<Label Text="blog" TextColor="Black" />
+				<Label Text="facebook" TextColor="Black" />
 				<Label Text="Location - Amiens, France" TextColor="Black" />
 				<Label Text="Droids - 2 droids. (1 R2-D2 still in building stage. 1 R2-M5 complete)" TextColor="Black" />
 				<Label TextColor="Black" Text="I have loved Star Wars since the beginning. I've been collecting Star Wars with busts, statues and artworks for ten years. In January, 2011, I jumped into the R2 Builders Club and started to build my first droid." />

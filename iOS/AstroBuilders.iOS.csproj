@@ -57,8 +57,9 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchProfiling>true</MtouchProfiling>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Stephane Fardoux (PF4MUXHP96)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>87d605d0-1d53-44c2-9fbc-74d77156b5ee</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

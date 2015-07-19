@@ -27,9 +27,8 @@ public static class HtmlHelperExtensions
 			bitmap.Save(stream, ImageFormat.Gif);
 
 			var img = new TagBuilder("img");
-			img.MergeAttribute("alt", "your alt tag");
-			img.Attributes.Add("src", String.Format("data:image/gif;base64,{0}", 
-				Convert.ToBase64String(stream.ToArray())));
+			img.MergeAttribute("alt", "QR-Code");
+			img.Attributes.Add("src", String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(stream.ToArray())));
 
 			return new HtmlString(img.ToString(TagRenderMode.SelfClosing));
 		}

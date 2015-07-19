@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewAdminUsers">
+	<ContentView.Content>
+		<StackLayout Orientation="Vertical" BackgroundColor="White">
+			<Label Text="Admin des utilisateurs" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
+			<StackLayout x:Name="panelUser" Orientation="Vertical">
+				<Label x:Name="theUser" Text="{Binding NickName}" TextColor="Black" />
+				<StackLayout Orientation="Horizontal">
+					<Switch x:Name="switchNewser" IsToggled="{Binding IsNewser}" />
+					<Label Text="Gérer ses propres actualités" TextColor="Black" />
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Switch x:Name="switchBuilder" IsToggled="{Binding IsBuilder}" />
+					<Label Text="Est un Builder" TextColor="Black" />
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+				<Switch x:Name="switchModo" IsToggled="{Binding IsModo}" />
+					<Label Text="Gérer toutes les actualités" TextColor="Black" />
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+				<Switch x:Name="switchAdmin" IsToggled="{Binding IsAdmin}" />
+					<Label Text="Gérer les utilisateurs" TextColor="Black" />
+				</StackLayout>
+				<ActivityIndicator x:Name="theAI" IsRunning="false" IsVisible="false" />
+				<Button x:Name="btValidate" Text = "Valider" TextColor="Black" BackgroundColor="White" />
+			</StackLayout>
+
+        	<ListView x:Name="theUsers" SeparatorVisibility="None" Header="Utilisateurs" Grid.Column="0" Grid.Row="1">
+		        <ListView.ItemTemplate>
+			        <DataTemplate>
+			        	<TextCell Text="{Binding NickName}" Detail="{Binding Title}" TextColor="Black" DetailColor="Accent" />
+		        	</DataTemplate>
+	        	</ListView.ItemTemplate>
+        	</ListView>
+
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

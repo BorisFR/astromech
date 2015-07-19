@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using AstroBuildersModel;
+using System.Collections.ObjectModel;
 
 namespace AstroWeb.Controllers
 {
@@ -32,17 +33,22 @@ namespace AstroWeb.Controllers
 		}
 
 		public JsonResult Users(string id) {
-			try{
-			Guid toTest = new Guid (id);
-			foreach (User u in Helper.AllUsers.Collection) {
-				if (u.Token == toTest) {
-					if (u.IsAdmin)
-						return new JsonNetResult (Helper.AllUsers.All);
-					else
-						return new JsonNetResult (null);
+			try {
+				Guid toTest = new Guid (id);
+				foreach (User u in Helper.AllUsers.Collection) {
+					if (u.Token == toTest) {
+						if (u.IsAdmin) {
+							List<User> list = new List<User>();
+							foreach(User user in Helper.AllUsers.All) {
+								if(user.IdClub.Equals(Guid.Empty) || user.IdClub.Equals(u.IdClub))
+									list.Add(user);
+							}
+							return new JsonNetResult (list);
+						} else
+							return new JsonNetResult (null);
+					}
 				}
-			}
-			} catch(Exception){
+			} catch (Exception) {
 			}
 			return new JsonNetResult (null);
 		}
@@ -53,29 +59,49 @@ namespace AstroWeb.Controllers
 		}
 
 		public JsonResult UpdateBuilderUser(string id, string token) {
-			Guid toTest = new Guid (token);
-			foreach (User u in Helper.AllUsers.Collection) {
-				if (u.Token == toTest) {
-					if (u.IsAdmin) {
-						string data = Helper.Decrypt (id);
-						User user = JsonConvert.DeserializeObject<User> (data);
-						foreach (User old in Helper.AllUsers.Collection) {
-							if (old.Id == user.Id) {
-								// petite vérif complémentaire
-								if (old.NickName.Equals (user.NickName) && old.Login.Equals (user.Login)) {
-									old.IdBuilder = user.IdBuilder;
-									Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
-									return new JsonNetResult (Helper.AllUsers.All);
-								} else {
-									return new JsonNetResult (null);
+			try {
+				Guid toTest = new Guid (token);
+				string data = Helper.Decrypt (id);
+				User user = JsonConvert.DeserializeObject<User> (data);
+				foreach (User u in Helper.AllUsers.Collection) {
+					if (u.Token == toTest) {
+						if (u.IsAdmin) {
+							foreach (User old in Helper.AllUsers.Collection) {
+								if (old.Id == user.Id) {
+									// petite vérif complémentaire
+									if (old.NickName.Equals (user.NickName) && old.Login.Equals (user.Login)) {
+										if((old.IsBuilder != user.IsBuilder) && user.IsBuilder) {
+											// we need to create a new builder
+
+											Builder b = new Builder ();
+											b.Id = user.IdBuilder;
+											b.IdClub = u.IdClub;
+											b.Title = old.Title;
+											b.NickName = old.NickName;
+											b.Email = old.Email;
+											Helper.AllBuilders.Add (b);
+
+											Tools.SaveTextFile (Helper.AllBuilders.CollectionName, Helper.AllBuilders.Save ());
+
+										}
+										old.IdClub = u.IdClub;
+										old.IdBuilder = user.IdBuilder;
+										old.IsAdmin = user.IsAdmin;
+										old.IsModo = user.IsModo;
+										old.IsNewser = user.IsNewser;
+										Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
+										return new JsonNetResult (Helper.AllUsers.All);
+									} else {
+										return new JsonNetResult (null);
+									}
 								}
 							}
-						}
-						return new JsonNetResult (null);
+							return new JsonNetResult (null);
+						} else
+							return new JsonNetResult (null);
 					}
-					else
-						return new JsonNetResult (null);
 				}
+			} catch (Exception) {
 			}
 			return new JsonNetResult (null);
 		}
@@ -133,13 +159,13 @@ namespace AstroWeb.Controllers
 		public JsonResult UpdateUser(string id, string token) {
 			try {
 				Guid toTest = new Guid (token);
+				string data = Helper.Decrypt (id);
+				User user = JsonConvert.DeserializeObject<User> (data);
 				foreach (User u in Helper.AllUsers.Collection) {
 					if (u.Token == toTest) {
-						string data = Helper.Decrypt (id);
-						User user = JsonConvert.DeserializeObject<User> (data);
 						if (u.Id.Equals (user.Id)) {
 							foreach (User old in Helper.AllUsers.Collection) {
-								if (old.Id.Equals (user.Id)) {
+								if (old.Id.Equals (user.Id) && old.Password.Equals(user.Password) && old.Login.Equals(user.Login)) {
 									//old.NickName = user.NickName;
 									old.Email = user.Email;
 									old.IdCountry = user.IdCountry;
@@ -150,6 +176,36 @@ namespace AstroWeb.Controllers
 							return new JsonNetResult (false);
 						} else
 							return new JsonNetResult (false);
+					}
+				}
+			} catch (Exception) {
+			}
+			return new JsonNetResult (false);
+		}
+
+
+		public JsonResult UpdateBuilder(string id, string token) {
+			try {
+				Guid toTest = new Guid (token);
+				string data = Helper.Decrypt (id);
+				Builder builder = JsonConvert.DeserializeObject<Builder> (data);
+				foreach (User u in Helper.AllUsers.Collection) {
+					if (u.Token == toTest) {
+						if (u.IdBuilder.Equals (builder.Id)) {
+							Builder old = (Builder)Helper.AllBuilders.GetByGuid<Builder>(builder.Id);
+							old.Blog = builder.Blog;
+							old.Detail = builder.Detail;
+							old.Droids = builder.Droids;
+							old.Email = builder.Email;
+							old.Facebook = builder.Facebook;
+							old.Location = builder.Location;
+							old.Logo = builder.Logo;
+							old.NickName = builder.NickName;
+							old.Title = builder.Title;
+							Tools.SaveTextFile (Helper.AllBuilders.CollectionName, Helper.AllBuilders.Save ());
+							return new JsonNetResult (Helper.AllBuilders.All);
+						}
+						return new JsonNetResult (false);
 					}
 				}
 			} catch (Exception) {

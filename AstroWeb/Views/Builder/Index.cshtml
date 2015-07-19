@@ -1,7 +1,13 @@
 ﻿@using AstroBuildersModel;
 @using System.Collections.ObjectModel;
 @model ObservableCollection<Builder>
-
+@{
+	string detail = (string)ViewData["Detail"];
+	if(detail == null) {
+		detail = string.Empty;
+	}
+	//detail = detail.Replace("\r\n", "<br />");
+}
 @if(Model == null) {
     ViewBag.Title = "R2 Builders - Builder: " + @ViewData["NickName"];
 } else {
@@ -21,10 +27,10 @@
 
 <p>@ViewData["Email"]</p>
 <p>@ViewData["Facebook"]</p>
-<p>@ViewData["Blof"]</p>
+<p>@ViewData["Blog"]</p>
 <p>Origine - @ViewData["Location"]</p>
 <p>Droïdes - @ViewData["Droids"]</p>
-<p>@ViewData["Detail"]</p>
+<pre>@detail</pre>
 
 <br />
 <br />

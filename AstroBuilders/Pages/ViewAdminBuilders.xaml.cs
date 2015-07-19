@@ -51,7 +51,7 @@ namespace AstroBuilders
 			btIsBuilder.IsEnabled = false;
 			user.IdBuilder = Guid.Empty;
 			Tools.JobDone += Tools_LinkDone;
-			Tools.DoCreateBuilderUserLink (user);
+			Tools.DoUpdateUserByAdmin (user);
 		}
 
 		void BtIsBuilder_Clicked (object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace AstroBuilders
 			btIsBuilder.IsEnabled = false;
 			user.IdBuilder = builder.Id;
 			Tools.JobDone += Tools_LinkDone;
-			Tools.DoCreateBuilderUserLink (user);
+			Tools.DoUpdateUserByAdmin (user);
 
 		}
 

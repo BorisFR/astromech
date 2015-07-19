@@ -31,6 +31,8 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="6,24,6
 						<Label Text="Club du Builder" TextColor="Black" />
 						<Label x:Name="lClub" TextColor="Black" HorizontalOptions="Center" Text="Builder's club" />
 						<Label Text="{Binding Email}" TextColor="Black" />
+						<Label Text="{Binding Blog}" TextColor="Black" />
+						<Label Text="{Binding Facebook}" TextColor="Black" />
 						<Label x:Name="lLocation" Text="Location -" TextColor="Black" />
 					</StackLayout>
 				</StackLayout>
@@ -39,7 +41,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="6,24,6
 					<Label x:Name="lDroids" Text="Droïdes -" TextColor="Black" />
 				</StackLayout>
 				<Label Text="{Binding Detail}" TextColor="Black" />
-				<Button Text="Revenir à la liste" Clicked="ButtonClicked" />
+				<Button Text="Revenir à la liste" Clicked="ButtonClicked" TextColor="Black" BackgroundColor="White" />
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

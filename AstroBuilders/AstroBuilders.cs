@@ -2,6 +2,7 @@
 
 using Xamarin.Forms;
 using AstroBuildersModel;
+using Newtonsoft.Json;
 
 namespace AstroBuilders
 {
@@ -17,7 +18,10 @@ namespace AstroBuilders
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
-			User user = Helper.SettingsRead<User>("User", null);
+			string json = Helper.SettingsRead<string>("User", string.Empty);
+			if (json.Length == 0)
+				return;
+			User user = JsonConvert.DeserializeObject<User> (json);
 			if (user == null)
 				return;
 			Global.ConnectedUser = user;

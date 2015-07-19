@@ -28,12 +28,14 @@ namespace AstroBuilders
 
 		public void DoDownload() {
 			// if exist, give the old data
+			//if (Global.Files.IsExit (fileName)) {
 			if (!ForceFreshData && Global.Files.IsExit (fileName)) {
 				System.Diagnostics.Debug.WriteLine ("Read data from file: " + fileName);
 				JsonData = Global.Files.ReadFile (fileName);
 				JobDone (true);
 				//TriggerData (true);
-				return;
+				//if (!ForceFreshData)
+					return;
 			}
 			// load newest data in background
 			Tools.DoneBatch += DoneBatch;
@@ -48,6 +50,8 @@ namespace AstroBuilders
 				Global.Files.SaveFile (fileName, JsonData);
 			}
 			JobDone (status);
+			if (DataRefresh != null)
+				DataRefresh (status);
 		}
 
 		public void TriggerData(bool status) {

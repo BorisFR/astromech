@@ -126,6 +126,13 @@ namespace AstroBuildersModel
 			}
 		}
 
+
+		public Builder DeepCopy()
+		{
+			Builder othercopy = (Builder)this.MemberwiseClone();
+			return othercopy;
+		}
+
 		public int CompareTo (Builder other) {
 			return -other.NickName.CompareTo (this.NickName);
 		}

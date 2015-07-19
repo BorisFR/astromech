@@ -3,59 +3,59 @@
 xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	<ScrollView Orientation="Vertical">
-		<StackLayout Orientation="Vertical" Padding="12">
-			<Label Text="Mon compte" Font="Bold,Medium" HorizontalOptions="Center" />
+		<StackLayout Orientation="Vertical" Padding="12" BackgroundColor="White">
+			<Label Text="Mon compte" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" />
 			<StackLayout x:Name="lConnexion" Orientation="Vertical">
-				<Label Text="Se connecter" Font="Medium" HorizontalOptions="Center" />
-				<Label Text="Identifiant" />
-				<Entry x:Name="entryLogin" Placeholder="identifiant" />
-				<Label Text="Mot de passe" />
-				<Entry x:Name="entryPassword" Placeholder="mot de passe" IsPassword="true" />
-				<Button x:Name="btLogin" Text="Connexion" />
-				<Button x:Name="btForget" Text="J'ai oublié mon mot de passe" />
+				<Label Text="Se connecter" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
+				<Label Text="Identifiant" TextColor="Black" />
+				<Entry x:Name="entryLogin" Placeholder="identifiant" TextColor="Black" />
+				<Label Text="Mot de passe" TextColor="Black" />
+				<Entry x:Name="entryPassword" Placeholder="mot de passe" IsPassword="true" TextColor="Black" />
+				<Button x:Name="btLogin" Text="Connexion" TextColor="Black" BackgroundColor="White" />
+				<Button x:Name="btForget" Text="J'ai oublié mon mot de passe" TextColor="Black" BackgroundColor="White" />
 				<BoxView HeightRequest="4" BackgroundColor="Gray" />
-				<Label Text="Créer mon compte" Font="Medium" HorizontalOptions="Center" />
+				<Label Text="Créer mon compte" TextColor="Black" Font="Medium" HorizontalOptions="Center" />
 				<Label Text="Cela est surtout utile aux R2 Builders. En tant qu'utilisateur, vous avez déjà un accès complet au contenu." TextColor="Accent" HorizontalOptions="Center" />
-				<Label Text="Nom d'utilisateur" />
-				<Entry x:Name="entryCreateNickname" Placeholder="nickname" />
-				<Label Text="Adresse email" />
+				<Label Text="Nom d'utilisateur" TextColor="Black" />
+				<Entry x:Name="entryCreateNickname" Placeholder="nickname" TextColor="Black" />
+				<Label Text="Adresse email" TextColor="Black" />
 				<Label Text="L'adresse email sert uniquement en cas d'oubli du mot de passe. La saisie n'est pas obligatoire." TextColor="Accent" HorizontalOptions="Center" />
-				<Entry x:Name="entryCreateEmail" Placeholder="adresse email" />
-				<Label Text="Identifiant" />
-				<Entry x:Name="entryCreateLogin" Placeholder="identifiant" />
-				<Label Text="Mot de passe" />
-				<Entry x:Name="entryCreatePassword" Placeholder="password" IsPassword="true" />
-				<Label Text="Pays" />
+				<Entry x:Name="entryCreateEmail" Placeholder="adresse email" TextColor="Black" />
+				<Label Text="Identifiant" TextColor="Black" />
+				<Entry x:Name="entryCreateLogin" Placeholder="identifiant" TextColor="Black" />
+				<Label Text="Mot de passe" TextColor="Black" />
+				<Entry x:Name="entryCreatePassword" Placeholder="password" IsPassword="true" TextColor="Black" />
+				<Label Text="Pays" TextColor="Black" />
 				<Picker x:Name="pickerCreateCountry" Title="Pays" />
 				<Image x:Name="createCountry" WidthRequest="100" HorizontalOptions="Center" />
-				<Button x:Name="btCreate" Text="Création" />
+				<Button x:Name="btCreate" Text="Création" TextColor="Black" BackgroundColor="White" />
 			</StackLayout>
 			<StackLayout x:Name="lConnected" Orientation="Vertical">
-				<Label x:Name="lUser" Text="Username" />
-				<Button x:Name="btDisconnect" Text="Se déconnecter" />
+				<Label x:Name="lUser" TextColor="Black" Text="Username" />
+				<Button x:Name="btDisconnect" Text="Se déconnecter" TextColor="Black" BackgroundColor="White" />
 				<BoxView HeightRequest="4" BackgroundColor="Gray" />
-				<Label Text="Modifier mon compte" Font="Medium" HorizontalOptions="Center" />
+				<Label Text="Modifier mon compte" TextColor="Black" Font="Medium" HorizontalOptions="Center" />
 				<!---
 				<Label Text="Nom d'utilisateur" />
-				<Entry x:Name="entryModifyNickname" Placeholder="nickname" />
+				<Entry x:Name="entryModifyNickname" Placeholder="nickname" TextColor="Black" />
 				-->
-				<Label Text="Adresse email" />
-				<Entry x:Name="entryModifyEmail" Placeholder="adresse email" />
-				<Label Text="Pays" />
+				<Label Text="Adresse email" TextColor="Black" />
+				<Entry x:Name="entryModifyEmail" Placeholder="adresse email" TextColor="Black" />
+				<Label Text="Pays" TextColor="Black" />
 				<Picker x:Name="pickerModifyCountry" Title="Pays" />
 				<Image x:Name="modifyCountry" WidthRequest="100" HorizontalOptions="Center" />
-				<Label Text="Mot de passe (pour validation)" />
-				<Entry x:Name="entryModifyPassword" Placeholder="password" IsPassword="true" />
-				<Button x:Name="btModify" Text="Modifier" />
+				<Label Text="Mot de passe (pour validation)" TextColor="Black" />
+				<Entry x:Name="entryModifyPassword" Placeholder="password" IsPassword="true" TextColor="Black" />
+				<Button x:Name="btModify" Text="Modifier" TextColor="Black" BackgroundColor="White" />
 				<BoxView HeightRequest="4" BackgroundColor="Gray" />
-				<Label Text="Changer mon mot de passe" Font="Medium" HorizontalOptions="Center" />
-				<Label Text="Ancien mot de passe" />
-				<Entry x:Name="entryOldPassword" Placeholder="ancien mot de passe" IsPassword="true" />
-				<Label Text="Nouveau mot de passe" />
-				<Entry x:Name="entryNewPassword" Placeholder="nouveau mot de passe" IsPassword="true" />
-				<Label Text="Nouveau mot de passe pour vérification" />
-				<Entry x:Name="entryNew2Password" Placeholder="nouveau mot de passe" IsPassword="true" />
-				<Button x:Name="btChangePassword" Text="Changer" />
+				<Label Text="Changer mon mot de passe" TextColor="Black" Font="Medium" HorizontalOptions="Center" />
+				<Label Text="Ancien mot de passe" TextColor="Black" />
+				<Entry x:Name="entryOldPassword" Placeholder="ancien mot de passe" IsPassword="true" TextColor="Black" />
+				<Label Text="Nouveau mot de passe" TextColor="Black" />
+				<Entry x:Name="entryNewPassword" Placeholder="nouveau mot de passe" IsPassword="true" TextColor="Black" />
+				<Label Text="Nouveau mot de passe pour vérification" TextColor="Black" />
+				<Entry x:Name="entryNew2Password" Placeholder="nouveau mot de passe" IsPassword="true" TextColor="Black" />
+				<Button x:Name="btChangePassword" Text="Changer" TextColor="Black" BackgroundColor="White" />
 			</StackLayout>
 		</StackLayout>
 		</ScrollView>

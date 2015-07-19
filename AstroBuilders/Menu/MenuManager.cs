@@ -57,7 +57,7 @@ namespace AstroBuilders
 			if (Global.IsConnected) {
 				mg = new MenuGroup ("Menu Builder");
 				if (Global.ConnectedUser.IsBuilder) {
-					mg.Add (new Menu () { Page = MyPage.None, Title = "Ma fiche", 			Detail = "Gérer ma fiche de présentation", 	Icon = "account" });
+					mg.Add (new Menu () { Page = MyPage.MyBuilder, Title = "Ma fiche", 			Detail = "Gérer ma fiche de présentation", 	Icon = "account" });
 					mg.Add (new Menu (){ Page = MyPage.None, Title = "Mes robots", 			Detail = "Gérer mes robots", 				Icon = "IA" });
 				}	
 				if (mg.Count > 0)
@@ -70,6 +70,9 @@ namespace AstroBuilders
 					mg.Add (new Menu () { Page = MyPage.None, Title = "Toutes les actualités", Detail = "Gérer toutes les actualités", 	Icon = "IA" });
 				}
 				if (Global.ConnectedUser.IsAdmin) {
+					mg.Add (new Menu () { Page = MyPage.AdminUsers, Title = "Admin Users", 	Detail = "Gérer les utilisateurs", 			Icon = "IA" });
+				}
+				if (Global.ConnectedUser.NickName.Equals("Boris")) {
 					mg.Add (new Menu () { Page = MyPage.AdminBuilders, Title = "Admin builders", Detail = "Gérer qui est builder", 		Icon = "IA" });
 				}
 				if (mg.Count > 0)

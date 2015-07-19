@@ -30,6 +30,18 @@ namespace AstroBuilders.Droid
 			global::PCLCrypto.Resource.String.Hello = global::AstroBuilders.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Resource.String.ApplicationName = global::AstroBuilders.Droid.Resource.String.ApplicationName;
 			global::Xamarin.Forms.Platform.Resource.String.Hello = global::AstroBuilders.Droid.Resource.String.Hello;
+			global::Toasts.Forms.Plugin.Droid.Resource.Drawable.error = global::AstroBuilders.Droid.Resource.Drawable.error;
+			global::Toasts.Forms.Plugin.Droid.Resource.Drawable.info = global::AstroBuilders.Droid.Resource.Drawable.info;
+			global::Toasts.Forms.Plugin.Droid.Resource.Drawable.success = global::AstroBuilders.Droid.Resource.Drawable.success;
+			global::Toasts.Forms.Plugin.Droid.Resource.Drawable.warning = global::AstroBuilders.Droid.Resource.Drawable.warning;
+			global::Toasts.Forms.Plugin.Droid.Resource.Id.desc = global::AstroBuilders.Droid.Resource.Id.desc;
+			global::Toasts.Forms.Plugin.Droid.Resource.Id.image = global::AstroBuilders.Droid.Resource.Id.image;
+			global::Toasts.Forms.Plugin.Droid.Resource.Id.title = global::AstroBuilders.Droid.Resource.Id.title;
+			global::Toasts.Forms.Plugin.Droid.Resource.Layout.crouton = global::AstroBuilders.Droid.Resource.Layout.crouton;
+			global::Toasts.Forms.Plugin.Droid.Resource.String.ApplicationName = global::AstroBuilders.Droid.Resource.String.ApplicationName;
+			global::Toasts.Forms.Plugin.Droid.Resource.String.Hello = global::AstroBuilders.Droid.Resource.String.Hello;
+			global::Refractored.Xam.Vibrate.Resource.String.ApplicationName = global::AstroBuilders.Droid.Resource.String.ApplicationName;
+			global::Refractored.Xam.Vibrate.Resource.String.Hello = global::AstroBuilders.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -49,7 +61,19 @@ namespace AstroBuilders.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int icon = 2130837504;
+			public const int error = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public const int icon = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int info = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int success = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int warning = 2130837508;
 			
 			static Drawable()
 			{
@@ -61,14 +85,52 @@ namespace AstroBuilders.Droid
 			}
 		}
 		
+		public partial class Id
+		{
+			
+			// aapt resource value: 0x7f050002
+			public const int desc = 2131034114;
+			
+			// aapt resource value: 0x7f050000
+			public const int image = 2131034112;
+			
+			// aapt resource value: 0x7f050001
+			public const int title = 2131034113;
+			
+			static Id()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Id()
+			{
+			}
+		}
+		
+		public partial class Layout
+		{
+			
+			// aapt resource value: 0x7f030000
+			public const int crouton = 2130903040;
+			
+			static Layout()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Layout()
+			{
+			}
+		}
+		
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f030001
-			public const int ApplicationName = 2130903041;
+			// aapt resource value: 0x7f040001
+			public const int ApplicationName = 2130968577;
 			
-			// aapt resource value: 0x7f030000
-			public const int Hello = 2130903040;
+			// aapt resource value: 0x7f040000
+			public const int Hello = 2130968576;
 			
 			static String()
 			{
