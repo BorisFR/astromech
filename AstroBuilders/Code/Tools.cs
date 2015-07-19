@@ -17,7 +17,7 @@ namespace AstroBuilders
 		public static event JobDone JobDone;
 		public static event JobDone DoneBatch;
 
-		private static HttpClient httpClient;
+		//private static HttpClient httpClient;
 		private static string res = string.Empty;
 
 		public static string Result { get { return res; } }
@@ -27,11 +27,22 @@ namespace AstroBuilders
 		public static bool StatusDownload { get { return status; } }
 
 		public static void DoInit() {
+			/*
 			if (httpClient != null)
 				return;
 			httpClient = new HttpClient();
 			httpClient.Timeout = new TimeSpan (0, 0, 0, 3, 500);
 			httpClient.DefaultRequestHeaders.ExpectContinue = false;
+			*/
+		}
+
+		private static HttpClient httpClient {
+			get{
+				HttpClient httpClient = new HttpClient ();
+				httpClient.Timeout = new TimeSpan (0, 0, 0, 10, 500);
+				httpClient.DefaultRequestHeaders.ExpectContinue = false;
+				return httpClient;
+			}
 		}
 
 		public static void DoDownload(string fileName) {
