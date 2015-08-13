@@ -4,6 +4,7 @@ using AstroBuildersModel;
 using Toasts.Forms.Plugin.Abstractions;
 using Refractored.Xam.Vibrate;
 using Refractored.Xam.Vibrate.Abstractions;
+using System.Collections.Generic;
 
 namespace AstroBuilders
 {
@@ -44,6 +45,7 @@ namespace AstroBuilders
 		public static IToastNotificator Notificator = null;
 		public static IVibrate Vibrator = null;
 		public static string UniqueAppId = string.Empty;
+		public static IBeaconTools BeaconsTools = null;
 
 		public static void DoInit() {
 			Files = DependencyService.Get<IFiles> ();
@@ -54,6 +56,7 @@ namespace AstroBuilders
 				UniqueAppId = Helper.GenerateAppId;
 				Helper.SettingsSave<string>("UniqueAppId", UniqueAppId);
 			}
+			BeaconsTools = DependencyService.Get<IBeaconTools>();
 			Tools.DoInit ();
 			Menus = new MenuManager ();
 			Menus.Refresh ();
@@ -104,11 +107,22 @@ namespace AstroBuilders
 			xxx.ForceFreshData = true;
 			DataServer.AddToDo (xxx);
 			*/
+			BeaconsTools.Founded += BeaconsTools_Founded;
+			BeaconsTools.Init ("R2BUILDERS", "B9407F30-F5F8-466E-AFF9-25556B57FE6D");
+			// 74278BDA-B644-4520-8F0C-720EAF059935 => HM-10 Default = Apple Air Locate
+		}
+
+		static void BeaconsTools_Founded (List<OneBeacon> beacons)
+		{
+			// on détecte des iBeacons :)
+
 		}
 
 		public static void ShowNotification (ToastNotificationType infoType, string title, string message) {
-			Notificator.Notify(infoType, title, message, TimeSpan.FromSeconds(2));
-			DoVibrate ();
+			Device.BeginInvokeOnMainThread (() => {
+				Notificator.Notify (infoType, title, message, TimeSpan.FromSeconds (2));
+				DoVibrate ();
+			});
 		}
 
 		public static void DoVibrate() {

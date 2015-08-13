@@ -149,6 +149,9 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Files.cs" />
+    <Compile Include="iBeaconTools.cs" />
+    <Compile Include="TheBeacon.cs" />
+    <Compile Include="PeripheralManagerDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />

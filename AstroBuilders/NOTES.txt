@@ -1,4 +1,19 @@
-﻿
+﻿Postulats
+================================================
+On peut "tout" gérer depuis l'application smartphone !
+Il n'y a pas d'application web.
+Il y a par contre un backoffice web mais il n'est là que pour le stockage et le partage des infos.
+Il n'y a pas d'interface utilisateur de gestion.
+
+Ca implique que lorsqu'il faut ajouter une image, elle soit présente sur le smartphone !
+On peut toujours se l'envoyer par email...
+
+L'application est (sera) disponible sur iPhone et Android, smartphone ET tablette.
+Il est envisageable (normallement relativement facilement) d'avoir la version Windows Phone ET desktop 8.1 ... voir Windows 10...
+Mais je traiterais ces versions un peu plus tard... je manque de temps :)
+
+
+
 * Fiche Country
 ================================================
 - code pays : FRA / BEL / USA
@@ -12,6 +27,7 @@ https://countrycode.org pour les codes sur 3 lettres
 liste des pays : http://r2builders.diverstrucs.com/Country
 
 Gestion manuel par #superadmin.
+
 
 
 * Fiche club
@@ -29,6 +45,7 @@ liste des clubs: http://r2builders.diverstrucs.com/Club
 Gestion manuel par #superadmin.
 
 
+
 * Fiche user
 ================================================
 Un user contient :
@@ -36,15 +53,16 @@ Un user contient :
 - nickname (Unique en base)
 - login (unique en base)
 - password
-- email (optionnel, sert à regénéré un mot de passe perdu) Obligatoire pour recevoir des droits
-- pays (peut être différent de celui du club)
+- email (optionnel, sert à regénéré un mot de passe perdu) Obligatoire pour recevoir des droits !
+- pays (peut être différent de celui du club, un club n'ayant pas de pays)
 - liste des clubs suivi pour les actus
 (géré automatiquement)
 - date de création du compte
 - date de dernier login
 - nombre de login
 - id de push android/ios/windows
-- token de connexion (change à chaque connexion)
+- token de connexion (change à chaque connexion => si utilise plusieurs device, il faut se reconnecter !!! )
+et en optionnel
 - id Builder
 - id club d'appartenance
 - liste des droits
@@ -54,8 +72,9 @@ Le #user gagne alors des droits dans l'application.
 1 user = 0 ou 1 club
 1 user = 0 ou 1 builder (donc 1 club)
 
-Il n'y a pas de page web qui permette de récupérer la liste des users :)
+Il n'y a pas de page web qui permette de récupérer la liste des users => pas de hack possible :)
 Il existe par contre un service data qui permet, à partir d'un token d'admin, de récupérer la liste des users du pays correspondant à l'admin.
+
 
 
 * Fiche builder
@@ -74,17 +93,21 @@ Une fiche builder contient :
 - un code pays (pour affichage du drapeau correspondant)
 - club d'appartenance (pour l'instant que nous...) <= automatique par l'admin qui promeut le "user" en "builder"
 
+- id iBeacon
+
 
 Une fiche builder est créée automatiquement lors de l'affectation du droit #builder par un #admin.
 
 liste des builders: http://r2builders.diverstrucs.com/Builder
 Visu de la fiche d'un builders : http://r2builders.diverstrucs.com/Builder/NickName => http://r2builders.diverstrucs.com/Builder/Boris
+Sur le web, un QR-Code est affiché. Ce QR-Code contient l'url de la page web du Builders.
 
 
 * Fiche robot
 ================================================
+Chaque Builders peut créer des fiches robot.
 
-
+- id iBeacon
 
 
 
@@ -105,6 +128,83 @@ Travail d'un builder qui participe à un événement :
 - faire une actu pour le jour J, une actu du genre : "Aujourd'hui, les R2 Builders sont au salon xxx".
 
 liste des actus : http://r2builders.diverstrucs.com/ (page d'accueil du site web)
+
+
+
+* Fiche event
+================================================
+Chaque builder peut participer à des events. Il a donc le droit de créer un event.
+Détail d'un event :
+- nom
+- date de début
+- date de fin (peut être la même que début)
+- descriptif
+- un logo (optionnel)
+- une image (optionnel)
+
+
+
+* Fiche carte => Gamification
+================================================
+Une carte est une image que l'utilisateur gagne quand il a découvert un "truc".
+Techniquement, "truc" pouvant être un QR-Code ou une détection de iBeacon.
+De manière physique, placer un iBeacon :
+- sur le stand des builders
+- dans chacun des robots 
+- sur chacun des builders (dans la poche)
+
+On peut prévoir d'en déposer sur d'autres stands mais aussi d'en équiper des "stars". (Anthony Daniels, Kenny Baker, Marcus, ...)
+Plus économique : avoir également des QR-Code que l'on peut lire dans l'application et qui débloque la carte correspondante.
+>> Prévoir dans l'application de pouvoir scanner un QR-Code.
+>> Faire un design de QR-Code
+
+Pour un "truc" ayant un iBeacon, le QR-Code est auto généré à partir de l'ID event + ID iBeacon.
+Pour les autres sans iBeacon, c'est auto-généré sur base de l'ID event + random.
+
+Une carte :
+- ID event (une carte appartient obligatoirement à un event)
+- ID iBeacon
+- distance iBeacon pour validation (en centimetres. Au dessus de cette distance, l'image n'est pas débloquée)
+- QR-Code
+- nom
+- image à débloquer
+optionnel
+- ID Builder => permet de voir les cartes depuis la fiche du builder
+- ID Robot => permet de voir les cartes depuis la fiche du robot
+
+Les builders gérent les cartes de chaque event. Pas de gestion fine des droits pour le moment !
+>> Faire un design des cartes. Je vois ça sur le principe des cartes Topps. 
+	C'est à dire que l'on a un masque que l'on vient appliquer sur les images gagnées.
+	Par défaut on les affiche "caché" (genre une ombre de R2)
+
+On crée une carte directement depuis l'application smartphone. On prend une photo, on donne un nom, on
+approche le iBeacon sur le smartphone, on décide de la distance de découverte, on valide le tout et c'est envoyé sur le serveur.
+Distance de découverte : c'est de l'approximation ! Plus c'est proche, plus c'est précis... C'est de la radio... Ca n'aime
+pas l'eau (les ondes sont absorbées). Le corps humain est rempli d'eau... Le iBeacon dans un R2 sera souvent dans une cage de
+Faraday ou pertubé par l'eléctronique embarquée.
+Proposition pour commencer : distance de détection de 100 cm et on affinera au fur et à mesure de nos tests !
+Après, je n'ai pas forcément envie que tout le monde vienne se coller à moi pour que ça fonctionne :)
+Non, je ne connais pas le sexe du porteur de Smartphone et ne peut pas adapter le distance en fonction de... !!!
+
+On peut alors prévoir des cadeaux à offrir à ceux qui ont tout découvert. (sticker, pins, ...)
+Il faut "griller" le téléphone pour qu'il ne puisse avoir qu'un seul cadeau.
+Genre : le smartphone affiche un qr-code qe le builders scanne. Si ça n'existe pas
+sur le serveur, le gain est validé et on mémorise le qr-code sur le serveur. Si ça
+existe déjà, le builder signale que le cadeau a déjà été remis.
+
+Guidelines:
+Pour la carte du stand Builders : mettre une photo du stand.
+Pour la carte d'un robot : mettre une photo du robot de l'event.
+Pour la carte d'un builder : mettre une photo du builder sur l'event.
+
+Menu "mes cartes"
+Sur cet écran, par defaut il n'y a "rien". Juste un bouton qui permet de scanner des QR-Code.
+Dès que l'appli a découvert un iBeacon, une entrée avec l'event apparait. On peut alors cliquer sur l'event
+et voir toutes les cartes à découvrir (en mode caché)
+Au fur et à mesure des découvertes (proximité à moins d'1 metre), les cartes se découvrent.
+Si on a scanné un QR-Code valide, l'entrée avec l'event apparait et on peut alors cliquer sur l'event.
+On voit toutes les cartes à découvrir en mode caché + celle que l'on a scanné.
+
 
 
 * Droits
@@ -149,15 +249,33 @@ Un #superadmin l'est pour l'ensemble des clubs.
 * Services data
 ================================================
 Les communications du service data sont cryptées AES avec un salt changeant à chaque requête.
+Ca n'est pas top secure mais c'est déjà pas mal.
+- Urls utilisées SANS token : (donne l'info en cryptée)
+http://r2builders.diverstrucs.com/Data/Clubs
+http://r2builders.diverstrucs.com/Data/Country
+http://r2builders.diverstrucs.com/Data/News
+http://r2builders.diverstrucs.com/Data/Builders
+- Urls utilisées AVEC token : (ne font rien si les bons paramètres ne sont pas fournis et sont valides)
+http://r2builders.diverstrucs.com/Data/Users
+http://r2builders.diverstrucs.com/Data/UpdateBuilderUser
+http://r2builders.diverstrucs.com/Data/CreateUser
+http://r2builders.diverstrucs.com/Data/CheckUser
+http://r2builders.diverstrucs.com/Data/UpdateUser
+http://r2builders.diverstrucs.com/Data/UpdateBuilder
 
 
 
 TODO :
 ================================================
 
-Un utilisateur choisit les actualités de clubs il veut voir. Par défaut il a une vision de l'ensemble des actualités. Il coche/décoche la liste des actualités de clubs qu'il veut suivre.
+Un utilisateur choisit les actualités de clubs il veut voir. Par défaut il a une vision de l'ensemble des actualités.
+Il coche/décoche la liste des actualités de clubs qu'il veut suivre.
 
 Les droits par club
+Les droits par event, s'inscrire à un event, gestion des cartes à décourvrir...
+
+>> Communiquer sur l'application pour dire qu'elle existe et expliquer à quoi elle sert ! Une grande affiche sur le stand ???
+
 
 
 Package Nuget
@@ -170,7 +288,11 @@ https://github.com/EgorBo/Toasts.Forms.Plugin => EgorBo
 https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Vibrate
 https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Settings
 https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/DeviceInfo
+https://github.com/chrisriesgo/Android-AltBeacon-Library (AndroidAltBeaconLibrary)
 
 web:
 http://zxingnet.codeplex.com => Michael Jahn
 
+
+
+base64Picture = Convert.ToBase64String(File.ReadAllBytes(jpgFilename));
