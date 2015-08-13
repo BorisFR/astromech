@@ -283,6 +283,20 @@ Les droits par event, s'inscrire à un event, gestion des cartes à découvrir..
 
 
 
+TRADUCTION
+================================================
+Traduction de l'application.
+Faire en sorte que l'app soit multi-langue. Par défaut en anglais ?
+L'utilisateur choisit sa langue... mais où dans l'interface ?
+
+Comment gère-t-on la langue du contenu ? 
+Charge à celui qui crée le contenu de le mettre dans sa langue + autre ?
+exemple :
+Geekopolis 2015
+C'est aujourd'hui et c'est maintenant ! / It's today and it is now!
+
+
+
 Package Nuget
 ================================================
 Liste des plugins
