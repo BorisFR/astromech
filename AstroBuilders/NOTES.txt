@@ -9,7 +9,7 @@ Ca implique que lorsqu'il faut ajouter une image, elle soit présente sur le sma
 On peut toujours se l'envoyer par email...
 
 L'application est (sera) disponible sur iPhone et Android, smartphone ET tablette.
-Il est envisageable (normallement relativement facilement) d'avoir la version Windows Phone ET desktop 8.1 ... voir Windows 10...
+Il est envisageable (normalement relativement facilement) d'avoir la version Windows Phone ET desktop 8.1 ... voir Windows 10...
 Mais je traiterais ces versions un peu plus tard... je manque de temps :)
 
 
@@ -34,7 +34,7 @@ Gestion manuel par #superadmin.
 ================================================
 L'application connait "l'ensemble" des clubs/associations.
 Un club c'est :
-- un url complete vers le logo
+- un url complète vers le logo
 - un nom
 
 Stockage sur le site web dans /Content/Clubs
@@ -53,7 +53,7 @@ Un user contient :
 - nickname (Unique en base)
 - login (unique en base)
 - password
-- email (optionnel, sert à regénéré un mot de passe perdu) Obligatoire pour recevoir des droits !
+- email (optionnel, sert à re-générer un mot de passe perdu) Obligatoire pour recevoir des droits !
 - pays (peut être différent de celui du club, un club n'ayant pas de pays)
 - liste des clubs suivi pour les actus
 (géré automatiquement)
@@ -98,7 +98,7 @@ Une fiche builder contient :
 
 Une fiche builder est créée automatiquement lors de l'affectation du droit #builder par un #admin.
 
-liste des builders: http://r2builders.diverstrucs.com/Builder
+Liste des builders: http://r2builders.diverstrucs.com/Builder
 Visu de la fiche d'un builders : http://r2builders.diverstrucs.com/Builder/NickName => http://r2builders.diverstrucs.com/Builder/Boris
 Sur le web, un QR-Code est affiché. Ce QR-Code contient l'url de la page web du Builders.
 
@@ -117,7 +117,7 @@ Pour le moment, on va uniquement se concentrer sur les sorties événements de n
 Quand vous êtes sûr qu'un événement va avoir lieu, vous pouvez alors créer une actualité.
 Une actualité comporte :
 - un titre
-- un descriptif (indiquez notament la date de l'événement, ou la période ainsi que le lieu)
+- un descriptif (indiquez notamment la date de l'événement, ou la période ainsi que le lieu)
 - une date d'affichage (Si la date est une date future, l'actualité n'est pas affichée sur l'application)
 - le club pour lequel l'actu est créée (automatiquement affecté au club du builder qui crée l'actu)
 - le builder qui a créé l'actu
@@ -127,7 +127,7 @@ Travail d'un builder qui participe à un événement :
 - faire une actu pour dire que l'on va participer à "tel" événement, dès que l'on est certain de la participation.
 - faire une actu pour le jour J, une actu du genre : "Aujourd'hui, les R2 Builders sont au salon xxx".
 
-liste des actus : http://r2builders.diverstrucs.com/ (page d'accueil du site web)
+Liste des actus : http://r2builders.diverstrucs.com/ (page d'accueil du site web)
 
 
 
@@ -156,7 +156,7 @@ De manière physique, placer un iBeacon :
 On peut prévoir d'en déposer sur d'autres stands mais aussi d'en équiper des "stars". (Anthony Daniels, Kenny Baker, Marcus, ...)
 Plus économique : avoir également des QR-Code que l'on peut lire dans l'application et qui débloque la carte correspondante.
 >> Prévoir dans l'application de pouvoir scanner un QR-Code.
->> Faire un design de QR-Code
+>> Faire un design affiche pour le QR-Code
 
 Pour un "truc" ayant un iBeacon, le QR-Code est auto généré à partir de l'ID event + ID iBeacon.
 Pour les autres sans iBeacon, c'est auto-généré sur base de l'ID event + random.
@@ -164,7 +164,7 @@ Pour les autres sans iBeacon, c'est auto-généré sur base de l'ID event + rand
 Une carte :
 - ID event (une carte appartient obligatoirement à un event)
 - ID iBeacon
-- distance iBeacon pour validation (en centimetres. Au dessus de cette distance, l'image n'est pas débloquée)
+- distance iBeacon pour validation (en centimètres. Au dessus de cette distance, l'image n'est pas débloquée)
 - QR-Code
 - nom
 - image à débloquer
@@ -172,23 +172,24 @@ optionnel
 - ID Builder => permet de voir les cartes depuis la fiche du builder
 - ID Robot => permet de voir les cartes depuis la fiche du robot
 
-Les builders gérent les cartes de chaque event. Pas de gestion fine des droits pour le moment !
+Les builders gèrent les cartes de chaque event. Pas de gestion fine des droits pour le moment !
 >> Faire un design des cartes. Je vois ça sur le principe des cartes Topps. 
 	C'est à dire que l'on a un masque que l'on vient appliquer sur les images gagnées.
 	Par défaut on les affiche "caché" (genre une ombre de R2)
+	Toutes les images sont verticales !
 
 On crée une carte directement depuis l'application smartphone. On prend une photo, on donne un nom, on
 approche le iBeacon sur le smartphone, on décide de la distance de découverte, on valide le tout et c'est envoyé sur le serveur.
 Distance de découverte : c'est de l'approximation ! Plus c'est proche, plus c'est précis... C'est de la radio... Ca n'aime
 pas l'eau (les ondes sont absorbées). Le corps humain est rempli d'eau... Le iBeacon dans un R2 sera souvent dans une cage de
-Faraday ou pertubé par l'eléctronique embarquée.
+Faraday ou perturbé par l'électronique embarquée.
 Proposition pour commencer : distance de détection de 100 cm et on affinera au fur et à mesure de nos tests !
 Après, je n'ai pas forcément envie que tout le monde vienne se coller à moi pour que ça fonctionne :)
 Non, je ne connais pas le sexe du porteur de Smartphone et ne peut pas adapter le distance en fonction de... !!!
 
 On peut alors prévoir des cadeaux à offrir à ceux qui ont tout découvert. (sticker, pins, ...)
 Il faut "griller" le téléphone pour qu'il ne puisse avoir qu'un seul cadeau.
-Genre : le smartphone affiche un qr-code qe le builders scanne. Si ça n'existe pas
+Genre : le smartphone affiche un qr-code que le builders scanne. Si ça n'existe pas
 sur le serveur, le gain est validé et on mémorise le qr-code sur le serveur. Si ça
 existe déjà, le builder signale que le cadeau a déjà été remis.
 
@@ -197,20 +198,23 @@ Pour la carte du stand Builders : mettre une photo du stand.
 Pour la carte d'un robot : mettre une photo du robot de l'event.
 Pour la carte d'un builder : mettre une photo du builder sur l'event.
 
-Menu "mes cartes"
-Sur cet écran, par defaut il n'y a "rien". Juste un bouton qui permet de scanner des QR-Code.
+Entrée de menu "Mes cartes"
+Sur cet écran, par défaut il n'y a "rien". Juste un bouton qui permet de scanner des QR-Code.
 Dès que l'appli a découvert un iBeacon, une entrée avec l'event apparait. On peut alors cliquer sur l'event
 et voir toutes les cartes à découvrir (en mode caché)
-Au fur et à mesure des découvertes (proximité à moins d'1 metre), les cartes se découvrent.
+Au fur et à mesure des découvertes (proximité à moins d'1 mètre), les cartes se découvrent.
 Si on a scanné un QR-Code valide, l'entrée avec l'event apparait et on peut alors cliquer sur l'event.
 On voit toutes les cartes à découvrir en mode caché + celle que l'on a scanné.
+
+Si l'utilisateur n'est pas anonyme, tout ce qui est découvert par l'utilisateur est sauvegardé sur le serveur pour cet utilisateur.
+S'il utilise un autre smartphone, une fois connecté, il récupère ce qu'il a déjà découvert.
 
 
 
 * Droits
 ================================================
 0/ anonyme
-Visu complête de l'appli.
+Visu complète de l'appli.
 Peut avoir des succès, etc...
 Mais tout ceci n'est pas sauvegardé en dehors du smartphone !
 
@@ -249,7 +253,8 @@ Un #superadmin l'est pour l'ensemble des clubs.
 * Services data
 ================================================
 Les communications du service data sont cryptées AES avec un salt changeant à chaque requête.
-Ca n'est pas top secure mais c'est déjà pas mal.
+Ca n'est pas top secure mais c'est déjà pas mal :)
+(pas forcément exhaustif)
 - Urls utilisées SANS token : (donne l'info en cryptée)
 http://r2builders.diverstrucs.com/Data/Clubs
 http://r2builders.diverstrucs.com/Data/Country
@@ -272,7 +277,7 @@ Un utilisateur choisit les actualités de clubs il veut voir. Par défaut il a u
 Il coche/décoche la liste des actualités de clubs qu'il veut suivre.
 
 Les droits par club
-Les droits par event, s'inscrire à un event, gestion des cartes à décourvrir...
+Les droits par event, s'inscrire à un event, gestion des cartes à découvrir...
 
 >> Communiquer sur l'application pour dire qu'elle existe et expliquer à quoi elle sert ! Une grande affiche sur le stand ???
 
