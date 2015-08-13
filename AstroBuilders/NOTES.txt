@@ -295,6 +295,8 @@ exemple :
 Geekopolis 2015
 C'est aujourd'hui et c'est maintenant ! / It's today and it is now!
 
+ou uniquement dans la langue du pays de l'event ?
+Belgique : belge + flamand ? Pas français du coup ?
 
 
 Package Nuget
