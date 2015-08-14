@@ -322,3 +322,33 @@ http://zxingnet.codeplex.com => Michael Jahn
 
 
 base64Picture = Convert.ToBase64String(File.ReadAllBytes(jpgFilename));
+
+
+
+To add a new object
+================================================
+1/ create object class in AstroBuildersModel
+2/ create manager for the object in Managers.cs
+eventualy add some methods here.
+
+3/ projet AstroWeb, declare manager in Helper.cs
+4/ add CreateFolder (Allxxxxx.FolderName); and Allxxxxxx.SaveFile += SaveFile;
+5/ add loader in ReloadData
+6/ add data services in Controller Data
+Several controls have to be done here! Security!!! (token is good? user is authorize? data are valid?)
+Services to add: all, create, delete, update ...
+
+7/ project AstroBuilders (forms), declare manager in Global.cs
+8/ add loader
+			IDataServer xxxx = new IDataServer ("exhibitions", true);
+			xxxx.DataRefresh +=  delegate(bool status) {
+				System.Diagnostics.Debug.WriteLine("Status: " + xxxx.FileName + "=" + status);
+				if(!status)
+					return;
+				AllExhibitions.LoadFromJson(Helper.Decrypt(xxxx.JsonData));
+			};
+			DataServer.AddToDo (xxxx);
+9/ add call to data services in Tools.cs
+
+10/ add page(s) to view the object, create, delete, update, ...
+Integrity controls have to be done before calling data services ;)
