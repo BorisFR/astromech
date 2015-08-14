@@ -131,16 +131,18 @@ Liste des actus : http://r2builders.diverstrucs.com/ (page d'accueil du site web
 
 
 
-* Fiche event
+* Fiche exhibition
 ================================================
-Chaque builder peut participer à des events. Il a donc le droit de créer un event.
-Détail d'un event :
+Chaque builder peut participer à des events. Il a donc le droit de créer un event/exhibition. (event est un mot clé de C#)
+Détail d'une exhibition :
 - nom
 - date de début
 - date de fin (peut être la même que début)
 - descriptif
 - un logo (optionnel)
 - une image (optionnel)
+- id builder de celui qui crée l'event
+- list<id builder> liste des builders participants
 
 
 
@@ -257,16 +259,19 @@ Ca n'est pas top secure mais c'est déjà pas mal :)
 (pas forcément exhaustif)
 - Urls utilisées SANS token : (donne l'info en cryptée)
 http://r2builders.diverstrucs.com/Data/Clubs
-http://r2builders.diverstrucs.com/Data/Country
-http://r2builders.diverstrucs.com/Data/News
-http://r2builders.diverstrucs.com/Data/Builders
+/Data/Country
+/Data/News
+/Data/Builders
 - Urls utilisées AVEC token : (ne font rien si les bons paramètres ne sont pas fournis et sont valides)
 http://r2builders.diverstrucs.com/Data/Users
-http://r2builders.diverstrucs.com/Data/UpdateBuilderUser
-http://r2builders.diverstrucs.com/Data/CreateUser
-http://r2builders.diverstrucs.com/Data/CheckUser
-http://r2builders.diverstrucs.com/Data/UpdateUser
-http://r2builders.diverstrucs.com/Data/UpdateBuilder
+/Data/UpdateBuilderUser
+/Data/CreateUser
+/Data/CheckUser
+/Data/UpdateUser
+/Data/UpdateBuilder
+/Data/CreateExhibition
+/Data/DeleteExhibition
+/Data/UpdateExhibition
 
 
 

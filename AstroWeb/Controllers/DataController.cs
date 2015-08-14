@@ -32,6 +32,10 @@ namespace AstroWeb.Controllers
 			return new JsonNetResult (Helper.AllClubs.All);
 		}
 
+		public JsonResult Exhibitions() {
+			return new JsonNetResult (Helper.AllExhibitions.All);
+		}
+
 		public JsonResult Users(string id) {
 			try {
 				Guid toTest = new Guid (id);
@@ -81,7 +85,7 @@ namespace AstroWeb.Controllers
 											b.Email = old.Email;
 											Helper.AllBuilders.Add (b);
 
-											Tools.SaveTextFile (Helper.AllBuilders.CollectionName, Helper.AllBuilders.Save ());
+											//Tools.SaveTextFile (Helper.AllBuilders.CollectionName, Helper.AllBuilders.Save ());
 
 										}
 										old.IdClub = u.IdClub;
@@ -89,7 +93,8 @@ namespace AstroWeb.Controllers
 										old.IsAdmin = user.IsAdmin;
 										old.IsModo = user.IsModo;
 										old.IsNewser = user.IsNewser;
-										Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
+										Helper.AllUsers.Update(old);
+										//Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
 										return new JsonNetResult (Helper.AllUsers.All);
 									} else {
 										return new JsonNetResult (null);
@@ -127,7 +132,7 @@ namespace AstroWeb.Controllers
 				user.CountLogin = 1;
 				user.LastConnected = DateTime.UtcNow;
 				Helper.AllUsers.Add(user);
-				Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
+				//Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
 				return new JsonNetResult (user);
 			} catch (Exception) {
 			}
@@ -145,7 +150,8 @@ namespace AstroWeb.Controllers
 							u.CountLogin++;
 							u.LastConnected = DateTime.UtcNow;
 							u.Token = Guid.NewGuid();
-							Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
+							Helper.AllUsers.Update(u);
+							//Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
 							return new JsonNetResult (u);
 						}
 					}
@@ -169,7 +175,8 @@ namespace AstroWeb.Controllers
 									//old.NickName = user.NickName;
 									old.Email = user.Email;
 									old.IdCountry = user.IdCountry;
-									Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
+									Helper.AllUsers.Update(old);
+									//Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
 									return new JsonNetResult (old);
 								}
 							}
@@ -202,8 +209,90 @@ namespace AstroWeb.Controllers
 							old.Logo = builder.Logo;
 							old.NickName = builder.NickName;
 							old.Title = builder.Title;
-							Tools.SaveTextFile (Helper.AllBuilders.CollectionName, Helper.AllBuilders.Save ());
+							Helper.AllBuilders.Update(old);
+							//Tools.SaveTextFile (Helper.AllBuilders.CollectionName, Helper.AllBuilders.Save ());
 							return new JsonNetResult (Helper.AllBuilders.All);
+						}
+						return new JsonNetResult (false);
+					}
+				}
+			} catch (Exception) {
+			}
+			return new JsonNetResult (false);
+		}
+
+
+		public JsonResult CreateExhibition(string id, string token) {
+			try {
+				Guid toTest = new Guid (token);
+				string data = Helper.Decrypt (id);
+				Exhibition exhibition = JsonConvert.DeserializeObject<Exhibition> (data);
+				foreach (User u in Helper.AllUsers.Collection) {
+					if (u.Token == toTest) {
+						if(!u.IsBuilder)
+							return new JsonNetResult (false);
+						Helper.AllExhibitions.Add(exhibition);
+						return new JsonNetResult (Helper.AllExhibitions.All);
+					}
+				}
+			} catch (Exception) {
+			}
+			return new JsonNetResult (false);
+		}
+
+
+		public JsonResult DeleteExhibition(string id, string token) {
+			try {
+				Guid toTest = new Guid (token);
+				string data = Helper.Decrypt (id);
+				Exhibition exhibition = JsonConvert.DeserializeObject<Exhibition> (data);
+				foreach (User u in Helper.AllUsers.Collection) {
+					if (u.Token == toTest) {
+						if (!u.IsBuilder)
+							return new JsonNetResult (false);
+						bool found = false;
+						foreach (Exhibition e in Helper.AllExhibitions.All) {
+							if (e.Id.Equals (exhibition.Id)) {
+								found = true;
+								Tools.DeleteTextFile (Helper.AllExhibitions.FolderName, e.Id.ToString ());
+								break;
+							}
+						}
+						if (found) {
+							Helper.AllExhibitions.Collection.Clear ();
+							return new JsonNetResult (Helper.AllExhibitions.All);
+						}
+						return new JsonNetResult (false);
+					}
+				}
+			} catch (Exception) {
+			}
+			return new JsonNetResult (false);
+		}
+
+		public JsonResult UpdateExhibition(string id, string token) {
+			try {
+				Guid toTest = new Guid (token);
+				string data = Helper.Decrypt (id);
+				Exhibition exhibition = JsonConvert.DeserializeObject<Exhibition> (data);
+				foreach (User u in Helper.AllUsers.Collection) {
+					if (u.Token == toTest) {
+						if (!u.IsBuilder)
+							return new JsonNetResult (false);
+						foreach (Exhibition e in Helper.AllExhibitions.All) {
+							if (e.Id.Equals (exhibition.Id)) {
+								e.Title = exhibition.Title;
+								e.Builders = exhibition.Builders;
+								e.Description = exhibition.Description;
+								e.EndDate = exhibition.EndDate;
+								e.Flyer = exhibition.Flyer;
+								e.IdBuilder = exhibition.IdBuilder;
+								e.IdCountry = exhibition.IdCountry;
+								e.Logo = exhibition.Logo;
+								e.StartDate = exhibition.StartDate;
+								Helper.AllExhibitions.Update (e);
+								return new JsonNetResult (Helper.AllExhibitions.All);
+							}
 						}
 						return new JsonNetResult (false);
 					}

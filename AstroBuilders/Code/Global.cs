@@ -35,6 +35,7 @@ namespace AstroBuilders
 		public static BuildersManager AllBuilders = new BuildersManager ();
 		public static ClubsManager AllClubs = new ClubsManager ();
 		public static UsersManager AllUsers = new UsersManager ();
+		public static ExhibitionsManager AllExhibitions = new ExhibitionsManager();
 
 		public static Builder CurrentBuilder = null;
 
@@ -97,6 +98,15 @@ namespace AstroBuilders
 				AllClubs.LoadFromJson(Helper.Decrypt(xxx.JsonData));
 			};
 			DataServer.AddToDo (xxx);
+
+			IDataServer xxxx = new IDataServer ("exhibitions", true);
+			xxxx.DataRefresh +=  delegate(bool status) {
+				System.Diagnostics.Debug.WriteLine("Status: " + xxxx.FileName + "=" + status);
+				if(!status)
+					return;
+				AllClubs.LoadFromJson(Helper.Decrypt(xxxx.JsonData));
+			};
+			DataServer.AddToDo (xxxx);
 			/*
 			xa.ForceFreshData = true;
 			DataServer.AddToDo (xa);

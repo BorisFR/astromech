@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace AstroBuildersModel
 {
@@ -26,6 +28,11 @@ namespace AstroBuildersModel
 			if (handler != null) {
 				handler (this, new PropertyChangedEventArgs (propertyName));
 			}
+		}
+
+		[IgnoreDataMember]
+		public string JSonData {
+			get{ return JsonConvert.SerializeObject (this); }
 		}
 
 	}

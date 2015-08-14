@@ -4,6 +4,7 @@ using AstroBuildersModel;
 // PCLCrypto : http://www.c-sharpcorner.com/UploadFile/4088a7/using-cryptography-in-portable-xamarin-formswindows-phone/ 
 using PCLCrypto;
 using System.Text;
+using System.IO;
 
 namespace AstroWeb
 {
@@ -14,9 +15,54 @@ namespace AstroWeb
 		public static BuildersManager AllBuilders = new BuildersManager();
 		public static ClubsManager AllClubs = new ClubsManager();
 		public static UsersManager AllUsers = new UsersManager();
+		public static ExhibitionsManager AllExhibitions = new ExhibitionsManager();
 
 		public static void DoInit() {
+			CreateFolder (AllCountry.FolderName);
+			CreateFolder (AllNews.FolderName);
+			CreateFolder (AllBuilders.FolderName);
+			CreateFolder (AllClubs.FolderName);
+			CreateFolder (AllUsers.FolderName);
+			CreateFolder (AllExhibitions.FolderName);
+
+			AllCountry.SaveFile += SaveFile;
+			AllNews.SaveFile += SaveFile;
+			AllBuilders.SaveFile += SaveFile;
+			AllClubs.SaveFile += SaveFile;
+			AllUsers.SaveFile += SaveFile;
+			AllExhibitions.SaveFile += SaveFile;
+
 			ReloadData ();
+
+			/*
+			string folder = AllCountry.FolderName;
+			if (Tools.IsDirectoryEmpty (folder)) {
+				foreach (Country o in AllCountry.All)
+					SaveFile (folder, o.Id.ToString (), o.JSonData);
+				folder = AllNews.FolderName;
+				foreach (News o in AllNews.All)
+					SaveFile (folder, o.Id.ToString (), o.JSonData);
+				folder = AllBuilders.FolderName;
+				foreach (Builder o in AllBuilders.All)
+					SaveFile (folder, o.Id.ToString (), o.JSonData);
+				folder = AllClubs.FolderName;
+				foreach (Club o in AllClubs.All)
+					SaveFile (folder, o.Id.ToString (), o.JSonData);
+				folder = AllUsers.FolderName;
+				foreach (User o in AllUsers.All)
+					SaveFile (folder, o.Id.ToString (), o.JSonData);
+			}
+			*/
+		}
+
+		static void SaveFile (string folder, string name, string data)
+		{
+			Tools.SaveTextFile (folder, name, data);
+		}
+
+		static void CreateFolder (string folder)
+		{
+			Tools.CreateFolder (folder);
 		}
 
 		public static string Base64Encode(string plainText) {
@@ -73,11 +119,55 @@ namespace AstroWeb
 		}
 
 		public static void ReloadData() {
+			string folder = AllCountry.FolderName;
+			string[] files = Tools.GetFiles (folder);
+			foreach (string file in files) {
+				AllCountry.AddFromJSon (Tools.LoadTextFile (file));
+			}
+			AllCountry.ReOrder ();
+
+			folder = AllNews.FolderName;
+			files = Tools.GetFiles (folder);
+			foreach (string file in files) {
+				AllNews.AddFromJSon (Tools.LoadTextFile (file));
+			}
+			AllNews.ReOrder ();
+
+			folder = AllBuilders.FolderName;
+			files = Tools.GetFiles (folder);
+			foreach (string file in files) {
+				AllBuilders.AddFromJSon (Tools.LoadTextFile (file));
+			}
+			AllBuilders.ReOrder ();
+
+			folder = AllClubs.FolderName;
+			files = Tools.GetFiles (folder);
+			foreach (string file in files) {
+				AllClubs.AddFromJSon (Tools.LoadTextFile (file));
+			}
+			AllClubs.ReOrder ();
+
+			folder = AllUsers.FolderName;
+			files = Tools.GetFiles (folder);
+			foreach (string file in files) {
+				AllUsers.AddFromJSon (Tools.LoadTextFile (file));
+			}
+			AllUsers.ReOrder ();
+
+			folder = AllExhibitions.FolderName;
+			files = Tools.GetFiles (folder);
+			foreach (string file in files) {
+				AllExhibitions.AddFromJSon (Tools.LoadTextFile (file));
+			}
+			AllExhibitions.ReOrder ();
+
+			/*
 			AllCountry.LoadFromJson (Tools.LoadTextFile (AllCountry.CollectionName));
 			AllNews.LoadFromJson (Tools.LoadTextFile (AllNews.CollectionName));
 			AllBuilders.LoadFromJson (Tools.LoadTextFile (AllBuilders.CollectionName));
 			AllClubs.LoadFromJson (Tools.LoadTextFile (AllClubs.CollectionName));
 			AllUsers.LoadFromJson (Tools.LoadTextFile (AllUsers.CollectionName));
+			*/
 		}
 
 		public static void CreateSomeData() {
@@ -97,7 +187,7 @@ namespace AstroWeb
 				c.Code = "BEL";
 				AllCountry.Add (c);
 
-				Tools.SaveTextFile (AllCountry.CollectionName, AllCountry.Save ());
+				//Tools.SaveTextFile (AllCountry.CollectionName, AllCountry.Save ());
 			}
 			if (AllClubs.Collection.Count == 0) {
 				Club c;
@@ -118,7 +208,7 @@ namespace AstroWeb
 				c.Logo = "http://r2builders.diverstrucs.com/content/Clubs/R2-ATL.png";
 				AllClubs.Add (c);
 
-				Tools.SaveTextFile (AllClubs.CollectionName, AllClubs.Save ());
+				//Tools.SaveTextFile (AllClubs.CollectionName, AllClubs.Save ());
 			}
 			if (AllBuilders.Collection.Count == 0) {
 				Builder b;
@@ -180,7 +270,7 @@ namespace AstroWeb
 				b.Logo = "http://www.r2builders.fr/forum/download/file.php?avatar=2778_1414684021.gif";
 				AllBuilders.Add (b);
 
-				Tools.SaveTextFile (AllBuilders.CollectionName, AllBuilders.Save ());
+				//Tools.SaveTextFile (AllBuilders.CollectionName, AllBuilders.Save ());
 			}
 			if (AllNews.Collection.Count == 0) {
 				News news;
@@ -255,7 +345,7 @@ namespace AstroWeb
 				news = new News ();
 
 				AllNews.Refresh ();
-				Tools.SaveTextFile (AllNews.CollectionName, AllNews.Save ());
+				//Tools.SaveTextFile (AllNews.CollectionName, AllNews.Save ());
 			}
 
 			if (AllUsers.Collection.Count == 0) {
@@ -278,7 +368,7 @@ namespace AstroWeb
 				user.Email = "lolo080@r2builders.fr";
 				AllUsers.Add (user);
 
-				Tools.SaveTextFile (AllUsers.CollectionName, AllUsers.Save ());
+				//Tools.SaveTextFile (AllUsers.CollectionName, AllUsers.Save ());
 			}
 
 		}
