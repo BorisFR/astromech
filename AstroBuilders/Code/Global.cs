@@ -104,7 +104,7 @@ namespace AstroBuilders
 				System.Diagnostics.Debug.WriteLine("Status: " + xxxx.FileName + "=" + status);
 				if(!status)
 					return;
-				AllClubs.LoadFromJson(Helper.Decrypt(xxxx.JsonData));
+				AllExhibitions.LoadFromJson(Helper.Decrypt(xxxx.JsonData));
 			};
 			DataServer.AddToDo (xxxx);
 			/*

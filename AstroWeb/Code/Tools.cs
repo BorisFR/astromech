@@ -40,7 +40,6 @@ namespace AstroWeb
 				return;
 			File.Delete (file);
 		}
-
 	
 		public static bool IsDirectoryEmpty(string folder) {
 			string path = Path.Combine (HttpContext.Current.Server.MapPath (@"~/App_Data"), folder);
