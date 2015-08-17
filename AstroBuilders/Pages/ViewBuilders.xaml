@@ -4,6 +4,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	    <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="6,6,6,6">
 			<Label Text="Les R2 Builders" TextColor="Black" Font="Bold,Medium" HorizontalOptions="Center" />
+			<local:AurekBesh Text="Les R2 Builders" TextColor="Black" Font="Micro" HorizontalOptions="Center" />
 
 			<ScrollView Orientation="Vertical">
 			<local:AwesomeWrappanel x:Name="theList" Orientation="Horizontal">

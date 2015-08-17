@@ -4,15 +4,18 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" xmlns:other="cl
 	<ContentView.Content>
 		<Grid HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
 	        <Grid.ColumnDefinitions>
-	            <ColumnDefinition Width="40"/>
+	            <ColumnDefinition Width="80"/>
 	            <ColumnDefinition Width="*"/>
 	        </Grid.ColumnDefinitions>
 	        <Grid.RowDefinitions>
-	            <RowDefinition Height="30"/>
+	            <RowDefinition Height="60"/>
 	            <RowDefinition Height="*"/>
 	            <RowDefinition Height="45"/>
 	        </Grid.RowDefinitions>
-			<Label Text="Les actualités de l'association" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" Grid.Row="0" />
+	        <StackLayout Orientation="Vertical" Grid.Column="1" Grid.Row="0">
+			<Label Text="Les actualités de l'association" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
+			<local:AurekBesh Text="Les actualites de l'association" Font="Micro" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
+			</StackLayout>
 			<Image Source="{local:ImageResource astromech.png}" Grid.Column="0" Grid.Row="0" />
 			<Image Source="{local:ImageResource R2BuildersBand.png}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" />
 
@@ -20,7 +23,11 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" xmlns:other="cl
 				<ListView.GroupHeaderTemplate>
 					<DataTemplate>
 						<ViewCell>
-							<Label Text="{Binding Title}" Font="Medium, Bold" TextColor="Black" BackgroundColor="#E1E1E1" />
+							<StackLayout Orientation="Horizontal" Spacing="0"  BackgroundColor="#E1E1E1" Padding="0,0,0,0">
+								<Label Text="{Binding Title}" Font="Medium, Bold" TextColor="Black" />
+								<Label Text=" / " Font="Medium, Bold" TextColor="Black" />
+								<local:AurekBesh Text="{Binding Title}" Font="Large" TextColor="Black" />
+							</StackLayout>
 						</ViewCell>
 					</DataTemplate>
 				</ListView.GroupHeaderTemplate>

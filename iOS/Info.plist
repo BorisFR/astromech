@@ -65,5 +65,9 @@
 	<string>Afin de découvrir les Builders et leurs robots !</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Afin de découvrir les Builders et leurs robots !</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Aurek-Besh.ttf</string>
+	</array>
 </dict>
 </plist>

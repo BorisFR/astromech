@@ -28,7 +28,13 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="6,24,6
 				<Editor x:Name="entryDescription" Text="" HeightRequest="300" BackgroundColor="#dddddd" />
 				<Label Text="Logo" TextColor="Black" />
 				<Button x:Name="btChooseLogo" Text="Choisir un logo" TextColor="Black" BackgroundColor="White" />
+				<Button x:Name="btTakeLogoPicture" Text="Prendre une photo" TextColor="Black" BackgroundColor="White" />
+				<Image x:Name="createLogo" WidthRequest="100" HorizontalOptions="Center" />
 				<Label Text="Flyer" TextColor="Black" />
+				<Button x:Name="btChooseFlyer" Text="Choisir un logo" TextColor="Black" BackgroundColor="White" />
+				<Button x:Name="btTakeFlyerPicture" Text="Prendre une photo" TextColor="Black" BackgroundColor="White" />
+				<Image x:Name="createFlyer" WidthRequest="500" HorizontalOptions="Center" />
+				<BoxView HeightRequest="4" BackgroundColor="Gray" />
 				<Button x:Name="btCreate" Text="Créer le salon" TextColor="Black" BackgroundColor="White" />
 				 
 				<BoxView HeightRequest="4" BackgroundColor="Gray" />
