@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.PageCreateExhibition" 
+xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="6,24,6,6" BackgroundColor="#E1E1E1">
+	<ContentPage.Content>
+		<ScrollView Orientation="Vertical" BackgroundColor="White" Padding="6">
+			<StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+
+				<Grid HorizontalOptions="Fill" ColumnSpacing="0" RowSpacing="0">
+			        <Grid.ColumnDefinitions>
+			            <ColumnDefinition Width="100*"/>
+			            <ColumnDefinition Width="100*"/>
+			        </Grid.ColumnDefinitions>
+			        <Grid.RowDefinitions>
+			        	<RowDefinition Height="40" />
+			        	<RowDefinition Height="*" />
+			        </Grid.RowDefinitions>
+					<Label Text="Créer une sortie" Font="Bold,Large" HorizontalOptions="StartAndExpand" TextColor="Accent" Grid.ColumnSpan="2" />
+					<Image x:Name="imgClose" Source="{local:ImageResource closewindow.png}" HorizontalOptions="End" WidthRequest="32" HeightRequest="32" Grid.Column="1" />
+				</Grid>
+
+				<Label Text="Nom de la sortie" TextColor="Black" />
+				<Entry x:Name="entryName" Placeholder="name" TextColor="Black" />
+				<Label Text="Date de début" TextColor="Black" />
+				<DatePicker x:Name="dateStart" VerticalOptions="CenterAndExpand" />
+				<Label Text="Date de fin" TextColor="Black" />
+				<DatePicker x:Name="dateEnd" VerticalOptions="CenterAndExpand" />
+				<Label Text="Descriptif" TextColor="Black" />
+				<Editor x:Name="entryDescription" Text="" HeightRequest="300" BackgroundColor="#dddddd" />
+				<Label Text="Logo" TextColor="Black" />
+				<Button x:Name="btChooseLogo" Text="Choisir un logo" TextColor="Black" BackgroundColor="White" />
+				<Label Text="Flyer" TextColor="Black" />
+				<Button x:Name="btCreate" Text="Créer le salon" TextColor="Black" BackgroundColor="White" />
+				 
+				<BoxView HeightRequest="4" BackgroundColor="Gray" />
+				<Button Text="Annuler" Clicked="ButtonClicked" TextColor="Black" BackgroundColor="White" />
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

@@ -31,6 +31,10 @@ namespace AstroBuilders
 				theFrame.Content = null;
 				theFrame.Content = new ViewMyBuilder ();
 				break;
+			case MyPage.MyExhibitions:
+				theFrame.Content = null;
+				theFrame.Content = new ViewMyExhibitions ();
+				break;
 			case MyPage.AdminUsers:
 				theFrame.Content = null;
 				theFrame.Content = new ViewAdminUsers ();

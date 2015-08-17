@@ -16,6 +16,7 @@ namespace AstroWeb
 		public static ClubsManager AllClubs = new ClubsManager();
 		public static UsersManager AllUsers = new UsersManager();
 		public static ExhibitionsManager AllExhibitions = new ExhibitionsManager();
+		public static CardsManager AllCards = new CardsManager();
 
 		public static void DoInit() {
 			CreateFolder (AllCountry.FolderName);
@@ -24,6 +25,7 @@ namespace AstroWeb
 			CreateFolder (AllClubs.FolderName);
 			CreateFolder (AllUsers.FolderName);
 			CreateFolder (AllExhibitions.FolderName);
+			CreateFolder (AllCards.FolderName);
 
 			AllCountry.SaveFile += SaveFile;
 			AllNews.SaveFile += SaveFile;
@@ -31,6 +33,7 @@ namespace AstroWeb
 			AllClubs.SaveFile += SaveFile;
 			AllUsers.SaveFile += SaveFile;
 			AllExhibitions.SaveFile += SaveFile;
+			AllCards.SaveFile += SaveFile;
 
 			ReloadData ();
 
@@ -160,6 +163,13 @@ namespace AstroWeb
 				AllExhibitions.AddFromJSon (Tools.LoadTextFile (file));
 			}
 			AllExhibitions.ReOrder ();
+
+			folder = AllCards.FolderName;
+			files = Tools.GetFiles (folder);
+			foreach (string file in files) {
+				AllCards.AddFromJSon (Tools.LoadTextFile (file));
+			}
+			AllCards.ReOrder ();
 
 			/*
 			AllCountry.LoadFromJson (Tools.LoadTextFile (AllCountry.CollectionName));

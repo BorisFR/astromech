@@ -17,6 +17,7 @@ namespace AstroBuilders
 		MyBuilder,
 		AdminUsers,
 		AdminBuilders,
+		MyExhibitions,
 		About
 	}
 
@@ -36,6 +37,7 @@ namespace AstroBuilders
 		public static ClubsManager AllClubs = new ClubsManager ();
 		public static UsersManager AllUsers = new UsersManager ();
 		public static ExhibitionsManager AllExhibitions = new ExhibitionsManager();
+		public static CardsManager AllCards = new CardsManager();
 
 		public static Builder CurrentBuilder = null;
 
@@ -47,6 +49,7 @@ namespace AstroBuilders
 		public static IVibrate Vibrator = null;
 		public static string UniqueAppId = string.Empty;
 		public static IBeaconTools BeaconsTools = null;
+		public static Media.Plugin.Abstractions.IMedia AllMedia = Media.Plugin.CrossMedia.Current;
 
 		public static void DoInit() {
 			Files = DependencyService.Get<IFiles> ();
@@ -107,6 +110,17 @@ namespace AstroBuilders
 				AllExhibitions.LoadFromJson(Helper.Decrypt(xxxx.JsonData));
 			};
 			DataServer.AddToDo (xxxx);
+
+
+			IDataServer xxxxx = new IDataServer ("cards", true);
+			xxxxx.DataRefresh +=  delegate(bool status) {
+				System.Diagnostics.Debug.WriteLine("Status: " + xxxxx.FileName + "=" + status);
+				if(!status)
+					return;
+				AllCards.LoadFromJson(Helper.Decrypt(xxxxx.JsonData));
+			};
+			DataServer.AddToDo (xxxxx);
+
 			/*
 			xa.ForceFreshData = true;
 			DataServer.AddToDo (xa);

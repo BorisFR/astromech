@@ -101,6 +101,12 @@
     <Reference Include="AndroidAltBeaconLibrary">
       <HintPath>..\packages\AndroidAltBeaconLibrary.2.1.4\lib\AndroidAltBeaconLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Media.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Media.1.0.0\lib\MonoAndroid10\Media.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Media.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Media.1.0.0\lib\MonoAndroid10\Media.Plugin.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AstroBuilders\AstroBuilders.csproj">

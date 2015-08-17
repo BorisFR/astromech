@@ -272,6 +272,9 @@ http://r2builders.diverstrucs.com/Data/Users
 /Data/CreateExhibition
 /Data/DeleteExhibition
 /Data/UpdateExhibition
+/Data/CreateCard
+/Data/DeleteCard
+/Data/UpdateCard
 
 
 
@@ -285,6 +288,11 @@ Les droits par club
 Les droits par event, s'inscrire à un event, gestion des cartes à découvrir...
 
 >> Communiquer sur l'application pour dire qu'elle existe et expliquer à quoi elle sert ! Une grande affiche sur le stand ???
+
+iBeacon on Android
+exhibitions
+cards
+game iBeacon / Cards
 
 
 
@@ -315,6 +323,7 @@ https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Vibrate
 https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Settings
 https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/DeviceInfo
 https://github.com/chrisriesgo/Android-AltBeacon-Library (AndroidAltBeaconLibrary)
+https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Media
 
 web:
 http://zxingnet.codeplex.com => Michael Jahn

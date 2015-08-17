@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewMyExhibitions" 
+xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
+	<ContentView.Content>
+	<ScrollView Orientation="Vertical">
+		<StackLayout Orientation="Vertical" Padding="12" BackgroundColor="White">
+			<Label Text="Mes sorties" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" />
+			<Label Text="Je gère" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
+			<Button x:Name="btCreateExhibition" Text="Créer un salon" TextColor="Black" BackgroundColor="White" />
+
+			<BoxView HeightRequest="4" BackgroundColor="Gray" />
+			<Label Text="Je participe" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
+
+		</StackLayout>
+	</ScrollView>
+	</ContentView.Content>
+</ContentView>

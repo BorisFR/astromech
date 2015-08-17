@@ -59,6 +59,7 @@ namespace AstroBuilders
 				if (Global.ConnectedUser.IsBuilder) {
 					mg.Add (new Menu () { Page = MyPage.MyBuilder, Title = "Ma fiche", 			Detail = "Gérer ma fiche de présentation", 	Icon = "account" });
 					mg.Add (new Menu (){ Page = MyPage.None, Title = "Mes robots", 			Detail = "Gérer mes robots", 				Icon = "IA" });
+					mg.Add (new Menu (){ Page = MyPage.MyExhibitions, Title = "Mes sorties", 	Detail = "Gérer mes sorties", 			Icon = "IA" });
 				}	
 				if (mg.Count > 0)
 					All.Add (mg);

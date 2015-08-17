@@ -111,6 +111,12 @@
     <Reference Include="DeviceInfo.Plugin.Abstractions">
       <HintPath>..\packages\Xam.Plugin.DeviceInfo.1.0.0.2\lib\Xamarin.iOS10\DeviceInfo.Plugin.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Media.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Media.1.0.0\lib\Xamarin.iOS10\Media.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Media.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Media.1.0.0\lib\Xamarin.iOS10\Media.Plugin.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AstroBuilders\AstroBuilders.csproj">

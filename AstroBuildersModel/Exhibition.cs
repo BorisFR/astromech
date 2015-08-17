@@ -50,8 +50,8 @@ namespace AstroBuildersModel
 			}
 		}
 
-		private string logo = string.Empty;
-		public string Logo {
+		private byte[] logo = new byte[0];
+		public byte[] Logo {
 			get { return logo; }
 			set {
 				if (value.Equals (logo))
@@ -61,8 +61,8 @@ namespace AstroBuildersModel
 			}
 		}
 
-		private string flyer = string.Empty;
-		public string Flyer {
+		private byte[] flyer = new byte[0];
+		public byte[] Flyer {
 			get { return flyer; }
 			set {
 				if (value.Equals (flyer))
@@ -94,6 +94,7 @@ namespace AstroBuildersModel
 				OnPropertyChanged ("Builders");
 			}
 		}
+
 		public int CompareTo (Exhibition other) {
 			return -other.Title.CompareTo (this.Title);
 		}

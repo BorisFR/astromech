@@ -36,6 +36,10 @@ namespace AstroWeb.Controllers
 			return new JsonNetResult (Helper.AllExhibitions.All);
 		}
 
+		public JsonResult Cards() {
+			return new JsonNetResult (Helper.AllCards.All);
+		}
+
 		public JsonResult Users(string id) {
 			try {
 				Guid toTest = new Guid (id);
@@ -302,5 +306,84 @@ namespace AstroWeb.Controllers
 			return new JsonNetResult (false);
 		}
 
+
+		public JsonResult CreateCard(string id, string token) {
+			try {
+				Guid toTest = new Guid (token);
+				string data = Helper.Decrypt (id);
+				Card card = JsonConvert.DeserializeObject<Card> (data);
+				foreach (User u in Helper.AllUsers.Collection) {
+					if (u.Token == toTest) {
+						if(!u.IsBuilder)
+							return new JsonNetResult (false);
+						Helper.AllCards.Add(card);
+						return new JsonNetResult (Helper.AllCards.All);
+					}
+				}
+			} catch (Exception) {
+			}
+			return new JsonNetResult (false);
+		}
+
+
+		public JsonResult DeleteCard(string id, string token) {
+			try {
+				Guid toTest = new Guid (token);
+				string data = Helper.Decrypt (id);
+				Card card = JsonConvert.DeserializeObject<Card> (data);
+				foreach (User u in Helper.AllUsers.Collection) {
+					if (u.Token == toTest) {
+						if (!u.IsBuilder)
+							return new JsonNetResult (false);
+						bool found = false;
+						foreach (Card e in Helper.AllCards.All) {
+							if (e.Id.Equals (card.Id)) {
+								found = true;
+								Tools.DeleteTextFile (Helper.AllCards.FolderName, e.Id.ToString ());
+								break;
+							}
+						}
+						if (found) {
+							Helper.AllCards.Collection.Clear ();
+							return new JsonNetResult (Helper.AllCards.All);
+						}
+						return new JsonNetResult (false);
+					}
+				}
+			} catch (Exception) {
+			}
+			return new JsonNetResult (false);
+		}
+
+		public JsonResult UpdateCard(string id, string token) {
+			try {
+				Guid toTest = new Guid (token);
+				string data = Helper.Decrypt (id);
+				Card card = JsonConvert.DeserializeObject<Card> (data);
+				foreach (User u in Helper.AllUsers.Collection) {
+					if (u.Token == toTest) {
+						if (!u.IsBuilder)
+							return new JsonNetResult (false);
+						foreach (Card e in Helper.AllCards.All) {
+							if (e.Id.Equals (card.Id)) {
+								e.Title = card.Title;
+								e.IdExhibition = card.IdExhibition;
+								e.IdBeacon = card.IdBeacon;
+								e.Distance = card.Distance;
+								e.QrCode = card.QrCode;
+								e.TheImage = card.TheImage;
+								e.IdBuilder = card.IdBuilder;
+								e.IdRobot = card.IdRobot;
+								Helper.AllCards.Update (e);
+								return new JsonNetResult (Helper.AllCards.All);
+							}
+						}
+						return new JsonNetResult (false);
+					}
+				}
+			} catch (Exception) {
+			}
+			return new JsonNetResult (false);
+		}
 	}
 }
