@@ -10,7 +10,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 
 			<BoxView HeightRequest="4" BackgroundColor="Gray" />
 			<Label Text="Je participe" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
-
+			 
 		</StackLayout>
 	</ScrollView>
 	</ContentView.Content>
