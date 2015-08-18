@@ -33,11 +33,11 @@ namespace AstroBuilders
 			Tools.DoUpdateBuilder (builder);
 		}
 
-		void Tools_UpdateDone (bool status) {
+		void Tools_UpdateDone (bool status, string result) {
 			Tools.JobDone -= Tools_UpdateDone;
 			try {
 				if (status) {
-					string json = Helper.Decrypt (Tools.Result);
+					string json = Helper.Decrypt (result); //Tools.Result);
 					Global.AllBuilders.LoadFromJson (json);
 					builder = ((Builder)Global.AllBuilders.GetByGuid<Builder> (Global.ConnectedUser.IdBuilder)).DeepCopy ();
 					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, "Information", "La mise à jour a bien été effectuée.");

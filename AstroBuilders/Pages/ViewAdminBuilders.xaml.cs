@@ -18,12 +18,12 @@ namespace AstroBuilders
 
 			theBuilders.ItemsSource = Global.AllBuilders.Collection;
 
-			IDataServer x = new IDataServer ("users", true);
-			x.DataRefresh +=  delegate(bool status) {
+			IDataServer x = new IDataServer ("users", true, true);
+			x.DataRefresh +=  delegate(bool status, string result) {
 				System.Diagnostics.Debug.WriteLine("Status: " + x.FileName + "=" + status);
 				if(!status)
 					return;
-				Global.AllUsers.LoadFromJson(Helper.Decrypt(x.JsonData));
+				Global.AllUsers.LoadFromJson(Helper.Decrypt(result));
 				Device.BeginInvokeOnMainThread (() => {
 					theUsers.ItemsSource = Global.AllUsers.Collection;
 				});
@@ -63,7 +63,7 @@ namespace AstroBuilders
 
 		}
 
-		void Tools_LinkDone (bool status) {
+		void Tools_LinkDone (bool status, string result) {
 			Tools.JobDone -= Tools_LinkDone;
 			if (!status) {
 				ShowButtons ();
@@ -72,7 +72,7 @@ namespace AstroBuilders
 			theUsers.SelectedItem = null;
 			theBuilders.SelectedItem = null;
 			try {
-				string json = Helper.Decrypt (Tools.Result);
+				string json = Helper.Decrypt (result); //Tools.Result);
 				Global.AllUsers.LoadFromJson (Helper.Decrypt (json));
 				Device.BeginInvokeOnMainThread (() => {
 					theUsers.ItemsSource = Global.AllUsers.Collection;

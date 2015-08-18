@@ -15,12 +15,12 @@ namespace AstroBuilders
 			InitializeComponent ();
 
 
-			IDataServer x = new IDataServer ("users", true);
-			x.DataRefresh +=  delegate(bool status) {
+			IDataServer x = new IDataServer ("users", true, true);
+			x.DataRefresh +=  delegate(bool status, string result) {
 				System.Diagnostics.Debug.WriteLine("Status: " + x.FileName + "=" + status);
 				if(!status)
 					return;
-				Global.AllUsers.LoadFromJson(Helper.Decrypt(x.JsonData));
+				Global.AllUsers.LoadFromJson(Helper.Decrypt(result));
 				Device.BeginInvokeOnMainThread (() => {
 					theUsers.ItemsSource = Global.AllUsers.Collection;
 				});
@@ -61,7 +61,7 @@ namespace AstroBuilders
 			Tools.DoUpdateUserByAdmin (current);
 		}
 
-		void Tools_UpdateDone (bool status) {
+		void Tools_UpdateDone (bool status, string result) {
 			Tools.JobDone -= Tools_UpdateDone;
 			if (status) {
 				Global.ShowNotification(Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, "Information", "La mise à jour a bien été effectuée.");

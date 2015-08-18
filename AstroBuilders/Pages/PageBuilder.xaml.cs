@@ -21,8 +21,8 @@ namespace AstroBuilders
 			Club c = (Club)Global.AllClubs.GetByGuid<Club>(Global.CurrentBuilder.IdClub);
 			imgClub.Source = ImageSource.FromUri (new Uri (c.Logo));
 			lClub.Text = string.Format ("{0}", c.Title);
-			lLocation.Text = string.Format ("Origine - {0}", Global.CurrentBuilder.Location);
-			lDroids.Text = string.Format ("Droïdes - {0}", Global.CurrentBuilder.Droids);
+			lLocation.Text = string.Format (Translation.GetString("PageBuilderOrigine"), Global.CurrentBuilder.Location);
+			lDroids.Text = string.Format (Translation.GetString("PageBuilderDroids"), Global.CurrentBuilder.Droids);
 		}
 
 		void ButtonClicked (object sender, EventArgs e)

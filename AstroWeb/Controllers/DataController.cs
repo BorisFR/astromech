@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using AstroBuildersModel;
 using System.Collections.ObjectModel;
+using System.IO;
 
 namespace AstroWeb.Controllers
 {
@@ -15,6 +16,18 @@ namespace AstroWeb.Controllers
         {
             return View ();
         }
+			
+		public JsonResult Languages() {
+			Dictionary<string, string> languages = new Dictionary<string, string> ();
+			string path = Path.Combine (System.Web.HttpContext.Current.Server.MapPath (@"~/"), "Content");
+			string[] files = Directory.GetFiles (Path.Combine (path, "Languages"), "*.txt", SearchOption.TopDirectoryOnly);
+			foreach (string file in files) {
+				string[] lines = System.IO.File.ReadAllLines (file);
+				int pos = file.LastIndexOf ("\\") + 1;
+				languages.Add (file.Substring (pos, file.LastIndexOf (".") - pos), lines [0]);
+			}
+			return new JsonNetResult (languages);
+		}
 
 		public JsonResult Country() {
 			return new JsonNetResult (Helper.AllCountry.All);

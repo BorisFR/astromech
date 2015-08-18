@@ -20,7 +20,7 @@ namespace AstroBuilders
 		public void Refresh() {
 			All.Clear ();
 
-			MenuGroup mg = new MenuGroup ("");
+			MenuGroup mg = new MenuGroup (T("Menu"));
 			mg.Add (new Menu (){ Page = MyPage.Home, 		Title = T("MenuNews"), 			Detail = T("MenuNewsDetail"), 			Icon = "news" });
 			mg.Add (new Menu (){ Page = MyPage.Builders, 	Title = T("MenuTheBuilders"), 	Detail = T("MenuTheBuildersDetail"), 	Icon = "builders" });
 			mg.Add (new Menu (){ Page = MyPage.None, 		Title = T("MenuTheDroids"), 	Detail = T("MenuTheDroidsdetail"), 		Icon = "r2builders" });

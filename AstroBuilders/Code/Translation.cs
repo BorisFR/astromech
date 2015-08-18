@@ -5,16 +5,14 @@ namespace AstroBuilders
 {
 	public static class Translation
 	{
-		private static string currentLang = string.Empty;
-		public static Dictionary<string, string> AllText;
-		public static string[] allLanguages;
+		private static Dictionary<string, string> allText = new Dictionary<string, string>();
+		private static SerializableDictionary<string, string> allLanguages;
 		private static string language = string.Empty;
 
 		public static void LoadState(){
 			if (language.Length > 0)
 				return;
-			string defaut = "fr-FR";
-			language = (string)Helper.SettingsRead<string> ("CurrentLanguage", defaut);
+			language = (string)Helper.SettingsRead<string> ("CurrentLanguage", "fr-FR");
 		}
 
 		public static string Language {
@@ -28,40 +26,54 @@ namespace AstroBuilders
 			}
 		}
 
-		public static string[] AllLanguages {
+		public static SerializableDictionary<string, string> AllLanguages {
 			get {
-				allLanguages = (string[])Helper.SettingsRead<string[]> ("AllLang", null);
+				allLanguages = (SerializableDictionary<string, string>)Helper.SettingsRead<SerializableDictionary<string, string>> ("AllLanguages", new SerializableDictionary<string, string>());
 				return allLanguages;
 			}
 			set {
 				allLanguages = value;
-				Helper.SettingsSave ("AllLang", allLanguages);
-			}
-		}
-
-		public static string CurrentLang {
-			get {
-				string defaut = "fr-FR";
-				currentLang = (string)Helper.SettingsRead<string> ("CurrentLang", defaut);
-				return currentLang;
-			}
-			set {
-				currentLang = value;
-				Helper.SettingsSave ("CurrentLang", currentLang);
+				Helper.SettingsSave ("AllLanguages", allLanguages);
 			}
 		}
 
 		public static void RefreshAllText(){
-			AllText = (SerializableDictionary<string, string>)Helper.SettingsRead<SerializableDictionary<string, string>> ("AllText", null);
+			LoadState ();
+			ProvideText ((string)Helper.SettingsRead<string> ("AllText" + language, string.Empty));
 		}
 
 		public static string GetString (string name)
 		{
-			if (AllText != null) {
-				if (AllText.ContainsKey (name))
-					return AllText [name];
-			}
+			if (allText.ContainsKey (name))
+				return allText [name];
 			return name;
+		}
+
+		public static bool IsTextReady { get { if(allText.Count > 0) return true; return false; } }
+
+		public static void NewTranslation(string data) {
+			Helper.SettingsSave ("AllText" + language, data);
+			ProvideText (data);
+		}
+
+		private static void ProvideText(string data) {
+			allText = new Dictionary<string, string> ();
+			string[] lines = data.Replace ("\r", "").Split ('\n');
+			foreach (string line in lines) {
+				string l = line.Trim ();
+				if (l.Length == 0)
+					continue;
+				if (l.StartsWith ("#"))
+					continue;
+				string[] parts = l.Split ('|');
+				if (parts.Length < 2)
+					continue;
+				try{
+				allText.Add (parts [0], parts [1]);
+				}catch(Exception err) {
+					System.Diagnostics.Debug.WriteLine ("*** ERROR: " + parts [0] + "=" + parts [1] + " / " + err.Message);
+				}
+			}
 		}
 
 	}

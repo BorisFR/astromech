@@ -9,9 +9,22 @@ namespace AstroBuilders
 		private static bool inProgress = false;
 		private static IDataServer current = null;
 		private static int count = 0;
+		private static IDataServer temp = null;
 
 		public static void AddToDo(IDataServer element) {
+			if (element.HasOldData) {
+				element.TriggerData (true, element.OldData);
+				if (!element.ForceFreshData)
+					return;
+			}
 			toDo.Add (element);
+			//DoJob ();
+			if (element.IgnoreLocalData)
+				DoJob ();
+		}
+
+		public static void Launch() {
+			System.Diagnostics.Debug.WriteLine ("************* Launching batch download");
 			DoJob ();
 		}
 
@@ -27,10 +40,11 @@ namespace AstroBuilders
 			current.DoDownload ();
 		}
 
-		static void Current_JobDone (bool status)
+		static void Current_JobDone (bool status, string result)
 		{
+			System.Diagnostics.Debug.WriteLine ("Job done: " + current.FileName);
 			current.JobDone -= Current_JobDone;
-			current.TriggerData (status);
+			current.TriggerData (status, result);
 			current = null;
 			if (!status) {
 				// on error, try again

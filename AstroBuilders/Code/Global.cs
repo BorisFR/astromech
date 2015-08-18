@@ -26,6 +26,8 @@ namespace AstroBuilders
 		public static readonly Thickness PagePadding = new Thickness(Device.OnPlatform(0, 0, 0), Device.OnPlatform(20, 0, 0), Device.OnPlatform(0, 0, 0), Device.OnPlatform(0, 0, 0));
 		public static string BaseUrl = "http://r2builders.diverstrucs.com/";
 
+		public static Dictionary<string, string> Languages = new Dictionary<string, string>();
+
 		public static MainAppPage MainAppPage;
 		public static MenuPage MenuPage;
 		public static DetailPage DetailPage;
@@ -51,7 +53,7 @@ namespace AstroBuilders
 		public static IBeaconTools BeaconsTools = null;
 		public static Media.Plugin.Abstractions.IMedia AllMedia = Media.Plugin.CrossMedia.Current;
 
-		public static void DoInit() {
+		public static async void DoInit() {
 			Files = DependencyService.Get<IFiles> ();
 			Notificator = DependencyService.Get<IToastNotificator>();
 			Vibrator = CrossVibrate.Current;
@@ -65,61 +67,111 @@ namespace AstroBuilders
 			Menus = new MenuManager ();
 			Menus.Refresh ();
 
+			Translation.RefreshAllText ();
+
+			Menus.Refresh ();
+
+			if (!Translation.IsTextReady) {
+				System.Net.Http.HttpClient httpClient = new System.Net.Http.HttpClient ();
+				httpClient.Timeout = new TimeSpan (0, 0, 0, 10, 500);
+				httpClient.DefaultRequestHeaders.ExpectContinue = false;
+				string url = string.Format("{0}Content/Languages/{1}.txt", Global.BaseUrl, Translation.Language);
+				System.Diagnostics.Debug.WriteLine("Url: " + url);
+				string ImmediateResult = string.Empty;
+				try{
+					ImmediateResult = await httpClient.GetStringAsync (url);
+				} catch(Exception err) {
+					System.Diagnostics.Debug.WriteLine ("Loading language error: " + err.Message);
+					try {
+						ImmediateResult = await httpClient.GetStringAsync (url);
+					} catch (Exception err2) {
+						System.Diagnostics.Debug.WriteLine ("Second Loading language error: " + err2.Message);
+					}
+				}
+				if (ImmediateResult.Length > 0) {
+					//System.Diagnostics.Debug.WriteLine("Traduction: " + ImmediateResult);
+					//await Tools.ImmediateDownloadLanguage (Translation.Language);
+					Translation.NewTranslation (ImmediateResult);
+					Menus.Refresh ();
+				}
+			}
+
+			IDataServer allLanguages = new IDataServer ("languages", true);
+			allLanguages.DataRefresh +=  delegate(bool status, string result) {
+				System.Diagnostics.Debug.WriteLine("Status: " + allLanguages.FileName + "=" + status);
+				if(!status)
+					return;
+				System.Diagnostics.Debug.WriteLine("Result: " + Helper.Decrypt(result));
+				SerializableDictionary<string, string> res = null;
+				try{
+					res =	Newtonsoft.Json.JsonConvert.DeserializeObject<SerializableDictionary<string, string>> (Helper.Decrypt(result));
+				}catch(Exception error) {
+					System.Diagnostics.Debug.WriteLine("ERROR: " + error.Message);
+				}
+				Translation.AllLanguages.Clear();
+				foreach(KeyValuePair<string, string> kvp in res) {
+					Translation.AllLanguages.Add(kvp.Key, kvp.Value);
+				}
+			};
+			DataServer.AddToDo (allLanguages);
+
 			IDataServer xa = new IDataServer ("country", true);
-			xa.DataRefresh +=  delegate(bool status) {
+			xa.DataRefresh +=  delegate(bool status, string result) {
 				System.Diagnostics.Debug.WriteLine("Status: " + xa.FileName + "=" + status);
 				if(!status)
 					return;
-				AllCountry.LoadFromJson(Helper.Decrypt(xa.JsonData));
+				AllCountry.LoadFromJson(Helper.Decrypt(result));
 			};
 			DataServer.AddToDo (xa);
 
 			IDataServer x = new IDataServer ("news", true);
-			x.DataRefresh +=  delegate(bool status) {
+			x.DataRefresh +=  delegate(bool status, string result) {
 				System.Diagnostics.Debug.WriteLine("Status: " + x.FileName + "=" + status);
 				if(!status)
 					return;
-				AllNews.LoadFromJson(Helper.Decrypt(x.JsonData));
+				AllNews.LoadFromJson(Helper.Decrypt(result));
 				AllNews.Refresh();
 			};
 			DataServer.AddToDo (x);
 
 			IDataServer xx = new IDataServer ("builders", true);
-			xx.DataRefresh +=  delegate(bool status) {
+			xx.DataRefresh +=  delegate(bool status, string result) {
 				System.Diagnostics.Debug.WriteLine("Status: " + xx.FileName + "=" + status);
 				if(!status)
 					return;
-				AllBuilders.LoadFromJson(Helper.Decrypt(xx.JsonData));
+				AllBuilders.LoadFromJson(Helper.Decrypt(result));
 			};
 			DataServer.AddToDo (xx);
 
 			IDataServer xxx = new IDataServer ("clubs", true);
-			xxx.DataRefresh +=  delegate(bool status) {
+			xxx.DataRefresh +=  delegate(bool status, string result) {
 				System.Diagnostics.Debug.WriteLine("Status: " + xxx.FileName + "=" + status);
 				if(!status)
 					return;
-				AllClubs.LoadFromJson(Helper.Decrypt(xxx.JsonData));
+				AllClubs.LoadFromJson(Helper.Decrypt(result));
 			};
 			DataServer.AddToDo (xxx);
 
 			IDataServer xxxx = new IDataServer ("exhibitions", true);
-			xxxx.DataRefresh +=  delegate(bool status) {
+			xxxx.DataRefresh +=  delegate(bool status, string result) {
 				System.Diagnostics.Debug.WriteLine("Status: " + xxxx.FileName + "=" + status);
 				if(!status)
 					return;
-				AllExhibitions.LoadFromJson(Helper.Decrypt(xxxx.JsonData));
+				AllExhibitions.LoadFromJson(Helper.Decrypt(result));
 			};
 			DataServer.AddToDo (xxxx);
 
 
 			IDataServer xxxxx = new IDataServer ("cards", true);
-			xxxxx.DataRefresh +=  delegate(bool status) {
+			xxxxx.DataRefresh +=  delegate(bool status, string result) {
 				System.Diagnostics.Debug.WriteLine("Status: " + xxxxx.FileName + "=" + status);
 				if(!status)
 					return;
-				AllCards.LoadFromJson(Helper.Decrypt(xxxxx.JsonData));
+				AllCards.LoadFromJson(Helper.Decrypt(result));
 			};
 			DataServer.AddToDo (xxxxx);
+
+			DataServer.Launch ();
 
 			/*
 			xa.ForceFreshData = true;

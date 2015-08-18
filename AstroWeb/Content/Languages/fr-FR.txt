@@ -1,7 +1,7 @@
-﻿# Language of this file
-Language|Français
+﻿Français
 
 # Menu of the application
+Menu|
 MenuNews|Actualités
 MenuNewsDetail|Les actus de l'association
 MenuTheBuilders|Les constructeurs
@@ -29,8 +29,59 @@ MenuAdminNewsDetail|Gérer mes actualités
 MenuAdminAllNews|Toutes les actualités
 MenuAdminAllNewsDetail|Gérer toutes les actualités
 MenuAdminUsers|Admin Users
-MenuAdminUsers|Gérer les utilisateurs
+MenuAdminUsersDetail|Gérer les utilisateurs
 
+
+# Notifications
+NotificationInformation|Information
+NotificationError|Erreur
+
+
+# PageBuilder
+PageBuilderClub|Club du Builder
+PageBuilderOrigine|Origine - {0}
+PageBuilderDroids|Droïdes - {0}
+PageBuilderBack|Revenir à la liste
+
+
+# ViewAccount
+ViewAccountTitle|Mon compte
+ViewAccountConnect|Se connecter
+ViewAccountId|Identifiant
+ViewAccountPassword|Mot de passe
+ViewAccountBtLogin|Connexion
+ViewAccountBtLostPassword|J'ai oublié mon mot de passe
+ViewAccountCreateAccount|Créer mon compte
+ViewAccountCreateAccountHelper|Cela est surtout utile aux R2 Builders. En tant qu'utilisateur, vous avez déjà un accès complet au contenu.
+ViewAccountUserName|Nom d'utilisateur
+ViewAccountEmail|Adresse email
+ViewAccountEmailHelper|L'adresse email sert uniquement en cas d'oubli du mot de passe. La saisie n'est pas obligatoire.
+ViewAccountCountry|Pays
+ViewAccountBtCreate|Créer
+ViewAccountBtDisconnect|Se déconnecter
+ViewAccountChangeAccount|Modifier mon compte
+ViewAccountControlPassword|Mot de passe (pour validation)
+ViewAccountBtModify|Modifier
+ViewAccountChangePassword|Changer mon mot de passe
+ViewAccountOldPassword|Ancien mot de passe
+ViewAccountNewPassword|Nouveau mot de passe
+ViewAccountNewPasswordControl|Nouveau mot de passe pour vérification
+ViewAccountBtChangePassword|Changer
+
+ViewAccountError1|Pour initialiser le processus de récupération du mot de passe, la saisie de l'identifiant est obligatoire.
+ViewAccountError2|Désolé, cette fonctionnalité n'est pas encore implémentée.
+ViewAccountError3|Le mot de passe n'est pas valide.
+ViewAccountError4|La saisie du nouveau mot de passe ne correspond pas.
+ViewAccountError5|Les informations saisies sont erronées. Merci de corriger votre saisie.
+ViewAccountError6|Nous sommes désolé mais cet identifiant est déjà existant. Merci d'en choisir un autre.
+ViewAccountError7|Nous sommes désolé mais ce nom d'utilisateur est déjà existant. Merci d'en choisir un autre.
+ViewAccountError8|Une erreur est survenue lors de votre authentification. Veuillez réessayer.
+ViewAccountMessage1|Vos modifications ont bien été enregistrées.
+ViewAccountMessage2|Bienvenue
+ViewAccountMessage3|Votre compte utilisateur a été créé et vous êtes connecté à l'application.
+ViewAccountMessage4|Vous êtes maintenant déconnecté de l'application.
+ViewAccountMessage5|Vous êtes maintenant identifié.
+ViewAccountMessage6|Vous n'avez pas été reconnu. Merci de corriger les informations saisies.
 
 
 # ViewHome : first screen, showing news

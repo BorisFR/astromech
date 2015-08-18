@@ -4,58 +4,59 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	<ScrollView Orientation="Vertical">
 		<StackLayout Orientation="Vertical" Padding="12" BackgroundColor="White">
-			<local:StarJedi Text="Mon compte" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" />
+			<local:StarJedi Text="{local:TextResource ViewAccountTitle}" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" />
 			<StackLayout x:Name="lConnexion" Orientation="Vertical">
-				<Label Text="Se connecter" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
-				<Label Text="Identifiant" TextColor="Black" />
-				<Entry x:Name="entryLogin" Placeholder="identifiant" TextColor="Black" />
-				<Label Text="Mot de passe" TextColor="Black" />
-				<Entry x:Name="entryPassword" Placeholder="mot de passe" IsPassword="true" TextColor="Black" />
-				<Button x:Name="btLogin" Text="Connexion" TextColor="Black" BackgroundColor="White" />
-				<Button x:Name="btForget" Text="J'ai oublié mon mot de passe" TextColor="Black" BackgroundColor="White" />
+				<Label Text="{local:TextResource ViewAccountConnect}" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
+				<Label Text="{local:TextResource ViewAccountId}" TextColor="Black" />
+				<Entry x:Name="entryLogin" Placeholder="id" TextColor="Black" />
+				<Label Text="{local:TextResource ViewAccountPassword}" TextColor="Black" />
+				<Entry x:Name="entryPassword" Placeholder="password" IsPassword="true" TextColor="Black" />
+				<Button x:Name="btLogin" Text="{local:TextResource ViewAccountBtLogin}" TextColor="Black" BackgroundColor="White" />
+				<Button x:Name="btForget" Text="{local:TextResource ViewAccountBtLostPassword}" TextColor="Black" BackgroundColor="White" />
 				<BoxView HeightRequest="4" BackgroundColor="Gray" />
-				<Label Text="Créer mon compte" TextColor="Black" Font="Medium" HorizontalOptions="Center" />
-				<Label Text="Cela est surtout utile aux R2 Builders. En tant qu'utilisateur, vous avez déjà un accès complet au contenu." TextColor="Accent" HorizontalOptions="Center" />
-				<Label Text="Nom d'utilisateur" TextColor="Black" />
+				<Label Text="{local:TextResource ViewAccountCreateAccount}" TextColor="Black" Font="Medium" HorizontalOptions="Center" />
+				<Label Text="{local:TextResource ViewAccountCreateAccountHelper}" TextColor="Accent" HorizontalOptions="Center" />
+				<Label Text="{local:TextResource ViewAccountUserName}" TextColor="Black" />
 				<Entry x:Name="entryCreateNickname" Placeholder="nickname" TextColor="Black" />
-				<Label Text="Adresse email" TextColor="Black" />
-				<Label Text="L'adresse email sert uniquement en cas d'oubli du mot de passe. La saisie n'est pas obligatoire." TextColor="Accent" HorizontalOptions="Center" />
-				<Entry x:Name="entryCreateEmail" Placeholder="adresse email" TextColor="Black" />
-				<Label Text="Identifiant" TextColor="Black" />
-				<Entry x:Name="entryCreateLogin" Placeholder="identifiant" TextColor="Black" />
-				<Label Text="Mot de passe" TextColor="Black" />
+				<Label Text="{local:TextResource ViewAccountEmail}" TextColor="Black" />
+				<Label Text="{local:TextResource ViewAccountEmailHelper}" TextColor="Accent" HorizontalOptions="Center" />
+				<Entry x:Name="entryCreateEmail" Placeholder="email" TextColor="Black" />
+				<Label Text="{local:TextResource ViewAccountId}" TextColor="Black" />
+				<Entry x:Name="entryCreateLogin" Placeholder="id" TextColor="Black" />
+				<Label Text="{local:TextResource ViewAccountPassword}" TextColor="Black" />
 				<Entry x:Name="entryCreatePassword" Placeholder="password" IsPassword="true" TextColor="Black" />
-				<Label Text="Pays" TextColor="Black" />
+				<Label Text="{local:TextResource ViewAccountCountry}" TextColor="Black" />
 				<Picker x:Name="pickerCreateCountry" Title="Pays" />
 				<Image x:Name="createCountry" WidthRequest="100" HorizontalOptions="Center" />
-				<Button x:Name="btCreate" Text="Création" TextColor="Black" BackgroundColor="White" />
+				<Button x:Name="btCreate" Text="{local:TextResource ViewAccountBtCreate}" TextColor="Black" BackgroundColor="White" />
 			</StackLayout>
+
 			<StackLayout x:Name="lConnected" Orientation="Vertical">
 				<Label x:Name="lUser" TextColor="Black" Text="Username" />
-				<Button x:Name="btDisconnect" Text="Se déconnecter" TextColor="Black" BackgroundColor="White" />
+				<Button x:Name="btDisconnect" Text="{local:TextResource ViewAccountBtDisconnect}" TextColor="Black" BackgroundColor="White" />
 				<BoxView HeightRequest="4" BackgroundColor="Gray" />
-				<Label Text="Modifier mon compte" TextColor="Black" Font="Medium" HorizontalOptions="Center" />
+				<Label Text="{local:TextResource ViewAccountChangeAccount}" TextColor="Black" Font="Medium" HorizontalOptions="Center" />
 				<!---
 				<Label Text="Nom d'utilisateur" />
 				<Entry x:Name="entryModifyNickname" Placeholder="nickname" TextColor="Black" />
 				-->
-				<Label Text="Adresse email" TextColor="Black" />
-				<Entry x:Name="entryModifyEmail" Placeholder="adresse email" TextColor="Black" />
-				<Label Text="Pays" TextColor="Black" />
+				<Label Text="{local:TextResource ViewAccountEmail}" TextColor="Black" />
+				<Entry x:Name="entryModifyEmail" Placeholder="email" TextColor="Black" />
+				<Label Text="{local:TextResource ViewAccountCountry}" TextColor="Black" />
 				<Picker x:Name="pickerModifyCountry" Title="Pays" />
 				<Image x:Name="modifyCountry" WidthRequest="100" HorizontalOptions="Center" />
-				<Label Text="Mot de passe (pour validation)" TextColor="Black" />
+				<Label Text="{local:TextResource ViewAccountControlPassword}" TextColor="Black" />
 				<Entry x:Name="entryModifyPassword" Placeholder="password" IsPassword="true" TextColor="Black" />
-				<Button x:Name="btModify" Text="Modifier" TextColor="Black" BackgroundColor="White" />
+				<Button x:Name="btModify" Text="{local:TextResource ViewAccountBtModify}" TextColor="Black" BackgroundColor="White" />
 				<BoxView HeightRequest="4" BackgroundColor="Gray" />
-				<Label Text="Changer mon mot de passe" TextColor="Black" Font="Medium" HorizontalOptions="Center" />
-				<Label Text="Ancien mot de passe" TextColor="Black" />
-				<Entry x:Name="entryOldPassword" Placeholder="ancien mot de passe" IsPassword="true" TextColor="Black" />
-				<Label Text="Nouveau mot de passe" TextColor="Black" />
-				<Entry x:Name="entryNewPassword" Placeholder="nouveau mot de passe" IsPassword="true" TextColor="Black" />
-				<Label Text="Nouveau mot de passe pour vérification" TextColor="Black" />
-				<Entry x:Name="entryNew2Password" Placeholder="nouveau mot de passe" IsPassword="true" TextColor="Black" />
-				<Button x:Name="btChangePassword" Text="Changer" TextColor="Black" BackgroundColor="White" />
+				<Label Text="{local:TextResource ViewAccountChangePassword}" TextColor="Black" Font="Medium" HorizontalOptions="Center" />
+				<Label Text="{local:TextResource ViewAccountOldPassword}" TextColor="Black" />
+				<Entry x:Name="entryOldPassword" Placeholder="old password" IsPassword="true" TextColor="Black" />
+				<Label Text="{local:TextResource ViewAccountNewPassword}" TextColor="Black" />
+				<Entry x:Name="entryNewPassword" Placeholder="new password" IsPassword="true" TextColor="Black" />
+				<Label Text="{local:TextResource ViewAccountNewPasswordControl}" TextColor="Black" />
+				<Entry x:Name="entryNew2Password" Placeholder="new password" IsPassword="true" TextColor="Black" />
+				<Button x:Name="btChangePassword" Text="{local:TextResource ViewAccountBtChangePassword}" TextColor="Black" BackgroundColor="White" />
 			</StackLayout>
 		</StackLayout>
 		</ScrollView>
