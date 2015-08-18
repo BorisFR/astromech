@@ -68,6 +68,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Aurek-Besh.ttf</string>
+		<string>TIE-Wing.ttf</string>
+		<string>Star Jedi.ttf</string>
 	</array>
 </dict>
 </plist>

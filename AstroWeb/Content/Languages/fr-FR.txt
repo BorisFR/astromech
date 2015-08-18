@@ -1,0 +1,37 @@
+﻿# Language of this file
+Language|Français
+
+# Menu of the application
+MenuNews|Actualités
+MenuNewsDetail|Les actus de l'association
+MenuTheBuilders|Les constructeurs
+MenuTheBuildersDetail|Les membres de l'association
+MenuTheDroids|Les robots
+MenuTheDroidsDetail|Les robots des R2 Builders
+MenuTheEvents|Les événements
+MenuTheEventsDetail|Les R2 Builders en balade
+MenuMyAccount|Mon compte
+MenuMyAccountDetail|Gérer mes informations
+MenuAbout|A propos de
+MenuAboutDetail|Informations
+
+MenuMenuBuilders|Menu Builder
+MenuBuilderPresentation|Ma fiche
+MenuBuilderPresentationDetail|Gérer ma fiche de présentation
+MenuBuilderDroids|Mes robots
+MenuBuilderDroidsDetail|Gérer mes robots
+MenuBuilderEvents|Mes sorties
+MenuBuilderEventsDetail|Gérer mes sorties
+
+MenuMenuAdmin|Administration
+MenuAdminNews|Mes actualités
+MenuAdminNewsDetail|Gérer mes actualités
+MenuAdminAllNews|Toutes les actualités
+MenuAdminAllNewsDetail|Gérer toutes les actualités
+MenuAdminUsers|Admin Users
+MenuAdminUsers|Gérer les utilisateurs
+
+
+
+# ViewHome : first screen, showing news
+ViewHomeTitle|Les actualités de l'association

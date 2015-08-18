@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewMyBuilder">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewMyBuilder" 
+xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	<ScrollView Orientation="Vertical">
 		<StackLayout x:Name="theStack" Orientation="Vertical" Padding="6" BackgroundColor="White">
-			<Label Text="Ma fiche Builder" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
+			<local:StarJedi Text="Ma fiche Builder" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
 			<Label x:Name="textClub" Text="Club" Font="Medium" TextColor="Black" />
 			<Image x:Name="logoClub" WidthRequest="80" HorizontalOptions="Start" />
 			<Label Text="Prénom Nom" Font="Medium" TextColor="Black" />

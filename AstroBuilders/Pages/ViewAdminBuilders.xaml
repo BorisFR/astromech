@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewAdminBuilders">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewAdminBuilders" 
+xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 
 		<Grid HorizontalOptions="Fill" ColumnSpacing="0" RowSpacing="0">
@@ -13,7 +14,7 @@
         	<RowDefinition Height="120" />
         </Grid.RowDefinitions>
 
-			<Label Text="Admin des Builders" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" />
+			<local:StarJedi Text="Admin des Builders" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" />
 
         	<ListView x:Name="theUsers" SeparatorVisibility="None" Header="Users" Grid.Column="0" Grid.Row="1">
 		        <ListView.ItemTemplate>

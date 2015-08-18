@@ -4,7 +4,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	<ScrollView Orientation="Vertical">
 		<StackLayout Orientation="Vertical" Padding="12" BackgroundColor="White">
-			<Label Text="Mon compte" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" />
+			<local:StarJedi Text="Mon compte" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" />
 			<StackLayout x:Name="lConnexion" Orientation="Vertical">
 				<Label Text="Se connecter" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
 				<Label Text="Identifiant" TextColor="Black" />

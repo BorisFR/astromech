@@ -121,6 +121,7 @@
     <Compile Include="Files.cs" />
     <Compile Include="iBeaconTools.cs" />
     <Compile Include="AurekBeshRenderer.cs" />
+    <Compile Include="TieWingRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -145,5 +146,6 @@
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <ItemGroup>
     <AndroidAsset Include="Assets\Aurek-Besh.ttf" />
+    <AndroidAsset Include="Assets\TIE-Wing.ttf" />
   </ItemGroup>
 </Project>

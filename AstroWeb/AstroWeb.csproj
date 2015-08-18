@@ -94,6 +94,7 @@
     <Folder Include="Content\Country\" />
     <Folder Include="Views\Country\" />
     <Folder Include="Views\QRcode\" />
+    <Folder Include="Content\Languages\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -138,5 +139,8 @@
       <Project>{CBAEBDEB-DA95-49E6-8602-C72E9DDA416E}</Project>
       <Name>AstroBuildersModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Languages\fr-FR.txt" />
   </ItemGroup>
 </Project>

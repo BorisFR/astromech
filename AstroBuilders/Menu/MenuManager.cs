@@ -12,21 +12,25 @@ namespace AstroBuilders
 		{
 			All = new ObservableCollection<MenuGroup> ();
 		}
+
+		private string T(string source) {
+			return Translation.GetString (source);
+		}
 		 
 		public void Refresh() {
 			All.Clear ();
 
 			MenuGroup mg = new MenuGroup ("");
-			mg.Add (new Menu (){ Page = MyPage.Home, Title = "Actualités", 			Detail = "Les actus de l'association", 		Icon = "news" });
-			mg.Add (new Menu (){ Page = MyPage.Builders, Title = "Les Constructeurs", Detail = "Les membres de l'association", 	Icon = "builders" });
-			mg.Add (new Menu (){ Page = MyPage.None, Title = "Les robots", 			Detail = "Les robots des R2 Builders", 		Icon = "r2builders" });
+			mg.Add (new Menu (){ Page = MyPage.Home, 		Title = T("MenuNews"), 			Detail = T("MenuNewsDetail"), 			Icon = "news" });
+			mg.Add (new Menu (){ Page = MyPage.Builders, 	Title = T("MenuTheBuilders"), 	Detail = T("MenuTheBuildersDetail"), 	Icon = "builders" });
+			mg.Add (new Menu (){ Page = MyPage.None, 		Title = T("MenuTheDroids"), 	Detail = T("MenuTheDroidsdetail"), 		Icon = "r2builders" });
 			//mg.Add (new Menu (){ Page = MyPage.None, Title = "AstroDex", 			Detail = "L'anuaire des unités Astro", 		Icon = "IA" });
-			mg.Add (new Menu (){ Page = MyPage.None, Title = "Les événements", 		Detail = "Les R2 Builders en balade", 		Icon = "events" });
+			mg.Add (new Menu (){ Page = MyPage.None, 		Title = T("MenuTheEvents"), 	Detail = T("MenuTheEventsDetail"), 		Icon = "events" });
 			//mg.Add (new Menu (){ Page = MyPage.None, Title = "Vos cartes", 			Detail = "Votre collection de cartes", 		Icon = "IA" });
 			//mg.Add (new Menu (){ Page = MyPage.None, Title = "Vos récompenses", 	Detail = "Vos récompenses obtenues", 		Icon = "IA" });
-			mg.Add (new Menu (){ Page = MyPage.Account, Title = "Mon compte", 		Detail = "Gérer mes informations",			Icon = "builders2" });
+			mg.Add (new Menu (){ Page = MyPage.Account, 	Title = T("MenuMyAccount"), 	Detail = T("MenuMyAccountDetail"),		Icon = "builders2" });
 			//mg.Add (new Menu (){ Page = MyPage.None, Title = "Aide", 				Detail = "Comment fonctionne l'application", Icon = "IA" });
-			mg.Add (new Menu (){ Page = MyPage.About, Title = "A propos de", 		Detail = "Informations", 					Icon = "info" });
+			mg.Add (new Menu (){ Page = MyPage.About, 		Title = T("MenuAbout"), 		Detail = T("MenuAboutDetail"), 			Icon = "info" });
 			All.Add (mg);
 			/*
 			mg = new MenuGroup ("ASTRODEX");
@@ -55,26 +59,26 @@ namespace AstroBuilders
 			*/
 
 			if (Global.IsConnected) {
-				mg = new MenuGroup ("Menu Builder");
+				mg = new MenuGroup (T("MenuMenuBuilders"));
 				if (Global.ConnectedUser.IsBuilder) {
-					mg.Add (new Menu () { Page = MyPage.MyBuilder, Title = "Ma fiche", 			Detail = "Gérer ma fiche de présentation", 	Icon = "account" });
-					mg.Add (new Menu (){ Page = MyPage.None, Title = "Mes robots", 			Detail = "Gérer mes robots", 				Icon = "IA" });
-					mg.Add (new Menu (){ Page = MyPage.MyExhibitions, Title = "Mes sorties", 	Detail = "Gérer mes sorties", 			Icon = "IA" });
+					mg.Add (new Menu () { Page = MyPage.MyBuilder, 		Title = T("MenuBuilderPresentation"), 	Detail = T("MenuBuilderPresentationDetail"), 	Icon = "account" });
+					mg.Add (new Menu (){ Page = MyPage.None, 			Title = T("MenuBuilderDroids"), 		Detail = T("MenuBuilderDroidsDetail"), 			Icon = "IA" });
+					mg.Add (new Menu (){ Page = MyPage.MyExhibitions, 	Title = T("MenuBuilderEvents"), 		Detail = T("MenuBuilderEventsDetail"), 			Icon = "IA" });
 				}	
 				if (mg.Count > 0)
 					All.Add (mg);
-				mg = new MenuGroup ("Administration");
+				mg = new MenuGroup (T("MenuMenuAdmin"));
 				if (Global.ConnectedUser.IsNewser) {
-					mg.Add (new Menu () { Page = MyPage.None, Title = "Mes actualités", 	Detail = "Gérer mes actualités", 			Icon = "IA" });
+					mg.Add (new Menu () { Page = MyPage.None, 			Title = T("MenuAdminNews"), 	Detail = T("MenuAdminNewsDetail"), 		Icon = "IA" });
 				}
 				if (Global.ConnectedUser.IsModo) {
-					mg.Add (new Menu () { Page = MyPage.None, Title = "Toutes les actualités", Detail = "Gérer toutes les actualités", 	Icon = "IA" });
+					mg.Add (new Menu () { Page = MyPage.None, 			Title = T("MenuAdminAllNews"), 	Detail = T("MenuAdminAllNewsDetail"), 	Icon = "IA" });
 				}
 				if (Global.ConnectedUser.IsAdmin) {
-					mg.Add (new Menu () { Page = MyPage.AdminUsers, Title = "Admin Users", 	Detail = "Gérer les utilisateurs", 			Icon = "IA" });
+					mg.Add (new Menu () { Page = MyPage.AdminUsers, 	Title = T("MenuAdminUsers"),	Detail = T("MenuAdminUsersDetail"), 	Icon = "IA" });
 				}
 				if (Global.ConnectedUser.NickName.Equals("Boris")) {
-					mg.Add (new Menu () { Page = MyPage.AdminBuilders, Title = "Admin builders", Detail = "Gérer qui est builder", 		Icon = "IA" });
+					mg.Add (new Menu () { Page = MyPage.AdminBuilders, 	Title = "Admin builders", 		Detail = "Gérer qui est builder", 		Icon = "IA" });
 				}
 				if (mg.Count > 0)
 					All.Add (mg);
