@@ -175,5 +175,28 @@ namespace AstroBuilders
 			JobDone (status, result);
 		}
 
+		public static void DoCreateExhibition(Exhibition exhibition) {
+			RealDoCreateExhibition (exhibition);
+		}
+
+		private static async Task RealDoCreateExhibition(Exhibition exhibition) {
+			string result = string.Empty;
+			bool status = false;
+			try {
+				string url = string.Format("{0}Data/CreateExhibition", Global.BaseUrl);
+				Dictionary<string, string> d = new Dictionary<string, string>();
+				d.Add("id", Helper.Encrypt(JsonConvert.SerializeObject (exhibition)));
+				HttpContent content = new FormUrlEncodedContent(d);
+				var response = await httpClient.PostAsync(url,content);
+				if(response.IsSuccessStatusCode) {
+				}
+				result = await response.Content.ReadAsStringAsync();
+				status = true;
+			} catch (Exception err) {
+				System.Diagnostics.Debug.WriteLine ("ERROR: " + err.Message);
+			}
+			JobDone (status, result);
+		}
+
 	}
 }

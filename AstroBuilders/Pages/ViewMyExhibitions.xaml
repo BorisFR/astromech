@@ -4,12 +4,12 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	<ScrollView Orientation="Vertical">
 		<StackLayout Orientation="Vertical" Padding="12" BackgroundColor="White">
-			<local:StarJedi Text="Mes sorties" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" />
-			<Label Text="Je gère" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
-			<Button x:Name="btCreateExhibition" Text="Créer un salon" TextColor="Black" BackgroundColor="White" />
+			<local:StarJedi Text="{local:TextResource ViewMyExhibitionsTitle}" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" />
+			<Label Text="{local:TextResource ViewMyExhibitionsAdmin}" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
+			<Button x:Name="btCreateExhibition" Text="{local:TextResource ViewMyExhibitionsBtCreate}" TextColor="Black" BackgroundColor="White" />
 
 			<BoxView HeightRequest="4" BackgroundColor="Gray" />
-			<Label Text="Je participe" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
+			<Label Text="{local:TextResource ViewMyExhibitionsActor}" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
 			 
 		</StackLayout>
 	</ScrollView>

@@ -4,40 +4,41 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	<ScrollView Orientation="Vertical">
 		<StackLayout x:Name="theStack" Orientation="Vertical" Padding="6" BackgroundColor="White">
-			<local:StarJedi Text="Ma fiche Builder" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
-			<Label x:Name="textClub" Text="Club" Font="Medium" TextColor="Black" />
+			<local:StarJedi Text="{local:TextResource ViewMyBuilderTitle}" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
+			<Label x:Name="textClub" Text="{local:TextResource ViewMyBuilderClub}" Font="Medium" TextColor="Black" />
 			<Image x:Name="logoClub" WidthRequest="80" HorizontalOptions="Start" />
-			<Label Text="Prénom Nom" Font="Medium" TextColor="Black" />
-			<Entry x:Name="entryTitle" Placeholder="Prénom Nom" Text="{Binding Title}" TextColor="Black" />
-			<Label TextColor="Accent" Text="(non obligatoire, mais sympa pour les gens)" />
-			<Label Text="Surnom" Font="Medium" TextColor="Black" />
-			<Entry x:Name="entryNickName" Placeholder="Surnom" Text="{Binding NickName}" TextColor="Black" />
-			<Label TextColor="Accent" Text="(ex: Boris)" />
-			<Label Text="Avatar" Font="Medium" TextColor="Black" />
-			<Entry x:Name="entryLogo" Placeholder="url de l'avatar" Text="{Binding Logo}" TextColor="Black" />
-			<Label TextColor="Accent" Text="(Utilisez votre avatar du forum, ex: http://www.r2builders.fr/forum/download/file.php?avatar=69_1332196755.jpg)" />
+			<Label Text="{local:TextResource ViewMyBuilderName}" Font="Medium" TextColor="Black" />
+			<Entry x:Name="entryTitle" Placeholder="lastname firstname" Text="{Binding Title}" TextColor="Black" />
+			<Label TextColor="Accent" Text="{local:TextResource ViewMyBuilderNameHelper}" />
+			<Label Text="{local:TextResource ViewMyBuilderNickname}" Font="Medium" TextColor="Black" />
+			<Entry x:Name="entryNickName" Placeholder="nickname" Text="{Binding NickName}" TextColor="Black" />
+			<Label TextColor="Accent" Text="{local:TextResource ViewMyBuilderNicknameHelper}" />
+			<Label Text="{local:TextResource ViewMyBuilderAvatar}" Font="Medium" TextColor="Black" />
+			<Entry x:Name="entryLogo" Placeholder="url" Text="{Binding Logo}" TextColor="Black" />
+			<Label TextColor="Accent" Text="{local:TextResource ViewMyBuilderAvatarHelper}" />
 			<Image x:Name="imgLogo" WidthRequest="100" />
-			<Label Text="Origine" Font="Medium" TextColor="Black" />
-			<Entry x:Name="entryLocation" Placeholder="Origine" Text="{Binding Location}" TextColor="Black" />
-			<Label TextColor="Accent" Text="(ex: Lille - France)" />
-			<Label Text="Email" Font="Medium" TextColor="Black" />
-			<Entry x:Name="entryEmail" Placeholder="Email" Text="{Binding Email}" TextColor="Black" />
-			<Label TextColor="Accent" Text="(non obligatoire)" />
-			<Label Text="Page facebook" Font="Medium" TextColor="Black" />
-			<Entry x:Name="entryFacebook" Placeholder="url de la page" Text="{Binding Facebook}" TextColor="Black" />
-			<Label TextColor="Accent" Text="(non obligatoire, ex: https://www.facebook.com/R2D2ByBoris)" />
-			<Label Text="Url du blog" Font="Medium" TextColor="Black" />
-			<Entry x:Name="entryBlog" Placeholder="url du blog" Text="{Binding Blog}" TextColor="Black" />
-			<Label TextColor="Accent" Text="(non obligatoire, ex: http://lolo080.blogspot.fr)" />
-			<Label Text="Droids" Font="Medium" TextColor="Black" />
-			<Entry x:Name="entryDroids" Placeholder="Texte" Text="{Binding Droids}" TextColor="Black" />
-			<Label TextColor="Accent" Text="(Petit texte qui indique les robots que vous concevez. Disons environ une ligne)" />
-			<Label Text="Détail" Font="Medium" TextColor="Black" />
+			<Label Text="{local:TextResource ViewMyBuilderLocation}" Font="Medium" TextColor="Black" />
+			<Entry x:Name="entryLocation" Placeholder="location" Text="{Binding Location}" TextColor="Black" />
+			<Label TextColor="Accent" Text="{local:TextResource ViewMyBuilderLocationHelper}" />
+			<Label Text="{local:TextResource ViewMyBuilderEmail}" Font="Medium" TextColor="Black" />
+			<Entry x:Name="entryEmail" Placeholder="e-mail" Text="{Binding Email}" TextColor="Black" />
+			<Label TextColor="Accent" Text="{local:TextResource ViewMyBuilderEmailHelper}" />
+			<Label Text="{local:TextResource ViewMyBuilderFacebook}" Font="Medium" TextColor="Black" />
+			<Entry x:Name="entryFacebook" Placeholder="url" Text="{Binding Facebook}" TextColor="Black" />
+			<Label TextColor="Accent" Text="{local:TextResource ViewMyBuilderFacebookHelper}" />
+			<Label Text="{local:TextResource ViewMyBuilderBlog}" Font="Medium" TextColor="Black" />
+			<Entry x:Name="entryBlog" Placeholder="url" Text="{Binding Blog}" TextColor="Black" />
+			<Label TextColor="Accent" Text="{local:TextResource ViewMyBuilderBlogHelper}" />
+			<Label Text="{local:TextResource ViewMyBuilderDroids}" Font="Medium" TextColor="Black" />
+			<Entry x:Name="entryDroids" Placeholder="text" Text="{Binding Droids}" TextColor="Black" />
+			<Label TextColor="Accent" Text="{local:TextResource ViewMyBuilderDroidsHelper}" />
+			<Label Text="{local:TextResource ViewMyBuilderDetail}" Font="Medium" TextColor="Black" />
 			<Editor x:Name="entryDetail" Text="{Binding Detail}" HeightRequest="300" BackgroundColor="#bbbbbb" />
-			<Label TextColor="Accent" Text="(Texte détaillé, sur plusieurs lignes. Lachez-vous ;) )" />
+			<Label TextColor="Accent" Text="{local:TextResource ViewMyBuilderDetailHelper}" />
 
+			<BoxView HeightRequest="4" BackgroundColor="Gray" />
 			<ActivityIndicator x:Name="theAI" IsRunning="false" IsVisible="false" />
-			<Button x:Name="btValidate" Text="Valider" TextColor="Black" BackgroundColor="White" />
+			<Button x:Name="btValidate" Text="{local:TextResource ViewMyBuilderBtSave}" TextColor="Black" BackgroundColor="White" />
 		</StackLayout>
 	</ScrollView>
 	</ContentView.Content>

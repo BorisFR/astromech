@@ -14,31 +14,32 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="6,24,6
 			        	<RowDefinition Height="40" />
 			        	<RowDefinition Height="*" />
 			        </Grid.RowDefinitions>
-					<Label Text="Créer une sortie" Font="Bold,Large" HorizontalOptions="StartAndExpand" TextColor="Accent" Grid.ColumnSpan="2" />
+					<Label Text="{local:TextResource PageCreateExhibitionTitle}" Font="Bold,Large" HorizontalOptions="StartAndExpand" TextColor="Accent" Grid.ColumnSpan="2" />
 					<Image x:Name="imgClose" Source="{local:ImageResource closewindow.png}" HorizontalOptions="End" WidthRequest="32" HeightRequest="32" Grid.Column="1" />
 				</Grid>
 
-				<Label Text="Nom de la sortie" TextColor="Black" />
+				<Label Text="{local:TextResource PageCreateExhibitionName}" TextColor="Black" />
 				<Entry x:Name="entryName" Placeholder="name" TextColor="Black" />
-				<Label Text="Date de début" TextColor="Black" />
+				<Label Text="{local:TextResource PageCreateExhibitionStartDate}" TextColor="Black" />
 				<DatePicker x:Name="dateStart" VerticalOptions="CenterAndExpand" />
-				<Label Text="Date de fin" TextColor="Black" />
+				<Label Text="{local:TextResource PageCreateExhibitionEndDate}" TextColor="Black" />
 				<DatePicker x:Name="dateEnd" VerticalOptions="CenterAndExpand" />
-				<Label Text="Descriptif" TextColor="Black" />
+				<Label Text="{local:TextResource PageCreateExhibitionDetail}" TextColor="Black" />
 				<Editor x:Name="entryDescription" Text="" HeightRequest="300" BackgroundColor="#dddddd" />
-				<Label Text="Logo" TextColor="Black" />
-				<Button x:Name="btChooseLogo" Text="Choisir un logo" TextColor="Black" BackgroundColor="White" />
-				<Button x:Name="btTakeLogoPicture" Text="Prendre une photo" TextColor="Black" BackgroundColor="White" />
+				<Label Text="{local:TextResource PageCreateExhibitionLogo}" TextColor="Black" />
+				<Button x:Name="btChooseLogo" Text="{local:TextResource PageCreateExhibitionBtChooseLogo}" TextColor="Black" BackgroundColor="White" />
+				<Button x:Name="btTakeLogoPicture" Text="{local:TextResource PageCreateExhibitionBtTakePictureLogo}" TextColor="Black" BackgroundColor="White" />
 				<Image x:Name="createLogo" WidthRequest="100" HorizontalOptions="Center" />
-				<Label Text="Flyer" TextColor="Black" />
-				<Button x:Name="btChooseFlyer" Text="Choisir un logo" TextColor="Black" BackgroundColor="White" />
-				<Button x:Name="btTakeFlyerPicture" Text="Prendre une photo" TextColor="Black" BackgroundColor="White" />
+				<Label Text="{local:TextResource PageCreateExhibitionFlyer}" TextColor="Black" />
+				<Button x:Name="btChooseFlyer" Text="{local:TextResource PageCreateExhibitionBtChooseFlyer}" TextColor="Black" BackgroundColor="White" />
+				<Button x:Name="btTakeFlyerPicture" Text="{local:TextResource PageCreateExhibitionBtTakePictureFlyer}" TextColor="Black" BackgroundColor="White" />
 				<Image x:Name="createFlyer" WidthRequest="500" HorizontalOptions="Center" />
 				<BoxView HeightRequest="4" BackgroundColor="Gray" />
-				<Button x:Name="btCreate" Text="Créer le salon" TextColor="Black" BackgroundColor="White" />
+				<Button x:Name="btCreate" Text="{local:TextResource PageCreateExhibitionBtCreate}" TextColor="Black" BackgroundColor="White" />
 				 
 				<BoxView HeightRequest="4" BackgroundColor="Gray" />
-				<Button Text="Annuler" Clicked="ButtonClicked" TextColor="Black" BackgroundColor="White" />
+				<ActivityIndicator x:Name="theAI" IsRunning="false" IsVisible="false" />
+				<Button Text="{local:TextResource PageCreateExhibitionBtCancel}" Clicked="ButtonClicked" TextColor="Black" BackgroundColor="White" />
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

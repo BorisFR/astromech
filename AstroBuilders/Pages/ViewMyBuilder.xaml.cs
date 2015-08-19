@@ -16,7 +16,7 @@ namespace AstroBuilders
 			builder = ((Builder)Global.AllBuilders.GetByGuid<Builder> (Global.ConnectedUser.IdBuilder)).DeepCopy ();
 
 			Club club = (Club)Global.AllClubs.GetByGuid<Club> (builder.IdClub);
-			textClub.Text = string.Format ("Mon club : {0}", club.Title);
+			textClub.Text = string.Format (Translation.GetString("ViewMyBuilderMyClub"), club.Title);
 			logoClub.Source = club.Logo;
 
 			entryLogo.TextChanged += EntryLogo_TextChanged;
@@ -27,6 +27,7 @@ namespace AstroBuilders
 
 		void BtValidate_Clicked (object sender, EventArgs e)
 		{
+			btValidate.IsEnabled = false;
 			theAI.IsRunning = true;
 			theAI.IsVisible = true;
 			Tools.JobDone += Tools_UpdateDone;
@@ -40,16 +41,17 @@ namespace AstroBuilders
 					string json = Helper.Decrypt (result); //Tools.Result);
 					Global.AllBuilders.LoadFromJson (json);
 					builder = ((Builder)Global.AllBuilders.GetByGuid<Builder> (Global.ConnectedUser.IdBuilder)).DeepCopy ();
-					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, "Information", "La mise à jour a bien été effectuée.");
+					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, Translation.GetString("NotificationInformation"),Translation.GetString("ViewMyBuilderMessage1"));
 				} else {
-					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, "Erreur", "Un problème est survenue pendant la mise à jour.");
+					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("ViewMyBuilderError1"));
 				}
 			} catch (Exception err) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, "Erreur", "Une erreur est survenue pendant la mise à jour.");
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("ViewMyBuilderError2"));
 			}
 			theStack.BindingContext = builder;
 			theAI.IsRunning = false;
 			theAI.IsVisible = false;
+			btValidate.IsEnabled = true;
 		}
 
 		void EntryLogo_TextChanged (object sender, TextChangedEventArgs e)

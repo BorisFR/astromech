@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using System.IO;
+using AstroBuildersModel;
 
 namespace AstroBuilders
 {
@@ -47,7 +48,7 @@ namespace AstroBuilders
 
 		private async void TakePicture() {
 			if (!Global.AllMedia.IsTakePhotoSupported) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, "Erreur", "Impossible d'activer l'appareil photo.");
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError1"));
 				return;
 			}
 			try {
@@ -77,7 +78,7 @@ namespace AstroBuilders
 				}
 				file.Dispose ();
 			} catch (Exception) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, "Erreur", "Une erreur est survenue lors de l'activation de l'appareil photo.");
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError2"));
 				return;
 			}
 
@@ -97,7 +98,7 @@ namespace AstroBuilders
 
 		private async void RealPickPhoto() {
 			if (!Global.AllMedia.IsPickPhotoSupported) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, "Erreur", "Impossible d'accéder à vos images.");
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError3"));
 				return;
 			}
 			try{
@@ -130,7 +131,7 @@ namespace AstroBuilders
 			}
 			file.Dispose ();
 			} catch(Exception) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, "Erreur", "Une erreur est survenue lors du choix de l'image.");
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError4"));
 				return;
 			}
 		}
@@ -152,8 +153,51 @@ namespace AstroBuilders
 		void BtCreate_Clicked (object sender, EventArgs e)
 		{
 			if (dateEnd.Date < dateStart.Date) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, "Erreur", "La date de fin de la sortie doit être supérieure à la date de début.");
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError5"));
 				return;
+			}
+			if (entryName.Text.Trim ().Length == 0) {
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError6"));
+				return;
+			}
+			if (entryDescription.Text.Trim ().Length == 0) {
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError7"));
+				return;
+			}
+			btCreate.IsEnabled = false;
+			theAI.IsRunning = true;
+			theAI.IsVisible = true;
+			Tools.JobDone += Tools_JobDone;
+			Exhibition exhibition = new Exhibition ();
+			exhibition.Title = entryName.Text.Trim ();
+			exhibition.Description = entryDescription.Text.Trim ();
+			exhibition.Builders = new List<Guid> ();
+			exhibition.EndDate = dateStart.Date;
+			exhibition.StartDate = dateStart.Date;
+			exhibition.Flyer = photoFlyer;
+			exhibition.IdBuilder = Global.ConnectedUser.IdBuilder;
+			exhibition.IdCountry = Global.ConnectedUser.IdCountry;
+			exhibition.Logo = photoLogo;
+			Tools.DoCreateExhibition (exhibition);
+		}
+
+		void Tools_JobDone (bool status, string result)
+		{
+			Tools.JobDone -= Tools_JobDone;
+			theAI.IsRunning = false;
+			theAI.IsVisible = false;
+			btCreate.IsEnabled = true;
+			try {
+				if (status) {
+					string json = Helper.Decrypt (result); 
+					Global.AllExhibitions.LoadFromJson (json);
+					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, Translation.GetString("NotificationInformation"),Translation.GetString("PageCreateExhibitionMessage1"));
+					Navigation.PopModalAsync ();
+				} else {
+					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError8"));
+				}
+			} catch (Exception err) {
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError9"));
 			}
 		}
 

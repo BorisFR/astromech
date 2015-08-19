@@ -37,14 +37,7 @@ NotificationInformation|Information
 NotificationError|Erreur
 
 
-# PageBuilder
-PageBuilderClub|Club du Builder
-PageBuilderOrigine|Origine - {0}
-PageBuilderDroids|Droïdes - {0}
-PageBuilderBack|Revenir à la liste
-
-
-# ViewAccount
+# ViewAccount : screen to connect and create account
 ViewAccountTitle|Mon compte
 ViewAccountConnect|Se connecter
 ViewAccountId|Identifiant
@@ -86,3 +79,70 @@ ViewAccountMessage6|Vous n'avez pas été reconnu. Merci de corriger les informa
 
 # ViewHome : first screen, showing news
 ViewHomeTitle|Les actualités de l'association
+
+
+# ViewMyBuilder : edit own builder data
+ViewMyBuilderTitle|Ma fiche Builder
+ViewMyBuilderClub|Club
+ViewMyBuilderName|Prénom Nom
+ViewMyBuilderNameHelper|(non obligatoire, mais sympa pour les gens)
+ViewMyBuilderNickname|Surnom
+ViewMyBuilderNicknameHelper|(ex: Boris)
+ViewMyBuilderAvatar|Avatar
+ViewMyBuilderAvatarHelper|(Utilisez votre avatar du forum, ex: http://www.r2builders.fr/forum/download/file.php?avatar=69_1332196755.jpg)
+ViewMyBuilderLocation|Origine
+ViewMyBuilderLocationHelper|(ex: Lille - France)
+ViewMyBuilderEmail|E-mail
+ViewMyBuilderEmailHelper|(non obligatoire)
+ViewMyBuilderFacebook|Page facebook
+ViewMyBuilderFacebookHelper|(non obligatoire, ex: https://www.facebook.com/R2D2ByBoris)
+ViewMyBuilderBlog|Blog
+ViewMyBuilderBlogHelper|(non obligatoire, ex: http://lolo080.blogspot.fr)
+ViewMyBuilderDroids|Robots
+ViewMyBuilderDroidsHelper|(Une synthèse qui indique les robots que vous concevez)
+ViewMyBuilderDetail|Détail
+ViewMyBuilderDetailHelper|(Texte détaillé, sur plusieurs lignes. Lachez-vous ;) )
+ViewMyBuilderBtSave|Enregistrer
+ViewMyBuilderMyClub|Mon club : {0}
+ViewMyBuilderMessage1|La mise à jour a bien été effectuée.
+ViewMyBuilderError1|Un problème est survenue pendant la mise à jour.
+ViewMyBuilderError2|Une erreur est survenue pendant la mise à jour.
+
+
+# PageBuilder : screen to show builder's informations
+PageBuilderClub|Club du Builder
+PageBuilderOrigine|Origine - {0}
+PageBuilderDroids|Droïdes - {0}
+PageBuilderBack|Revenir à la liste
+
+
+# ViewMyExhibitions
+ViewMyExhibitionsTitle|Mes sorties
+ViewMyExhibitionsAdmin|Je gère
+ViewMyExhibitionsBtCreate|Créer un salon
+ViewMyExhibitionsActor|Je participe
+
+# PageCreateExhibition
+PageCreateExhibitionTitle|Créer une sortie
+PageCreateExhibitionName|Nom de la sortie
+PageCreateExhibitionStartDate|Date de début
+PageCreateExhibitionEndDate|Date de fin
+PageCreateExhibitionDetail|Description
+PageCreateExhibitionLogo|Logo
+PageCreateExhibitionBtChooseLogo|Choisir un logo
+PageCreateExhibitionBtTakePictureLogo|Prendre une photo
+PageCreateExhibitionFlyer|Flyer
+PageCreateExhibitionBtChooseFlyer|Choisir un flyer
+PageCreateExhibitionBtTakePictureFlyer|Prendre une photo
+PageCreateExhibitionBtCreate|Créer le salon
+PageCreateExhibitionBtCancel|Annuler
+PageCreateExhibitionError1|Impossible d'activer l'appareil photo.
+PageCreateExhibitionError2|Une erreur est survenue lors de l'activation de l'appareil photo.
+PageCreateExhibitionError3|Impossible d'accéder à vos images.
+PageCreateExhibitionError4|Une erreur est survenue lors du choix de l'image.
+PageCreateExhibitionError5|La date de fin de la sortie doit être supérieure à la date de début.
+PageCreateExhibitionError6|La saisie du nom du salon est obligatoire.
+PageCreateExhibitionError7|La saisie de la description est obligatoire.
+PageCreateExhibitionError8|Un problème est survenue pendant la mise à jour.
+PageCreateExhibitionError9|Une erreur est survenue pendant la mise à jour.
+PageCreateExhibitionMessage1|Le salon a été crée.
