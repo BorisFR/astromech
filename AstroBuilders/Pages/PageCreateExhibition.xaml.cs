@@ -168,16 +168,17 @@ namespace AstroBuilders
 			theAI.IsRunning = true;
 			theAI.IsVisible = true;
 			Tools.JobDone += Tools_JobDone;
+			//Tools.PostMultiPartForm ("http://r2builders.diverstrucs.com/Data/UploadImages", photoLogo, "xxx", "application.jpg", null, string.Empty);
 			Exhibition exhibition = new Exhibition ();
 			exhibition.Title = entryName.Text.Trim ();
 			exhibition.Description = entryDescription.Text.Trim ();
 			exhibition.Builders = new List<Guid> ();
 			exhibition.EndDate = dateStart.Date;
 			exhibition.StartDate = dateStart.Date;
-			exhibition.Flyer = photoFlyer;
+			//exhibition.Flyer = photoFlyer;
 			exhibition.IdBuilder = Global.ConnectedUser.IdBuilder;
 			exhibition.IdCountry = Global.ConnectedUser.IdCountry;
-			exhibition.Logo = photoLogo;
+			//exhibition.Logo = photoLogo;
 			Tools.DoCreateExhibition (exhibition);
 		}
 

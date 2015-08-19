@@ -16,6 +16,30 @@ namespace AstroWeb.Controllers
         {
             return View ();
         }
+
+		[HttpPost]
+		public JsonResult UploadImages(IEnumerable<HttpPostedFileBase> files) {
+			List<string> result = new List<string> ();
+			string basePath = Path.Combine (System.Web.HttpContext.Current.Server.MapPath (@"~/"), "Content");
+			basePath = Path.Combine (basePath, "Images");
+			Directory.CreateDirectory (basePath);
+			try {
+				foreach (var file in files) {
+					if (file.ContentLength > 0) {
+						string id = Guid.NewGuid ().ToString ();
+						string first = id.Substring (0, 2);
+						string path = Path.Combine (basePath, first);
+						Directory.CreateDirectory (path);
+						string fileName = id + "." + Path.GetExtension (Path.GetFileName(file.FileName));
+						string finalName = Path.Combine (basePath, fileName);
+						file.SaveAs (finalName);
+						result.Add (fileName);
+					}
+				}
+			} catch (Exception) {
+			}
+			return new JsonNetResult (result);
+		}
 			
 		public JsonResult Languages() {
 			Dictionary<string, string> languages = new Dictionary<string, string> ();
@@ -252,7 +276,8 @@ namespace AstroWeb.Controllers
 						return new JsonNetResult (Helper.AllExhibitions.All);
 					}
 				}
-			} catch (Exception) {
+			} catch (Exception err) {
+				return new JsonNetResult (err.Message);
 			}
 			return new JsonNetResult (false);
 		}
