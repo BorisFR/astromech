@@ -12,7 +12,7 @@ namespace AstroBuilders
 			InitializeComponent ();
 
 			//this.Icon = FileImageSource.FromResource ("AstroBuilders.images.menu_menu.png");
-			this.BackgroundColor = Color.FromRgba(220, 220, 255, 255);
+			//this.BackgroundColor = Color.FromRgba(220, 220, 255, 255);
 			theList.BackgroundColor = this.BackgroundColor;
 			theList.ItemsSource = Global.Menus.All;
 			theList.ItemSelected += delegate(object sender, SelectedItemChangedEventArgs e) {
@@ -24,6 +24,7 @@ namespace AstroBuilders
 				}
 				Global.GotoPage (m.Page);
 				Global.MainAppPage.IsPresented = false;
+				theList.SelectedItem = null;
 			};
 		}
 

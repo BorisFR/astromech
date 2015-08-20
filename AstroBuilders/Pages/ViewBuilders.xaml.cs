@@ -10,8 +10,6 @@ namespace AstroBuilders
 		public ViewBuilders ()
 		{
 			InitializeComponent ();
-			theList.BackgroundColor = Color.FromRgb (239,239,239);
-			theList.Spacing = 0;
 			theList.Padding = new Thickness (0);
 			var x = new News { Title = "person " + Global.AllNews.Collection.Count };
 			Global.AllNews.Add(x);

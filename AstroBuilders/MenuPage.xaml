@@ -1,15 +1,24 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.MenuPage" 
-Title="MenuPage" xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="{x:Static local:Global.PagePadding}">
+Title="MenuPage" xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="{x:Static local:Global.PagePadding}" BackgroundColor="#645A15">
 	<ContentPage.Content>
-		<StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Start" BackgroundColor="#dcdcff">
+		<StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Start" BackgroundColor="#645A15">
 
 			<Image Source="{local:ImageResource R2BuildersLogo.png}" />
 
-			<ListView x:Name="theList" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Title}" SeparatorVisibility="None">
+			<ListView x:Name="theList" HasUnevenRows="true" IsGroupingEnabled="true" SeparatorVisibility="None">
+				<ListView.GroupHeaderTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Vertical" Spacing="0" BackgroundColor="#A7B254" Padding="0,0,0,0">
+								<Label Text="{Binding Title}" Font="Bold,Medium" TextColor="#F0DF53" HorizontalOptions="Center" VerticalOptions="Center" />
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.GroupHeaderTemplate>
 		        <ListView.ItemTemplate>
 			        <DataTemplate>
-			        <ImageCell Text="{Binding Title}" Detail="{Binding Detail}" ImageSource="{Binding Image}" TextColor="Black" DetailColor="Accent" />
+			        	<ImageCell Text="{Binding Title}" Detail="{Binding Detail}" ImageSource="{Binding Image}" TextColor="#FAE848" DetailColor="#C3BF7F" />
 			        </DataTemplate>
 		        </ListView.ItemTemplate>
 	        </ListView>

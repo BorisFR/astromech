@@ -6,7 +6,7 @@ namespace AstroBuilders
 	public static class Translation
 	{
 		private static Dictionary<string, string> allText = new Dictionary<string, string>();
-		private static SerializableDictionary<string, string> allLanguages;
+		private static SerializableDictionary<string, string> allLanguages = new SerializableDictionary<string, string>();
 		private static string language = string.Empty;
 
 		public static void LoadState(){
@@ -28,7 +28,9 @@ namespace AstroBuilders
 
 		public static SerializableDictionary<string, string> AllLanguages {
 			get {
-				allLanguages = (SerializableDictionary<string, string>)Helper.SettingsRead<SerializableDictionary<string, string>> ("AllLanguages", new SerializableDictionary<string, string>());
+				allLanguages = (SerializableDictionary<string, string>)Helper.SettingsRead<SerializableDictionary<string, string>> ("AllLanguages", new SerializableDictionary<string, string> ());
+				if (allLanguages == null)
+					allLanguages = new SerializableDictionary<string, string> ();
 				return allLanguages;
 			}
 			set {

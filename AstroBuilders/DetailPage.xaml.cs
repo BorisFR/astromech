@@ -10,11 +10,18 @@ namespace AstroBuilders
 		public DetailPage ()
 		{
 			InitializeComponent ();
-			ShowPage (MyPage.Home);
+			if (Translation.IsTextReady)
+				ShowPage (MyPage.Home);
+			else
+				ShowPage (MyPage.FirstLoading);
 		}
 
 		public void ShowPage(MyPage page) {
 			switch (page) {
+			case MyPage.FirstLoading:
+				theFrame.Content = null;
+				theFrame.Content = new ViewFirstLoading ();
+				break;
 			case MyPage.Home:
 				theFrame.Content = null;
 				theFrame.Content = new ViewHome ();

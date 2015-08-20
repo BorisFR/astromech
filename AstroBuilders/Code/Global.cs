@@ -11,6 +11,7 @@ namespace AstroBuilders
 	public enum MyPage
 	{
 		None,
+		FirstLoading,
 		Home,
 		Builders,
 		Account,
@@ -21,10 +22,23 @@ namespace AstroBuilders
 		About
 	}
 
+	public delegate void JustTrigger();
+
 	public static class Global
 	{
+		public static event JustTrigger FirstLoadingFinish;
+
 		public static readonly Thickness PagePadding = new Thickness(Device.OnPlatform(0, 0, 0), Device.OnPlatform(20, 0, 0), Device.OnPlatform(0, 0, 0), Device.OnPlatform(0, 0, 0));
 		public static string BaseUrl = "http://r2builders.diverstrucs.com/";
+		public static Color ColorBackground = Color.FromHex("132855");
+		public static Color ColorText = Color.FromHex("2F7EA5");
+		public static Color ColorHighText = Color.FromHex("5B70B3");
+		public static Color ColorBoxBackground = Color.FromHex("1F478C");
+		public static Color ColorBoxBorder = Color.FromHex("79BDFA");
+		public static Color ColorBoxMiniBorder = Color.FromHex("3072A4");
+		public static Color ColorBoxText = Color.FromHex("3C81E6");
+		public static Color ColorBoxHighText = Color.FromHex("3BD3E8");
+		public static Color ColorBoxLowText = Color.FromHex("226B98");
 
 		public static Dictionary<string, string> Languages = new Dictionary<string, string>();
 
@@ -53,6 +67,10 @@ namespace AstroBuilders
 		public static IBeaconTools BeaconsTools = null;
 		public static Media.Plugin.Abstractions.IMedia AllMedia = Media.Plugin.CrossMedia.Current;
 
+		public static bool FirstLoading = false;
+		public static bool FirstLoadingInProgress = false;
+		public static bool FirstLoadingError = false;
+
 		public static async void DoInit() {
 			Files = DependencyService.Get<IFiles> ();
 			Notificator = DependencyService.Get<IToastNotificator>();
@@ -72,6 +90,8 @@ namespace AstroBuilders
 			Menus.Refresh ();
 
 			if (!Translation.IsTextReady) {
+				FirstLoading = true;
+				FirstLoadingInProgress = true;
 				System.Net.Http.HttpClient httpClient = new System.Net.Http.HttpClient ();
 				httpClient.Timeout = new TimeSpan (0, 0, 0, 10, 500);
 				httpClient.DefaultRequestHeaders.ExpectContinue = false;
@@ -86,6 +106,7 @@ namespace AstroBuilders
 						ImmediateResult = await httpClient.GetStringAsync (url);
 					} catch (Exception err2) {
 						System.Diagnostics.Debug.WriteLine ("Second Loading language error: " + err2.Message);
+						FirstLoadingError = true;
 					}
 				}
 				if (ImmediateResult.Length > 0) {
@@ -93,24 +114,32 @@ namespace AstroBuilders
 					//await Tools.ImmediateDownloadLanguage (Translation.Language);
 					Translation.NewTranslation (ImmediateResult);
 					Menus.Refresh ();
-				}
+				} else
+					FirstLoadingError = true;
+				FirstLoadingInProgress = false;
+				if (FirstLoadingFinish != null)
+					FirstLoadingFinish ();
 			}
 
 			IDataServer allLanguages = new IDataServer ("languages", true);
-			allLanguages.DataRefresh +=  delegate(bool status, string result) {
-				System.Diagnostics.Debug.WriteLine("Status: " + allLanguages.FileName + "=" + status);
-				if(!status)
+			allLanguages.DataRefresh += delegate(bool status, string result) {
+				System.Diagnostics.Debug.WriteLine ("Status: " + allLanguages.FileName + "=" + status);
+				if (!status)
 					return;
-				System.Diagnostics.Debug.WriteLine("Result: " + Helper.Decrypt(result));
+				System.Diagnostics.Debug.WriteLine ("Result: " + Helper.Decrypt (result));
 				SerializableDictionary<string, string> res = null;
-				try{
-					res =	Newtonsoft.Json.JsonConvert.DeserializeObject<SerializableDictionary<string, string>> (Helper.Decrypt(result));
-				}catch(Exception error) {
-					System.Diagnostics.Debug.WriteLine("ERROR: " + error.Message);
+				try {
+					res =	Newtonsoft.Json.JsonConvert.DeserializeObject<SerializableDictionary<string, string>> (Helper.Decrypt (result));
+				} catch (Exception error) {
+					System.Diagnostics.Debug.WriteLine ("ERROR: " + error.Message);
 				}
-				Translation.AllLanguages.Clear();
-				foreach(KeyValuePair<string, string> kvp in res) {
-					Translation.AllLanguages.Add(kvp.Key, kvp.Value);
+				try {
+					Translation.AllLanguages.Clear ();
+					foreach (KeyValuePair<string, string> kvp in res) {
+						Translation.AllLanguages.Add (kvp.Key, kvp.Value);
+					}
+				} catch (Exception err) { 
+					System.Diagnostics.Debug.WriteLine ("** ERROR: " + err.Message);
 				}
 			};
 			DataServer.AddToDo (allLanguages);

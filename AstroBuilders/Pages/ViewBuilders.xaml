@@ -2,19 +2,23 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewBuilders" 
 xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
-	    <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="6,6,6,6">
-			<local:StarJedi Text="Les R2 Builders" TextColor="Black" Font="Bold,Medium" HorizontalOptions="Center" />
-			<local:AurekBesh Text="Les R2 Builders" TextColor="Black" Font="Micro" HorizontalOptions="Center" />
+	    <StackLayout Orientation="Vertical" BackgroundColor="{local:ColorBgResource}" Padding="6,6,6,6">
+			<local:StarJedi Text="Les R2 Builders" TextColor="{local:ColorTextResource}" Font="Medium" HorizontalOptions="Center" />
+			<local:AurekBesh Text="Les R2 Builders" TextColor="{local:ColorTextResource}" Font="Micro" HorizontalOptions="Center" />
+
+			<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+			<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource}" Padding="6">
 
 			<ScrollView Orientation="Vertical">
-			<local:AwesomeWrappanel x:Name="theList" Orientation="Horizontal">
+			<local:AwesomeWrappanel x:Name="theList" Orientation="Horizontal" Spacing="6" BackgroundColor="{local:ColorBgResource}">
 				<local:AwesomeWrappanel.ItemTemplate>
 					<DataTemplate>
-						<Grid WidthRequest="98" HeightRequest="138" Padding="0" RowSpacing="0" ColumnSpacing="0">
+						<Grid WidthRequest="104" HeightRequest="144" Padding="0" RowSpacing="0" ColumnSpacing="0">
 					        <Grid.ColumnDefinitions>
 					            <ColumnDefinition Width="6"/>
 					            <ColumnDefinition Width="6"/>
 					            <ColumnDefinition Width="80"/>
+					            <ColumnDefinition Width="6"/>
 					            <ColumnDefinition Width="6"/>
 					        </Grid.ColumnDefinitions>
 					        <Grid.RowDefinitions>
@@ -23,19 +27,25 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 					            <RowDefinition Height="80"/>
 					            <RowDefinition Height="40"/>
 					            <RowDefinition Height="6"/>
+					            <RowDefinition Height="6"/>
 					        </Grid.RowDefinitions>
 
-							<BoxView BackgroundColor="#EFEFEF" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" />
-							<BoxView BackgroundColor="#EFEFEF" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
-							<BoxView BackgroundColor="White" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3" />
+							<BoxView BackgroundColor="{local:ColorBgResource Border}" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5" />
+							<!--<BoxView BackgroundColor="{local:ColorBgResource}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="6" />
+							<BoxView BackgroundColor="{local:ColorBgResource}" Grid.Row="0" Grid.Column="5" Grid.RowSpan="7" />-->
+							<BoxView BackgroundColor="{local:ColorBgResource Box}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3" />
 							<Image Source="{Binding Logo}" Aspect="AspectFit" WidthRequest="80" HeightRequest="80" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="2" Grid.Column="2" />
-							<Label Text="{Binding NickName}" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3" Grid.Column="2" />
+							<Label Text="{Binding NickName}" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3" Grid.Column="2" />
 							<Button Text="" BackgroundColor="Transparent" CommandParameter="{Binding Id}" BorderWidth="0" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="4" Clicked="ButtonClicked" />
 						</Grid>
 					</DataTemplate>
 				</local:AwesomeWrappanel.ItemTemplate>
 			</local:AwesomeWrappanel>
 			</ScrollView>
+
+			</StackLayout>
+			</StackLayout>
+
 		</StackLayout>
 	</ContentView.Content>
 </ContentView>
