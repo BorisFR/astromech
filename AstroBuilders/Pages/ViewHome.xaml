@@ -30,6 +30,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" xmlns:other="cl
 					<DataTemplate>
 						<ViewCell>
 							<StackLayout Orientation="Horizontal" Spacing="0"  BackgroundColor="{local:ColorBgResource}" Padding="0,0,0,0">
+								<local:StarJedi Text=" " Font="Medium, Bold" TextColor="{local:ColorTextResource}" />
 								<local:StarJedi Text="{Binding Title}" Font="Medium" TextColor="{local:ColorTextResource}" />
 								<local:StarJedi Text=" / " Font="Medium, Bold" TextColor="{local:ColorTextResource}" />
 								<local:AurekBesh Text="{Binding Title}" Font="Large" TextColor="{local:ColorTextResource}" />

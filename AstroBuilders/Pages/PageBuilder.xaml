@@ -76,6 +76,8 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="6,24,6
 				</StackLayout>
 				</StackLayout>
 
+				<BoxView HeightRequest="12" BackgroundColor="Transparent" />
+
 				<Button Text="{local:TextResource PageBuilderBack}" Clicked="ButtonClicked" TextColor="{local:ColorTextResource Box}" BackgroundColor="{local:ColorBgResource Box}" />
 			</StackLayout>
 		</ScrollView>

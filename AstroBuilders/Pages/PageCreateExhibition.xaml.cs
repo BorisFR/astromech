@@ -156,11 +156,11 @@ namespace AstroBuilders
 				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError5"));
 				return;
 			}
-			if (entryName.Text.Trim ().Length == 0) {
+			if (entryName.Text == null || entryName.Text.Trim ().Length == 0) {
 				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError6"));
 				return;
 			}
-			if (entryDescription.Text.Trim ().Length == 0) {
+			if (entryDescription.Text == null || entryDescription.Text.Trim ().Length == 0) {
 				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError7"));
 				return;
 			}
