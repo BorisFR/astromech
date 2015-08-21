@@ -8,6 +8,7 @@ namespace AstroBuilders
 		private static Dictionary<string, string> allText = new Dictionary<string, string>();
 		private static SerializableDictionary<string, string> allLanguages = new SerializableDictionary<string, string>();
 		private static string language = string.Empty;
+		private static string fileName = "alltext";
 
 		public static void LoadState(){
 			if (language.Length > 0)
@@ -28,7 +29,10 @@ namespace AstroBuilders
 
 		public static SerializableDictionary<string, string> AllLanguages {
 			get {
-				allLanguages = (SerializableDictionary<string, string>)Helper.SettingsRead<SerializableDictionary<string, string>> ("AllLanguages", new SerializableDictionary<string, string> ());
+				try {
+					allLanguages = (SerializableDictionary<string, string>)Helper.SettingsRead<SerializableDictionary<string, string>> ("AllLanguages", new SerializableDictionary<string, string> ());
+				} catch (Exception) {
+				}
 				if (allLanguages == null)
 					allLanguages = new SerializableDictionary<string, string> ();
 				return allLanguages;
@@ -41,7 +45,10 @@ namespace AstroBuilders
 
 		public static void RefreshAllText(){
 			LoadState ();
-			ProvideText ((string)Helper.SettingsRead<string> ("AllText" + language, string.Empty));
+			if (Global.Files.IsExit (fileName)) {
+				System.Diagnostics.Debug.WriteLine ("Read data from file: " + fileName);
+				ProvideText (Global.Files.ReadFile (fileName));
+			}
 		}
 
 		public static string GetString (string name)
@@ -54,7 +61,7 @@ namespace AstroBuilders
 		public static bool IsTextReady { get { if(allText.Count > 0) return true; return false; } }
 
 		public static void NewTranslation(string data) {
-			Helper.SettingsSave ("AllText" + language, data);
+			Global.Files.SaveFile (fileName, data);
 			ProvideText (data);
 		}
 

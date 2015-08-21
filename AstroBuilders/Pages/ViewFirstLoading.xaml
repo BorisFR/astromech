@@ -2,63 +2,72 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewFirstLoading" 
 xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
-		<Grid x:Name="homeGrid" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="{local:ColorBgResource}" ColumnSpacing="0" RowSpacing="0">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="*"/>
-			</Grid.RowDefinitions>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
-			</Grid.ColumnDefinitions>
-
-			<!-- <Image Grid.Row="0" Grid.Column="0" Source="{local:ImageResource loadingScreen.png}"></Image> -->
-
-			<StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="{local:ColorBgResource Box}" Opacity="0.4" HeightRequest="32">
-				<Label x:Name="progressLabel" Text="" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{local:ColorTextResource Box}"/>
-				<ProgressBar x:Name="progressBar" VerticalOptions="EndAndExpand" BackgroundColor="Green" HeightRequest="10" HorizontalOptions="Fill"/>
-			</StackLayout>
-
-			<StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3">
-			<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource}" Padding="6">
-			<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Border}" Padding="6">
-			<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Box}" Padding="4">
+		
+		<ScrollView Orientation="Vertical">
+		<StackLayout>
+			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3">
+			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource}" Padding="6">
+			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Border}" Padding="6">
+			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Box}" Padding="4">
 				<StackLayout Orientation="Horizontal" Padding="12, 12, 12, 24">
 					<local:StarJedi Text=" Loading data... / " Font="Large" TextColor="{local:ColorTextResource BoxHigh}" HorizontalOptions="Start" />
 					<local:AurekBesh Text="Loading data..." Font="Small" TextColor="{local:ColorTextResource BoxHigh}" HorizontalOptions="Start" VerticalOptions="Center" />
 				</StackLayout>
 				<StackLayout Orientation="Horizontal">
-					<local:StarJedi Text=" $ " Font="Large" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Start" />
-					<local:StarJedi Text="Default language / " Font="Medium" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Start" VerticalOptions="Center" />
-					<local:AurekBesh Text="Default language" Font="Micro" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:StarJedi x:Name="l1" Text=" ^ " Font="Large" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
+					<local:StarJedi x:Name="l11" Text="Default language  / " Font="Medium" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:AurekBesh x:Name="l12" Text="Default language" Font="Micro" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
 				</StackLayout>
 				<StackLayout Orientation="Horizontal">
-					<local:StarJedi Text=" $ " Font="Large" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Start" />
-					<local:StarJedi Text="Available languages / " Font="Medium" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Start" VerticalOptions="Center" />
-					<local:AurekBesh Text="Available languages" Font="Micro" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:StarJedi x:Name="l2" Text=" ^ " Font="Large" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
+					<local:StarJedi x:Name="l21" Text="Available languages  / " Font="Medium" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:AurekBesh x:Name="l22" Text="Available languages" Font="Micro" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
 				</StackLayout>
 				<StackLayout Orientation="Horizontal">
-					<local:StarJedi Text=" # " Font="Large" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Start" />
-					<local:StarJedi Text="Latest news / " Font="Medium" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Start" VerticalOptions="Center" />
-					<local:AurekBesh Text="Latest news" Font="Micro" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:StarJedi x:Name="l3" Text=" ^ " Font="Large" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
+					<local:StarJedi x:Name="l31" Text="Available countries  / " Font="Medium" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:AurekBesh x:Name="l32" Text="Available countries" Font="Micro" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
 				</StackLayout>
 				<StackLayout Orientation="Horizontal">
-					<local:StarJedi Text=" ^ " Font="Large" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
-					<local:StarJedi Text="Builders data / " Font="Medium" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
-					<local:AurekBesh Text="Builders data" Font="Micro" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:StarJedi x:Name="l4" Text=" ^ " Font="Large" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
+					<local:StarJedi x:Name="l41" Text="Available clubs  / " Font="Medium" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:AurekBesh x:Name="l42" Text="Available clubs" Font="Micro" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
 				</StackLayout>
 				<StackLayout Orientation="Horizontal">
-					<local:StarJedi Text=" ^ " Font="Large" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
-					<local:StarJedi Text="Droids data / " Font="Medium" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
-					<local:AurekBesh Text="Droids data" Font="Micro" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:StarJedi x:Name="l5" Text=" ^ " Font="Large" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
+					<local:StarJedi x:Name="l51" Text="Builders data  / " Font="Medium" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:AurekBesh x:Name="l52" Text="Builders data" Font="Micro" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
 				</StackLayout>
 				<StackLayout Orientation="Horizontal">
-					<local:StarJedi Text=" ^ " Font="Large" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
-					<local:StarJedi Text="Events data / " Font="Medium" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
-					<local:AurekBesh Text="Events data" Font="Micro" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:StarJedi x:Name="l6" Text=" ^ " Font="Large" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
+					<local:StarJedi x:Name="l61" Text="Droids data  / " Font="Medium" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:AurekBesh x:Name="l62" Text="Droids data" Font="Micro" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<local:StarJedi x:Name="l7" Text=" ^ " Font="Large" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
+					<local:StarJedi x:Name="l71" Text="Events data  / " Font="Medium" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:AurekBesh x:Name="l72" Text="Events data" Font="Micro" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<local:StarJedi x:Name="l8" Text=" ^ " Font="Large" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
+					<local:StarJedi x:Name="l81" Text="Available cards  / " Font="Medium" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:AurekBesh x:Name="l82" Text="Available cards" Font="Micro" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<local:StarJedi x:Name="l9" Text=" ^ " Font="Large" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
+					<local:StarJedi x:Name="l91" Text="Latest news / " Font="Medium" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:AurekBesh x:Name="l92" Text="Latest news" Font="Micro" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
 				</StackLayout>
 			</StackLayout>
 			</StackLayout>
 			</StackLayout>
 			</StackLayout>
-		</Grid>
+
+			<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="{local:ColorBgResource Box}" Opacity="0.4" HeightRequest="32">
+				<Label x:Name="progressLabel" Text="" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{local:ColorTextResource Box}"/>
+				<ProgressBar x:Name="progressBar" VerticalOptions="EndAndExpand" BackgroundColor="Green" HeightRequest="10" HorizontalOptions="Fill"/>
+			</StackLayout>
+		</StackLayout>
+		</ScrollView>
 	</ContentView.Content>
 </ContentView>

@@ -22,11 +22,11 @@ namespace AstroBuilders
 		About
 	}
 
-	public delegate void JustTrigger();
+	//public delegate void JustTrigger();
 
 	public static class Global
 	{
-		public static event JustTrigger FirstLoadingFinish;
+		//public static event JustTrigger FirstLoadingFinish;
 
 		public static readonly Thickness PagePadding = new Thickness(Device.OnPlatform(0, 0, 0), Device.OnPlatform(20, 0, 0), Device.OnPlatform(0, 0, 0), Device.OnPlatform(0, 0, 0));
 		public static string BaseUrl = "http://r2builders.diverstrucs.com/";
@@ -67,9 +67,9 @@ namespace AstroBuilders
 		public static IBeaconTools BeaconsTools = null;
 		public static Media.Plugin.Abstractions.IMedia AllMedia = Media.Plugin.CrossMedia.Current;
 
-		public static bool FirstLoading = false;
-		public static bool FirstLoadingInProgress = false;
-		public static bool FirstLoadingError = false;
+		//public static bool FirstLoading = false;
+		//public static bool FirstLoadingInProgress = false;
+		//public static bool FirstLoadingError = false;
 
 		public static async void DoInit() {
 			Files = DependencyService.Get<IFiles> ();
@@ -83,8 +83,9 @@ namespace AstroBuilders
 			BeaconsTools = DependencyService.Get<IBeaconTools>();
 			Tools.DoInit ();
 			Menus = new MenuManager ();
-			Menus.Refresh ();
 
+			return;
+			/*
 			Translation.RefreshAllText ();
 
 			Menus.Refresh ();
@@ -201,7 +202,7 @@ namespace AstroBuilders
 			DataServer.AddToDo (xxxxx);
 
 			DataServer.Launch ();
-
+*/
 			/*
 			xa.ForceFreshData = true;
 			DataServer.AddToDo (xa);
@@ -212,6 +213,9 @@ namespace AstroBuilders
 			xxx.ForceFreshData = true;
 			DataServer.AddToDo (xxx);
 			*/
+		}
+
+		public static void StartingBeaconsDetection() {
 			BeaconsTools.Founded += BeaconsTools_Founded;
 			BeaconsTools.Init ("R2BUILDERS", "B9407F30-F5F8-466E-AFF9-25556B57FE6D");
 			// 74278BDA-B644-4520-8F0C-720EAF059935 => HM-10 Default = Apple Air Locate

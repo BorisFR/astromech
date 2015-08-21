@@ -23,6 +23,14 @@ namespace AstroBuilders
 				DoJob ();
 		}
 
+		public static bool IsJobWaiting {
+			get {
+				if (toDo.Count == 0)
+					return false;
+				return true;
+			}
+		}
+
 		public static void Launch() {
 			System.Diagnostics.Debug.WriteLine ("************* Launching batch download");
 			DoJob ();

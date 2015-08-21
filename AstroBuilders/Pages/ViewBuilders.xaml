@@ -5,6 +5,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	    <StackLayout Orientation="Vertical" BackgroundColor="{local:ColorBgResource}" Padding="6,6,6,6">
 			<local:StarJedi Text="Les R2 Builders" TextColor="{local:ColorTextResource}" Font="Medium" HorizontalOptions="Center" />
 			<local:AurekBesh Text="Les R2 Builders" TextColor="{local:ColorTextResource}" Font="Micro" HorizontalOptions="Center" />
+			<BoxView HeightRequest="12" BackgroundColor="Transparent" />
 
 			<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
 			<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource}" Padding="6">

@@ -110,7 +110,7 @@ ViewMyBuilderError2|Une erreur est survenue pendant la mise à jour.
 
 
 # PageBuilder : screen to show builder's informations
-PageBuilderTitle|Ficher Builder
+PageBuilderTitle|Fiche Builder
 PageBuilderClub|Club du Builder
 PageBuilderOrigine|Origine - {0}
 PageBuilderDroids|Droïdes - {0}
