@@ -3,8 +3,8 @@
 xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	<StackLayout Orientation="Vertical" Padding="6,12,6,12">
-		<local:StarJedi Text="A propos de" TextColor="{local:ColorTextResource}" Font="Medium" HorizontalOptions="Center" />
-		<local:AurekBesh Text="A propos de" TextColor="{local:ColorTextResource}" Font="Micro" HorizontalOptions="Center" />
+		<local:StarJedi Text="A propos de" TextColor="{local:ColorTextResource}" FontSize="{local:FontSizeResource Medium}" HorizontalOptions="Center" />
+		<local:AurekBesh Text="A propos de" TextColor="{local:ColorTextResource}" FontSize="{local:FontSizeResource Micro}" HorizontalOptions="Center" />
 		<BoxView HeightRequest="12" BackgroundColor="Transparent" />
 		<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3">
 		<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource}" Padding="6">

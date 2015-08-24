@@ -16,9 +16,9 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="6,24,6
 			        </Grid.RowDefinitions>
 
 			        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Grid.ColumnSpan="2">
-						<local:StarJedi Text="{local:TextResource PageBuilderTitle}" Font="Medium" TextColor="{local:ColorTextResource}" VerticalOptions="Center" />
-						<local:StarJedi Text=" / " Font="Medium" TextColor="{local:ColorTextResource}" VerticalOptions="Center" />
-						<local:AurekBesh Text="{local:TextResource PageBuilderTitle}" Font="Small" TextColor="{local:ColorTextResource}" VerticalOptions="Center"/>
+						<local:StarJedi Text="{local:TextResource PageBuilderTitle}" FontSize="{local:FontSizeResource Medium}" TextColor="{local:ColorTextResource}" VerticalOptions="Center" />
+						<local:StarJedi Text=" / " FontSize="{local:FontSizeResource Medium}" TextColor="{local:ColorTextResource}" VerticalOptions="Center" />
+						<local:AurekBesh Text="{local:TextResource PageBuilderTitle}" FontSize="{local:FontSizeResource Small}" TextColor="{local:ColorTextResource}" VerticalOptions="Center"/>
 					</StackLayout>
 					<Image x:Name="imgClose" Source="{local:ImageResource closewindow.png}" HorizontalOptions="End" WidthRequest="32" HeightRequest="32" Grid.Column="1" />
 

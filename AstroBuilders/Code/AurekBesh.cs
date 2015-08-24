@@ -12,11 +12,15 @@ namespace AstroBuilders
 			FontFamily = Typeface;    //iOS is happy with this, Android needs a renderer to add ".ttf"
 		}
 
+		/*
 		protected override void OnPropertyChanged (string propertyName)
 		{
 			//FontSize = Device.GetNamedSize (NamedSize.Micro, this);
 			FontFamily = Typeface;
 			base.OnPropertyChanged (propertyName);
 		}
+		*/
+
+
 	}
 }

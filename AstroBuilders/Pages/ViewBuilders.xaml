@@ -3,8 +3,8 @@
 xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	    <StackLayout Orientation="Vertical" BackgroundColor="{local:ColorBgResource}" Padding="6,6,6,6">
-			<local:StarJedi Text="Les R2 Builders" TextColor="{local:ColorTextResource}" Font="Medium" HorizontalOptions="Center" />
-			<local:AurekBesh Text="Les R2 Builders" TextColor="{local:ColorTextResource}" Font="Micro" HorizontalOptions="Center" />
+			<local:StarJedi Text="Les R2 Builders" TextColor="{local:ColorTextResource}" FontSize="{local:FontSizeResource Medium}" HorizontalOptions="Center" />
+			<local:AurekBesh Text="Les R2 Builders" TextColor="{local:ColorTextResource}" FontSize="{local:FontSizeResource Micro}" HorizontalOptions="Center" />
 			<BoxView HeightRequest="12" BackgroundColor="Transparent" />
 
 			<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
@@ -32,8 +32,6 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 					        </Grid.RowDefinitions>
 
 							<BoxView BackgroundColor="{local:ColorBgResource Border}" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5" />
-							<!--<BoxView BackgroundColor="{local:ColorBgResource}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="6" />
-							<BoxView BackgroundColor="{local:ColorBgResource}" Grid.Row="0" Grid.Column="5" Grid.RowSpan="7" />-->
 							<BoxView BackgroundColor="{local:ColorBgResource Box}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3" />
 							<Image Source="{Binding Logo}" Aspect="AspectFit" WidthRequest="80" HeightRequest="80" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="2" Grid.Column="2" />
 							<Label Text="{Binding NickName}" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3" Grid.Column="2" />

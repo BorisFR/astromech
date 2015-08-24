@@ -4,7 +4,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	<ScrollView Orientation="Vertical">
 		<StackLayout x:Name="theStack" Orientation="Vertical" Padding="6" BackgroundColor="White">
-			<local:StarJedi Text="{local:TextResource ViewMyBuilderTitle}" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
+			<local:StarJedi Text="{local:TextResource ViewMyBuilderTitle}" FontSize="{local:FontSizeResource Medium}" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" />
 			<Label x:Name="textClub" Text="{local:TextResource ViewMyBuilderClub}" Font="Medium" TextColor="Black" />
 			<Image x:Name="logoClub" WidthRequest="80" HorizontalOptions="Start" />
 			<Label Text="{local:TextResource ViewMyBuilderName}" Font="Medium" TextColor="Black" />

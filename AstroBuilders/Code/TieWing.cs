@@ -13,11 +13,14 @@ namespace AstroBuilders
 			FontFamily = Typeface; 
 		}
 
+		/*
 		protected override void OnPropertyChanged (string propertyName)
 		{
 			FontAttributes = FontAttributes.None;
 			FontFamily = Typeface;
 			base.OnPropertyChanged (propertyName);
 		}
+		*/
+
 	}
 }

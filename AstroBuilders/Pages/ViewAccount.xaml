@@ -4,7 +4,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	<ScrollView Orientation="Vertical">
 		<StackLayout Orientation="Vertical" Padding="12" BackgroundColor="White">
-			<local:StarJedi Text="{local:TextResource ViewAccountTitle}" Font="Bold,Medium" TextColor="Black" HorizontalOptions="Center" />
+			<local:StarJedi Text="{local:TextResource ViewAccountTitle}" FontSize="{local:FontSizeResource Medium}" TextColor="Black" HorizontalOptions="Center" />
 			<StackLayout x:Name="lConnexion" Orientation="Vertical">
 				<Label Text="{local:TextResource ViewAccountConnect}" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
 				<Label Text="{local:TextResource ViewAccountId}" TextColor="Black" />
