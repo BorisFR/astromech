@@ -26,7 +26,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="6,24,6
 					<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource}" Padding="6">
 					<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Border}" Padding="6">
 					<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Box}" Padding="4">
-						<Label Text="{Binding Title}" Font="Bold,Large" HorizontalOptions="Center" TextColor="{local:ColorTextResource BoxHigh}" />
+						<Label Text="{Binding Title}" FontSize="{local:FontSizeResource Default}" HorizontalOptions="Center" TextColor="{local:ColorTextResource BoxHigh}" />
 						<Image Source="{Binding Logo}" WidthRequest="200" />
 					</StackLayout>
 					</StackLayout>
@@ -37,7 +37,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="6,24,6
 					<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource}" Padding="6">
 					<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Border}" Padding="6">
 					<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Box}" Padding="4">
-						<Label Text="{Binding NickName}" Font="Bold,Large" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Center" />
+						<Label Text="{Binding NickName}" FontSize="{local:FontSizeResource Large}" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Center" />
 						<Image x:Name="imgClub" HorizontalOptions="End"  WidthRequest="200" />
 					</StackLayout>
 					</StackLayout>

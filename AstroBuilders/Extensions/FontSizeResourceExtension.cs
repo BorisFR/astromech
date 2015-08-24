@@ -24,7 +24,8 @@ namespace AstroBuilders
 				case DeviceInfo.Plugin.Abstractions.Platform.iOS:
 					switch (Device.Idiom) {
 					case TargetIdiom.Phone:
-						CacheFontSizeLarge = 18;
+						CacheFontSizeLarge = 12; // default=22
+						System.Diagnostics.Debug.WriteLine ("*** FontSizeLarge change to=" + CacheFontSizeLarge.ToString ());
 						return CacheFontSizeLarge;
 					case TargetIdiom.Tablet:
 						return CacheFontSizeLarge;
@@ -59,7 +60,8 @@ namespace AstroBuilders
 				case DeviceInfo.Plugin.Abstractions.Platform.iOS:
 					switch (Device.Idiom) {
 					case TargetIdiom.Phone:
-						CacheFontSizeMedium = 14;
+						CacheFontSizeMedium = 10; // default=17
+						System.Diagnostics.Debug.WriteLine ("*** FontSizeMedium change to=" + CacheFontSizeMedium.ToString ());
 						return CacheFontSizeMedium;
 					case TargetIdiom.Tablet:
 						return CacheFontSizeMedium;
@@ -94,7 +96,8 @@ namespace AstroBuilders
 				case DeviceInfo.Plugin.Abstractions.Platform.iOS:
 					switch (Device.Idiom) {
 					case TargetIdiom.Phone:
-						CacheFontSizeSmall = 12;
+						CacheFontSizeSmall = 7; // default=14
+						System.Diagnostics.Debug.WriteLine ("*** FontSizeSmall change to=" + CacheFontSizeSmall.ToString ());
 						return CacheFontSizeSmall;
 					case TargetIdiom.Tablet:
 						return CacheFontSizeSmall;
@@ -129,7 +132,8 @@ namespace AstroBuilders
 				case DeviceInfo.Plugin.Abstractions.Platform.iOS:
 					switch (Device.Idiom) {
 					case TargetIdiom.Phone:
-						CacheFontSizeMicro = 10;
+						CacheFontSizeMicro = 6; // default=12
+						System.Diagnostics.Debug.WriteLine ("*** FontSizeMicro change to=" + CacheFontSizeMicro.ToString ());
 						return CacheFontSizeMicro;
 					case TargetIdiom.Tablet:
 						return CacheFontSizeMicro;
@@ -166,7 +170,8 @@ namespace AstroBuilders
 				case DeviceInfo.Plugin.Abstractions.Platform.iOS:
 					switch (Device.Idiom) {
 					case TargetIdiom.Phone:
-						CacheFontSizeDefault = 14;
+						CacheFontSizeDefault = 10; // default=17
+						System.Diagnostics.Debug.WriteLine ("*** FontSizeDefault change to=" + CacheFontSizeDefault);
 						return CacheFontSizeDefault;
 					case TargetIdiom.Tablet:
 						return CacheFontSizeDefault;
@@ -206,6 +211,8 @@ namespace AstroBuilders
 				return GetSmallValue;
 			case "micro":
 				return GetMicroValue;
+			case "default":
+				return GetDefaultValue;
 			default:
 				return GetDefaultValue;
 			}

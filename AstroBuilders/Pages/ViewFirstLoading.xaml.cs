@@ -53,28 +53,28 @@ namespace AstroBuilders
 		}
 
 		private void SetLabelStage(Label ll, Label ll1, Label ll2, ProcessStep step) {
-			string text = " ^ ";
+			string text = "^";
 			Color c = Color.Accent;
 			string progressTextBase = step.ToString ();
 			switch (step) {
 			case ProcessStep.Waiting:
-				text = " ^ ";
+				text = "^";
 				c = Global.ColorBoxLowText;
 				break;
 			case ProcessStep.Loading:
-				text = " & ";
+				text = "&";
 				c = Global.ColorBoxHighText;
 				break;
 			case ProcessStep.Processing:
-				text = " # ";
+				text = "#";
 				c = Global.ColorBoxHighText;
 				break;
 			case ProcessStep.Ready:
-				text = " $ ";
+				text = "$";
 				c = Global.ColorBoxText;
 				break;
 			case ProcessStep.Broken:
-				text = " * ";
+				text = "*";
 				c = Global.ColorBoxText;
 				break;
 			}
