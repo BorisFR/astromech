@@ -10,6 +10,10 @@ MenuTheDroids|Les robots
 MenuTheDroidsDetail|Les robots des R2 Builders
 MenuTheEvents|Les événements
 MenuTheEventsDetail|Les R2 Builders en balade
+MenuMyCards|Mes cartes
+MenuMyCardsDetail|Les cartes que vous avez débloquées
+MenuQrCode|Lecteur QR-Code
+MenuQrCode|Permet la lecture des QR-Code
 MenuMyAccount|Mon compte
 MenuMyAccountDetail|Gérer mes informations
 MenuAbout|A propos de

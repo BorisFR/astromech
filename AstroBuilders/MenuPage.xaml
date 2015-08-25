@@ -9,16 +9,31 @@ Title="MenuPage" xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders
 			<ListView x:Name="theList" HasUnevenRows="true" IsGroupingEnabled="true" SeparatorVisibility="None">
 				<ListView.GroupHeaderTemplate>
 					<DataTemplate>
-						<ViewCell>
+						<ViewCell Height="{local:FontSizeHeightResource Medium}">
 							<StackLayout Orientation="Vertical" Spacing="0" BackgroundColor="#A7B254" Padding="0,0,0,0">
-								<Label Text="{Binding Title}" Font="Bold,Medium" TextColor="#F0DF53" HorizontalOptions="Center" VerticalOptions="Center" />
+								<Label Text="{Binding Title}" Font="Bold" FontSize="{local:FontSizeResource Medium}" TextColor="#F0DF53" HorizontalOptions="Center" VerticalOptions="Center" />
 							</StackLayout>
 						</ViewCell>
 					</DataTemplate>
 				</ListView.GroupHeaderTemplate>
 		        <ListView.ItemTemplate>
 			        <DataTemplate>
-			        	<ImageCell Text="{Binding Title}" Detail="{Binding Detail}" ImageSource="{Binding Image}" TextColor="#FAE848" DetailColor="#C3BF7F" />
+			        	<ViewCell Height="54">
+			        		<!--<ImageCell Text="{Binding Title}" Detail="{Binding Detail}" ImageSource="{Binding Image}" TextColor="#FAE848" DetailColor="#C3BF7F" />-->
+			        		<Grid HorizontalOptions="Fill" ColumnSpacing="6" RowSpacing="0" Padding="6,0,6,0">
+    					        <Grid.ColumnDefinitions>
+						            <ColumnDefinition Width="50"/>
+						            <ColumnDefinition Width="*"/>
+						        </Grid.ColumnDefinitions>
+						        <Grid.RowDefinitions>
+						        	<RowDefinition Height="30" />
+						        	<RowDefinition Height="20" />
+						        </Grid.RowDefinitions>
+						        <Image Source="{Binding Image}" WidthRequest="50" Grid.RowSpan="2" />
+						        <Label Text="{Binding Title}" Font="Bold" FontSize="{local:FontSizeResource Large}" TextColor="#FAE848" Grid.Column="1" />
+						        <Label Text="{Binding Detail}" FontSize="{local:FontSizeResource Medium}" TextColor="#C3BF7F" Grid.Column="1" Grid.Row="1" />
+			        		</Grid>
+			        	</ViewCell>
 			        </DataTemplate>
 		        </ListView.ItemTemplate>
 	        </ListView>

@@ -26,7 +26,7 @@ namespace AstroBuilders
 				return;
 			Global.ConnectedUser = user;
 			Global.IsConnected = true;
-			Global.Menus.Refresh ();
+			//Global.Menus.Refresh ();
 			// TODO: do a re-logging of the user
 		}
 

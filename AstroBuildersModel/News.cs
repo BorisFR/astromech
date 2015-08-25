@@ -67,6 +67,20 @@ namespace AstroBuildersModel
 		public int Year {
 			get { return date.Year; }
 		}
+
+		private string builderNickName = string.Empty;
+		[IgnoreDataMember]
+		public string BuilderNickname {
+			get { return builderNickName; }
+			set{ builderNickName = value; }
+		}
+
+		private string clubName = string.Empty;
+		[IgnoreDataMember]
+		public string ClubName {
+			get { return clubName; }
+			set{ clubName = value; }
+		}
 			
 		// newest date first
 		public int CompareTo (News other) {

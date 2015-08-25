@@ -94,9 +94,9 @@ namespace AstroBuilders
 		private async void DoStep() {
 			if (isFirst) {
 				isFirst = false;
-				await Task.Delay (1000);
+				await Task.Delay (500);
 			} else
-				await Task.Delay (100);
+				await Task.Delay (30);
 
 			switch (step) {
 			case 0:
@@ -153,6 +153,7 @@ namespace AstroBuilders
 				ShowStatus ();
 				Global.StartingBeaconsDetection ();
 				isFinish = true;
+				Global.MainAppPage.IsPresented = true;
 				break;
 			}
 		}
@@ -505,6 +506,7 @@ namespace AstroBuilders
 			if (x.HasOldData) {
 				SetLabelStage (l9, l91, l92, ProcessStep.Processing);
 				Global.AllNews.LoadFromJson(Helper.Decrypt(x.OldData));
+				PopulateNews ();
 				Global.AllNews.Refresh ();
 				SetLabelStage (l9, l91, l92, ProcessStep.Ready);
 				if (step == 8)
@@ -525,6 +527,7 @@ namespace AstroBuilders
 				}
 				try {
 					Global.AllNews.LoadFromJson (Helper.Decrypt (result));
+					PopulateNews();
 					Global.AllNews.Refresh ();
 					if (step == 8)
 					step++;
@@ -541,6 +544,23 @@ namespace AstroBuilders
 			};
 			DataServer.AddToDo (x);
 			DataServer.Launch ();
+		}
+
+		private void PopulateNews() {
+			foreach (AstroBuildersModel.News news in Global.AllNews.All) {
+				if (news.BuilderNickname == null || news.BuilderNickname.Length == 0) {
+					if (news.IdBuilder != Guid.Empty)
+						news.BuilderNickname = ((AstroBuildersModel.Builder)Global.AllBuilders.GetByGuid<AstroBuildersModel.Builder> (news.IdBuilder)).NickName;
+					else
+						news.BuilderNickname = "Boris";
+				}
+				if (news.ClubName == null || news.ClubName.Length == 0) {
+					if (news.IdClub != Guid.Empty)
+						news.ClubName = ((AstroBuildersModel.Club)Global.AllClubs.GetByGuid<AstroBuildersModel.Club> (news.IdClub)).Title;
+					else
+						news.ClubName = "R2 Builders Francophone";
+				}
+			}
 		}
 
 	}

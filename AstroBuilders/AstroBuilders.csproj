@@ -181,7 +181,6 @@
     <EmbeddedResource Include="images\menu_home.png" />
     <EmbeddedResource Include="images\menu_infos.png" />
     <EmbeddedResource Include="images\menu_menu.png" />
-    <EmbeddedResource Include="images\menu_info.png" />
     <EmbeddedResource Include="Pages\ViewHome.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -211,9 +210,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="images\menu_builders2.png" />
-    <EmbeddedResource Include="images\menu_builders.png" />
-    <EmbeddedResource Include="images\menu_news.png" />
-    <EmbeddedResource Include="images\menu_events.png" />
     <EmbeddedResource Include="images\r2wire.jpg" />
     <EmbeddedResource Include="images\menu_droids.png" />
     <EmbeddedResource Include="images\menu_account.png" />
@@ -241,6 +237,27 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="images\loadingScreen.png" />
+    <EmbeddedResource Include="images\menu_mycard.png" />
+    <EmbeddedResource Include="images\menu_newsOLD.png" />
+    <EmbeddedResource Include="images\menu_news.png" />
+    <EmbeddedResource Include="images\menu_planner.png" />
+    <EmbeddedResource Include="images\menu_eventsOLD.png" />
+    <EmbeddedResource Include="images\menu_events.png" />
+    <EmbeddedResource Include="images\menu_about.png" />
+    <EmbeddedResource Include="images\menu_aboutOLD.png" />
+    <EmbeddedResource Include="images\menu_calendar.png" />
+    <EmbeddedResource Include="images\menu_qrcode.png" />
+    <EmbeddedResource Include="images\menu_myrobots.png" />
+    <EmbeddedResource Include="images\menu_robots.png" />
+    <EmbeddedResource Include="images\menu_user.png" />
+    <EmbeddedResource Include="images\menu_buildersOLD.png" />
+    <EmbeddedResource Include="images\menu_builders.png" />
+    <EmbeddedResource Include="images\menu_adminusers.png" />
+    <EmbeddedResource Include="images\menu_builderOLD.png" />
+    <EmbeddedResource Include="images\menu_builder.png" />
+    <EmbeddedResource Include="images\menu_adminnews.png" />
+    <EmbeddedResource Include="images\menu_cards.png" />
+    <EmbeddedResource Include="images\menu_mynews.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Code\" />
