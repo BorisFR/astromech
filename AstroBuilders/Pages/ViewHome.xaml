@@ -36,9 +36,9 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" xmlns:other="cl
 					        	<StackLayout Padding="12,0,12,0">
 			        				<Label Text="{Binding Detail}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Default}" />
 			        				<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-				        				<Label Text="{Binding BuilderNickname}" TextColor="{local:ColorTextResource BoxLow}" FontSize="{local:FontSizeResource Small}" />
-				        				<Label Text="/" TextColor="{local:ColorTextResource BoxLow}" FontSize="{local:FontSizeResource Small}" />
-				        				<Label Text="{Binding ClubName}" TextColor="{local:ColorTextResource BoxLow}" FontSize="{local:FontSizeResource Small}" />
+				        				<Label Text="{Binding BuilderNickname}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Small}" />
+				        				<Label Text="/" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Small}" />
+				        				<Label Text="{Binding ClubName}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Small}" />
 			        				</StackLayout>
 			        			</StackLayout>
 				        	</StackLayout>

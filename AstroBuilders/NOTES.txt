@@ -1,4 +1,30 @@
-﻿Postulats
+﻿Some android devices resolution
+Asus K017 	: 1024 x 552 / 600 x 976
+Nexus 4 	: 1280 x 768 => 598 x 384 / 384 x 592
+and iOS
+iPhone 4s	: 320 x 460 / 480 x 300
+iPhone 5	: 320 x 548 / 568 x 300
+iPhone 5s	: 320 x 548 / 568 x 300
+iPhone 6 	: 375 x 647 / 667 x 355
+iPhone 6+	: 414 x 716 / 736 x 394
+iPad 2		: 768 x 1004 / 703 x 748
+iPad Retina	: 768 x 1004 / 703 x 748
+iPad Air	: 768 x 1004 / 703 x 748
+
+
+Font size
+================================================
+		Phone	Tablet	Phone
+		iOS		iOS		Android
+Default	17		17		14
+Large	22		22		22
+Medium	17		17		18
+Small	14		14		14
+Micro	12		12		10
+
+
+
+Postulats
 ================================================
 On peut "tout" gérer depuis l'application smartphone !
 Il n'y a pas d'application web.
@@ -289,14 +315,14 @@ Les icones de menu :
 - lire un QR-Code : permet de décoder un QR-Code et de débloquer des cartes
 - mon compte : création/modification de compte, connection à son compte
 - à propos de : affiche les conditions d'utilisation (+ 2-3 infos techniques)
-
+	Pour les BUILDERS
 - ma fiche : permet à un builder de gérer sa fiche de présentation de builder
 - mes robots : permet à un builder de gérer la fiche de présentation de chacun de ses robots
 - mes sorties : permet la création/modification de salons et permet de s'inscrire à un salon
 - mes actus : permet de gérer des actus
-
-- les actus : permet à un modo de gérer l'ensemble des actus
-- les users : permet à un modo de gérer les users => promotion d'un compte en builder, nomination d'un modo, ...
+	Pour les ADMINS
+- admin actus : permet à un modo de gérer l'ensemble des actus
+- admin users : permet à un modo de gérer les users => promotion d'un compte en builder, nomination d'un modo, ...
 
 
 

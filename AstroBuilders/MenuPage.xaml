@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.MenuPage" 
-Title="MenuPage" xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="{x:Static local:Global.PagePadding}" BackgroundColor="#645A15">
+Title="MenuPage" xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="{x:Static local:Global.PagePadding}" BackgroundColor="#FAE848">
 	<ContentPage.Content>
-		<StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Start" BackgroundColor="#645A15">
+		<StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Start">
 
 			<Image Source="{local:ImageResource R2BuildersLogo.png}" />
 
@@ -30,7 +30,7 @@ Title="MenuPage" xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders
 						        	<RowDefinition Height="20" />
 						        </Grid.RowDefinitions>
 						        <Image Source="{Binding Image}" WidthRequest="50" Grid.RowSpan="2" />
-						        <Label Text="{Binding Title}" Font="Bold" FontSize="{local:FontSizeResource Large}" TextColor="#FAE848" Grid.Column="1" />
+						        <Label Text="{Binding Title}" Font="Bold" FontSize="{local:FontSizeResource Large}" TextColor="#645A15" Grid.Column="1" />
 						        <Label Text="{Binding Detail}" FontSize="{local:FontSizeResource Medium}" TextColor="#C3BF7F" Grid.Column="1" Grid.Row="1" />
 			        		</Grid>
 			        	</ViewCell>

@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Toasts.Forms.Plugin.Droid;
+using Xamarin.Forms;
 
 namespace AstroBuilders.Droid
 {
@@ -20,6 +21,7 @@ namespace AstroBuilders.Droid
 			base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
+			Forms.SetTitleBarVisibility(AndroidTitleBarVisibility.Never);
 			ToastNotificatorImplementation.Init();
 
 			LoadApplication (new App ());
@@ -28,7 +30,7 @@ namespace AstroBuilders.Droid
 		public override void OnAttachedToWindow ()
 		{
 			base.OnAttachedToWindow ();
-			View x = Window.DecorView;
+			Android.Views.View x = Window.DecorView;
 			x.SystemUiVisibility = StatusBarVisibility.Hidden;
 			x.KeepScreenOn = true;
 			Window.SetFlags (WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen);
