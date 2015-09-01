@@ -379,7 +379,8 @@ http://zxingnet.codeplex.com => Michael Jahn
 
 
 base64Picture = Convert.ToBase64String(File.ReadAllBytes(jpgFilename));
-
+image resize code : 
+http://forums.xamarin.com/discussion/comment/95717 AND https://github.com/xamarin/xamarin-forms-samples/blob/master/XamFormsImageResize/XamFormsImageResize/ImageResizer.cs
 
 
 To add a new object

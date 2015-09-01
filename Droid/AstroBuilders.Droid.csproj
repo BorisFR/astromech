@@ -127,6 +127,7 @@
     <Compile Include="TheBeacon.cs" />
     <Compile Include="MonitorNotifier.cs" />
     <Compile Include="RangeNotifier.cs" />
+    <Compile Include="ImageResizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

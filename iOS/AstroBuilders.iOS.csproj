@@ -176,6 +176,7 @@
     <Compile Include="iBeaconTools.cs" />
     <Compile Include="TheBeacon.cs" />
     <Compile Include="PeripheralManagerDelegate.cs" />
+    <Compile Include="ImageResizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />

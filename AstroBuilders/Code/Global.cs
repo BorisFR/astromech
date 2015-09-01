@@ -66,6 +66,7 @@ namespace AstroBuilders
 		public static string UniqueAppId = string.Empty;
 		public static IBeaconTools BeaconsTools = null;
 		public static Media.Plugin.Abstractions.IMedia AllMedia = Media.Plugin.CrossMedia.Current;
+		public static IImageResizer ImageResizer = null;
 
 		//public static bool FirstLoading = false;
 		//public static bool FirstLoadingInProgress = false;
@@ -81,6 +82,7 @@ namespace AstroBuilders
 				Helper.SettingsSave<string>("UniqueAppId", UniqueAppId);
 			}
 			BeaconsTools = DependencyService.Get<IBeaconTools>();
+			ImageResizer = DependencyService.Get<IImageResizer> ();
 			Tools.DoInit ();
 			Menus = new MenuManager ();
 
@@ -218,7 +220,8 @@ namespace AstroBuilders
 		public static void StartingBeaconsDetection() {
 			BeaconsTools.Founded += BeaconsTools_Founded;
 			Dictionary<string, string> info = new Dictionary<string, string> ();
-			info.Add ("R2BUILDERS", "B9407F30-F5F8-466E-AFF9-25556B57FE6D");
+			info.Add ("R2BUILDERS", "74278BDA-B644-4520-8F0C-720EAF059935"); // HM-10 Default = Apple Air Locate
+			info.Add ("R2BUILDERS", "B9407F30-F5F8-466E-AFF9-25556B57FE6D"); // Estimote Maxxing
 			BeaconsTools.Init (info);
 			// 74278BDA-B644-4520-8F0C-720EAF059935 => HM-10 Default = Apple Air Locate
 		}
