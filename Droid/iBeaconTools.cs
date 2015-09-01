@@ -21,14 +21,14 @@ namespace AstroBuilders.Droid
 				} }
 		}
 
-		public void Init (string regionName, string beaconId) {
-			//TheBeacon.Founded += HandleFounded;
-			//TheBeacon.CheckInit (regionName, beaconId);
+		public void Init (Dictionary<string, string> info) {
+			TheBeacon.Founded += HandleFounded;
+			TheBeacon.CheckInit (info);
 		}
 
-//		void HandleFounded (List<OneBeacon> beacons) {
-//			Founded (beacons);
-//		}
+		void HandleFounded (List<OneBeacon> beacons) {
+			Founded (beacons);
+		}
 
 	}
 }

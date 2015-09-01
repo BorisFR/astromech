@@ -17,7 +17,7 @@ namespace AstroBuilders
 	{
 		event FoundedBeacons Founded;
 
-		void Init (string regionName, string beaconId);
+		void Init (Dictionary<string, string> info);
 	}
 
 }

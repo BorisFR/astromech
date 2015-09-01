@@ -21,9 +21,9 @@ namespace AstroBuilders.iOS
 				} }
 		}
 
-		public void Init (string regionName, string beaconId) {
+		public void Init (Dictionary<string, string> info) {
 			TheBeacon.Founded += HandleFounded;
-			TheBeacon.CheckInit (regionName, beaconId);
+			TheBeacon.CheckInit (info);
 		}
 
 		void HandleFounded (List<OneBeacon> beacons) {

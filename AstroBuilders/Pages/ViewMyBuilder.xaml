@@ -39,6 +39,13 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 			<BoxView HeightRequest="4" BackgroundColor="Gray" />
 			<ActivityIndicator x:Name="theAI" IsRunning="false" IsVisible="false" />
 			<Button x:Name="btValidate" Text="{local:TextResource ViewMyBuilderBtSave}" TextColor="Black" BackgroundColor="White" />
+			<BoxView HeightRequest="4" BackgroundColor="Gray" />
+
+			<ScrollView Orientation="Horizontal">
+			<StackLayout Orientation="Horizontal" x:Name="listImages">
+			</StackLayout>
+			</ScrollView>
+
 		</StackLayout>
 	</ScrollView>
 	</ContentView.Content>

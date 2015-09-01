@@ -217,7 +217,9 @@ namespace AstroBuilders
 
 		public static void StartingBeaconsDetection() {
 			BeaconsTools.Founded += BeaconsTools_Founded;
-			BeaconsTools.Init ("R2BUILDERS", "B9407F30-F5F8-466E-AFF9-25556B57FE6D");
+			Dictionary<string, string> info = new Dictionary<string, string> ();
+			info.Add ("R2BUILDERS", "B9407F30-F5F8-466E-AFF9-25556B57FE6D");
+			BeaconsTools.Init (info);
 			// 74278BDA-B644-4520-8F0C-720EAF059935 => HM-10 Default = Apple Air Locate
 		}
 

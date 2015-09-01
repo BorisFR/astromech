@@ -13,30 +13,31 @@ namespace AstroBuilders.iOS
 	{
 		public static event FoundedBeacons Founded;
 
-		private static string regionName = string.Empty;
-
 		private static PeripheralManagerDelegate peripheralDelegate;
 		private static CBPeripheralManager peripheralManager;
 
 		private static CLLocationManager locationMgr = new CLLocationManager ();
-		private static CLBeaconRegion beaconRegion ;
+		private static List<CLBeaconRegion> beaconRegion = new List<CLBeaconRegion>();
 
-		public static void CheckInit(string region, string beaconId)
-		{
+		private static Dictionary<string, string> _info = new Dictionary<string, string>();
+
+		public static void CheckInit(Dictionary<string, string> info) {
 			if (peripheralManager != null)
 				return;
 
-			regionName = region;
+			_info = info;
 
 			NSUuid id;
-			try {
-				id = new NSUuid (beaconId);
-			} catch (Exception err) {
-				Global.ShowNotification(Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error ,"iBeacon", "iBeacons UUID is wrong!");
-				return;
+			int i = 0;
+			foreach (KeyValuePair<string, string> kvp in _info) {
+				try {
+					id = new NSUuid (kvp.Value); // beaconId);
+				} catch (Exception err) {
+					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, "iBeacon", "iBeacons UUID is wrong!");
+					return;
+				}
+				beaconRegion.Add (new CLBeaconRegion (id, kvp.Key)); //regionName);
 			}
-			beaconRegion = new CLBeaconRegion (id, regionName);
-
 			peripheralDelegate = new PeripheralManagerDelegate ();
 			peripheralDelegate.StateUpdatedEvent += PeripheralDelegate_StateUpdatedEvent;
 
@@ -78,9 +79,14 @@ namespace AstroBuilders.iOS
 			if (isMonitoring)
 				return;
 			isMonitoring = true;
-			beaconRegion.NotifyEntryStateOnDisplay = true;
-			beaconRegion.NotifyOnEntry = true;
-			beaconRegion.NotifyOnExit = true;
+			foreach (CLBeaconRegion region in beaconRegion) {
+				region.NotifyEntryStateOnDisplay = true;
+				region.NotifyOnEntry = true;
+				region.NotifyOnExit = true;
+			}
+//			beaconRegion.NotifyEntryStateOnDisplay = true;
+//			beaconRegion.NotifyOnEntry = true;
+//			beaconRegion.NotifyOnExit = true;
 			locationMgr.RequestWhenInUseAuthorization ();
 			try{
 			locationMgr.RequestAlwaysAuthorization ();
@@ -93,8 +99,12 @@ namespace AstroBuilders.iOS
 			locationMgr.DidStartMonitoringForRegion += HandleDidStartMonitoringForRegion;
 			locationMgr.DidRangeBeacons += HandleDidRangeBeacons;
 			//Console.WriteLine (string.Format("StartMonitoring {0}", beaconRegion.Identifier));
-			locationMgr.StartMonitoring (beaconRegion);
-			locationMgr.StartRangingBeacons (beaconRegion);
+			foreach (CLBeaconRegion region in beaconRegion) {
+				locationMgr.StartMonitoring (region);
+				locationMgr.StartRangingBeacons (region);
+			}
+//			locationMgr.StartMonitoring (beaconRegion);
+//			locationMgr.StartRangingBeacons (beaconRegion);
 		}
 
 		static void HandleDidStartMonitoringForRegion (object sender, CLRegionEventArgs e)
@@ -123,27 +133,27 @@ namespace AstroBuilders.iOS
 
 		static void HandleRegionLeft (object sender, CLRegionEventArgs e)
 		{
-			if (e.Region.Identifier == regionName){
-				Console.WriteLine("beacon region exited");
-			}
+//			if (e.Region.Identifier == regionName){
+//				Console.WriteLine("beacon region exited");
+//			}
 		}
 
 		static void HandleRegionEntered (object sender, CLRegionEventArgs e)
 		{
-			if (e.Region.Identifier == regionName) {
-				Console.WriteLine ("beacon region entered");
-			}
+//			if (e.Region.Identifier == regionName) {
+//				Console.WriteLine ("beacon region entered");
+//			}
 		}
 
-		private static Dictionary<string, OneBeacon> oldBeacons = new Dictionary<string, OneBeacon> (100);
+		//private static Dictionary<string, OneBeacon> oldBeacons = new Dictionary<string, OneBeacon> (100);
 		private static Dictionary<string, OneBeacon> newBeacons = new Dictionary<string, OneBeacon> (100);
 
 		static void HandleDidRangeBeacons (object sender, CLRegionBeaconsRangedEventArgs e)
 		{
-			if (!e.Region.Identifier.Equals (regionName)) {
-				Console.WriteLine (string.Format ("Found Region: {0}", e.Region.Identifier));
-				return;
-			}
+//			if (!e.Region.Identifier.Equals (regionName)) {
+//				Console.WriteLine (string.Format ("Found Region: {0}", e.Region.Identifier));
+//				return;
+//			}
 			newBeacons.Clear ();
 			foreach (CLBeacon b in e.Beacons) {
 				if (b.Proximity == CLProximity.Unknown)
@@ -167,46 +177,7 @@ namespace AstroBuilders.iOS
 					OneBeacon ob = new OneBeacon ();
 					ob.Id = id;
 					ob.Distance = v;
-					if (v < 10) {
-						int z = 1 + 2; // juste pour mettre un point d'arrêt en debug :)
-					}
-					// CLBeacon (uuid:<__NSConcreteUUID 0x146a51c0> B9407F30-F5F8-466E-AFF9-25556B57FE6D, major:26031, minor:22602, proximity:1 +/- 0.24m, rssi:-53)
-					//					if (b.Major.ToString ().Equals ("26031") && b.Minor.ToString ().Equals ("22602")) {
-					//						Console.WriteLine (b.Proximity.ToString () + " " + val);
-					//					}
-					//Console.WriteLine (string.Format ("{0}/{1}/{2} - {3}@{4} ", b.Major, b.Minor, b.Proximity, b.Accuracy, b.Rssi));
 
-					/*
-					if (oldBeacons.ContainsKey (id)) {
-						// on connait déjà le beacon
-						// threshold
-						// on ne balance pas tout les changements, seulement les significatifs
-						// c'est variable fonction de l'éloignement
-						long threshold = Math.Abs (oldBeacons [id].Distance - v);
-						switch (b.Proximity) {
-						case CLProximity.Far:
-							ob.Proximity = 10;
-							if (threshold > 2) { // info si changement au metre car on est loin
-								newBeacons.Add (id, ob);
-							}
-							break;
-						case CLProximity.Near:
-							ob.Proximity = 5;
-							if (threshold > 2) { // info si changement d'au moins 50 cm
-								newBeacons.Add (id, ob);
-							}
-							break;
-						case CLProximity.Immediate:
-							ob.Proximity = 1;
-							if (threshold > 2) { // info si changement d'au moins 10 cm
-								newBeacons.Add (id, ob);
-							}
-							break;
-						}
-						oldBeacons [id] = ob;
-					} else {
-					*/
-					// nouveau beacon, on envoi l'info
 					switch (b.Proximity) {
 					case CLProximity.Far:
 						ob.Proximity = 10;
@@ -219,32 +190,19 @@ namespace AstroBuilders.iOS
 						break;
 					}							
 					newBeacons.Add (id, ob);
-					//oldBeacons.Add (id, ob);
-					//}
-					//}
-					// matching avec ce que l'on connait
 				} catch (Exception err) {
 					Console.WriteLine (err.Message);
 				}
 			}
-			// si on a des nouveaux beacons ou des beacons dont le changement est significatif
 			if (newBeacons.Count > 0) {
 				List<OneBeacon> list = new List<OneBeacon> ();
-				//OneBeacon[] arr = new OneBeacon[newBeacons.Count];
-				//int cpt = 0;
 				foreach (KeyValuePair<string,OneBeacon> kvp in newBeacons) {
-					//arr [cpt++] = kvp.Value;
 					list.Add (kvp.Value);
 				}
 				// on envoi l'info
 				Founded (list);
-				//				Communication comm = new Communication ();
-				//				comm.PushBeacons (arr);
 			}
 		}
-
-		//SystemSound.Vibrate.PlayAlertSound ();
-		//SystemSound.Vibrate.PlaySystemSound ();
 
 	}
 }

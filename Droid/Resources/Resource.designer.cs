@@ -28,8 +28,6 @@ namespace AstroBuilders.Droid
 		{
 			global::PCLCrypto.Resource.String.ApplicationName = global::AstroBuilders.Droid.Resource.String.ApplicationName;
 			global::PCLCrypto.Resource.String.Hello = global::AstroBuilders.Droid.Resource.String.Hello;
-			global::Xamarin.Forms.Platform.Resource.String.ApplicationName = global::AstroBuilders.Droid.Resource.String.ApplicationName;
-			global::Xamarin.Forms.Platform.Resource.String.Hello = global::AstroBuilders.Droid.Resource.String.Hello;
 			global::Toasts.Forms.Plugin.Droid.Resource.Drawable.error = global::AstroBuilders.Droid.Resource.Drawable.error;
 			global::Toasts.Forms.Plugin.Droid.Resource.Drawable.info = global::AstroBuilders.Droid.Resource.Drawable.info;
 			global::Toasts.Forms.Plugin.Droid.Resource.Drawable.success = global::AstroBuilders.Droid.Resource.Drawable.success;
@@ -42,6 +40,8 @@ namespace AstroBuilders.Droid
 			global::Toasts.Forms.Plugin.Droid.Resource.String.Hello = global::AstroBuilders.Droid.Resource.String.Hello;
 			global::Refractored.Xam.Vibrate.Resource.String.ApplicationName = global::AstroBuilders.Droid.Resource.String.ApplicationName;
 			global::Refractored.Xam.Vibrate.Resource.String.Hello = global::AstroBuilders.Droid.Resource.String.Hello;
+			global::Xamarin.Forms.Platform.Resource.String.ApplicationName = global::AstroBuilders.Droid.Resource.String.ApplicationName;
+			global::Xamarin.Forms.Platform.Resource.String.Hello = global::AstroBuilders.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -88,14 +88,14 @@ namespace AstroBuilders.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050002
-			public const int desc = 2131034114;
+			// aapt resource value: 0x7f060002
+			public const int desc = 2131099650;
 			
-			// aapt resource value: 0x7f050000
-			public const int image = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int image = 2131099648;
 			
-			// aapt resource value: 0x7f050001
-			public const int title = 2131034113;
+			// aapt resource value: 0x7f060001
+			public const int title = 2131099649;
 			
 			static Id()
 			{
@@ -138,6 +138,22 @@ namespace AstroBuilders.Droid
 			}
 			
 			private String()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int MyTheme = 2131034112;
+			
+			static Style()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Style()
 			{
 			}
 		}
