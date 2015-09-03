@@ -11,7 +11,7 @@ namespace AstroBuilders
 		{
 			InitializeComponent ();
 
-			//this.Icon = FileImageSource.FromResource ("AstroBuilders.images.menu_menu.png");
+            //this.Icon = FileImageSource.FromResource ("AstroBuilders.images.menu_menu.png");
 			//this.BackgroundColor = Color.FromRgba(220, 220, 255, 255);
 			theList.BackgroundColor = this.BackgroundColor;
 			theList.ItemsSource = Global.Menus.All;
@@ -23,10 +23,14 @@ namespace AstroBuilders
 					return;
 				}
 				Global.GotoPage (m.Page);
+                try { 
 				Global.MainAppPage.IsPresented = false;
+                }
+                catch (Exception) { }
 				theList.SelectedItem = null;
 			};
-		}
+            Tools.Trace("MenuPage done.");
+        }
 
 	}
 }

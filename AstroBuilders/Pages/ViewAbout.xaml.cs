@@ -21,10 +21,17 @@ namespace AstroBuilders
 				return;
 			isDone = true;
 			Device.BeginInvokeOnMainThread (() => {
+				double width = -1;
+				double height = -1;
+				try {
+					width = bigStack.Width;
+					height = bigStack.Height;
+				} catch (Exception) {
+				}
 				theStack.Children.Insert (0, new Label () {
 					TextColor = Global.ColorBoxText,
 					FontSize = FontSizeResourceExtension.CacheFontSizeDefault,
-					Text = string.Format ("{0} {1} ({2}) {3}x{4}", Helper.DeviceInfo.Platform, Helper.DeviceInfo.Version, Helper.DeviceInfo.Model, this.Width, this.Height)
+					Text = string.Format ("{0} {1} ({2}) {3}x{4}", Helper.DeviceInfo.Platform, Helper.DeviceInfo.Version, Helper.DeviceInfo.Model, width, height)
 				});
 				theStack.Children.Insert (0, new Label () {
 					TextColor = Global.ColorBoxText,

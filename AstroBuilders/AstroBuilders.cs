@@ -3,6 +3,7 @@
 using Xamarin.Forms;
 using AstroBuildersModel;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace AstroBuilders
 {
@@ -10,13 +11,18 @@ namespace AstroBuilders
 	{
 		public App ()
 		{
-			Global.DoInit ();
+            //var assembly = typeof(App).GetTypeInfo().Assembly;
+            //foreach (var res in assembly.GetManifestResourceNames())
+            //    System.Diagnostics.Debug.WriteLine("found resource: " + res);
+            Global.DoInit ();
 			Global.MainAppPage = new MainAppPage ();
 			MainPage = Global.MainAppPage;
-		}
+        }
 
 		protected override void OnStart ()
 		{
+            
+			Global.DoInit ();
 			// Handle when your app starts
 			string json = Helper.SettingsRead<string>("User", string.Empty);
 			if (json.Length == 0)
@@ -28,6 +34,8 @@ namespace AstroBuilders
 			Global.IsConnected = true;
 			//Global.Menus.Refresh ();
 			// TODO: do a re-logging of the user
+			Global.Menus.Refresh ();
+             
 		}
 
 		protected override void OnSleep ()

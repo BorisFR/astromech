@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace AstroBuilders
 {
@@ -34,45 +35,41 @@ namespace AstroBuilders
 			IgnoreLocalData = ignoreLocalData;
 		}
 
-		public bool HasOldData {
-			get {
-				if (IgnoreLocalData)
-					return false;
-				return Global.Files.IsExit (fileName);
-			}
-		}
+        private bool isExit = false;
+        private bool isTest = false;
 
-		public string OldData {
-			get {
-				System.Diagnostics.Debug.WriteLine ("Read data from file: " + fileName);
-				return Global.Files.ReadFile (fileName);
-			}
-		}
+        public async Task<bool> HasOldData()
+        {
+            if (IgnoreLocalData) {
+                System.Diagnostics.Debug.WriteLine("Ignore local for: " + fileName);
+                return false;
+            }
+            if (isTest)
+                return isExit;
+            isTest = true;
+            System.Diagnostics.Debug.WriteLine("HasOldData testing fileExist: " + fileName);
+            isExit = await Global.Files.IsExit(fileName);
+            return isExit;
+        }
+
+        public async Task<string> OldData()
+        {
+            System.Diagnostics.Debug.WriteLine("Read data from file: " + fileName);
+            string x = await Global.Files.ReadFile(fileName);
+            return x;
+        }
 
 		public void DoDownload() {
-			/*
-			// if exist, give the old data
-			//if (Global.Files.IsExit (fileName)) {
-			if (!ForceFreshData && Global.Files.IsExit (fileName)) {
-				System.Diagnostics.Debug.WriteLine ("Read data from file: " + fileName);
-				string jsonData = Global.Files.ReadFile (fileName);
-				JobDone (true, jsonData);
-				//TriggerData (true);
-				//if (!ForceFreshData)
-					return;
-			}
-			*/
-			// load newest data in background
 			Tools.DoneBatch += DoneBatch;
 			Tools.DoDownload (fileName);
 		}
 
-		void DoneBatch (bool status, string result)
+		async void DoneBatch (bool status, string result)
 		{
 			Tools.DoneBatch -= DoneBatch;
 			//JsonData = result; //Tools.Result;
 			if (status) {
-				Global.Files.SaveFile (fileName, result);
+				await Global.Files.SaveFile (fileName, result);
 			}
 			JobDone (status, result);
 			//if (DataRefresh != null)

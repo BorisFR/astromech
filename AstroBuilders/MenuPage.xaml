@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.MenuPage" 
 Title="MenuPage" xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="{x:Static local:Global.PagePadding}" BackgroundColor="#FAE848">
 	<ContentPage.Content>
-		<StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Start">
+		<StackLayout Orientation="Vertical" VerticalOptions="Fill" HorizontalOptions="Start">
 
-			<Image Source="{local:ImageResource R2BuildersLogo.png}" />
+      <Image Source="{local:ImageResource R2BuildersLogo.png}" Aspect="AspectFill" />
 
-			<ListView x:Name="theList" HasUnevenRows="true" IsGroupingEnabled="true" SeparatorVisibility="None">
+			<ListView x:Name="theList" HasUnevenRows="true" IsGroupingEnabled="true" SeparatorVisibility="None" VerticalOptions="Fill">
 				<ListView.GroupHeaderTemplate>
 					<DataTemplate>
 						<ViewCell Height="{local:FontSizeHeightResource Medium}">

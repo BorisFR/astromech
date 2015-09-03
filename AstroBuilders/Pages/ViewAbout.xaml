@@ -2,7 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewAbout" 
 xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
-	<StackLayout Orientation="Vertical" Padding="6,12,6,12">
+	<StackLayout x:Name="bigStack" Orientation="Vertical" Padding="6,12,6,12">
 		<local:StarJedi Text="A propos de" TextColor="{local:ColorTextResource}" FontSize="{local:FontSizeResource Medium}" HorizontalOptions="Center" />
 		<local:AurekBesh Text="A propos de" TextColor="{local:ColorTextResource}" FontSize="{local:FontSizeResource Micro}" HorizontalOptions="Center" />
 		<BoxView HeightRequest="12" BackgroundColor="Transparent" />

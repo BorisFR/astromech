@@ -10,7 +10,9 @@ namespace AstroBuilders
 		public TieWing()
 		{
 			FontAttributes = FontAttributes.None;
-			FontFamily = Typeface; 
+            if (DeviceInfo.Plugin.CrossDeviceInfo.Current.Platform == DeviceInfo.Plugin.Abstractions.Platform.Windows)
+                FontFamily = @"\Assets\TIE-Wing.ttf#TIE-Wing";
+            else FontFamily = Typeface; 
 		}
 
 		/*

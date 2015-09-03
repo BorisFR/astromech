@@ -10,11 +10,13 @@ namespace AstroBuilders
 		public DetailPage ()
 		{
 			InitializeComponent ();
+            
 			if (Translation.IsTextReady)
 				ShowPage (MyPage.Home);
 			else
 				ShowPage (MyPage.FirstLoading);
-		}
+            Tools.Trace("DetailPage done.");
+        }
 
 		public void ShowPage(MyPage page) {
 			switch (page) {

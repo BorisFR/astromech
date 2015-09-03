@@ -9,6 +9,9 @@ namespace AstroBuilders
 
 		public AurekBesh()
 		{
+            if (DeviceInfo.Plugin.CrossDeviceInfo.Current.Platform == DeviceInfo.Plugin.Abstractions.Platform.Windows)
+                FontFamily = @"\Assets\Aurek-Besh.ttf#Aurek-Besh";
+            else
 			FontFamily = Typeface;    //iOS is happy with this, Android needs a renderer to add ".ttf"
 		}
 

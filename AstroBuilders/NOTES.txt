@@ -14,13 +14,13 @@ iPad Air	: 768 x 1004 / 703 x 748
 
 Font size
 ================================================
-		Phone	Tablet	Phone
-		iOS		iOS		Android
-Default	17		17		14
-Large	22		22		22
-Medium	17		17		18
-Small	14		14		14
-Micro	12		12		10
+		Phone	Tablet	Phone	Tablet
+		iOS		iOS		Android	Windows
+Default	17		17		14		14
+Large	22		22		22		32
+Medium	17		17		18		22
+Small	14		14		14		18
+Micro	12		12		10		15
 
 
 

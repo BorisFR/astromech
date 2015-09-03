@@ -14,7 +14,10 @@ namespace AstroBuilders
 			Global.MenuPage = new MenuPage ();
 			this.Master = Global.MenuPage;
 			Global.DetailPage = new DetailPage ();
-			this.Detail = Global.DetailPage;
+            this.Detail = Global.DetailPage; // new NavigationPage(Global.DetailPage);
+            Tools.Trace("MainAppPage done.");
+            if (Device.OS == TargetPlatform.Windows)
+                this.MasterBehavior = Xamarin.Forms.MasterBehavior.Split;
 		}
 	}
 }

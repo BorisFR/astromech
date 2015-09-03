@@ -9,7 +9,8 @@
     <RootNamespace>AstroBuilders.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>AstroBuildersiOS</AssemblyName>
-    <NuGetPackageImportStamp>4f874fb0</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>240ce6fe</NuGetPackageImportStamp>
+    <ReleaseVersion>0.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,6 +25,10 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -63,6 +68,8 @@
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n>
     </MtouchI18n>
+    <IpaPackageName>
+    </IpaPackageName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -84,35 +91,29 @@
     <Reference Include="Toasts.Forms.Plugin.iOS">
       <HintPath>..\packages\Toasts.Forms.Plugin.1.0.7.19-pre1\lib\Xamarin.iOS10\Toasts.Forms.Plugin.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="Refractored.Xam.Vibrate.Abstractions">
-      <HintPath>..\packages\Xam.Plugins.Vibrate.1.0.0.5\lib\Xamarin.iOS10\Refractored.Xam.Vibrate.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Refractored.Xam.Vibrate">
-      <HintPath>..\packages\Xam.Plugins.Vibrate.1.0.0.5\lib\Xamarin.iOS10\Refractored.Xam.Vibrate.dll</HintPath>
-    </Reference>
-    <Reference Include="DeviceInfo.Plugin">
-      <HintPath>..\packages\Xam.Plugin.DeviceInfo.1.0.0.2\lib\Xamarin.iOS10\DeviceInfo.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="DeviceInfo.Plugin.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.DeviceInfo.1.0.0.2\lib\Xamarin.iOS10\DeviceInfo.Plugin.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Media.Plugin">
-      <HintPath>..\packages\Xam.Plugin.Media.1.0.0\lib\Xamarin.iOS10\Media.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Media.Plugin.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Media.1.0.0\lib\Xamarin.iOS10\Media.Plugin.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Refractored.Xam.Settings, Version=1.5.2.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Xam.Plugins.Settings.1.5.2\lib\Xamarin.iOS10\Refractored.Xam.Settings.dll</HintPath>
     </Reference>
     <Reference Include="Refractored.Xam.Settings.Abstractions, Version=1.5.2.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Xam.Plugins.Settings.1.5.2\lib\Xamarin.iOS10\Refractored.Xam.Settings.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Extensions.dll</HintPath>
+    <Reference Include="DeviceInfo.Plugin, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xam.Plugin.DeviceInfo.1.0.1\lib\Xamarin.iOS10\DeviceInfo.Plugin.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Primitives.dll</HintPath>
+    <Reference Include="DeviceInfo.Plugin.Abstractions, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xam.Plugin.DeviceInfo.1.0.1\lib\Xamarin.iOS10\DeviceInfo.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Media.Plugin, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xam.Plugin.Media.1.0.2\lib\Xamarin.iOS10\Media.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Media.Plugin.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xam.Plugin.Media.1.0.2\lib\Xamarin.iOS10\Media.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Vibrate, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xam.Plugins.Vibrate.1.0.1\lib\Xamarin.iOS10\Refractored.Xam.Vibrate.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Vibrate.Abstractions, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xam.Plugins.Vibrate.1.0.1\lib\Xamarin.iOS10\Refractored.Xam.Vibrate.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Xamarin.Forms.1.4.4.6392\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
@@ -167,7 +168,6 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <None Include="DeviceInfoReadme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -183,10 +183,8 @@
     <ITunesArtwork Include="ITunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DeviceInfoReadme.txt" />
     <Content Include="PluginsHelp\SettingsReadme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -195,10 +193,5 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
-  </Target>
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
-    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
-    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
 </Project>

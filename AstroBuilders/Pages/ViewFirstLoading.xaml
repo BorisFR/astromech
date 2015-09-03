@@ -4,7 +4,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 		
 		<ScrollView Orientation="Vertical">
-		<StackLayout>
+		<StackLayout Orientation="Vertical" VerticalOptions="Center">
 			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3">
 			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource}" Padding="6">
 			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Border}" Padding="6">

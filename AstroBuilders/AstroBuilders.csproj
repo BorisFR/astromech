@@ -10,7 +10,8 @@
     <AssemblyName>AstroBuilders</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
-    <NuGetPackageImportStamp>db8da666</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>41a0d11d</NuGetPackageImportStamp>
+    <ReleaseVersion>0.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -106,18 +107,7 @@
     <Compile Include="Code\IImageResizer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="..\packages\Xamarin.Forms.1.4.3.6376\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.3.6376\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <ItemGroup>
-    <Reference Include="System.Net.Http">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Extensions">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="Validation">
       <HintPath>..\packages\Validation.2.0.6.15003\lib\portable-net40+sl50+win+wpa81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\Validation.dll</HintPath>
     </Reference>
@@ -130,29 +120,38 @@
     <Reference Include="Toasts.Forms.Plugin.Abstractions">
       <HintPath>..\packages\Toasts.Forms.Plugin.1.0.7.19-pre1\lib\portable-net45+wp8+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Toasts.Forms.Plugin.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Refractored.Xam.Vibrate.Abstractions">
-      <HintPath>..\packages\Xam.Plugins.Vibrate.1.0.0.5\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Refractored.Xam.Vibrate.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Refractored.Xam.Vibrate">
-      <HintPath>..\packages\Xam.Plugins.Vibrate.1.0.0.5\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Refractored.Xam.Vibrate.dll</HintPath>
-    </Reference>
-    <Reference Include="DeviceInfo.Plugin">
-      <HintPath>..\packages\Xam.Plugin.DeviceInfo.1.0.0.2\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\DeviceInfo.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="DeviceInfo.Plugin.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.DeviceInfo.1.0.0.2\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\DeviceInfo.Plugin.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Media.Plugin">
-      <HintPath>..\packages\Xam.Plugin.Media.1.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Media.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Media.Plugin.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Media.1.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Media.Plugin.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Refractored.Xam.Settings, Version=1.5.2.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Xam.Plugins.Settings.1.5.2\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Refractored.Xam.Settings.dll</HintPath>
     </Reference>
     <Reference Include="Refractored.Xam.Settings.Abstractions, Version=1.5.2.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Xam.Plugins.Settings.1.5.2\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Refractored.Xam.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Vibrate.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Vibrate.1.0.1\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Refractored.Xam.Vibrate.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Vibrate">
+      <HintPath>..\packages\Xam.Plugins.Vibrate.1.0.1\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Refractored.Xam.Vibrate.dll</HintPath>
+    </Reference>
+    <Reference Include="Media.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Media.1.0.2\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Media.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Media.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Media.1.0.2\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Media.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="DeviceInfo.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.DeviceInfo.1.0.1\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\DeviceInfo.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="DeviceInfo.Plugin">
+      <HintPath>..\packages\Xam.Plugin.DeviceInfo.1.0.1\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\DeviceInfo.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Xamarin.Forms.1.4.4.6392\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
@@ -168,7 +167,6 @@
     <None Include="packages.config" />
     <None Include="NOTES.txt" />
     <None Include="DeviceInfoReadme.txt" />
-    <None Include="images\closewindow.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainAppPage.xaml">
@@ -180,23 +178,23 @@
     <EmbeddedResource Include="DetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="images\R2BuildersLogo.png" />
-    <EmbeddedResource Include="images\menu_home.png" />
-    <EmbeddedResource Include="images\menu_infos.png" />
-    <EmbeddedResource Include="images\menu_menu.png" />
+    <EmbeddedResource Include="Images\R2BuildersLogo.png" />
+    <EmbeddedResource Include="Images\menu_home.png" />
+    <EmbeddedResource Include="Images\menu_infos.png" />
+    <EmbeddedResource Include="Images\menu_menu.png" />
     <EmbeddedResource Include="Pages\ViewHome.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ViewAbout.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="images\R2BuildersBand.png" />
-    <EmbeddedResource Include="images\IA.png" />
-    <EmbeddedResource Include="images\menu_pgw2k15.png" />
-    <EmbeddedResource Include="images\menu_facts2k15.png" />
-    <EmbeddedResource Include="images\menu_IA.png" />
-    <EmbeddedResource Include="images\menu_ccp2k15.png" />
-    <EmbeddedResource Include="images\menu_lolo080062k15.png" />
+    <EmbeddedResource Include="Images\R2BuildersBand.png" />
+    <EmbeddedResource Include="Images\IA.png" />
+    <EmbeddedResource Include="Images\menu_pgw2k15.png" />
+    <EmbeddedResource Include="Images\menu_facts2k15.png" />
+    <EmbeddedResource Include="Images\menu_IA.png" />
+    <EmbeddedResource Include="Images\menu_ccp2k15.png" />
+    <EmbeddedResource Include="Images\menu_lolo080062k15.png" />
     <EmbeddedResource Include="Pages\ViewBuilders.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -209,18 +207,18 @@
     <EmbeddedResource Include="Pages\ViewAccount.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="images\menu_builders2.png" />
-    <EmbeddedResource Include="images\r2wire.jpg" />
-    <EmbeddedResource Include="images\menu_droids.png" />
-    <EmbeddedResource Include="images\menu_account.png" />
+    <EmbeddedResource Include="Images\menu_builders2.png" />
+    <EmbeddedResource Include="Images\r2wire.jpg" />
+    <EmbeddedResource Include="Images\menu_droids.png" />
+    <EmbeddedResource Include="Images\menu_account.png" />
     <EmbeddedResource Include="Pages\ViewAdminBuilders.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="images\menu_r2builders.png" />
+    <EmbeddedResource Include="Images\menu_r2builders.png" />
     <EmbeddedResource Include="Pages\PageCreateBuilder.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="images\astromech.png" />
+    <EmbeddedResource Include="Images\astromech.png" />
     <EmbeddedResource Include="Pages\ViewAdminUsers.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -236,28 +234,29 @@
     <EmbeddedResource Include="Pages\ViewFirstLoading.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="images\loadingScreen.png" />
-    <EmbeddedResource Include="images\menu_mycard.png" />
-    <EmbeddedResource Include="images\menu_newsOLD.png" />
-    <EmbeddedResource Include="images\menu_news.png" />
-    <EmbeddedResource Include="images\menu_planner.png" />
-    <EmbeddedResource Include="images\menu_eventsOLD.png" />
-    <EmbeddedResource Include="images\menu_events.png" />
-    <EmbeddedResource Include="images\menu_about.png" />
-    <EmbeddedResource Include="images\menu_aboutOLD.png" />
-    <EmbeddedResource Include="images\menu_calendar.png" />
-    <EmbeddedResource Include="images\menu_qrcode.png" />
-    <EmbeddedResource Include="images\menu_myrobots.png" />
-    <EmbeddedResource Include="images\menu_robots.png" />
-    <EmbeddedResource Include="images\menu_user.png" />
-    <EmbeddedResource Include="images\menu_buildersOLD.png" />
-    <EmbeddedResource Include="images\menu_builders.png" />
-    <EmbeddedResource Include="images\menu_adminusers.png" />
-    <EmbeddedResource Include="images\menu_builderOLD.png" />
-    <EmbeddedResource Include="images\menu_builder.png" />
-    <EmbeddedResource Include="images\menu_adminnews.png" />
-    <EmbeddedResource Include="images\menu_cards.png" />
-    <EmbeddedResource Include="images\menu_mynews.png" />
+    <EmbeddedResource Include="Images\loadingScreen.png" />
+    <EmbeddedResource Include="Images\menu_mycard.png" />
+    <EmbeddedResource Include="Images\menu_newsOLD.png" />
+    <EmbeddedResource Include="Images\menu_news.png" />
+    <EmbeddedResource Include="Images\menu_planner.png" />
+    <EmbeddedResource Include="Images\menu_eventsOLD.png" />
+    <EmbeddedResource Include="Images\menu_events.png" />
+    <EmbeddedResource Include="Images\menu_about.png" />
+    <EmbeddedResource Include="Images\menu_aboutOLD.png" />
+    <EmbeddedResource Include="Images\menu_calendar.png" />
+    <EmbeddedResource Include="Images\menu_qrcode.png" />
+    <EmbeddedResource Include="Images\menu_myrobots.png" />
+    <EmbeddedResource Include="Images\menu_robots.png" />
+    <EmbeddedResource Include="Images\menu_user.png" />
+    <EmbeddedResource Include="Images\menu_buildersOLD.png" />
+    <EmbeddedResource Include="Images\menu_builders.png" />
+    <EmbeddedResource Include="Images\menu_adminusers.png" />
+    <EmbeddedResource Include="Images\menu_builderOLD.png" />
+    <EmbeddedResource Include="Images\menu_builder.png" />
+    <EmbeddedResource Include="Images\menu_adminnews.png" />
+    <EmbeddedResource Include="Images\menu_cards.png" />
+    <EmbeddedResource Include="Images\menu_mynews.png" />
+    <EmbeddedResource Include="Images\closewindow.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

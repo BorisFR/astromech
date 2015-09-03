@@ -2,6 +2,7 @@
 using AstroBuilders.iOS;
 using Xamarin.Forms;
 using System.IO;
+using System.Threading.Tasks;
 
 [assembly: Dependency (typeof (Files))]
 
@@ -13,37 +14,41 @@ namespace AstroBuilders.iOS
 
 		public Files () { }
 
-		public bool IsExit(string name) {
+		private bool isExit(string name) {
 			string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 			string localFilename = name;
 			fileName = Path.Combine (documentsPath, localFilename);
 			return File.Exists (fileName);
 		}
 
-		public string ReadFile (string name) {
-			if (!IsExit (name))
+		public async Task<bool> IsExit(string name) {
+			return isExit (name);
+		}
+
+		public async Task<string> ReadFile (string name) {
+			if (!isExit (name))
 				return string.Empty;
 			return File.ReadAllText (fileName);
 		}
 
-		public byte[] ReadFileBytes (string name) {
-			if (!IsExit (name))
+		public async Task<byte[]> ReadFileBytes (string name) {
+			if (!isExit (name))
 				return null;
 			return File.ReadAllBytes (fileName);
 		}
 
-		public void SaveFile (string name, string data) {
+		public async Task SaveFile (string name, string data) {
 			DeleteFile (name);
 			File.WriteAllText (fileName, data);
 		}
 
-		public void SaveFile (string name, byte[] data) {
+		public async Task SaveFile (string name, byte[] data) {
 			DeleteFile (name);
 			File.WriteAllBytes (fileName, data);
 		}
 
-		public void DeleteFile(string name) {
-			if (!IsExit (name))
+		public async Task DeleteFile(string name) {
+			if (!isExit (name))
 				return;
 			File.Delete (fileName);
 		}

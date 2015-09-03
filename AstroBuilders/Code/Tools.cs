@@ -17,12 +17,22 @@ namespace AstroBuilders
 		public static event JobDone JobDone;
 		public static event JobDone DoneBatch;
 
+        public static void Trace(string text)
+        {
+            System.Diagnostics.Debug.WriteLine(text);
+        }
+
 		public static void DoInit() {
 		}
 
-		private static HttpClient httpClient {
+        private static HttpClient httpClient = new HttpClient();
+        
+        private static HttpClient theHttpClient
+        {
 			get{
-				HttpClient httpClient = new HttpClient ();
+                if (httpClient != null)
+                    return httpClient;
+                httpClient = new HttpClient();
 				httpClient.Timeout = new TimeSpan (0, 0, 0, 10, 500);
 				httpClient.DefaultRequestHeaders.ExpectContinue = false;
 				return httpClient;
@@ -30,11 +40,8 @@ namespace AstroBuilders
 		}
 
 
-		public static void DoDownload(string fileName) {
-			RealDownload (fileName);
-		}
-
-		private static async Task RealDownload(string fileName) {
+        public static async Task DoDownload(string fileName)
+        {
 			string result = string.Empty;
 			bool status = false;
 			try {
@@ -42,7 +49,7 @@ namespace AstroBuilders
 				if(fileName.Equals("users"))
 					url = url + "/" + Global.ConnectedUser.Token.ToString();
 				System.Diagnostics.Debug.WriteLine("Url: " + url);
-				result = await httpClient.GetStringAsync (url);
+				result = await theHttpClient.GetStringAsync (url);
 				status = true;
 			} catch (Exception err) {
 				System.Diagnostics.Debug.WriteLine ("ERROR: " + err.Message);
@@ -53,12 +60,8 @@ namespace AstroBuilders
 				DoneBatch (status, result);
 		}
 
-		public static void DoCheckUser(User user) {
-			RealDoCheckUser (user);
-		}
-
-
-		private static async Task RealDoCheckUser(User user) {
+        public static async Task DoCheckUser(User user)
+        {
 			string result = string.Empty;
 			bool status = false;
 			try {
@@ -68,7 +71,7 @@ namespace AstroBuilders
 				d.Add("login", Helper.Encrypt(JsonConvert.SerializeObject (user)));
 				HttpContent content = new FormUrlEncodedContent(d);
 
-				var response = await httpClient.PostAsync(url,content);
+				var response = await theHttpClient.PostAsync(url,content);
 				if(response.IsSuccessStatusCode) {
 				}
 				result = await response.Content.ReadAsStringAsync();
@@ -78,12 +81,9 @@ namespace AstroBuilders
 			}
 			JobDone (status, result);
 		}
-			
-		public static void DoCreateUser(User user) {
-			RealDoCreateUser (user);
-		}
 
-		private static async Task RealDoCreateUser(User user) {
+        public static async Task DoCreateUser(User user)
+        {
 			string result = string.Empty;
 			bool status = false;
 			try {
@@ -91,7 +91,7 @@ namespace AstroBuilders
 				Dictionary<string, string> d = new Dictionary<string, string>();
 				d.Add("id", Helper.Encrypt(JsonConvert.SerializeObject (user)));
 				HttpContent content = new FormUrlEncodedContent(d);
-				var response = await httpClient.PostAsync(url,content);
+				var response = await theHttpClient.PostAsync(url,content);
 				if(response.IsSuccessStatusCode) {
 				}
 				result = await response.Content.ReadAsStringAsync();
@@ -102,11 +102,8 @@ namespace AstroBuilders
 			JobDone (status, result);
 		}
 
-		public static void DoUpdateUser(User user) {
-			RealDoUpdateUser (user);
-		}
-
-		private static async Task RealDoUpdateUser(User user) {
+        public static async Task DoUpdateUser(User user)
+        {
 			string result = string.Empty;
 			bool status = false;
 			try {
@@ -115,7 +112,7 @@ namespace AstroBuilders
 				d.Add("id", Helper.Encrypt(JsonConvert.SerializeObject (user)));
 				d.Add("token", Global.ConnectedUser.Token.ToString());
 				HttpContent content = new FormUrlEncodedContent(d);
-				var response = await httpClient.PostAsync(url,content);
+				var response = await theHttpClient.PostAsync(url,content);
 				if(response.IsSuccessStatusCode) {
 				}
 				result = await response.Content.ReadAsStringAsync();
@@ -140,7 +137,7 @@ namespace AstroBuilders
 				d.Add("id", Helper.Encrypt(JsonConvert.SerializeObject (user)));
 				d.Add("token", Global.ConnectedUser.Token.ToString());
 				HttpContent content = new FormUrlEncodedContent(d);
-				var response = await httpClient.PostAsync(url,content);
+				var response = await theHttpClient.PostAsync(url,content);
 				if(response.IsSuccessStatusCode) {
 				}
 				result = await response.Content.ReadAsStringAsync();
@@ -164,7 +161,7 @@ namespace AstroBuilders
 				d.Add("id", Helper.Encrypt(JsonConvert.SerializeObject (builder)));
 				d.Add("token", Global.ConnectedUser.Token.ToString());
 				HttpContent content = new FormUrlEncodedContent(d);
-				var response = await httpClient.PostAsync(url,content);
+				var response = await theHttpClient.PostAsync(url,content);
 				if(response.IsSuccessStatusCode) {
 				}
 				result = await response.Content.ReadAsStringAsync();
@@ -188,7 +185,7 @@ namespace AstroBuilders
 				d.Add("id", Helper.Encrypt(JsonConvert.SerializeObject (exhibition)));
 				d.Add("token", Global.ConnectedUser.Token.ToString());
 				HttpContent content = new FormUrlEncodedContent(d);
-				var response = await httpClient.PostAsync(url,content);
+				var response = await theHttpClient.PostAsync(url,content);
 				if(response.IsSuccessStatusCode) {
 				}
 				result = await response.Content.ReadAsStringAsync();

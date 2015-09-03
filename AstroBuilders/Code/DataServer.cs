@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AstroBuilders
 {
@@ -11,9 +12,11 @@ namespace AstroBuilders
 		private static int count = 0;
 		private static IDataServer temp = null;
 
-		public static void AddToDo(IDataServer element) {
-			if (element.HasOldData) {
-				element.TriggerData (true, element.OldData);
+		public static async Task AddToDo(IDataServer element) {
+            var z = await element.HasOldData();
+			if (z) {
+                string x = await element.OldData();
+				element.TriggerData (true, x);
 				if (!element.ForceFreshData)
 					return;
 			}
@@ -31,7 +34,8 @@ namespace AstroBuilders
 			}
 		}
 
-		public static void Launch() {
+        public static void Launch()
+        {
 			System.Diagnostics.Debug.WriteLine ("************* Launching batch download");
 			DoJob ();
 		}

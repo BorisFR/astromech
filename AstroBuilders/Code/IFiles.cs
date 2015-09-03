@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace AstroBuilders
 {
 
 	public interface IFiles {
-		bool IsExit(string name);
-		string ReadFile (string name);
-		byte[] ReadFileBytes (string name);
-		void SaveFile (string name, string data);
-		void SaveFile (string name, byte[] data);
-		void DeleteFile(string name);
+		Task<bool> IsExit(string name);
+		Task<string> ReadFile (string name);
+		Task<byte[]> ReadFileBytes (string name);
+		Task SaveFile (string name, string data);
+        Task SaveFile(string name, byte[] data);
+        Task DeleteFile(string name);
 	}
 
 }

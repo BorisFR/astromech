@@ -8,10 +8,10 @@ using AstroBuilders.iOS;
 
 namespace AstroBuilders.iOS
 {
-	public static class ImageResizer : IImageResizer
+	public class ImageResizer : IImageResizer
 	{
 
-		public static byte[] ResizeImage (byte[] imageData, float width, float height)
+		public byte[] ResizeImage (byte[] imageData, float width, float height)
 		{
 			UIImage originalImage = ImageFromByteArray (imageData);
 			float oldWidth = (float)originalImage.Size.Width;
@@ -46,7 +46,7 @@ namespace AstroBuilders.iOS
 			}
 		}
 
-		public static UIKit.UIImage ImageFromByteArray(byte[] data)
+		private static UIKit.UIImage ImageFromByteArray(byte[] data)
 		{
 			if (data == null) {
 				return null;

@@ -7,9 +7,9 @@ using AstroBuilders.Droid;
 
 namespace AstroBuilders.Droid
 {
-	public static class ImageResizer : IImageResizer
+	public class ImageResizer : IImageResizer
 	{
-		public static byte[] ResizeImage (byte[] imageData, float width, float height)
+		public byte[] ResizeImage (byte[] imageData, float width, float height)
 		{
 			// Load the bitmap
 			Bitmap originalImage = BitmapFactory.DecodeByteArray (imageData, 0, imageData.Length);

@@ -43,11 +43,18 @@ namespace AstroBuilders
 			}
 		}
 
-		public static void RefreshAllText(){
+		public static async void RefreshAllText(){
 			LoadState ();
-			if (Global.Files.IsExit (fileName)) {
+            var z = await Global.Files.IsExit(fileName);
+			if (z) {
 				System.Diagnostics.Debug.WriteLine ("Read data from file: " + fileName);
-				ProvideText (Global.Files.ReadFile (fileName));
+                string data = await Global.Files.ReadFile(fileName);
+                if (data == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("No data");
+                    return;
+                }
+				ProvideText (data);
 			}
 		}
 
@@ -60,8 +67,8 @@ namespace AstroBuilders
 
 		public static bool IsTextReady { get { if(allText.Count > 0) return true; return false; } }
 
-		public static void NewTranslation(string data) {
-			Global.Files.SaveFile (fileName, data);
+		public static async void NewTranslation(string data) {
+			await Global.Files.SaveFile (fileName, data);
 			ProvideText (data);
 		}
 

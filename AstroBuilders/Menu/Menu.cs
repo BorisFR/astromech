@@ -38,7 +38,9 @@ namespace AstroBuilders
 				if (Icon.Length == 0) {
 					return null;
 				}
-				return ImageSource.FromResource(string.Format("AstroBuilders.images.menu_{0}.png",Icon)); 
+                if(Device.OS == TargetPlatform.Windows)
+                    return ImageSource.FromResource(string.Format("AstroBuilders.Win.Images.menu_{0}.png", Icon));
+                return ImageSource.FromResource(string.Format("AstroBuilders.Images.menu_{0}.png", Icon)); 
 			}
 		}
 

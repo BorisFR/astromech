@@ -18,7 +18,7 @@ namespace AstroBuilders
 		public PageCreateExhibition ()
 		{
 			InitializeComponent ();
-
+            
 			var tapGestureRecognizer = new TapGestureRecognizer();
 			tapGestureRecognizer.Tapped += (s, e) => {
 				Navigation.PopModalAsync ();

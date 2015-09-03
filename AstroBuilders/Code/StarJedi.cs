@@ -10,7 +10,10 @@ namespace AstroBuilders
 		public StarJedi()
 		{
 			FontAttributes = FontAttributes.None;
-			FontFamily = Typeface; 
+            if (DeviceInfo.Plugin.CrossDeviceInfo.Current.Platform == DeviceInfo.Plugin.Abstractions.Platform.Windows)
+                FontFamily = @"\Assets\Star Jedi.ttf#Star Jedi";
+            else
+                FontFamily = Typeface; 
 		}
 
 		/*

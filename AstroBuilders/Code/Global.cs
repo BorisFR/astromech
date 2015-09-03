@@ -73,6 +73,8 @@ namespace AstroBuilders
 		//public static bool FirstLoadingError = false;
 
 		public static async void DoInit() {
+			if (Files != null)
+				return;
 			Files = DependencyService.Get<IFiles> ();
 			Notificator = DependencyService.Get<IToastNotificator>();
 			Vibrator = CrossVibrate.Current;
@@ -220,8 +222,10 @@ namespace AstroBuilders
 		public static void StartingBeaconsDetection() {
 			BeaconsTools.Founded += BeaconsTools_Founded;
 			Dictionary<string, string> info = new Dictionary<string, string> ();
+			try{
 			info.Add ("R2BUILDERS", "74278BDA-B644-4520-8F0C-720EAF059935"); // HM-10 Default = Apple Air Locate
-			info.Add ("R2BUILDERS", "B9407F30-F5F8-466E-AFF9-25556B57FE6D"); // Estimote Maxxing
+			info.Add ("estimote", "B9407F30-F5F8-466E-AFF9-25556B57FE6D"); // Estimote Maxxing
+			}catch(Exception) {}
 			BeaconsTools.Init (info);
 			// 74278BDA-B644-4520-8F0C-720EAF059935 => HM-10 Default = Apple Air Locate
 		}

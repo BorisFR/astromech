@@ -13,12 +13,24 @@ namespace AstroBuilders
 		{
 			if (Source == null)
 				return null;
-
+            if (Device.OS == TargetPlatform.Windows)
+            {
+                try
+                {
+                    var imageSource = ImageSource.FromResource("AstroBuilders.Win.Images." + Source);
+                    return imageSource;
+                }
+                catch (Exception err)
+                {
+                    System.Diagnostics.Debug.WriteLine("********** ERROR: " + err.Message);
+                }
+                return null;
+            }
 			try {
-				ImageSource imageSource = ImageSource.FromResource("AstroBuilders.images." + Source);
+				var imageSource = ImageSource.FromResource("AstroBuilders.Images." + Source);
 				return imageSource;
 			} catch(Exception err) {
-				System.Diagnostics.Debug.WriteLine ("ERROR: " + err.Message);
+				System.Diagnostics.Debug.WriteLine ("********** ERROR: " + err.Message);
 			}
 			return null;
 		}

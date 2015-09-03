@@ -22,81 +22,104 @@ namespace AstroBuilders
 		public ViewFirstLoading ()
 		{
 			InitializeComponent ();
+            DoStep();
+            //Launch();
+            Tools.Trace("ViewFirstLoading done.");
+        }
 
-			DoStep ();
-		}
+        private async void Launch()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+                {
+                    DoStep();
+                });
+        }
 
 		private List<String> status = new List<string>();
 		private List<int> stepNumber = new List<int>();
 
-		private void ShowStatus(bool uiThread = false) {
-			try{
-			if (uiThread) {
-				int sn = stepNumber [0];
-				string temp = status[0];
-				stepNumber.RemoveAt(0);
-				status.RemoveAt(0);
-				System.Diagnostics.Debug.WriteLine("Step: " + sn.ToString() + " " + temp);
-				progressLabel.Text = temp;
-				return;
-			}
-			Device.BeginInvokeOnMainThread (() => {
-				int sn = stepNumber [0];
-				string temp = status[0];
-				stepNumber.RemoveAt(0);
-				status.RemoveAt(0);
-				System.Diagnostics.Debug.WriteLine("Step: " + sn.ToString() + " " + temp);
-				progressLabel.Text = temp;
-			});
-			}catch(Exception){
-			}
-		}
+        private void ShowStatus(bool uiThread = false)
+        {
+            try
+            {
+                if (uiThread)
+                {
+                    int sn = stepNumber[0];
+                    string temp = status[0];
+                    stepNumber.RemoveAt(0);
+                    status.RemoveAt(0);
+                    progressLabel.Text = temp;
+                    Tools.Trace("Step: " + sn.ToString() + " " + temp);
+                    return;
+                }
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    int sn = stepNumber[0];
+                    string temp = status[0];
+                    stepNumber.RemoveAt(0);
+                    status.RemoveAt(0);
+                    progressLabel.Text = temp;
+                    Tools.Trace("Step: " + sn.ToString() + " " + temp);
+                });
+            }
+            catch (Exception err)
+            {
+                Tools.Trace("ShowStatus: " + err.Message);
+            }
+        }
 
-		private void SetLabelStage(Label ll, Label ll1, Label ll2, ProcessStep step) {
-			string text = "^";
-			Color c = Color.Accent;
-			string progressTextBase = step.ToString ();
-			switch (step) {
-			case ProcessStep.Waiting:
-				text = "^";
-				c = Global.ColorBoxLowText;
-				break;
-			case ProcessStep.Loading:
-				text = "&";
-				c = Global.ColorBoxHighText;
-				break;
-			case ProcessStep.Processing:
-				text = "#";
-				c = Global.ColorBoxHighText;
-				break;
-			case ProcessStep.Ready:
-				text = "$";
-				c = Global.ColorBoxText;
-				break;
-			case ProcessStep.Broken:
-				text = "*";
-				c = Global.ColorBoxText;
-				break;
-			}
-			if (!isFinish) {
-				stepNumber.Add (this.step);
-				status.Add (progressTextBase);
-			}
-			Device.BeginInvokeOnMainThread (() => {
-				ShowStatus(true);
-				ll.Text = text;
-				ll.TextColor = c;
-				ll1.TextColor = c;
-				ll2.TextColor = c;
-			});
-		}
+        private void SetLabelStage(Label ll, Label ll1, Label ll2, ProcessStep step)
+        {
+            string text = "^";
+            Color c = Color.Accent;
+            string progressTextBase = step.ToString();
+            switch (step)
+            {
+                case ProcessStep.Waiting:
+                    text = "^";
+                    c = Global.ColorBoxLowText;
+                    break;
+                case ProcessStep.Loading:
+                    text = "&";
+                    c = Global.ColorBoxHighText;
+                    break;
+                case ProcessStep.Processing:
+                    text = "#";
+                    c = Global.ColorBoxHighText;
+                    break;
+                case ProcessStep.Ready:
+                    text = "$";
+                    c = Global.ColorBoxText;
+                    break;
+                case ProcessStep.Broken:
+                    text = "*";
+                    c = Global.ColorBoxText;
+                    break;
+            }
+            if (!isFinish)
+            {
+                stepNumber.Add(this.step);
+                status.Add(progressTextBase);
+            }
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                ShowStatus(true);
+                ll.Text = text;
+                ll.TextColor = c;
+                ll1.TextColor = c;
+                ll2.TextColor = c;
+            });
+        }
 
-		private async void DoStep() {
-			if (isFirst) {
-				isFirst = false;
-				await Task.Delay (500);
-			} else
-				await Task.Delay (30);
+		private async Task DoStep() {
+            Tools.Trace("Doing step: " + step);
+            if (isFirst)
+            {
+                isFirst = false;
+                await Task.Delay(500);
+            }
+            else
+                await Task.Delay(30);
 
 			switch (step) {
 			case 0:
@@ -143,7 +166,7 @@ namespace AstroBuilders
 				if (!isFinish) {
 					isFinish = true;
 					step++;
-					DoStep ();
+					await DoStep ();
 				}
 				break;
 			case 10:
@@ -154,6 +177,7 @@ namespace AstroBuilders
 				Global.StartingBeaconsDetection ();
 				isFinish = true;
 				Global.MainAppPage.IsPresented = true;
+                Tools.Trace("*******************************");
 				break;
 			}
 		}
@@ -164,25 +188,30 @@ namespace AstroBuilders
 				SetLabelStage (l1, l11, l12, ProcessStep.Ready);
 				if (step == 0)
 					step++;
-				DoStep ();
+				await DoStep ();
 				return;
 			}
 			System.Net.Http.HttpClient httpClient = new System.Net.Http.HttpClient ();
 			httpClient.Timeout = new TimeSpan (0, 0, 0, 10, 500);
 			httpClient.DefaultRequestHeaders.ExpectContinue = false;
 			string url = string.Format ("{0}Content/Languages/{1}.txt", Global.BaseUrl, Translation.Language);
-			//System.Diagnostics.Debug.WriteLine ("Url: " + url);
+            //Tools.Trace("Url: " + url);
 			string ImmediateResult = string.Empty;
-			try {
+            Tools.Trace("Loading : " + url);
+            try
+            {
 				ImmediateResult = await httpClient.GetStringAsync (url);
-			} catch (Exception err) {
-				System.Diagnostics.Debug.WriteLine ("Loading language error: " + err.Message);
-				try {
-					ImmediateResult = await httpClient.GetStringAsync (url);
-				} catch (Exception err2) {
-					System.Diagnostics.Debug.WriteLine ("Second Loading language error: " + err2.Message);
+                //Tools.Trace("Result : " + ImmediateResult);
+            }
+            catch (Exception err)
+            {
+                Tools.Trace("Loading language error: " + err.Message);
+                //try {
+                //    ImmediateResult = await httpClient.GetStringAsync (url);
+                //} catch (Exception err2) {
+                //    Tools.Trace("Second Loading language error: " + err2.Message);
 					SetLabelStage (l1, l11, l12, ProcessStep.Broken);
-				}
+                //}
 			}
 			if (ImmediateResult.Length > 0) {
 				SetLabelStage (l1, l11, l12, ProcessStep.Processing);
@@ -191,85 +220,108 @@ namespace AstroBuilders
 			}
 			if (step == 0)
 			step++;
-			DoStep ();
+			await DoStep ();
 		}
 
-		private async Task DoProcessAllLanguages() {
-			IDataServer allLanguages = new IDataServer ("languages");
-			if (allLanguages.HasOldData) {
-				SetLabelStage (l2, l21, l22, ProcessStep.Processing);
-				SerializableDictionary<string, string> res = null;
-				res =	Newtonsoft.Json.JsonConvert.DeserializeObject<SerializableDictionary<string, string>> (Helper.Decrypt (allLanguages.OldData));
-				Translation.AllLanguages.Clear ();
-				foreach (KeyValuePair<string, string> kvp in res) {
-					Translation.AllLanguages.Add (kvp.Key, kvp.Value);
-				}
-				SetLabelStage (l2, l21, l22, ProcessStep.Ready);
-				if (step == 1)
-				step++;
-				DoStep ();
-				return;
-			}
-			allLanguages.DataRefresh += delegate(bool status, string result) {
-				SetLabelStage (l2, l21, l22, ProcessStep.Processing);
-				System.Diagnostics.Debug.WriteLine ("Status: " + allLanguages.FileName + "=" + status);
-				if (!status) {
-					SetLabelStage (l2, l21, l22, ProcessStep.Broken);
-					if (step == 1){
-						step++;
-						DoStep ();
-					}
-					return;
-				}
-				System.Diagnostics.Debug.WriteLine ("Result: " + Helper.Decrypt (result));
-				SerializableDictionary<string, string> res = null;
-				try {
-					res =	Newtonsoft.Json.JsonConvert.DeserializeObject<SerializableDictionary<string, string>> (Helper.Decrypt (result));
-				} catch (Exception error) {
-					System.Diagnostics.Debug.WriteLine ("ERROR: " + error.Message);
-					SetLabelStage (l2, l21, l22, ProcessStep.Broken);
-					if (step == 1)
-					step++;
-					DoStep ();
-					return;
-				}
-				try {
-					Translation.AllLanguages.Clear ();
-					foreach (KeyValuePair<string, string> kvp in res) {
-						Translation.AllLanguages.Add (kvp.Key, kvp.Value);
-					}
-					SetLabelStage (l2, l21, l22, ProcessStep.Ready);
-					if (step == 1)
-					step++;
-					DoStep ();
-					return;
-				} catch (Exception err) { 
-					System.Diagnostics.Debug.WriteLine ("** ERROR: " + err.Message);
-					SetLabelStage (l2, l21, l22, ProcessStep.Broken);
-					if (step == 1)
-					step++;
-					DoStep ();
-					return;
-				}
-			};
-			DataServer.AddToDo (allLanguages);
-			DataServer.Launch ();
-		}
+        IDataServer allLanguages = new IDataServer("languages");
+        private async Task DoProcessAllLanguages()
+        {
+            var z = await allLanguages.HasOldData();
+            if (z)
+            {
+                SetLabelStage(l2, l21, l22, ProcessStep.Processing);
+                SerializableDictionary<string, string> res = null;
+                string x = await allLanguages.OldData();
+                if (x != null && x.Length > 0)
+                {
+                    res = Newtonsoft.Json.JsonConvert.DeserializeObject<SerializableDictionary<string, string>>(Helper.Decrypt(x));
+                    Translation.AllLanguages.Clear();
+                    foreach (KeyValuePair<string, string> kvp in res)
+                    {
+                        Translation.AllLanguages.Add(kvp.Key, kvp.Value);
+                    }
+                    SetLabelStage(l2, l21, l22, ProcessStep.Ready);
+                    if (step == 1)
+                        step++;
+                    await DoStep();
+                    return;
+                }
+            }
+            allLanguages.DataRefresh += delegate(bool status, string result)
+            {
+                SetLabelStage(l2, l21, l22, ProcessStep.Processing);
+                Tools.Trace("Status: " + allLanguages.FileName + "=" + status);
+                if (!status)
+                {
+                    SetLabelStage(l2, l21, l22, ProcessStep.Broken);
+                    if (step == 1)
+                    {
+                        step++;
+                        DoStep();
+                    }
+                    return;
+                }
+                Tools.Trace("Result: " + Helper.Decrypt(result));
+                SerializableDictionary<string, string> res = null;
+                try
+                {
+                    res = Newtonsoft.Json.JsonConvert.DeserializeObject<SerializableDictionary<string, string>>(Helper.Decrypt(result));
+                }
+                catch (Exception error)
+                {
+                    Tools.Trace("ERROR: " + error.Message);
+                    SetLabelStage(l2, l21, l22, ProcessStep.Broken);
+                    if (step == 1)
+                        step++;
+                    DoStep();
+                    return;
+                }
+                try
+                {
+                    Translation.AllLanguages.Clear();
+                    foreach (KeyValuePair<string, string> kvp in res)
+                    {
+                        Translation.AllLanguages.Add(kvp.Key, kvp.Value);
+                    }
+                    SetLabelStage(l2, l21, l22, ProcessStep.Ready);
+                    if (step == 1)
+                        step++;
+                    DoStep();
+                    return;
+                }
+                catch (Exception err)
+                {
+                    Tools.Trace("** ERROR: " + err.Message);
+                    SetLabelStage(l2, l21, l22, ProcessStep.Broken);
+                    if (step == 1)
+                        step++;
+                    DoStep();
+                    return;
+                }
+            };
+            await DataServer.AddToDo(allLanguages);
+            DataServer.Launch();
+        }
 
-		private async Task DoProcessCountries() {
-			IDataServer x = new IDataServer ("country", true);
-			if (x.HasOldData) {
+        IDataServer country = new IDataServer("country", true);
+        private async Task DoProcessCountries()
+        {
+            var z = await country.HasOldData();
+            if (z)
+            {
 				SetLabelStage (l3, l31, l32, ProcessStep.Processing);
-				Global.AllCountry.LoadFromJson(Helper.Decrypt(x.OldData));
+                var x = await country.OldData();
+                Global.AllCountry.LoadFromJson(Helper.Decrypt(x));
 				SetLabelStage (l3, l31, l32, ProcessStep.Ready);
 				if (step == 2)
 				step++;
 				DoStep ();
 				return;
 			}
-			x.DataRefresh += delegate(bool status, string result) {
+            country.DataRefresh += delegate(bool status, string result)
+            {
 				SetLabelStage (l3, l31, l32, ProcessStep.Processing);
-				System.Diagnostics.Debug.WriteLine ("Status: " + x.FileName + "=" + status);
+                Tools.Trace("Status: " + country.FileName + "=" + status);
 				if (!status) {
 					SetLabelStage (l3, l31, l32, ProcessStep.Broken);
 					if (step == 2){
@@ -293,15 +345,18 @@ namespace AstroBuilders
 					return;
 				}
 			};
-			DataServer.AddToDo (x);
+            DataServer.AddToDo(country);
 			DataServer.Launch ();
 		}
 
 		private async Task DoProcessClubs() {
 			IDataServer x = new IDataServer ("clubs", true);
-			if (x.HasOldData) {
+            var a = await x.HasOldData();
+            if (a)
+            {
 				SetLabelStage (l4, l41, l42, ProcessStep.Processing);
-				Global.AllClubs.LoadFromJson(Helper.Decrypt(x.OldData));
+                var z = await x.OldData();
+				Global.AllClubs.LoadFromJson(Helper.Decrypt(z));
 				SetLabelStage (l4, l41, l42, ProcessStep.Ready);
 				if (step == 3)
 				step++;
@@ -310,7 +365,7 @@ namespace AstroBuilders
 			}
 			x.DataRefresh += delegate(bool status, string result) {
 				SetLabelStage (l4, l41, l42, ProcessStep.Processing);
-				System.Diagnostics.Debug.WriteLine ("Status: " + x.FileName + "=" + status);
+                Tools.Trace("Status: " + x.FileName + "=" + status);
 				if (!status) {
 					SetLabelStage (l4, l41, l42, ProcessStep.Broken);
 					if (step == 3) {
@@ -340,9 +395,12 @@ namespace AstroBuilders
 
 		private async Task DoProcessAllBuilders() {
 			IDataServer x = new IDataServer ("builders", true);
-			if (x.HasOldData) {
+            var a = await x.HasOldData();
+            if (a)
+            {
 				SetLabelStage (l5, l51, l52, ProcessStep.Processing);
-				Global.AllBuilders.LoadFromJson(Helper.Decrypt(x.OldData));
+                var z = await x.OldData();
+                Global.AllBuilders.LoadFromJson(Helper.Decrypt(z));
 				SetLabelStage (l5, l51, l52, ProcessStep.Ready);
 				if (step == 4)
 				step++;
@@ -351,7 +409,7 @@ namespace AstroBuilders
 			}
 			x.DataRefresh += delegate(bool status, string result) {
 				SetLabelStage (l5, l51, l52, ProcessStep.Processing);
-				System.Diagnostics.Debug.WriteLine ("Status: " + x.FileName + "=" + status);
+				Tools.Trace("Status: " + x.FileName + "=" + status);
 				if (!status) {
 					SetLabelStage (l5, l51, l52, ProcessStep.Broken);
 					if (step == 4) {
@@ -381,7 +439,9 @@ namespace AstroBuilders
 
 		private async Task DoProcessAllDroids() {
 			IDataServer x = new IDataServer ("droids", true);
-			if (x.HasOldData) {
+            var a = await x.HasOldData();
+            if (a)
+            {
 				SetLabelStage (l6, l61, l62, ProcessStep.Processing);
 				//Global.AllBuilders.LoadFromJson(Helper.Decrypt(x.OldData));
 				SetLabelStage (l6, l61, l62, ProcessStep.Ready);
@@ -392,7 +452,7 @@ namespace AstroBuilders
 			}
 			x.DataRefresh += delegate(bool status, string result) {
 				SetLabelStage (l6, l61, l62, ProcessStep.Processing);
-				System.Diagnostics.Debug.WriteLine ("Status: " + x.FileName + "=" + status);
+				Tools.Trace("Status: " + x.FileName + "=" + status);
 				if (!status) {
 					SetLabelStage (l6, l61, l62, ProcessStep.Broken);
 					if (step == 5) {
@@ -421,9 +481,12 @@ namespace AstroBuilders
 
 		private async Task DoProcessAllExhibitions() {
 			IDataServer x = new IDataServer ("exhibitions", true);
-			if (x.HasOldData) {
+            var a = await x.HasOldData();
+            if (a)
+            {
 				SetLabelStage (l7, l71, l72, ProcessStep.Processing);
-				Global.AllExhibitions.LoadFromJson(Helper.Decrypt(x.OldData));
+                var z = await x.OldData();
+                Global.AllExhibitions.LoadFromJson(Helper.Decrypt(z));
 				SetLabelStage (l7, l71, l72, ProcessStep.Ready);
 				if (step == 6)
 				step++;
@@ -432,7 +495,7 @@ namespace AstroBuilders
 			}
 			x.DataRefresh += delegate(bool status, string result) {
 				SetLabelStage (l7, l71, l72, ProcessStep.Processing);
-				System.Diagnostics.Debug.WriteLine ("Status: " + x.FileName + "=" + status);
+				Tools.Trace("Status: " + x.FileName + "=" + status);
 				if (!status) {
 					SetLabelStage (l7, l71, l72, ProcessStep.Broken);
 					if (step == 6) {
@@ -462,9 +525,12 @@ namespace AstroBuilders
 
 		private async Task DoProcessAllCards() {
 			IDataServer x = new IDataServer ("cards", true);
-			if (x.HasOldData) {
+            var a = await x.HasOldData();
+            if (a)
+            {
 				SetLabelStage (l8, l81, l82, ProcessStep.Processing);
-				Global.AllCards.LoadFromJson(Helper.Decrypt(x.OldData));
+                var z = await x.OldData();
+                Global.AllCards.LoadFromJson(Helper.Decrypt(z));
 				SetLabelStage (l8, l81, l82, ProcessStep.Ready);
 				if (step == 7)
 				step++;
@@ -473,7 +539,7 @@ namespace AstroBuilders
 			}
 			x.DataRefresh += delegate(bool status, string result) {
 				SetLabelStage (l8, l81, l82, ProcessStep.Processing);
-				System.Diagnostics.Debug.WriteLine ("Status: " + x.FileName + "=" + status);
+				Tools.Trace("Status: " + x.FileName + "=" + status);
 				if (!status) {
 					SetLabelStage (l8, l81, l82, ProcessStep.Broken);
 					if (step == 7) {
@@ -503,9 +569,12 @@ namespace AstroBuilders
 
 		private async Task DoProcessAllNews() {
 			IDataServer x = new IDataServer ("news", true);
-			if (x.HasOldData) {
+            var a = await x.HasOldData();
+            if (a)
+            {
 				SetLabelStage (l9, l91, l92, ProcessStep.Processing);
-				Global.AllNews.LoadFromJson(Helper.Decrypt(x.OldData));
+                var z = await x.OldData();
+				Global.AllNews.LoadFromJson(Helper.Decrypt(z));
 				PopulateNews ();
 				Global.AllNews.Refresh ();
 				SetLabelStage (l9, l91, l92, ProcessStep.Ready);
@@ -516,7 +585,7 @@ namespace AstroBuilders
 			}
 			x.DataRefresh += delegate(bool status, string result) {
 				SetLabelStage (l9, l91, l92, ProcessStep.Processing);
-				System.Diagnostics.Debug.WriteLine ("Status: " + x.FileName + "=" + status);
+				Tools.Trace("Status: " + x.FileName + "=" + status);
 				if (!status) {
 					SetLabelStage (l9, l91, l92, ProcessStep.Broken);
 					if (step == 8) {

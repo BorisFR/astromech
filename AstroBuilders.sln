@@ -17,14 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroWeb", "AstroWeb\AstroW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroBuilders.Win", "Win8Store\AstroBuilders.Win\AstroBuilders.Win.csproj", "{CE8EB18B-F4F9-4020-8810-D1DCC80D59B4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AstroBuilders.WinUni", "AstroBuilders.WinUni", "{CD6E2D4F-859D-42A0-84C1-A53C7F42DFD9}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AstroBuilders.WinUni.Shared", "WinUni\AstroBuilders.WinUni\AstroBuilders.WinUni.Shared\AstroBuilders.WinUni.Shared.shproj", "{C0A28692-C4ED-4488-9975-6807A182D3AD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroBuilders.WinUni.Windows", "WinUni\AstroBuilders.WinUni\AstroBuilders.WinUni.Windows\AstroBuilders.WinUni.Windows.csproj", "{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroBuilders.WinUni.WindowsPhone", "WinUni\AstroBuilders.WinUni\AstroBuilders.WinUni.WindowsPhone\AstroBuilders.WinUni.WindowsPhone.csproj", "{43AA87A6-4081-4B5A-B688-06DF5A5F5773}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,40 +35,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|ARM.ActiveCfg = Debug|ARM
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|ARM.Build.0 = Debug|ARM
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|ARM.Deploy.0 = Debug|ARM
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|x64.ActiveCfg = Debug|x64
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|x64.Build.0 = Debug|x64
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|x64.Deploy.0 = Debug|x64
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|x86.ActiveCfg = Debug|x86
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|x86.Build.0 = Debug|x86
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Debug|x86.Deploy.0 = Debug|x86
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|ARM.ActiveCfg = Release|ARM
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|ARM.Build.0 = Release|ARM
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|ARM.Deploy.0 = Release|ARM
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|Mixed Platforms.Build.0 = Release|x86
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|Mixed Platforms.Deploy.0 = Release|x86
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|x64.ActiveCfg = Release|x64
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|x64.Build.0 = Release|x64
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|x64.Deploy.0 = Release|x64
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|x86.ActiveCfg = Release|x86
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|x86.Build.0 = Release|x86
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985}.Release|x86.Deploy.0 = Release|x86
 		{1CC86E10-663E-4344-AEE2-70FAB906E430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1CC86E10-663E-4344-AEE2-70FAB906E430}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CC86E10-663E-4344-AEE2-70FAB906E430}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -121,36 +79,6 @@ Global
 		{39B91D7E-CB76-4AE4-8D64-F6F29B434B92}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{39B91D7E-CB76-4AE4-8D64-F6F29B434B92}.Release|x64.ActiveCfg = Release|Any CPU
 		{39B91D7E-CB76-4AE4-8D64-F6F29B434B92}.Release|x86.ActiveCfg = Release|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|ARM.ActiveCfg = Debug|ARM
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|ARM.Build.0 = Debug|ARM
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|ARM.Deploy.0 = Debug|ARM
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|x86.ActiveCfg = Debug|x86
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|x86.Build.0 = Debug|x86
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Debug|x86.Deploy.0 = Debug|x86
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|ARM.ActiveCfg = Release|ARM
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|ARM.Build.0 = Release|ARM
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|ARM.Deploy.0 = Release|ARM
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|Mixed Platforms.Build.0 = Release|x86
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|Mixed Platforms.Deploy.0 = Release|x86
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|x64.ActiveCfg = Release|Any CPU
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|x86.ActiveCfg = Release|x86
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|x86.Build.0 = Release|x86
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773}.Release|x86.Deploy.0 = Release|x86
 		{67E3968E-A96A-4AD4-A0E9-6BF2D0728C64}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
 		{67E3968E-A96A-4AD4-A0E9-6BF2D0728C64}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
 		{67E3968E-A96A-4AD4-A0E9-6BF2D0728C64}.Debug|ARM.ActiveCfg = Debug|iPhone
@@ -276,10 +204,13 @@ Global
 		{DE1DC86E-2F1B-4EC6-A5B1-81D61786E104}.Release|x64.ActiveCfg = Release|Any CPU
 		{DE1DC86E-2F1B-4EC6-A5B1-81D61786E104}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{C0A28692-C4ED-4488-9975-6807A182D3AD} = {CD6E2D4F-859D-42A0-84C1-A53C7F42DFD9}
-		{0A1B9FFF-862E-4101-B4EF-8EE6F297B985} = {CD6E2D4F-859D-42A0-84C1-A53C7F42DFD9}
-		{43AA87A6-4081-4B5A-B688-06DF5A5F5773} = {CD6E2D4F-859D-42A0-84C1-A53C7F42DFD9}
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		description = AstroBuilders
+		version = 0.2
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		WinUni\AstroBuilders.WinUni\AstroBuilders.WinUni.Shared\AstroBuilders.WinUni.Shared.projitems*{0a1b9fff-862e-4101-b4ef-8ee6f297b985}*SharedItemsImports = 4
