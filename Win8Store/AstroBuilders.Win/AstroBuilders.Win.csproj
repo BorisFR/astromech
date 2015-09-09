@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup> 
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CE8EB18B-F4F9-4020-8810-D1DCC80D59B4}</ProjectGuid>
@@ -123,6 +123,10 @@
     <Content Include="Assets\TIE-Wing.ttf" />
     <None Include="AstroBuilders.Win_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="Assets\astromech_120.png" />
+    <None Include="Assets\astromech_150.png" />
+    <None Include="Assets\astromech_210.png" />
+    <None Include="Assets\astromech_270.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.scale-100.png" />

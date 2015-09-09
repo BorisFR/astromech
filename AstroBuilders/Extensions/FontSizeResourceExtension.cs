@@ -53,7 +53,7 @@ namespace AstroBuilders
                         case TargetIdiom.Phone:
                             return CacheFontSizeLarge;
                         case TargetIdiom.Tablet:
-                            CacheFontSizeLarge = 22; // default=32
+                            CacheFontSizeLarge = 24; // default=32
                             System.Diagnostics.Debug.WriteLine("*** FontSizeLarge change to=" + CacheFontSizeLarge.ToString());
                             return CacheFontSizeLarge;
                         case TargetIdiom.Desktop:
@@ -116,7 +116,7 @@ namespace AstroBuilders
                         case TargetIdiom.Phone:
                             return CacheFontSizeMedium;
                         case TargetIdiom.Tablet:
-                            CacheFontSizeMedium = 18; // default=22
+                            CacheFontSizeMedium = 20; // default=22
                             System.Diagnostics.Debug.WriteLine("*** FontSizeMedium change to=" + CacheFontSizeMedium.ToString());
                             return CacheFontSizeMedium;
                         case TargetIdiom.Desktop:
@@ -179,7 +179,7 @@ namespace AstroBuilders
                         case TargetIdiom.Phone:
                             return CacheFontSizeSmall;
                         case TargetIdiom.Tablet:
-                            CacheFontSizeSmall = 14; // default=18
+                            CacheFontSizeSmall = 18; // default=18
                             System.Diagnostics.Debug.WriteLine("*** FontSizeSmall change to=" + CacheFontSizeSmall.ToString());
                             return CacheFontSizeSmall;
                         case TargetIdiom.Desktop:
@@ -242,7 +242,7 @@ namespace AstroBuilders
                         case TargetIdiom.Phone:
                             return CacheFontSizeMicro;
                         case TargetIdiom.Tablet:
-                            CacheFontSizeMicro = 12; // default=15
+                            CacheFontSizeMicro = 16; // default=15
                             System.Diagnostics.Debug.WriteLine("*** FontSizeMicro change to=" + CacheFontSizeMicro.ToString());
                             return CacheFontSizeMicro;
                         case TargetIdiom.Desktop:
@@ -305,10 +305,10 @@ namespace AstroBuilders
                     switch (Device.Idiom)
                     {
                         case TargetIdiom.Phone:
-                            CacheFontSizeDefault = 18; // default=14
-                            System.Diagnostics.Debug.WriteLine("*** FontSizeDefault change to=" + CacheFontSizeDefault);
                             return CacheFontSizeDefault;
                         case TargetIdiom.Tablet:
+                            CacheFontSizeDefault = 20; // default=14
+                            System.Diagnostics.Debug.WriteLine("*** FontSizeDefault change to=" + CacheFontSizeDefault);
                             return CacheFontSizeDefault;
                         case TargetIdiom.Desktop:
                             return CacheFontSizeDefault;
