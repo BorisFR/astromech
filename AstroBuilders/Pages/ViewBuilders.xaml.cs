@@ -10,9 +10,11 @@ namespace AstroBuilders
 		public ViewBuilders ()
 		{
 			InitializeComponent ();
+
+			theContent.Content = new AppearingText (Translation.GetString ("ViewBuildersTitle"));
 			theList.Padding = new Thickness (0);
 			var x = new News { Title = "person " + Global.AllNews.Collection.Count };
-			Global.AllNews.Add(x);
+			Global.AllNews.Add (x);
 			theList.ItemsSource = Global.AllBuilders.Collection;
 		}
 
@@ -20,18 +22,18 @@ namespace AstroBuilders
 		{
 			Button button = sender as Button;
 			Guid param = (Guid)button.CommandParameter;
-			Builder b = (Builder)Global.AllBuilders.GetByGuid<Builder>(param);
+			Builder b = (Builder)Global.AllBuilders.GetByGuid<Builder> (param);
 			Global.CurrentBuilder = b;
 			//System.Diagnostics.Debug.WriteLine ("Clicked: " + param.ToString() + "=" + b.NickName);
 			//Club c = (Club)Global.AllClubs.GetByGuid<Club>(b.IdClub);
 			//System.Diagnostics.Debug.WriteLine ("Club: " + c.Title);
 			Navigation.PushModalAsync (new PageBuilder (), true);
 		}
-			
-		private void Button_OnClicked(object sender, EventArgs e)
+
+		private void Button_OnClicked (object sender, EventArgs e)
 		{
 			var x = new News { Title = "person " + Global.AllNews.Collection.Count };
-			Global.AllNews.Add(x);
+			Global.AllNews.Add (x);
 		}
 
 	}

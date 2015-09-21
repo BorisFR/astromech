@@ -71,5 +71,10 @@
 		<string>TIE-Wing.ttf</string>
 		<string>Star Jedi.ttf</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

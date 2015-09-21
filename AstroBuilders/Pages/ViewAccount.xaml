@@ -4,8 +4,10 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	<ScrollView Orientation="Vertical">
 		<StackLayout Orientation="Vertical" Padding="12">
-			<local:StarJedi Text="{local:TextResource ViewAccountTitle}" FontSize="{local:FontSizeResource Medium}" TextColor="{local:ColorTextResource}" HorizontalOptions="Center" />
+			<ContentView x:Name="theContent" HorizontalOptions="Center" />
+			<!--<local:StarJedi Text="{local:TextResource ViewAccountTitle}" FontSize="{local:FontSizeResource Medium}" TextColor="{local:ColorTextResource}" HorizontalOptions="Center" />
 			<local:AurekBesh Text="{local:TextResource ViewAccountTitle}" FontSize="{local:FontSizeResource Micro}" TextColor="{local:ColorTextResource}" HorizontalOptions="Center" />
+			-->
 			<StackLayout x:Name="lConnexion" Orientation="Vertical">
 				<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3">
 				<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource}" Padding="6">

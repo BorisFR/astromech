@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Xamarin.Forms;
 
 namespace AstroBuilders
@@ -14,10 +13,16 @@ namespace AstroBuilders
 			Global.MenuPage = new MenuPage ();
 			this.Master = Global.MenuPage;
 			Global.DetailPage = new DetailPage ();
-            this.Detail = Global.DetailPage; // new NavigationPage(Global.DetailPage);
-            Tools.Trace("MainAppPage done.");
-            if (Device.OS == TargetPlatform.Windows)
-                this.MasterBehavior = Xamarin.Forms.MasterBehavior.Split;
+			//this.Detail = Global.DetailPage; // new NavigationPage(Global.DetailPage);
+			this.Detail = new NavigationPage (Global.DetailPage);
+
+			Tools.Trace ("MainAppPage done.");
+			if (Device.OS == TargetPlatform.Windows)
+				this.MasterBehavior = MasterBehavior.Split;
+
+
 		}
+
+
 	}
 }

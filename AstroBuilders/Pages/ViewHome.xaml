@@ -3,9 +3,10 @@
 xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" xmlns:other="clr-namespace:AstroBuildersModel;assembly=AstroBuildersModel" Padding="0">
 	<ContentView.Content>
 		<StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
-			<local:StarJedi Text="{local:TextResource ViewHomeTitle}" FontSize="{local:FontSizeResource Medium}" TextColor="{local:ColorTextResource}" HorizontalOptions="Center" />
+			<ContentView x:Name="theContent" HorizontalOptions="Center" />
+			<!--<local:StarJedi Text="{local:TextResource ViewHomeTitle}" FontSize="{local:FontSizeResource Medium}" TextColor="{local:ColorTextResource}" HorizontalOptions="Center" />
 			<local:AurekBesh Text="{local:TextResource ViewHomeTitle}" FontSize="{local:FontSizeResource Micro}" TextColor="{local:ColorTextResource}" HorizontalOptions="Center" />
-
+			-->
 			<StackLayout Padding="6,0,6,6">
 			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3">
 			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource}" Padding="6">

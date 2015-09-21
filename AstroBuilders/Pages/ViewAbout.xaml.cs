@@ -7,14 +7,17 @@ namespace AstroBuilders
 	public partial class ViewAbout : ContentView
 	{
 		private bool isDone = false;
+
 		public ViewAbout ()
 		{
 			InitializeComponent ();
+			theContent.Content = new AppearingText (Translation.GetString ("ViewAboutTitle"));
 			theWebview.Source = "http://r2builders.diverstrucs.com/About.html";
 			ShowInfo ();
 		}
 
-		private void ShowInfo() {
+		private void ShowInfo ()
+		{
 			if (theStack == null || theStack.Children == null)
 				return;
 			if (isDone)

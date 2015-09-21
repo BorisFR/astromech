@@ -9,10 +9,11 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource}" Padding="6">
 			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Border}" Padding="6">
 			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Box}" Padding="4">
-				<StackLayout Orientation="Horizontal" Padding="12, 12, 12, 12">
+				<ContentView x:Name="theContent" HorizontalOptions="Center" Padding="12, 12, 12, 12" />
+				<!--<StackLayout Orientation="Horizontal" Padding="12, 12, 12, 12">
 					<local:StarJedi Text=" Loading data..." FontSize="{local:FontSizeResource Large}" TextColor="{local:ColorTextResource BoxHigh}" HorizontalOptions="Start" />
 					<local:AurekBesh Text="Loading data..." FontSize="{local:FontSizeResource Small}" TextColor="{local:ColorTextResource BoxHigh}" HorizontalOptions="Start" VerticalOptions="Center" />
-				</StackLayout>
+				</StackLayout>-->
 				<StackLayout Orientation="Horizontal">
 					<local:StarJedi x:Name="l1" Text="^" FontSize="{local:FontSizeResource Large}" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
 					<local:StarJedi x:Name="l11" Text="Default language" FontSize="{local:FontSizeResource Medium}" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
@@ -65,7 +66,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 
 			<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="{local:ColorBgResource Box}" Opacity="0.4" HeightRequest="32">
 				<Label x:Name="progressLabel" Text="" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{local:ColorTextResource Box}"/>
-				<ProgressBar x:Name="progressBar" VerticalOptions="EndAndExpand" BackgroundColor="Green" HeightRequest="10" HorizontalOptions="Fill"/>
+				<ProgressBar x:Name="progressBar" VerticalOptions="EndAndExpand" BackgroundColor="Green" HeightRequest="24" HorizontalOptions="Fill"/>
 			</StackLayout>
 		</StackLayout>
 		</ScrollView>

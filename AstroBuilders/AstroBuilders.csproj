@@ -105,6 +105,12 @@
     <Compile Include="Extensions\FontSizeResourceExtension.cs" />
     <Compile Include="Extensions\FontSizeHeightResourceExtension.cs" />
     <Compile Include="Code\IImageResizer.cs" />
+    <Compile Include="ContentView\BarLedScroll.xaml.cs">
+      <DependentUpon>BarLedScroll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContentView\AppearingText.xaml.cs">
+      <DependentUpon>AppearingText.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -257,6 +263,12 @@
     <EmbeddedResource Include="Images\menu_cards.png" />
     <EmbeddedResource Include="Images\menu_mynews.png" />
     <EmbeddedResource Include="Images\closewindow.png" />
+    <EmbeddedResource Include="ContentView\BarLedScroll.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContentView\AppearingText.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

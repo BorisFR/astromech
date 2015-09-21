@@ -15,10 +15,12 @@ namespace AstroBuilders
 				ShowPage (MyPage.Home);
 			else
 				ShowPage (MyPage.FirstLoading);
-            Tools.Trace("DetailPage done.");
-        }
+			Tools.Trace ("DetailPage done.");
+			NavigationPage.SetHasNavigationBar (this, false);
+		}
 
-		public void ShowPage(MyPage page) {
+		public void ShowPage (MyPage page)
+		{
 			switch (page) {
 			case MyPage.FirstLoading:
 				theFrame.Content = null;

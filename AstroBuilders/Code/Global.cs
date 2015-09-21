@@ -28,19 +28,19 @@ namespace AstroBuilders
 	{
 		//public static event JustTrigger FirstLoadingFinish;
 
-		public static readonly Thickness PagePadding = new Thickness(Device.OnPlatform(0, 0, 0), Device.OnPlatform(20, 0, 0), Device.OnPlatform(0, 0, 0), Device.OnPlatform(0, 0, 0));
+		public static readonly Thickness PagePadding = new Thickness (Device.OnPlatform (0, 0, 0), Device.OnPlatform (20, 0, 0), Device.OnPlatform (0, 0, 0), Device.OnPlatform (0, 0, 0));
 		public static string BaseUrl = "http://r2builders.diverstrucs.com/";
-		public static Color ColorBackground = Color.FromHex("132855");
-		public static Color ColorText = Color.FromHex("2F7EA5");
-		public static Color ColorHighText = Color.FromHex("5B70B3");
-		public static Color ColorBoxBackground = Color.FromHex("1F478C");
-		public static Color ColorBoxBorder = Color.FromHex("79BDFA");
-		public static Color ColorBoxMiniBorder = Color.FromHex("3072A4");
-		public static Color ColorBoxText = Color.FromHex("3C81E6");
-		public static Color ColorBoxHighText = Color.FromHex("3BD3E8");
-		public static Color ColorBoxLowText = Color.FromHex("226B98");
+		public static Color ColorBackground = Color.FromHex ("132855");
+		public static Color ColorText = Color.FromHex ("2F7EA5");
+		public static Color ColorHighText = Color.FromHex ("5B70B3");
+		public static Color ColorBoxBackground = Color.FromHex ("1F478C");
+		public static Color ColorBoxBorder = Color.FromHex ("79BDFA");
+		public static Color ColorBoxMiniBorder = Color.FromHex ("3072A4");
+		public static Color ColorBoxText = Color.FromHex ("3C81E6");
+		public static Color ColorBoxHighText = Color.FromHex ("3BD3E8");
+		public static Color ColorBoxLowText = Color.FromHex ("226B98");
 
-		public static Dictionary<string, string> Languages = new Dictionary<string, string>();
+		public static Dictionary<string, string> Languages = new Dictionary<string, string> ();
 
 		public static MainAppPage MainAppPage;
 		public static MenuPage MenuPage;
@@ -52,8 +52,8 @@ namespace AstroBuilders
 		public static BuildersManager AllBuilders = new BuildersManager ();
 		public static ClubsManager AllClubs = new ClubsManager ();
 		public static UsersManager AllUsers = new UsersManager ();
-		public static ExhibitionsManager AllExhibitions = new ExhibitionsManager();
-		public static CardsManager AllCards = new CardsManager();
+		public static ExhibitionsManager AllExhibitions = new ExhibitionsManager ();
+		public static CardsManager AllCards = new CardsManager ();
 
 		public static Builder CurrentBuilder = null;
 
@@ -68,22 +68,25 @@ namespace AstroBuilders
 		public static Media.Plugin.Abstractions.IMedia AllMedia = Media.Plugin.CrossMedia.Current;
 		public static IImageResizer ImageResizer = null;
 
+		public static Random Random;
 		//public static bool FirstLoading = false;
 		//public static bool FirstLoadingInProgress = false;
 		//public static bool FirstLoadingError = false;
 
-		public static async void DoInit() {
+		public static async void DoInit ()
+		{
 			if (Files != null)
 				return;
+			Random = new Random (DateTime.Now.Millisecond);
 			Files = DependencyService.Get<IFiles> ();
-			Notificator = DependencyService.Get<IToastNotificator>();
+			Notificator = DependencyService.Get<IToastNotificator> ();
 			Vibrator = CrossVibrate.Current;
-			Helper.SettingsRead<string>("UniqueAppId", string.Empty);
+			Helper.SettingsRead<string> ("UniqueAppId", string.Empty);
 			if (UniqueAppId.Length == 0) {
 				UniqueAppId = Helper.GenerateAppId;
-				Helper.SettingsSave<string>("UniqueAppId", UniqueAppId);
+				Helper.SettingsSave<string> ("UniqueAppId", UniqueAppId);
 			}
-			BeaconsTools = DependencyService.Get<IBeaconTools>();
+			BeaconsTools = DependencyService.Get<IBeaconTools> ();
 			ImageResizer = DependencyService.Get<IImageResizer> ();
 			Tools.DoInit ();
 			Menus = new MenuManager ();
@@ -219,13 +222,15 @@ namespace AstroBuilders
 			*/
 		}
 
-		public static void StartingBeaconsDetection() {
+		public static void StartingBeaconsDetection ()
+		{
 			BeaconsTools.Founded += BeaconsTools_Founded;
 			Dictionary<string, string> info = new Dictionary<string, string> ();
-			try{
-			info.Add ("R2BUILDERS", "74278BDA-B644-4520-8F0C-720EAF059935"); // HM-10 Default = Apple Air Locate
-			info.Add ("estimote", "B9407F30-F5F8-466E-AFF9-25556B57FE6D"); // Estimote Maxxing
-			}catch(Exception) {}
+			try {
+				info.Add ("R2BUILDERS", "74278BDA-B644-4520-8F0C-720EAF059935"); // HM-10 Default = Apple Air Locate
+				info.Add ("estimote", "B9407F30-F5F8-466E-AFF9-25556B57FE6D"); // Estimote Maxxing
+			} catch (Exception) {
+			}
 			BeaconsTools.Init (info);
 			// 74278BDA-B644-4520-8F0C-720EAF059935 => HM-10 Default = Apple Air Locate
 		}
@@ -236,18 +241,21 @@ namespace AstroBuilders
 
 		}
 
-		public static void ShowNotification (ToastNotificationType infoType, string title, string message) {
+		public static void ShowNotification (ToastNotificationType infoType, string title, string message)
+		{
 			Device.BeginInvokeOnMainThread (() => {
 				Notificator.Notify (infoType, title, message, TimeSpan.FromSeconds (2));
 				DoVibrate ();
 			});
 		}
 
-		public static void DoVibrate() {
+		public static void DoVibrate ()
+		{
 			Vibrator.Vibration (500);
 		}
 
-		public static void GotoPage(MyPage page) {
+		public static void GotoPage (MyPage page)
+		{
 			AwesomeWrappanel.CleanAll ();
 			DetailPage.ShowPage (page);
 		}

@@ -41,6 +41,10 @@ NotificationInformation|Information
 NotificationError|Erreur
 
 
+# ViewAbout
+ViewAboutTitle|A propos de
+
+
 # ViewAccount : screen to connect and create account
 ViewAccountTitle|Mon compte
 ViewAccountConnect|Se connecter
@@ -81,8 +85,12 @@ ViewAccountMessage5|Vous êtes maintenant identifié.
 ViewAccountMessage6|Vous n'avez pas été reconnu. Merci de corriger les informations saisies.
 
 
+# ViewBuilders
+ViewBuildersTitle|Les Builders
+
+
 # ViewHome : first screen, showing news
-ViewHomeTitle|Les actualités de l'association
+ViewHomeTitle|Les actualites de l'association
 
 
 # ViewMyBuilder : edit own builder data
@@ -128,7 +136,7 @@ ViewMyExhibitionsBtCreate|Créer un salon
 ViewMyExhibitionsActor|Je participe
 
 # PageCreateExhibition
-PageCreateExhibitionTitle|Créer une sortie
+PageCreateExhibitionTitle|Creer une sortie
 PageCreateExhibitionName|Nom de la sortie
 PageCreateExhibitionStartDate|Date de début
 PageCreateExhibitionEndDate|Date de fin

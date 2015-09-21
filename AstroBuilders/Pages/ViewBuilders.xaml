@@ -3,8 +3,10 @@
 xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 	<ContentView.Content>
 	    <StackLayout Orientation="Vertical" BackgroundColor="{local:ColorBgResource}" Padding="6,6,6,6">
-			<local:StarJedi Text="Les R2 Builders" TextColor="{local:ColorTextResource}" FontSize="{local:FontSizeResource Medium}" HorizontalOptions="Center" />
+			<ContentView x:Name="theContent" HorizontalOptions="Center" />
+			<!--<local:StarJedi Text="Les R2 Builders" TextColor="{local:ColorTextResource}" FontSize="{local:FontSizeResource Medium}" HorizontalOptions="Center" />
 			<local:AurekBesh Text="Les R2 Builders" TextColor="{local:ColorTextResource}" FontSize="{local:FontSizeResource Micro}" HorizontalOptions="Center" />
+			-->
 			<BoxView HeightRequest="12" BackgroundColor="Transparent" />
 
 			<StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
@@ -14,21 +16,21 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 			<local:AwesomeWrappanel x:Name="theList" Orientation="Horizontal" Spacing="6" BackgroundColor="{local:ColorBgResource}">
 				<local:AwesomeWrappanel.ItemTemplate>
 					<DataTemplate>
-						<Grid WidthRequest="144" HeightRequest="184" Padding="0" RowSpacing="0" ColumnSpacing="0">
+						<Grid WidthRequest="132" HeightRequest="172" Padding="0" RowSpacing="0" ColumnSpacing="0">
 					        <Grid.ColumnDefinitions>
-					            <ColumnDefinition Width="6"/>
-					            <ColumnDefinition Width="6"/>
+					            <ColumnDefinition Width="3"/>
+					            <ColumnDefinition Width="3"/>
 					            <ColumnDefinition Width="120"/>
-					            <ColumnDefinition Width="6"/>
-					            <ColumnDefinition Width="6"/>
+					            <ColumnDefinition Width="3"/>
+					            <ColumnDefinition Width="3"/>
 					        </Grid.ColumnDefinitions>
 					        <Grid.RowDefinitions>
-					            <RowDefinition Height="6"/>
-					            <RowDefinition Height="6"/>
+					            <RowDefinition Height="3"/>
+					            <RowDefinition Height="3"/>
 					            <RowDefinition Height="120"/>
 					            <RowDefinition Height="40"/>
-					            <RowDefinition Height="6"/>
-					            <RowDefinition Height="6"/>
+					            <RowDefinition Height="3"/>
+					            <RowDefinition Height="3"/>
 					        </Grid.RowDefinitions>
 
 							<BoxView BackgroundColor="{local:ColorBgResource Border}" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5" />
