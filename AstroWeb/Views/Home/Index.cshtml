@@ -6,7 +6,7 @@ ViewBag.Title = "R2 Builders - Les Actualités";
 }
 
 	@foreach (News news in Model) {
-		<p>@Html.DisplayFor(cc => news.Date) - @Html.DisplayFor(cc => news.Title)</p>
+		<p>@Html.DisplayFor(cc => news.Date) - @Html.DisplayFor(cc => news.Title)</p> 
 		<p>@Html.DisplayFor(cc => news.Detail)</p>
 		<br />
 	}

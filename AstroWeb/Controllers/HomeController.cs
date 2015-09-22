@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using System.Collections.ObjectModel;
 
 namespace AstroWeb.Controllers
 {
@@ -19,6 +20,12 @@ namespace AstroWeb.Controllers
 
 			return View (Helper.AllNews.Collection);
 		}
+
+		public ActionResult Log ()
+		{
+			
+			return View (TheLog.AllLines ());
+		}
+
 	}
 }
-

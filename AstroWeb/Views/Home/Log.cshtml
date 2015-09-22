@@ -1,0 +1,12 @@
+﻿@using AstroBuildersModel;
+@using System.Collections.ObjectModel;
+@model string[]
+@{
+ViewBag.Title = "R2 Builders - Log";
+}
+<pre>
+	@foreach (string s in Model) {
+		@Html.DisplayFor(cc => s)
+		@Html.Raw("\r\n")
+	}
+</pre>

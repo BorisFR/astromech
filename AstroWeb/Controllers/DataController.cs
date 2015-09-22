@@ -10,38 +10,63 @@ using System.IO;
 
 namespace AstroWeb.Controllers
 {
-    public class DataController : Controller
-    {
-        public ActionResult Index()
-        {
-            return View ();
-        }
+	public class DataController : Controller
+	{
+		public ActionResult Index ()
+		{
+			return View ();
+		}
+
+		//public JsonResult UploadImages (IEnumerable<HttpPostedFileBase> files)
 
 		[HttpPost]
-		public JsonResult UploadImages(IEnumerable<HttpPostedFileBase> files) {
+		public JsonResult UploadImages (HttpPostedFileBase file)
+		{
+			TheLog.AddLog (LogType.Debug, "UploadImages start");
 			List<string> result = new List<string> ();
-			string basePath = Path.Combine (System.Web.HttpContext.Current.Server.MapPath (@"~/"), "Content");
+			string basePath = Path.Combine (System.Web.HttpContext.Current.Server.MapPath (@"~/"), "App_Data");
 			basePath = Path.Combine (basePath, "Images");
+			TheLog.AddLog (LogType.Debug, "UploadImages basePath: " + basePath);
 			Directory.CreateDirectory (basePath);
+			TheLog.AddLog (LogType.Debug, "UploadImages 2");
+			if (file == null) {
+				TheLog.AddLog (LogType.Debug, "UploadImages file is null :(");
+			}
 			try {
-				foreach (var file in files) {
-					if (file.ContentLength > 0) {
-						string id = Guid.NewGuid ().ToString ();
-						string first = id.Substring (0, 2);
-						string path = Path.Combine (basePath, first);
-						Directory.CreateDirectory (path);
-						string fileName = id + "." + Path.GetExtension (Path.GetFileName(file.FileName));
-						string finalName = Path.Combine (basePath, fileName);
-						file.SaveAs (finalName);
-						result.Add (fileName);
+				if (Request.Files == null)
+					TheLog.AddLog (LogType.Debug, "UploadImages Request.Files is null :(");
+				else {
+					foreach (string x in Request.Files) {
+						var hpf = this.Request.Files [x];
+						TheLog.AddLog (LogType.Debug, hpf.FileName);
 					}
 				}
 			} catch (Exception) {
 			}
+			try {
+				//foreach (var file in files) {
+				if (file.ContentLength > 0) {
+					string id = Guid.NewGuid ().ToString ();
+					string first = id.Substring (0, 2);
+					string path = Path.Combine (basePath, first);
+					TheLog.AddLog (LogType.Debug, "UploadImages imgPath: " + path);
+					Directory.CreateDirectory (path);
+					string fileName = id + "." + Path.GetExtension (Path.GetFileName (file.FileName));
+					string finalName = Path.Combine (basePath, fileName);
+					TheLog.AddLog (LogType.Debug, "UploadImages file: " + finalName);
+					file.SaveAs (finalName);
+					result.Add (fileName);
+				}
+				//}
+			} catch (Exception err) {
+				TheLog.AddLog (LogType.Error, "UploadImages: " + err.Message);
+			}
+			TheLog.AddLog (LogType.Debug, "UploadImages end: " + result);
 			return new JsonNetResult (result);
 		}
-			
-		public JsonResult Languages() {
+
+		public JsonResult Languages ()
+		{
 			Dictionary<string, string> languages = new Dictionary<string, string> ();
 			string path = Path.Combine (System.Web.HttpContext.Current.Server.MapPath (@"~/"), "Content");
 			string[] files = Directory.GetFiles (Path.Combine (path, "Languages"), "*.txt", SearchOption.TopDirectoryOnly);
@@ -53,40 +78,47 @@ namespace AstroWeb.Controllers
 			return new JsonNetResult (languages);
 		}
 
-		public JsonResult Country() {
+		public JsonResult Country ()
+		{
 			return new JsonNetResult (Helper.AllCountry.All);
 		}
 
-		public JsonResult News() {
+		public JsonResult News ()
+		{
 			return new JsonNetResult (Helper.AllNews.All);
 		}
 
-		public JsonResult Builders() {
+		public JsonResult Builders ()
+		{
 			return new JsonNetResult (Helper.AllBuilders.All);
 		}
-	
-		public JsonResult Clubs() {
+
+		public JsonResult Clubs ()
+		{
 			return new JsonNetResult (Helper.AllClubs.All);
 		}
 
-		public JsonResult Exhibitions() {
+		public JsonResult Exhibitions ()
+		{
 			return new JsonNetResult (Helper.AllExhibitions.All);
 		}
 
-		public JsonResult Cards() {
+		public JsonResult Cards ()
+		{
 			return new JsonNetResult (Helper.AllCards.All);
 		}
 
-		public JsonResult Users(string id) {
+		public JsonResult Users (string id)
+		{
 			try {
 				Guid toTest = new Guid (id);
 				foreach (User u in Helper.AllUsers.Collection) {
 					if (u.Token == toTest) {
 						if (u.IsAdmin) {
-							List<User> list = new List<User>();
-							foreach(User user in Helper.AllUsers.All) {
-								if(user.IdClub.Equals(Guid.Empty) || user.IdClub.Equals(u.IdClub))
-									list.Add(user);
+							List<User> list = new List<User> ();
+							foreach (User user in Helper.AllUsers.All) {
+								if (user.IdClub.Equals (Guid.Empty) || user.IdClub.Equals (u.IdClub))
+									list.Add (user);
 							}
 							return new JsonNetResult (list);
 						} else
@@ -98,12 +130,14 @@ namespace AstroWeb.Controllers
 			return new JsonNetResult (null);
 		}
 
-		public JsonResult ReloadData() {
+		public JsonResult ReloadData ()
+		{
 			Helper.ReloadData ();
 			return new JsonNetResult (null);
 		}
 
-		public JsonResult UpdateBuilderUser(string id, string token) {
+		public JsonResult UpdateBuilderUser (string id, string token)
+		{
 			try {
 				Guid toTest = new Guid (token);
 				string data = Helper.Decrypt (id);
@@ -115,7 +149,7 @@ namespace AstroWeb.Controllers
 								if (old.Id == user.Id) {
 									// petite vérif complémentaire
 									if (old.NickName.Equals (user.NickName) && old.Login.Equals (user.Login)) {
-										if((old.IsBuilder != user.IsBuilder) && user.IsBuilder) {
+										if ((old.IsBuilder != user.IsBuilder) && user.IsBuilder) {
 											// we need to create a new builder
 
 											Builder b = new Builder ();
@@ -134,7 +168,7 @@ namespace AstroWeb.Controllers
 										old.IsAdmin = user.IsAdmin;
 										old.IsModo = user.IsModo;
 										old.IsNewser = user.IsNewser;
-										Helper.AllUsers.Update(old);
+										Helper.AllUsers.Update (old);
 										//Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
 										return new JsonNetResult (Helper.AllUsers.All);
 									} else {
@@ -152,11 +186,12 @@ namespace AstroWeb.Controllers
 			return new JsonNetResult (null);
 		}
 
-		public JsonResult CreateUser(string id) {
+		public JsonResult CreateUser (string id)
+		{
 			try {
 				string data = Helper.Decrypt (id);
 				User user = JsonConvert.DeserializeObject<User> (data);
-				if(string.IsNullOrEmpty(user.Login) || string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.NickName)) {
+				if (string.IsNullOrEmpty (user.Login) || string.IsNullOrEmpty (user.Password) || string.IsNullOrEmpty (user.NickName)) {
 					user.Title = "§0 missing info";
 					return new JsonNetResult (user);
 				}
@@ -172,7 +207,7 @@ namespace AstroWeb.Controllers
 				}
 				user.CountLogin = 1;
 				user.LastConnected = DateTime.UtcNow;
-				Helper.AllUsers.Add(user);
+				Helper.AllUsers.Add (user);
 				//Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
 				return new JsonNetResult (user);
 			} catch (Exception) {
@@ -181,7 +216,8 @@ namespace AstroWeb.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult CheckUser(string login) {
+		public JsonResult CheckUser (string login)
+		{
 			try {
 				string data = Helper.Decrypt (login);
 				User user = JsonConvert.DeserializeObject<User> (data);
@@ -190,8 +226,8 @@ namespace AstroWeb.Controllers
 						if (user.Password.Equals (u.Password)) {
 							u.CountLogin++;
 							u.LastConnected = DateTime.UtcNow;
-							u.Token = Guid.NewGuid();
-							Helper.AllUsers.Update(u);
+							u.Token = Guid.NewGuid ();
+							Helper.AllUsers.Update (u);
 							//Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
 							return new JsonNetResult (u);
 						}
@@ -203,7 +239,8 @@ namespace AstroWeb.Controllers
 		}
 
 
-		public JsonResult UpdateUser(string id, string token) {
+		public JsonResult UpdateUser (string id, string token)
+		{
 			try {
 				Guid toTest = new Guid (token);
 				string data = Helper.Decrypt (id);
@@ -212,11 +249,11 @@ namespace AstroWeb.Controllers
 					if (u.Token == toTest) {
 						if (u.Id.Equals (user.Id)) {
 							foreach (User old in Helper.AllUsers.Collection) {
-								if (old.Id.Equals (user.Id) && old.Password.Equals(user.Password) && old.Login.Equals(user.Login)) {
+								if (old.Id.Equals (user.Id) && old.Password.Equals (user.Password) && old.Login.Equals (user.Login)) {
 									//old.NickName = user.NickName;
 									old.Email = user.Email;
 									old.IdCountry = user.IdCountry;
-									Helper.AllUsers.Update(old);
+									Helper.AllUsers.Update (old);
 									//Tools.SaveTextFile (Helper.AllUsers.CollectionName, Helper.AllUsers.Save ());
 									return new JsonNetResult (old);
 								}
@@ -232,7 +269,8 @@ namespace AstroWeb.Controllers
 		}
 
 
-		public JsonResult UpdateBuilder(string id, string token) {
+		public JsonResult UpdateBuilder (string id, string token)
+		{
 			try {
 				Guid toTest = new Guid (token);
 				string data = Helper.Decrypt (id);
@@ -240,7 +278,7 @@ namespace AstroWeb.Controllers
 				foreach (User u in Helper.AllUsers.Collection) {
 					if (u.Token == toTest) {
 						if (u.IdBuilder.Equals (builder.Id)) {
-							Builder old = (Builder)Helper.AllBuilders.GetByGuid<Builder>(builder.Id);
+							Builder old = (Builder)Helper.AllBuilders.GetByGuid<Builder> (builder.Id);
 							old.Blog = builder.Blog;
 							old.Detail = builder.Detail;
 							old.Droids = builder.Droids;
@@ -250,7 +288,7 @@ namespace AstroWeb.Controllers
 							old.Logo = builder.Logo;
 							old.NickName = builder.NickName;
 							old.Title = builder.Title;
-							Helper.AllBuilders.Update(old);
+							Helper.AllBuilders.Update (old);
 							//Tools.SaveTextFile (Helper.AllBuilders.CollectionName, Helper.AllBuilders.Save ());
 							return new JsonNetResult (Helper.AllBuilders.All);
 						}
@@ -263,16 +301,17 @@ namespace AstroWeb.Controllers
 		}
 
 
-		public JsonResult CreateExhibition(string id, string token) {
+		public JsonResult CreateExhibition (string id, string token)
+		{
 			try {
 				Guid toTest = new Guid (token);
 				string data = Helper.Decrypt (id);
 				Exhibition exhibition = JsonConvert.DeserializeObject<Exhibition> (data);
 				foreach (User u in Helper.AllUsers.Collection) {
 					if (u.Token == toTest) {
-						if(!u.IsBuilder)
+						if (!u.IsBuilder)
 							return new JsonNetResult (false);
-						Helper.AllExhibitions.Add(exhibition);
+						Helper.AllExhibitions.Add (exhibition);
 						return new JsonNetResult (Helper.AllExhibitions.All);
 					}
 				}
@@ -283,7 +322,8 @@ namespace AstroWeb.Controllers
 		}
 
 
-		public JsonResult DeleteExhibition(string id, string token) {
+		public JsonResult DeleteExhibition (string id, string token)
+		{
 			try {
 				Guid toTest = new Guid (token);
 				string data = Helper.Decrypt (id);
@@ -312,7 +352,8 @@ namespace AstroWeb.Controllers
 			return new JsonNetResult (false);
 		}
 
-		public JsonResult UpdateExhibition(string id, string token) {
+		public JsonResult UpdateExhibition (string id, string token)
+		{
 			try {
 				Guid toTest = new Guid (token);
 				string data = Helper.Decrypt (id);
@@ -345,16 +386,17 @@ namespace AstroWeb.Controllers
 		}
 
 
-		public JsonResult CreateCard(string id, string token) {
+		public JsonResult CreateCard (string id, string token)
+		{
 			try {
 				Guid toTest = new Guid (token);
 				string data = Helper.Decrypt (id);
 				Card card = JsonConvert.DeserializeObject<Card> (data);
 				foreach (User u in Helper.AllUsers.Collection) {
 					if (u.Token == toTest) {
-						if(!u.IsBuilder)
+						if (!u.IsBuilder)
 							return new JsonNetResult (false);
-						Helper.AllCards.Add(card);
+						Helper.AllCards.Add (card);
 						return new JsonNetResult (Helper.AllCards.All);
 					}
 				}
@@ -364,7 +406,8 @@ namespace AstroWeb.Controllers
 		}
 
 
-		public JsonResult DeleteCard(string id, string token) {
+		public JsonResult DeleteCard (string id, string token)
+		{
 			try {
 				Guid toTest = new Guid (token);
 				string data = Helper.Decrypt (id);
@@ -393,7 +436,8 @@ namespace AstroWeb.Controllers
 			return new JsonNetResult (false);
 		}
 
-		public JsonResult UpdateCard(string id, string token) {
+		public JsonResult UpdateCard (string id, string token)
+		{
 			try {
 				Guid toTest = new Guid (token);
 				string data = Helper.Decrypt (id);

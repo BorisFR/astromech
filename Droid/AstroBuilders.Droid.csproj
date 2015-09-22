@@ -15,7 +15,7 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AssemblyName>AstroBuilders.Droid</AssemblyName>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.1</TargetFrameworkVersion>
     <NuGetPackageImportStamp>80ea2997</NuGetPackageImportStamp>
     <ReleaseVersion>0.2</ReleaseVersion>
   </PropertyGroup>

@@ -19,11 +19,11 @@ namespace AstroBuilders
 		{
 			InitializeComponent ();
             
-			var tapGestureRecognizer = new TapGestureRecognizer();
+			var tapGestureRecognizer = new TapGestureRecognizer ();
 			tapGestureRecognizer.Tapped += (s, e) => {
 				Navigation.PopModalAsync ();
 			};
-			imgClose.GestureRecognizers.Add(tapGestureRecognizer);
+			imgClose.GestureRecognizers.Add (tapGestureRecognizer);
 
 			btCreate.Clicked += BtCreate_Clicked;
 			dateStart.DateSelected += DateStart_DateSelected;
@@ -46,9 +46,10 @@ namespace AstroBuilders
 			TakePicture ();
 		}
 
-		private async void TakePicture() {
+		private async void TakePicture ()
+		{
 			if (!Global.AllMedia.IsTakePhotoSupported) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError1"));
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("PageCreateExhibitionError1"));
 				return;
 			}
 			try {
@@ -78,7 +79,7 @@ namespace AstroBuilders
 				}
 				file.Dispose ();
 			} catch (Exception) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError2"));
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("PageCreateExhibitionError2"));
 				return;
 			}
 
@@ -96,42 +97,43 @@ namespace AstroBuilders
 			RealPickPhoto ();
 		}
 
-		private async void RealPickPhoto() {
+		private async void RealPickPhoto ()
+		{
 			if (!Global.AllMedia.IsPickPhotoSupported) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError3"));
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("PageCreateExhibitionError3"));
 				return;
 			}
-			try{
-			var file = await Global.AllMedia.PickPhotoAsync ();
-			if (file == null) {
-				if (choosingLogo) {
-					createLogo.Source = null;
-					photoLogo = null;
-				} else {
-					createFlyer.Source = null;
-					photoFlyer = null;
+			try {
+				var file = await Global.AllMedia.PickPhotoAsync ();
+				if (file == null) {
+					if (choosingLogo) {
+						createLogo.Source = null;
+						photoLogo = null;
+					} else {
+						createFlyer.Source = null;
+						photoFlyer = null;
+					}
+					return;
 				}
-				return;
-			}
-			Stream stream = file.GetStream ();
-			if (choosingLogo) {
-				photoLogo = new byte[stream.Length];
-				stream.Read (photoLogo, 0, (int)stream.Length);
-				stream.Position = 0;
-				createLogo.Source = ImageSource.FromStream (() => {
-					return stream;
-				});
-			} else {
-				photoFlyer = new byte[stream.Length];
-				stream.Read (photoFlyer, 0, (int)stream.Length);
-				stream.Position = 0;
-				createFlyer.Source = ImageSource.FromStream (() => {
-					return stream;
-				});
-			}
-			file.Dispose ();
-			} catch(Exception) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError4"));
+				Stream stream = file.GetStream ();
+				if (choosingLogo) {
+					photoLogo = new byte[stream.Length];
+					stream.Read (photoLogo, 0, (int)stream.Length);
+					stream.Position = 0;
+					createLogo.Source = ImageSource.FromStream (() => {
+						return stream;
+					});
+				} else {
+					photoFlyer = new byte[stream.Length];
+					stream.Read (photoFlyer, 0, (int)stream.Length);
+					stream.Position = 0;
+					createFlyer.Source = ImageSource.FromStream (() => {
+						return stream;
+					});
+				}
+				file.Dispose ();
+			} catch (Exception) {
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("PageCreateExhibitionError4"));
 				return;
 			}
 		}
@@ -153,22 +155,23 @@ namespace AstroBuilders
 		void BtCreate_Clicked (object sender, EventArgs e)
 		{
 			if (dateEnd.Date < dateStart.Date) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError5"));
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("PageCreateExhibitionError5"));
 				return;
 			}
 			if (entryName.Text == null || entryName.Text.Trim ().Length == 0) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError6"));
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("PageCreateExhibitionError6"));
 				return;
 			}
 			if (entryDescription.Text == null || entryDescription.Text.Trim ().Length == 0) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError7"));
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("PageCreateExhibitionError7"));
 				return;
 			}
 			btCreate.IsEnabled = false;
 			theAI.IsRunning = true;
 			theAI.IsVisible = true;
 			Tools.JobDone += Tools_JobDone;
-			//Tools.PostMultiPartForm ("http://r2builders.diverstrucs.com/Data/UploadImages", photoLogo, "xxx", "application.jpg", null, string.Empty);
+			var res = Tools.PostMultiPartForm ("http://r2builders.diverstrucs.com/Data/UploadImages", photoLogo, "file", "application.jpg", null, string.Empty).Result;
+			/*
 			Exhibition exhibition = new Exhibition ();
 			exhibition.Title = entryName.Text.Trim ();
 			exhibition.Description = entryDescription.Text.Trim ();
@@ -180,6 +183,7 @@ namespace AstroBuilders
 			exhibition.IdCountry = Global.ConnectedUser.IdCountry;
 			//exhibition.Logo = photoLogo;
 			Tools.DoCreateExhibition (exhibition);
+			*/
 		}
 
 		void Tools_JobDone (bool status, string result)
@@ -192,13 +196,13 @@ namespace AstroBuilders
 				if (status) {
 					string json = Helper.Decrypt (result); 
 					Global.AllExhibitions.LoadFromJson (json);
-					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, Translation.GetString("NotificationInformation"),Translation.GetString("PageCreateExhibitionMessage1"));
+					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, Translation.GetString ("NotificationInformation"), Translation.GetString ("PageCreateExhibitionMessage1"));
 					Navigation.PopModalAsync ();
 				} else {
-					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError8"));
+					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("PageCreateExhibitionError8"));
 				}
 			} catch (Exception err) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("PageCreateExhibitionError9"));
+				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("PageCreateExhibitionError9"));
 			}
 		}
 

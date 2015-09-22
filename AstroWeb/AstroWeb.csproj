@@ -115,6 +115,7 @@
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\QRcodeController.cs" />
     <Compile Include="Code\HtmlHelperExtensions.cs" />
+    <Compile Include="Code\TheLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -130,6 +131,7 @@
     <Content Include="Views\Club\Index.cshtml" />
     <Content Include="Views\Country\Index.cshtml" />
     <Content Include="Views\QRcode\Index.cshtml" />
+    <Content Include="Views\Home\Log.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
