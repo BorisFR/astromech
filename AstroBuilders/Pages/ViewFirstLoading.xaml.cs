@@ -157,6 +157,10 @@ namespace AstroBuilders
 				SetLabelStage (l9, l91, l92, ProcessStep.Loading);
 				await DoProcessAllNews ();
 				break;
+//			case 9:
+//				SetLabelStage (l10, l101, l102, ProcessStep.Loading);
+//				await DoProcessAllExhibitions ();
+//				break;
 			case 9:
 				while (DataServer.IsJobWaiting) {
 					DataServer.Launch ();

@@ -4,7 +4,7 @@ using UIKit;
 using System.Drawing;
 using AstroBuilders.iOS;
 
-[assembly: Xamarin.Forms.Dependency (typeof (ImageResizer))]
+[assembly: Xamarin.Forms.Dependency (typeof(ImageResizer))]
 
 namespace AstroBuilders.iOS
 {
@@ -18,21 +18,18 @@ namespace AstroBuilders.iOS
 			float oldHeight = (float)originalImage.Size.Height;
 			float scaleFactor = 0f;
 
-			if (oldWidth > oldHeight)
-			{
+			if (oldWidth > oldHeight) {
 				scaleFactor = width / oldWidth;
-			}
-			else
-			{
+			} else {
 				scaleFactor = height / oldHeight;
 			}
 			float newHeight = oldHeight * scaleFactor;
 			float newWidth = oldWidth * scaleFactor;
 
 			//create a 24bit RGB image
-			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero,
-				(int)newWidth, (int)newHeight, 8,
-				(int)(4 * newWidth), CGColorSpace.CreateDeviceRGB (), CGImageAlphaInfo.PremultipliedFirst)) {
+			using (CGBitmapContext context = new CGBitmapContext (null,
+				                                 (int)newWidth, (int)newHeight, 8,
+				                                 0, CGColorSpace.CreateDeviceRGB (), CGImageAlphaInfo.PremultipliedFirst)) {
 
 				RectangleF imageRect = new RectangleF (0, 0, newWidth, newHeight);
 
@@ -46,7 +43,7 @@ namespace AstroBuilders.iOS
 			}
 		}
 
-		private static UIKit.UIImage ImageFromByteArray(byte[] data)
+		private static UIKit.UIImage ImageFromByteArray (byte[] data)
 		{
 			if (data == null) {
 				return null;

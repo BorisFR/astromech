@@ -20,48 +20,58 @@ namespace AstroWeb.Controllers
 		//public JsonResult UploadImages (IEnumerable<HttpPostedFileBase> files)
 
 		[HttpPost]
-		public JsonResult UploadImages (HttpPostedFileBase file)
+		public JsonResult UploadImages ()
 		{
-			TheLog.AddLog (LogType.Debug, "UploadImages start");
-			List<string> result = new List<string> ();
+			//TheLog.AddLog (LogType.Debug, "UploadImages start");
+			List<KeyValuePair<string,string>> result = new List<KeyValuePair<string,string>> ();
 			string basePath = Path.Combine (System.Web.HttpContext.Current.Server.MapPath (@"~/"), "App_Data");
 			basePath = Path.Combine (basePath, "Images");
-			TheLog.AddLog (LogType.Debug, "UploadImages basePath: " + basePath);
+			//TheLog.AddLog (LogType.Debug, "UploadImages basePath: " + basePath);
 			Directory.CreateDirectory (basePath);
-			TheLog.AddLog (LogType.Debug, "UploadImages 2");
-			if (file == null) {
-				TheLog.AddLog (LogType.Debug, "UploadImages file is null :(");
-			}
+			//TheLog.AddLog (LogType.Debug, "UploadImages 2");
 			try {
-				if (Request.Files == null)
+				string token = Request.Form ["token"];
+				Guid toTest = new Guid (token);
+				User user = null;
+				foreach (User u in Helper.AllUsers.Collection) {
+					if (u.Token == toTest) {
+						user = u;
+						break;
+					}
+				}
+				if (user == null) {
+					return new JsonNetResult (false);
+				}
+				if (Request.Files == null) {
 					TheLog.AddLog (LogType.Debug, "UploadImages Request.Files is null :(");
-				else {
+					return new JsonNetResult (false);
+				} else {
 					foreach (string x in Request.Files) {
-						var hpf = this.Request.Files [x];
-						TheLog.AddLog (LogType.Debug, hpf.FileName);
+						var file = this.Request.Files [x];
+						TheLog.AddLog (LogType.Debug, file.FileName);
+						try {
+							//foreach (var file in files) {
+							if (file.ContentLength > 0) {
+								string id = Guid.NewGuid ().ToString ();
+								string first = id.Substring (0, 2);
+								string path = Path.Combine (basePath, first);
+								//TheLog.AddLog (LogType.Debug, "UploadImages imgPath: " + path);
+								Directory.CreateDirectory (path);
+								string fileName = id + Path.GetExtension (Path.GetFileName (file.FileName));
+								string finalName = Path.Combine (path, fileName);
+								TheLog.AddLog (LogType.Debug, "UploadImages file: " + finalName);
+								file.SaveAs (finalName);
+								result.Add (new KeyValuePair<string,string> (x, fileName));
+							}
+							//}
+						} catch (Exception err) {
+							TheLog.AddLog (LogType.Error, "UploadImages: " + err.Message);
+						}
 					}
 				}
 			} catch (Exception) {
 			}
-			try {
-				//foreach (var file in files) {
-				if (file.ContentLength > 0) {
-					string id = Guid.NewGuid ().ToString ();
-					string first = id.Substring (0, 2);
-					string path = Path.Combine (basePath, first);
-					TheLog.AddLog (LogType.Debug, "UploadImages imgPath: " + path);
-					Directory.CreateDirectory (path);
-					string fileName = id + "." + Path.GetExtension (Path.GetFileName (file.FileName));
-					string finalName = Path.Combine (basePath, fileName);
-					TheLog.AddLog (LogType.Debug, "UploadImages file: " + finalName);
-					file.SaveAs (finalName);
-					result.Add (fileName);
-				}
-				//}
-			} catch (Exception err) {
-				TheLog.AddLog (LogType.Error, "UploadImages: " + err.Message);
-			}
-			TheLog.AddLog (LogType.Debug, "UploadImages end: " + result);
+			//TheLog.AddLog (LogType.Debug, "UploadImages end: " + result);
 			return new JsonNetResult (result);
 		}
 

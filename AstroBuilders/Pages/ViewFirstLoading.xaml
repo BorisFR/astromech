@@ -59,6 +59,13 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 					<local:StarJedi x:Name="l91" Text="Latest news" FontSize="{local:FontSizeResource Medium}" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
 					<local:AurekBesh x:Name="l92" Text="Latest news" FontSize="{local:FontSizeResource Micro}" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
 				</StackLayout>
+				<!--
+				<StackLayout Orientation="Horizontal">
+					<local:StarJedi x:Name="l10" Text="^" FontSize="{local:FontSizeResource Large}" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" />
+					<local:StarJedi x:Name="l101" Text="Latest news" FontSize="{local:FontSizeResource Medium}" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+					<local:AurekBesh x:Name="l102" Text="Latest news" FontSize="{local:FontSizeResource Micro}" TextColor="{local:ColorTextResource BoxLow}" HorizontalOptions="Start" VerticalOptions="Center" />
+				</StackLayout>
+				-->
 			</StackLayout>
 			</StackLayout>
 			</StackLayout>

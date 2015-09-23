@@ -14,6 +14,8 @@ namespace AstroBuilders
 		private byte[] photoLogo = null;
 		private byte[] photoFlyer = null;
 		private bool choosingLogo = false;
+		private string logoId = string.Empty;
+		private string flyerId = string.Empty;
 
 		public PageCreateExhibition ()
 		{
@@ -59,8 +61,16 @@ namespace AstroBuilders
 					Name = "picture.jpg"
 				});
 
-				if (file == null)
+				if (file == null) {
+					if (choosingLogo) {
+						photoLogo = null;
+						createLogo.Source = null;
+					} else {
+						photoFlyer = null;
+						createFlyer.Source = null;
+					}
 					return;
+				}
 				Stream stream = file.GetStream ();
 				if (choosingLogo) {
 					photoLogo = new byte[stream.Length];
@@ -105,6 +115,8 @@ namespace AstroBuilders
 			}
 			try {
 				var file = await Global.AllMedia.PickPhotoAsync ();
+				logoId = string.Empty;
+				flyerId = string.Empty;
 				if (file == null) {
 					if (choosingLogo) {
 						createLogo.Source = null;
@@ -169,33 +181,115 @@ namespace AstroBuilders
 			btCreate.IsEnabled = false;
 			theAI.IsRunning = true;
 			theAI.IsVisible = true;
-			Tools.JobDone += Tools_JobDone;
-			var res = Tools.PostMultiPartForm ("http://r2builders.diverstrucs.com/Data/UploadImages", photoLogo, "file", "application.jpg", null, string.Empty).Result;
-			/*
+
+			//var res = Tools.PostMultiPartForm ("http://r2builders.diverstrucs.com/Data/UploadImages", photoLogo, "file", "application.jpg", null, string.Empty).Result;
+			if (!UploadBoth ()) {
+				if (!uploadLogo ()) {
+					if (!UploadFlyer ()) {
+						CreateExhibition ();
+					}
+				}
+			}
+
+		}
+
+		private void CreateExhibition ()
+		{
 			Exhibition exhibition = new Exhibition ();
 			exhibition.Title = entryName.Text.Trim ();
 			exhibition.Description = entryDescription.Text.Trim ();
 			exhibition.Builders = new List<Guid> ();
 			exhibition.EndDate = dateStart.Date;
 			exhibition.StartDate = dateStart.Date;
-			//exhibition.Flyer = photoFlyer;
+			exhibition.Flyer = flyerId;
 			exhibition.IdBuilder = Global.ConnectedUser.IdBuilder;
 			exhibition.IdCountry = Global.ConnectedUser.IdCountry;
-			//exhibition.Logo = photoLogo;
+			exhibition.Logo = logoId;
+			uploadingLogo = false;
+			uploadingFlyer = false;
+			Tools.JobDone += Tools_JobDone;
 			Tools.DoCreateExhibition (exhibition);
-			*/
 		}
+
+		private bool UploadBoth ()
+		{
+			if (photoLogo != null) {
+				if (logoId.Length == 0) {
+					if (photoFlyer != null) {
+						if (flyerId.Length == 0) {
+							byte[] logoResize = Global.ImageResizer.ResizeImage (photoLogo, 80, 80);
+							byte[] flyerResize = Global.ImageResizer.ResizeImage (photoFlyer, 720, 1080);
+							Tools.JobDone += Tools_JobDone;
+							uploadingLogo = true;
+							uploadingFlyer = true;
+							Tools.PostMultiPartForm (string.Format ("{0}Data/UploadImages", Global.BaseUrl), logoResize, "logo.jpg", flyerResize, "flyer.jpg");
+							return true;
+						}
+					}
+				}
+			}
+			return false;
+		}
+
+		private bool uploadLogo ()
+		{
+			if (photoLogo != null) {
+				if (logoId.Length == 0) {
+					byte[] logoResize = Global.ImageResizer.ResizeImage (photoLogo, 80, 80);
+					Tools.JobDone += Tools_JobDone;
+					uploadingLogo = true;
+					uploadingFlyer = false;
+					var res = Tools.PostMultiPartForm (string.Format ("{0}Data/UploadImages", Global.BaseUrl), logoResize, "logo.jpg").Result;
+					return true;
+				}
+			}
+			return false;
+		}
+
+		private bool UploadFlyer ()
+		{
+			if (photoFlyer != null) {
+				if (flyerId.Length == 0) {
+					byte[] flyerResize = Global.ImageResizer.ResizeImage (photoFlyer, 720, 1080);
+					Tools.JobDone += Tools_JobDone;
+					uploadingLogo = false;
+					uploadingFlyer = true;
+					var res = Tools.PostMultiPartForm (string.Format ("{0}Data/UploadImages", Global.BaseUrl), flyerResize, "flyer.jpg").Result;
+					return true;
+				}
+			}
+			return false;
+		}
+
+		private bool uploadingLogo = false;
+		private bool uploadingFlyer = false;
 
 		void Tools_JobDone (bool status, string result)
 		{
 			Tools.JobDone -= Tools_JobDone;
-			theAI.IsRunning = false;
-			theAI.IsVisible = false;
-			btCreate.IsEnabled = true;
 			try {
 				if (status) {
 					string json = Helper.Decrypt (result); 
-					Global.AllExhibitions.LoadFromJson (json);
+					if (uploadingLogo && uploadingFlyer) {
+						List<KeyValuePair<string, string>> res = Newtonsoft.Json.JsonConvert.DeserializeObject<List<KeyValuePair<string, string>>> (json);
+						logoId = res [0].Value;
+						flyerId = res [1].Value;
+						CreateExhibition ();
+					} else if (uploadingLogo) {
+						List<KeyValuePair<string, string>> res = Newtonsoft.Json.JsonConvert.DeserializeObject<List<KeyValuePair<string, string>>> (json);
+						logoId = res [0].Value;
+						if (!UploadFlyer ()) {
+							CreateExhibition ();
+						}
+						return;
+					} else if (uploadingFlyer) {
+						List<KeyValuePair<string, string>> res = Newtonsoft.Json.JsonConvert.DeserializeObject<List<KeyValuePair<string, string>>> (json);
+						flyerId = res [0].Value;
+						CreateExhibition ();
+						return;
+					} else {
+						Global.AllExhibitions.LoadFromJson (json);
+					}
 					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, Translation.GetString ("NotificationInformation"), Translation.GetString ("PageCreateExhibitionMessage1"));
 					Navigation.PopModalAsync ();
 				} else {
@@ -204,6 +298,9 @@ namespace AstroBuilders
 			} catch (Exception err) {
 				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("PageCreateExhibitionError9"));
 			}
+			theAI.IsRunning = false;
+			theAI.IsVisible = false;
+			btCreate.IsEnabled = true;
 		}
 
 		void ButtonClicked (object sender, EventArgs e)

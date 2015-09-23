@@ -205,23 +205,87 @@ namespace AstroBuilders
 		}
 
 
-		public static async Task<string> PostMultiPartForm (string url, byte[] file, string paramName, string contentType, Dictionary<String, string> nvc,
-		                                                    string cookie)
+		public static async Task<string> PostMultiPartForm (string url, byte[] file1, string name1, byte[] file2, string name2)
 		{
 			try {
 				string responseString = string.Empty;
-				HttpContent bytesContent = new ByteArrayContent (file);
+
+				var formData = new MultipartFormDataContent ();
+				formData.Add (new StringContent (Global.ConnectedUser.Token.ToString ()), '"' + "token" + '"');
+
+				HttpContent bytesContent = new ByteArrayContent (file1);
 				bytesContent.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
-					FileName = '"' + contentType + '"',
-					Name = '"' + paramName + '"' 
+					FileName = '"' + name1 + '"',
+					Name = '"' + "file1" + '"' 
 				};
 				bytesContent.Headers.ContentType = new MediaTypeHeaderValue ("image/jpeg");
-				//bytesContent.Headers.ContentType = new MediaTypeHeaderValue ('"' + "multipart/form-data" + '"');
+				formData.Add (bytesContent, '"' + "file1" + '"', '"' + name1 + '"');
+
+				HttpContent bytesContent2 = new ByteArrayContent (file2);
+				bytesContent2.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
+					FileName = '"' + name2 + '"',
+					Name = '"' + "file2" + '"' 
+				};
+				bytesContent2.Headers.ContentType = new MediaTypeHeaderValue ("image/jpeg");
+				formData.Add (bytesContent2, '"' + "file2" + '"', '"' + name2 + '"');
+
+				HttpResponseMessage response = null;
+				try {
+					Trace ("Post");
+					response = theHttpClient.PostAsync (url, formData).Result;
+					Trace ("input");
+					responseString = await response.Content.ReadAsStringAsync ();
+					Trace (responseString);
+					try {
+						string json = Helper.Decrypt (responseString);
+						Trace ("JSON: " + json);
+					} catch (Exception) {
+					}
+					if (!response.IsSuccessStatusCode) {
+						Trace (response.ToString ());
+						if (JobDone != null)
+							JobDone (false, string.Empty);
+						return string.Empty;
+					}
+				} catch (Exception err) {
+					Trace (err.Message);
+					if (JobDone != null)
+						JobDone (false, string.Empty);
+					return string.Empty;
+				}
+
+				formData = null;
+				if (JobDone != null)
+					JobDone (true, responseString);
+				return responseString;
+			} catch (Exception error) {
+				Trace (error.Message);
+			}
+			if (JobDone != null)
+				JobDone (false, string.Empty);
+			return string.Empty;
+		}
+
+		public static async Task<string> PostMultiPartForm (string url, byte[] file, string name)
+		{
+			try {
+				string responseString = string.Empty;
 
 				//using (var client = theHttpClient)
 				//using (var formData = new MultipartFormDataContent ()) {
 				var formData = new MultipartFormDataContent ();
-				formData.Add (bytesContent, '"' + paramName + '"', '"' + contentType + '"');
+
+				formData.Add (new StringContent (Global.ConnectedUser.Token.ToString ()), '"' + "token" + '"');
+
+				HttpContent bytesContent = new ByteArrayContent (file);
+				bytesContent.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
+					FileName = '"' + name + '"',
+					Name = '"' + "file" + '"' 
+				};
+				bytesContent.Headers.ContentType = new MediaTypeHeaderValue ("image/jpeg");
+				//bytesContent.Headers.ContentType = new MediaTypeHeaderValue ('"' + "multipart/form-data" + '"');
+				formData.Add (bytesContent, '"' + "file" + '"', '"' + name + '"');
+
 				HttpResponseMessage response = null;
 				try {
 					Trace ("Post");

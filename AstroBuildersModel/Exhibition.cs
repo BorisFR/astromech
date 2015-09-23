@@ -7,6 +7,7 @@ namespace AstroBuildersModel
 	{
 
 		private Guid idCountry = Guid.Empty;
+
 		public Guid IdCountry {
 			get { return idCountry; }
 			set {
@@ -18,6 +19,7 @@ namespace AstroBuildersModel
 		}
 
 		private DateTime startDate;
+
 		public DateTime StartDate {
 			get { return startDate; }
 			set {
@@ -29,6 +31,7 @@ namespace AstroBuildersModel
 		}
 
 		private DateTime endDate;
+
 		public DateTime EndDate {
 			get { return endDate; }
 			set {
@@ -40,6 +43,7 @@ namespace AstroBuildersModel
 		}
 
 		private string description = string.Empty;
+
 		public string Description {
 			get { return description; }
 			set {
@@ -50,8 +54,9 @@ namespace AstroBuildersModel
 			}
 		}
 
-		private byte[] logo = new byte[0];
-		public byte[] Logo {
+		private string logo = string.Empty;
+
+		public string Logo {
 			get { return logo; }
 			set {
 				if (value.Equals (logo))
@@ -61,8 +66,9 @@ namespace AstroBuildersModel
 			}
 		}
 
-		private byte[] flyer = new byte[0];
-		public byte[] Flyer {
+		private string flyer = string.Empty;
+
+		public string Flyer {
 			get { return flyer; }
 			set {
 				if (value.Equals (flyer))
@@ -73,6 +79,7 @@ namespace AstroBuildersModel
 		}
 
 		private Guid idBuilder = Guid.Empty;
+
 		public Guid IdBuilder {
 			get { return idBuilder; }
 			set {
@@ -84,7 +91,8 @@ namespace AstroBuildersModel
 		}
 
 
-		private List<Guid> builders = new List<Guid>();
+		private List<Guid> builders = new List<Guid> ();
+
 		public List<Guid> Builders {
 			get { return builders; }
 			set {
@@ -95,7 +103,8 @@ namespace AstroBuildersModel
 			}
 		}
 
-		public int CompareTo (Exhibition other) {
+		public int CompareTo (Exhibition other)
+		{
 			return -other.Title.CompareTo (this.Title);
 		}
 

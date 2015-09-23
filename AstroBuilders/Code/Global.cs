@@ -30,6 +30,7 @@ namespace AstroBuilders
 
 		public static readonly Thickness PagePadding = new Thickness (Device.OnPlatform (0, 0, 0), Device.OnPlatform (20, 0, 0), Device.OnPlatform (0, 0, 0), Device.OnPlatform (0, 0, 0));
 		public static string BaseUrl = "http://r2builders.diverstrucs.com/";
+		//public static string BaseUrl = "http://127.0.0.1:8080/";
 		public static Color ColorBackground = Color.FromHex ("132855");
 		public static Color ColorText = Color.FromHex ("2F7EA5");
 		public static Color ColorHighText = Color.FromHex ("5B70B3");
