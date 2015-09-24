@@ -17,7 +17,24 @@ namespace AstroWeb.Controllers
 			return View ();
 		}
 
-		//public JsonResult UploadImages (IEnumerable<HttpPostedFileBase> files)
+		public FileContentResult TheImage (string id)
+		{
+			//TheLog.AddLog (LogType.Debug, "GetImage id: " + id);
+			try {
+				string basePath = Path.Combine (System.Web.HttpContext.Current.Server.MapPath (@"~/"), "App_Data");
+				basePath = Path.Combine (basePath, "Images");
+				string first = id.Substring (0, 2);
+				string path = Path.Combine (basePath, first);
+				string finalName = Path.Combine (path, id + ".jpg");
+				//TheLog.AddLog (LogType.Debug, "GetImage " + finalName);
+				return new FileContentResult (System.IO.File.ReadAllBytes (finalName), "image/jpg");
+			} catch (Exception) {
+				string basePath = Path.Combine (System.Web.HttpContext.Current.Server.MapPath (@"~/"), "Content");
+				string finalName = Path.Combine (basePath, "astro_80.png");
+				return new FileContentResult (System.IO.File.ReadAllBytes (finalName), "image/png");
+			}
+		}
+
 
 		[HttpPost]
 		public JsonResult UploadImages ()

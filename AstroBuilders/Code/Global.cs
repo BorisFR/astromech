@@ -14,6 +14,7 @@ namespace AstroBuilders
 		FirstLoading,
 		Home,
 		Builders,
+		Exhibitions,
 		Account,
 		MyBuilder,
 		AdminUsers,
@@ -221,6 +222,19 @@ namespace AstroBuilders
 			xxx.ForceFreshData = true;
 			DataServer.AddToDo (xxx);
 			*/
+		}
+
+		public static void PopulateExhibitions ()
+		{
+			Global.AllExhibitions.All.Sort ();
+			foreach (AstroBuildersModel.Exhibition o in Global.AllExhibitions.All) {
+				if (o.BuilderNickname == null || o.BuilderNickname.Length == 0) {
+					AstroBuildersModel.Builder b = (AstroBuildersModel.Builder)Global.AllBuilders.GetByGuid<AstroBuildersModel.Builder> (o.IdBuilder);
+					o.BuilderNickname = b.NickName;
+					AstroBuildersModel.Club c = (AstroBuildersModel.Club)Global.AllClubs.GetByGuid<AstroBuildersModel.Club> (b.IdClub);
+					o.ClubName = c.Title;
+				}
+			}
 		}
 
 		public static void StartingBeaconsDetection ()

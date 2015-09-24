@@ -89,6 +89,10 @@ ViewAccountMessage6|Vous n'avez pas été reconnu. Merci de corriger les informa
 ViewBuildersTitle|Les Builders
 
 
+# ViewExhibitions
+ViewExhibitionsTitle|Les événements
+
+
 # ViewHome : first screen, showing news
 ViewHomeTitle|Les actualites de l'association
 

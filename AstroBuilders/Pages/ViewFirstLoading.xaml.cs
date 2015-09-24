@@ -476,6 +476,8 @@ namespace AstroBuilders
 				SetLabelStage (l7, l71, l72, ProcessStep.Processing);
 				var z = await x.OldData ();
 				Global.AllExhibitions.LoadFromJson (Helper.Decrypt (z));
+				Global.PopulateExhibitions ();
+				Global.AllExhibitions.Refresh ();
 				SetLabelStage (l7, l71, l72, ProcessStep.Ready);
 				if (step == 6)
 					step++;
@@ -495,6 +497,8 @@ namespace AstroBuilders
 				}
 				try {
 					Global.AllExhibitions.LoadFromJson (Helper.Decrypt (result));
+					Global.PopulateExhibitions ();
+					Global.AllExhibitions.Refresh ();
 					if (step == 6)
 						step++;
 					DoStep ();
@@ -606,6 +610,7 @@ namespace AstroBuilders
 
 		private void PopulateNews ()
 		{
+			Global.AllNews.All.Sort ();
 			foreach (AstroBuildersModel.News news in Global.AllNews.All) {
 				if (news.BuilderNickname == null || news.BuilderNickname.Length == 0) {
 					if (news.IdBuilder != Guid.Empty)
@@ -621,6 +626,7 @@ namespace AstroBuilders
 				}
 			}
 		}
+
 
 	}
 }

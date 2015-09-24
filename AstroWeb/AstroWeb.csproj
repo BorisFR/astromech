@@ -132,6 +132,8 @@
     <Content Include="Views\Country\Index.cshtml" />
     <Content Include="Views\QRcode\Index.cshtml" />
     <Content Include="Views\Home\Log.cshtml" />
+    <Content Include="TheImage.ashx" />
+    <Content Include="Content\astro_80.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

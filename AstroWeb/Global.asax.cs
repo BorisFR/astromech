@@ -21,6 +21,12 @@ namespace AstroWeb
 			);
 
 			routes.MapRoute (
+				"TheImage",
+				"TheImage/{id}",
+				new { controller = "Data", action = "TheImage", id = "" }
+			);
+
+			routes.MapRoute (
 				"Default",
 				"{controller}/{action}/{id}",
 				new { controller = "Home", action = "Index", id = "" }

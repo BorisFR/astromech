@@ -4,10 +4,13 @@ using System.Collections.ObjectModel;
 namespace AstroBuildersModel
 {
 
-	public class NewsManager : IManager<News> { 
+	public class NewsManager : IManager<News>
+	{
 
 		public ObservableCollection<NewsGroup> AllNewsGroup { get; set; }
-		public void Refresh() {
+
+		public void Refresh ()
+		{
 			//AllNewsGroup.Clear ();
 			//All.Sort ();
 			AllNewsGroup.Clear ();
@@ -28,14 +31,81 @@ namespace AstroBuildersModel
 			if (ng != null)
 				AllNewsGroup.Add (ng);
 		}
-		public NewsManager() : base("news.json") {AllNewsGroup = new ObservableCollection<NewsGroup> ();} 
+
+		public NewsManager () : base ("news.json")
+		{
+			AllNewsGroup = new ObservableCollection<NewsGroup> ();
+		}
 	}
 
-	public class CountryManager : IManager<Country> { public CountryManager() : base("country.json") {}}
-	public class BuildersManager : IManager<Builder> { public BuildersManager() : base("builders.json") {}}
-	public class ClubsManager : IManager<Club> { public ClubsManager() : base("clubs.json") {}}
-	public class UsersManager : IManager<User> { public UsersManager() : base("users.json") {}}
-	public class ExhibitionsManager : IManager<Exhibition> { public ExhibitionsManager() : base("exhibitions.json") {}}
-	public class CardsManager : IManager<Card> { public CardsManager() : base("cards.json") {}}
+	public class ExhibitionsManager : IManager<Exhibition>
+	{
+
+		public ObservableCollection<ExhibitionsGroup> AllExhibitionsGroup { get; set; }
+
+		public void Refresh ()
+		{
+			AllExhibitionsGroup.Clear ();
+			int year = 0;
+			ExhibitionsGroup ng = null;
+			foreach (Exhibition o in All) {
+				if (o.Year != year) {
+					if (ng != null)
+						AllExhibitionsGroup.Add (ng);
+					ng = new ExhibitionsGroup (o.Year.ToString ());
+					year = o.Year;
+				}
+				ng.Add (o);
+			}
+			if (ng != null)
+				AllExhibitionsGroup.Add (ng);
+		}
+
+		public ExhibitionsManager () : base ("exhibitions.json")
+		{
+			AllExhibitionsGroup = new ObservableCollection<ExhibitionsGroup> ();
+		}
+	}
+
+
+	public class CountryManager : IManager<Country>
+	{
+		public CountryManager () : base ("country.json")
+		{
+		}
+
+	}
+
+	public class BuildersManager : IManager<Builder>
+	{
+		public BuildersManager () : base ("builders.json")
+		{
+		}
+
+	}
+
+	public class ClubsManager : IManager<Club>
+	{
+		public ClubsManager () : base ("clubs.json")
+		{
+		}
+
+	}
+
+	public class UsersManager : IManager<User>
+	{
+		public UsersManager () : base ("users.json")
+		{
+		}
+
+	}
+
+	public class CardsManager : IManager<Card>
+	{
+		public CardsManager () : base ("cards.json")
+		{
+		}
+
+	}
 
 }

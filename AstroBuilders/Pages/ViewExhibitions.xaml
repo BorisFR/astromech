@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewExhibitions" 
+xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" xmlns:other="clr-namespace:AstroBuildersModel;assembly=AstroBuildersModel" Padding="0">
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<local:StringToImageSourceUrlConverter x:Key="stringConverter" />
+		</ResourceDictionary>
+	</ContentView.Resources>
+
+	<ContentView.Content>
+		<StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+			<ContentView x:Name="theContent" HorizontalOptions="Center" />
+			<StackLayout Padding="6,0,6,6">
+			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3">
+			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource}" Padding="6">
+			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource Border}" Padding="6">
+			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource Box}" Padding="4">
+			<ListView x:Name="theList" VerticalOptions="FillAndExpand" HasUnevenRows="true" IsGroupingEnabled="true" SeparatorVisibility="None" BackgroundColor="{local:ColorBgResource}">
+				<ListView.GroupHeaderTemplate>
+					<DataTemplate>
+						<ViewCell Height="{local:FontSizeHeightResource Medium}">
+							<StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="0"  BackgroundColor="{local:ColorBgResource}" Padding="0,0,0,0">
+								<local:StarJedi Text=" " FontSize="{local:FontSizeResource Medium}" TextColor="{local:ColorTextResource}" />
+								<local:StarJedi Text="{Binding Title}" FontSize="{local:FontSizeResource Medium}" TextColor="{local:ColorTextResource}" />
+								<local:StarJedi Text=" / " FontSize="{local:FontSizeResource Medium}" TextColor="{local:ColorTextResource}" />
+								<local:AurekBesh Text="{Binding Title}" FontSize="{local:FontSizeResource Large}" TextColor="{local:ColorTextResource}" />
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.GroupHeaderTemplate>
+		        <ListView.ItemTemplate>
+			        <DataTemplate>
+			        	<ViewCell>
+				        	<StackLayout Orientation="Horizontal" Spacing="6" BackgroundColor="{local:ColorBgResource Box}" Padding="6,3,6,3">
+				        		<Image Source="{Binding Logo, Converter={StaticResource stringConverter}}" WidthRequest="40" HeightRequest="40" VerticalOptions="Center" />
+					        	<StackLayout Orientation="Vertical" Spacing="0">
+						        	<StackLayout Orientation="Horizontal" Spacing="0" Padding="0,0,0,0">
+					        			<Label Text="{Binding StartDate, StringFormat='{0:dd/MM}'}" TextColor="{local:ColorTextResource BoxHigh}" FontSize="{local:FontSizeResource Default}" />
+					        			<Label Text=" - " TextColor="{local:ColorTextResource BoxLow}" FontSize="{local:FontSizeResource Default}" />
+					        			<Label Text="{Binding Title}" Font="Bold" TextColor="{local:ColorTextResource BoxHigh}" FontSize="{local:FontSizeResource Default}" />
+						        	</StackLayout>
+						        	<StackLayout Padding="12,0,12,0">
+				        				<Label Text="{Binding Description}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Default}" />
+				        				<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+					        				<Label Text="{Binding BuilderNickname}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Small}" />
+					        				<Label Text="/" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Small}" />
+					        				<Label Text="{Binding ClubName}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Small}" />
+				        				</StackLayout>
+				        			</StackLayout>
+					        	</StackLayout>
+				        	</StackLayout>
+			        	</ViewCell>
+			        </DataTemplate>
+		        </ListView.ItemTemplate>
+	        </ListView>
+			</StackLayout>
+			</StackLayout>
+			</StackLayout>
+			</StackLayout>
+			</StackLayout>
+
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

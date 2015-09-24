@@ -12,7 +12,6 @@ namespace AstroBuilders
 
 			theList.ItemsSource = Global.AllNews.AllNewsGroup;
 			theList.ItemSelected += TheList_ItemSelected;
-			Tools.Trace ("ViewHome done.");
 
 			theContent.Content = new AppearingText (Translation.GetString ("ViewHomeTitle")); //, FontSizeResourceExtension.GetMediumValue, FontSizeResourceExtension.GetMicroValue);
 		}

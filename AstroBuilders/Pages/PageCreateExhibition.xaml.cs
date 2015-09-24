@@ -289,6 +289,8 @@ namespace AstroBuilders
 						return;
 					} else {
 						Global.AllExhibitions.LoadFromJson (json);
+						Global.PopulateExhibitions ();
+						Global.AllExhibitions.Refresh ();
 					}
 					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, Translation.GetString ("NotificationInformation"), Translation.GetString ("PageCreateExhibitionMessage1"));
 					Navigation.PopModalAsync ();

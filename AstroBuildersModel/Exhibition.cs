@@ -1,8 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
 
 namespace AstroBuildersModel
 {
+
+	public class ExhibitionsGroup : ObservableCollection<Exhibition>
+	{
+
+		public ExhibitionsGroup (string title)
+		{
+			Title = title;
+		}
+
+		public string Title { get; private set; }
+
+	}
+
+
 	public class Exhibition : IModel, IComparable<Exhibition>
 	{
 
@@ -103,9 +119,33 @@ namespace AstroBuildersModel
 			}
 		}
 
+
+
+		[IgnoreDataMember]
+		public int Year {
+			get { return startDate.Year; }
+		}
+
+		private string builderNickName = string.Empty;
+
+		[IgnoreDataMember]
+		public string BuilderNickname {
+			get { return builderNickName; }
+			set{ builderNickName = value; }
+		}
+
+		private string clubName = string.Empty;
+
+		[IgnoreDataMember]
+		public string ClubName {
+			get { return clubName; }
+			set{ clubName = value; }
+		}
+
+
 		public int CompareTo (Exhibition other)
 		{
-			return -other.Title.CompareTo (this.Title);
+			return other.StartDate.CompareTo (this.StartDate);
 		}
 
 	}

@@ -111,6 +111,11 @@
     <Compile Include="ContentView\AppearingText.xaml.cs">
       <DependentUpon>AppearingText.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ViewExhibitions.xaml.cs">
+      <DependentUpon>ViewExhibitions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ImageUrlResourceExtension.cs" />
+    <Compile Include="Extensions\StringToImageSourceUrlConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -267,6 +272,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="ContentView\AppearingText.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ViewExhibitions.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
