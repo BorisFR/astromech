@@ -6,12 +6,17 @@ using System.Web.Mvc;
 
 namespace AstroWeb.Controllers
 {
-    public class QRcodeController : Controller
-    {
-        public ActionResult Index()
-        {
-			return View ();
-        }
+	public class QRcodeController : Controller
+	{
+		public ActionResult Index ()
+		{
+			string token = string.Empty;
+			try {
+				token = Request.Form ["tbMessage"];
+			} catch (Exception) {
+			}
+			return View (token);
+		}
 
-    }
+	}
 }

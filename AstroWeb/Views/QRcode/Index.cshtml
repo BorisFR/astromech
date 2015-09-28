@@ -1,5 +1,6 @@
 ﻿@using AstroBuildersModel;
 @using System.Collections.ObjectModel;
+@model string
 @{
 ViewBag.Title = "R2 Builders - QR code";
 }
@@ -7,12 +8,19 @@ ViewBag.Title = "R2 Builders - QR code";
 <form>
 <h1>Génération d'un QR code</h1>
 <h2>Texte</h2>
-<input id="tbMessage" type="text" />
+<input id="tbMessage" type="text" value="@Model" />
 
 <h2>Dimensions</h2>
 
 <input id="btGenerate" type="button" title="Générer" />
 <br />
 <hr />
-@Html.GenerateRelayQrCode("http://r2builders.diverstrucs.com/Builder/Boris")
+	@Html.GenerateRelayQrCode("http://r2builders.diverstrucs.com/Builder/Boris")
+	<br /><br /><br /><br /><br /><br /><br />
+	@Html.GenerateRelayQrCode("https://www.facebook.com/R2D2ByBoris")
+@if(Model == null || Model.Length == 0) {
+	Html.GenerateRelayQrCode("http://r2builders.diverstrucs.com/Builder/Boris");
+}else{
+	Html.GenerateRelayQrCode("@Model");
+}
 </form>

@@ -36,7 +36,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 							<BoxView BackgroundColor="{local:ColorBgResource Border}" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5" />
 							<BoxView BackgroundColor="{local:ColorBgResource Box}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3" />
 							<Image Source="{Binding Logo}" Aspect="AspectFit" WidthRequest="120" HeightRequest="120" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="2" Grid.Column="2" />
-							<Label Text="{Binding NickName}" FontSize="{local:FontSizeResource Default}" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3" Grid.Column="2" />
+							<Label Text="{Binding NickName}" FontSize="{local:FontSizeResource Large}" TextColor="{local:ColorTextResource BoxHigh}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3" Grid.Column="2" />
 							<Button Text="" BackgroundColor="Transparent" CommandParameter="{Binding Id}" BorderColor="Transparent" BorderWidth="0" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5" Clicked="ButtonClicked" />
 						</Grid>
 					</DataTemplate>

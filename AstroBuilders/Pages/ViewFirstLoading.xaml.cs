@@ -79,7 +79,7 @@ namespace AstroBuilders
 			switch (step) {
 			case ProcessStep.Waiting:
 				text = "^";
-				c = Global.ColorBoxLowText;
+				c = Global.ColorBoxText;
 				break;
 			case ProcessStep.Loading:
 				text = "&";
@@ -91,11 +91,11 @@ namespace AstroBuilders
 				break;
 			case ProcessStep.Ready:
 				text = "$";
-				c = Global.ColorBoxText;
+				c = Global.ColorBoxLowText;
 				break;
 			case ProcessStep.Broken:
 				text = "*";
-				c = Global.ColorBoxText;
+				c = Global.ColorBoxLowText;
 				break;
 			}
 			if (!isFinish) {
@@ -122,14 +122,17 @@ namespace AstroBuilders
 
 			switch (step) {
 			case 0:
+				Global.Menus.Refresh ();
 				SetLabelStage (l1, l11, l12, ProcessStep.Loading);
 				await DoProcessLanguageData ();
 				break;
 			case 1:
+				Global.Menus.Refresh ();
 				SetLabelStage (l2, l21, l22, ProcessStep.Loading);
 				await DoProcessAllLanguages ();
 				break;
 			case 2:
+				Global.Menus.Refresh ();
 				SetLabelStage (l3, l31, l32, ProcessStep.Loading);
 				await DoProcessCountries ();
 				break;

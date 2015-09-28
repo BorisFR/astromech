@@ -32,6 +32,9 @@ namespace AstroBuilders
 		public static readonly Thickness PagePadding = new Thickness (Device.OnPlatform (0, 0, 0), Device.OnPlatform (20, 0, 0), Device.OnPlatform (0, 0, 0), Device.OnPlatform (0, 0, 0));
 		public static string BaseUrl = "http://r2builders.diverstrucs.com/";
 		//public static string BaseUrl = "http://127.0.0.1:8080/";
+
+		// FIRST...
+		/*
 		public static Color ColorBackground = Color.FromHex ("132855");
 		public static Color ColorText = Color.FromHex ("2F7EA5");
 		public static Color ColorHighText = Color.FromHex ("5B70B3");
@@ -41,6 +44,23 @@ namespace AstroBuilders
 		public static Color ColorBoxText = Color.FromHex ("3C81E6");
 		public static Color ColorBoxHighText = Color.FromHex ("3BD3E8");
 		public static Color ColorBoxLowText = Color.FromHex ("226B98");
+		*/
+
+		// SECOND TRY...
+		public static Color ColorBackground = Color.FromHex ("091247");
+		public static Color ColorText = Color.FromHex ("2F7EA5");
+		public static Color ColorHighText = Color.FromHex ("5AC1D7");
+		public static Color ColorBoxBackground = Color.FromHex ("15357A");
+		public static Color ColorBoxBorder = Color.FromHex ("72A0E4");
+		public static Color ColorBoxMiniBorder = Color.FromHex ("2E5E92");
+		public static Color ColorBoxText = Color.FromHex ("3C81E6");
+		public static Color ColorBoxHighText = Color.FromHex ("6AD5E5");
+		public static Color ColorBoxLowText = Color.FromHex ("66B9C4");
+
+		public static Color Color2Background = Color.FromHex ("4F5C57");
+		public static Color Color2BoxBackground = Color.FromHex ("6E6A1A");
+		public static Color Color2BoxText = Color.FromHex ("F0DF53");
+		public static Color Color2BoxHighText = Color.FromHex ("E7F29C");
 
 		public static Dictionary<string, string> Languages = new Dictionary<string, string> ();
 

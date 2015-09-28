@@ -12,7 +12,8 @@ namespace AstroBuilders
 
 		public object ProvideValue (IServiceProvider serviceProvider)
 		{
-			if (BackgroundColor == null) return Global.ColorBackground;
+			if (BackgroundColor == null)
+				return Global.ColorBackground;
 			switch (BackgroundColor) {
 			case "Box":
 				return Global.ColorBoxBackground;
@@ -20,6 +21,10 @@ namespace AstroBuilders
 				return Global.ColorBoxBorder;
 			case "MiniBorder":
 				return Global.ColorBoxMiniBorder;
+			case "Back2":
+				return Global.Color2Background;
+			case "Box2":
+				return Global.Color2BoxBackground;
 			default:
 				return Global.ColorBackground;
 			}
@@ -33,7 +38,8 @@ namespace AstroBuilders
 
 		public object ProvideValue (IServiceProvider serviceProvider)
 		{
-			if (TextColor == null) return Global.ColorText;
+			if (TextColor == null)
+				return Global.ColorText;
 			switch (TextColor) {
 			case "Box":
 				return Global.ColorBoxText;
@@ -43,6 +49,10 @@ namespace AstroBuilders
 				return Global.ColorBoxLowText;
 			case "High":
 				return Global.ColorHighText;
+			case "Box2":
+				return Global.Color2BoxText;
+			case "High2":
+				return Global.Color2BoxHighText;
 			default:
 				return Global.ColorText;
 			}
