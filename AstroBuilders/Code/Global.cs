@@ -5,6 +5,7 @@ using Toasts.Forms.Plugin.Abstractions;
 using Refractored.Xam.Vibrate;
 using Refractored.Xam.Vibrate.Abstractions;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace AstroBuilders
 {
@@ -78,6 +79,7 @@ namespace AstroBuilders
 		public static CardsManager AllCards = new CardsManager ();
 
 		public static Builder CurrentBuilder = null;
+		public static Exhibition CurrentExhibition = null;
 
 		public static bool IsConnected = false;
 		public static User ConnectedUser = null;
@@ -253,6 +255,17 @@ namespace AstroBuilders
 					o.BuilderNickname = b.NickName;
 					AstroBuildersModel.Club c = (AstroBuildersModel.Club)Global.AllClubs.GetByGuid<AstroBuildersModel.Club> (b.IdClub);
 					o.ClubName = c.Title;
+				}
+			}
+		}
+
+		public static void PopulateCurrentExhibition ()
+		{
+			if (CurrentExhibition.AllBuilders == null) {
+				foreach (Guid id in CurrentExhibition.Builders) {
+					Builder b = (Builder)AllBuilders.GetByGuid<Builder> (id);
+					CurrentExhibition.AllBuilders = new ObservableCollection<Builder> ();
+					CurrentExhibition.AllBuilders.Add (b);
 				}
 			}
 		}

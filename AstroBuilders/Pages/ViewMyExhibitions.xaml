@@ -1,16 +1,69 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewMyExhibitions" 
-xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
+xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="0">
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<local:StringToImageSourceUrlConverter x:Key="stringConverter" />
+		</ResourceDictionary>
+	</ContentView.Resources>
+
 	<ContentView.Content>
 	<ScrollView Orientation="Vertical">
-		<StackLayout Orientation="Vertical" Padding="12" BackgroundColor="White">
-			<local:StarJedi Text="{local:TextResource ViewMyExhibitionsTitle}" FontSize="{local:FontSizeResource Medium}" TextColor="Black" HorizontalOptions="Center" />
-			<Label Text="{local:TextResource ViewMyExhibitionsAdmin}" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
-			<Button x:Name="btCreateExhibition" Text="{local:TextResource ViewMyExhibitionsBtCreate}" TextColor="Black" BackgroundColor="White" />
+		<StackLayout Orientation="Vertical" Padding="12">
+			<ContentView x:Name="theContent" HorizontalOptions="Center" />
 
-			<BoxView HeightRequest="4" BackgroundColor="Gray" />
-			<Label Text="{local:TextResource ViewMyExhibitionsActor}" Font="Medium" TextColor="Black" HorizontalOptions="Center" />
-			 
+			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3">
+			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource}" Padding="6">
+			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource Border}" Padding="6">
+			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource Box}" Padding="4">
+
+			<Label Text="{local:TextResource ViewMyExhibitionsAdmin}" TextColor="{local:ColorTextResource}" FontSize="{local:FontSizeResource Large}" HorizontalOptions="Center" />
+			<Button x:Name="btCreateExhibition" Text="{local:TextResource ViewMyExhibitionsBtCreate}" TextColor="{local:ColorTextResource High2}" BackgroundColor="{local:ColorBgResource Box2}" />
+
+			<ListView x:Name="theList" HeightRequest="300" HasUnevenRows="true" IsGroupingEnabled="false" SeparatorVisibility="None" BackgroundColor="{local:ColorBgResource}">
+		        <ListView.ItemTemplate>
+			        <DataTemplate>
+			        	<ViewCell>
+				        	<StackLayout Orientation="Horizontal" Spacing="6" BackgroundColor="{local:ColorBgResource Box}" Padding="6,3,6,3">
+				        		<Image Source="{Binding Logo, Converter={StaticResource stringConverter}}" WidthRequest="40" HeightRequest="40" VerticalOptions="Center" />
+					        	<StackLayout Orientation="Vertical" Spacing="0">
+						        	<StackLayout Orientation="Horizontal" Spacing="0" Padding="0,0,0,0">
+					        			<Label Text="{Binding StartDate, StringFormat='{0:dd/MM}'}" TextColor="{local:ColorTextResource BoxHigh}" FontSize="{local:FontSizeResource Large}" />
+					        			<Label Text=" - " TextColor="{local:ColorTextResource BoxLow}" FontSize="{local:FontSizeResource Large}" />
+					        			<Label Text="{Binding Title}" Font="Bold" TextColor="{local:ColorTextResource BoxHigh}" FontSize="{local:FontSizeResource Large}" />
+						        	</StackLayout>
+						        	<StackLayout Padding="12,0,12,0">
+				        				<Label Text="{Binding Description}" LineBreakMode="TailTruncation" TextColor="{local:ColorTextResource BoxLow}" FontSize="{local:FontSizeResource Large}" />
+				        				<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+					        				<Label Text="{Binding BuilderNickname}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Medium}" />
+					        				<Label Text="/" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Medium}" />
+					        				<Label Text="{Binding ClubName}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Medium}" />
+				        				</StackLayout>
+				        			</StackLayout>
+					        	</StackLayout>
+				        	</StackLayout>
+			        	</ViewCell>
+			        </DataTemplate>
+		        </ListView.ItemTemplate>
+	        </ListView>
+
+			</StackLayout>
+			</StackLayout>
+			</StackLayout>
+			</StackLayout>
+
+			<BoxView HeightRequest="6" BackgroundColor="Transparent" />
+
+			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3">
+			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource}" Padding="6">
+			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource Border}" Padding="6">
+			<StackLayout HorizontalOptions="Fill" BackgroundColor="{local:ColorBgResource Box}" Padding="4">
+			<Label Text="{local:TextResource ViewMyExhibitionsActor}" FontSize="{local:FontSizeResource Large}" TextColor="{local:ColorTextResource}" HorizontalOptions="Center" />
+ 			</StackLayout>
+			</StackLayout>
+			</StackLayout>
+			</StackLayout>
+
 		</StackLayout>
 	</ScrollView>
 	</ContentView.Content>

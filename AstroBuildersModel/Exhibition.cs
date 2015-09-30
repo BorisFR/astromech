@@ -142,6 +142,13 @@ namespace AstroBuildersModel
 			set{ clubName = value; }
 		}
 
+		private ObservableCollection<Builder> allBuilders = null;
+
+		[IgnoreDataMember]
+		public ObservableCollection<Builder> AllBuilders {
+			get { return allBuilders; }
+			set{ allBuilders = value; }
+		}
 
 		public int CompareTo (Exhibition other)
 		{

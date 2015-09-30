@@ -139,6 +139,7 @@ ViewMyExhibitionsAdmin|Je gère
 ViewMyExhibitionsBtCreate|Créer un salon
 ViewMyExhibitionsActor|Je participe
 
+
 # PageCreateExhibition
 PageCreateExhibitionTitle|Creer une sortie
 PageCreateExhibitionName|Nom de la sortie
@@ -163,3 +164,8 @@ PageCreateExhibitionError7|La saisie de la description est obligatoire.
 PageCreateExhibitionError8|Un problème est survenue pendant la mise à jour.
 PageCreateExhibitionError9|Une erreur est survenue pendant la mise à jour.
 PageCreateExhibitionMessage1|Le salon a été crée.
+
+
+# PageExhibition
+PageExhibitionTitle|Evenement
+PageExhibitionBack|Revenir à la liste

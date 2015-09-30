@@ -61,6 +61,22 @@ namespace AstroBuildersModel
 				AllExhibitionsGroup.Add (ng);
 		}
 
+		private ObservableCollection<Exhibition> allFromBuilder = null;
+		private Guid currentBuilderId = Guid.Empty;
+
+		public ObservableCollection<Exhibition> AllFromBuilder (Guid id)
+		{
+			if (currentBuilderId != Guid.Empty && currentBuilderId.Equals (id) && allFromBuilder != null)
+				return allFromBuilder;
+			currentBuilderId = id;
+			allFromBuilder = new ObservableCollection<Exhibition> ();
+			foreach (Exhibition o in All) {
+				if (o.IdBuilder.Equals (id))
+					allFromBuilder.Add (o);
+			}
+			return allFromBuilder;
+		}
+
 		public ExhibitionsManager () : base ("exhibitions.json")
 		{
 			AllExhibitionsGroup = new ObservableCollection<ExhibitionsGroup> ();

@@ -10,6 +10,14 @@ namespace AstroBuilders
 		{
 			InitializeComponent ();
 			btCreateExhibition.Clicked += BtCreateExhibition_Clicked;
+			theList.ItemsSource = Global.AllExhibitions.AllFromBuilder (Global.ConnectedUser.IdBuilder);
+			theList.ItemSelected += TheList_ItemSelected;
+			theContent.Content = new AppearingText (Translation.GetString ("ViewMyExhibitionsTitle"));
+		}
+
+		void TheList_ItemSelected (object sender, SelectedItemChangedEventArgs e)
+		{
+			
 		}
 
 		void BtCreateExhibition_Clicked (object sender, EventArgs e)
