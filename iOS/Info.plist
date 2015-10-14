@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>AstroBuilders</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.maxxing.astrobuilders</string>
+	<string>com.astromech.boris</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -56,6 +56,9 @@
 		<string>Icon-Small</string>
 		<string>Icon-Small@2x</string>
 		<string>Icon-Small@3x</string>
+		<string>Icon</string>
+		<string>Icon@2x</string>
+		<string>Icon-72</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

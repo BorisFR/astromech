@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AstroBuilders.ViewFirstLoading" 
-xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
+xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" BackgroundColor="Transparent">
 	<ContentView.Content>
 		
 		<ScrollView Orientation="Vertical">
 		<StackLayout Orientation="Vertical" VerticalOptions="Center">
-			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3">
+			<!--<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource MiniBorder}" Padding="3">
 			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource}" Padding="6">
-			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Border}" Padding="6">
+			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Border}" Padding="6">-->
 			<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Box}" Padding="4">
 				<ContentView x:Name="theContent" HorizontalOptions="Center" Padding="12, 12, 12, 12" />
 				<!--<StackLayout Orientation="Horizontal" Padding="12, 12, 12, 12">
@@ -66,14 +66,14 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders">
 					<local:AurekBesh x:Name="l102" Text="Latest news" FontSize="{local:FontSizeResource Micro}" TextColor="{local:ColorTextResource Box}" HorizontalOptions="Start" VerticalOptions="Center" />
 				</StackLayout>
 				-->
+			<!--</StackLayout>
 			</StackLayout>
-			</StackLayout>
-			</StackLayout>
+			</StackLayout>-->
 			</StackLayout>
 
 			<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="{local:ColorBgResource Box}" Opacity="0.4" HeightRequest="32">
-				<Label x:Name="progressLabel" Text="" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{local:ColorTextResource Box}"/>
-				<ProgressBar x:Name="progressBar" VerticalOptions="EndAndExpand" BackgroundColor="Green" HeightRequest="24" HorizontalOptions="Fill"/>
+				<Label x:Name="progressLabel" Text="" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{local:ColorTextResource BoxHigh}"/>
+				<ProgressBar x:Name="progressBar" VerticalOptions="EndAndExpand" BackgroundColor="{local:ColorBgResource Border}" HeightRequest="24" HorizontalOptions="Fill"/>
 			</StackLayout>
 		</StackLayout>
 		</ScrollView>

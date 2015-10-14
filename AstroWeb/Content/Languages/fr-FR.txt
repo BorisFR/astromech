@@ -46,7 +46,7 @@ ViewAboutTitle|A propos de
 
 
 # ViewAccount : screen to connect and create account
-ViewAccountTitle|Mon compte
+ViewAccountTitle|Mon Compte
 ViewAccountConnect|Se connecter
 ViewAccountId|Identifiant
 ViewAccountPassword|Mot de passe
@@ -90,7 +90,7 @@ ViewBuildersTitle|Les Builders
 
 
 # ViewExhibitions
-ViewExhibitionsTitle|Les événements
+ViewExhibitionsTitle|Les Evenements
 
 
 # ViewHome : first screen, showing news
@@ -98,7 +98,7 @@ ViewHomeTitle|Les actualites de l'association
 
 
 # ViewMyBuilder : edit own builder data
-ViewMyBuilderTitle|Ma fiche Builder
+ViewMyBuilderTitle|Ma Fiche Builder
 ViewMyBuilderClub|Club
 ViewMyBuilderName|Prénom Nom
 ViewMyBuilderNameHelper|(non obligatoire, mais sympa pour les gens)
@@ -134,7 +134,7 @@ PageBuilderBack|Revenir à la liste
 
 
 # ViewMyExhibitions
-ViewMyExhibitionsTitle|Mes sorties
+ViewMyExhibitionsTitle|Mes Sorties
 ViewMyExhibitionsAdmin|Je gère
 ViewMyExhibitionsBtCreate|Créer un salon
 ViewMyExhibitionsActor|Je participe

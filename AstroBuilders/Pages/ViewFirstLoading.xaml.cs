@@ -27,7 +27,7 @@ namespace AstroBuilders
 			//Launch();
 			Tools.Trace ("ViewFirstLoading done.");
 
-			theContent.Content = new AppearingText ("Loading data...", Global.ColorBoxHighText, FontSizeResourceExtension.GetLargeValue, FontSizeResourceExtension.GetSmallValue);
+			theContent.Content = new AppearingText ("Loading data...", Global.ColorHighText, FontSizeResourceExtension.GetLargeValue, FontSizeResourceExtension.GetSmallValue);
 		}
 
 		private async void Launch ()
@@ -79,19 +79,19 @@ namespace AstroBuilders
 			switch (step) {
 			case ProcessStep.Waiting:
 				text = "^";
-				c = Global.ColorBoxText;
+				c = Global.ColorBoxLowText;
 				break;
 			case ProcessStep.Loading:
 				text = "&";
-				c = Global.ColorBoxHighText;
+				c = Global.ColorBoxText;
 				break;
 			case ProcessStep.Processing:
 				text = "#";
-				c = Global.ColorBoxHighText;
+				c = Global.ColorBoxText;
 				break;
 			case ProcessStep.Ready:
 				text = "$";
-				c = Global.ColorBoxLowText;
+				c = Global.ColorBoxHighText;
 				break;
 			case ProcessStep.Broken:
 				text = "*";

@@ -48,6 +48,7 @@ namespace AstroBuilders
 		*/
 
 		// SECOND TRY...
+		/*
 		public static Color ColorBackground = Color.FromHex ("091247");
 		public static Color ColorText = Color.FromHex ("2F7EA5");
 		public static Color ColorHighText = Color.FromHex ("5AC1D7");
@@ -62,6 +63,24 @@ namespace AstroBuilders
 		public static Color Color2BoxBackground = Color.FromHex ("6E6A1A");
 		public static Color Color2BoxText = Color.FromHex ("F0DF53");
 		public static Color Color2BoxHighText = Color.FromHex ("E7F29C");
+		*/
+
+		// Third try ...
+		public static Color ColorBackground = Color.FromHex ("77100804");
+		public static Color ColorText = Color.FromHex ("B3FBFF");
+		public static Color ColorHighText = Color.FromHex ("D7E5E2");
+		public static Color ColorBoxBackground = Color.FromHex ("770E181C");
+		public static Color ColorBoxBorder = Color.FromHex ("7766A38A");
+		public static Color ColorBoxMiniBorder = Color.FromHex ("77162D30");
+		public static Color ColorBoxText = Color.FromHex ("236BFE");
+		public static Color ColorBoxHighText = Color.FromHex ("A2FFD3");
+		public static Color ColorBoxLowText = Color.FromHex ("055C81");
+
+		public static Color Color2Background = Color.FromHex ("040706");
+		public static Color Color2BoxBackground = Color.FromHex ("061C12");
+		public static Color Color2BoxText = Color.FromHex ("A09535");
+		public static Color Color2BoxHighText = Color.FromHex ("F4DE4C");
+
 
 		public static Dictionary<string, string> Languages = new Dictionary<string, string> ();
 

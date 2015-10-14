@@ -27,7 +27,7 @@ namespace AstroBuilders
 			}
 		}
 
-		private Color theColor = Global.ColorText;
+		private Color theColor = Global.ColorHighText;
 		private double theSize = FontSizeResourceExtension.GetLargeValue;
 		private double theSize2 = FontSizeResourceExtension.GetSmallValue;
 
@@ -36,6 +36,8 @@ namespace AstroBuilders
 		private TextAnimation currentAnimation = TextAnimation.Appear;
 		private int delayBeforeNextAnimation = 0;
 		private int pauseAnimation = 0;
+		private int delayBlink = 0;
+		private bool cursorIsVisible = true;
 
 		public AppearingText ()
 		{
@@ -89,7 +91,7 @@ namespace AstroBuilders
 
 		private void StartTimer ()
 		{
-			Device.StartTimer (new TimeSpan (0, 0, 0, 0, 80 + Global.Random.Next (40)), DoAnimation);
+			Device.StartTimer (new TimeSpan (0, 0, 0, 0, 60 + Global.Random.Next (40)), DoAnimation);
 		}
 
 		private void LaunchAnimation ()
@@ -103,6 +105,9 @@ namespace AstroBuilders
 				labelText.TextColor = theColor;
 				labelAnim.FontSize = theSize2;
 				labelText.FontSize = theSize;
+				theBox.BackgroundColor = theColor;
+				theBox.MinimumHeightRequest = 12;
+				theBox.HeightRequest = 24; //labelText.Height;
 			} catch (Exception) {
 			}
 			runningAnimation = true;
@@ -131,7 +136,22 @@ namespace AstroBuilders
 				return true;
 			if (pauseAnimation > 0) {
 				pauseAnimation--;
+
+				if (delayBlink < 1) {
+					delayBlink = 3;
+					if (cursorIsVisible)
+						theBox.BackgroundColor = Color.Transparent;
+					else
+						theBox.BackgroundColor = theColor;
+					cursorIsVisible = !cursorIsVisible;
+				} else
+					delayBlink--;
+
 				return true;
+			}
+			if (!cursorIsVisible) {
+				theBox.BackgroundColor = theColor;
+				cursorIsVisible = !cursorIsVisible;
 			}
 			try {
 

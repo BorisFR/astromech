@@ -84,11 +84,11 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="6,24,6
 				<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Box}" Padding="4">
 					<Label Text="{local:TextResource PageBuilderClub}" TextColor="{local:ColorTextResource BoxHigh}" FontSize="{local:FontSizeResource Large}" />
 					<Label x:Name="lClub" TextColor="{local:ColorTextResource BoxHigh}" HorizontalOptions="Center" Text="Builder's club" FontSize="{local:FontSizeResource Large}" />
-					<Label Text="{Binding Email}" TextColor="{local:ColorTextResource BoxHigh}" FontSize="{local:FontSizeResource Default}" />
-					<Label Text="{Binding Blog}" TextColor="{local:ColorTextResource BoxHigh}" FontSize="{local:FontSizeResource Default}" />
-					<Label Text="{Binding Facebook}" TextColor="{local:ColorTextResource BoxHigh}" FontSize="{local:FontSizeResource Default}" />
-					<Label x:Name="lLocation" Text="Location -" TextColor="{local:ColorTextResource BoxHigh}" FontSize="{local:FontSizeResource Large}" />
-					<Label x:Name="lDroids" Text="Droïdes -" TextColor="{local:ColorTextResource BoxHigh}" FontSize="{local:FontSizeResource Large}" />
+					<Label Text="{Binding Email}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Default}" />
+					<Label Text="{Binding Blog}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Default}" />
+					<Label Text="{Binding Facebook}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Default}" />
+					<Label x:Name="lLocation" Text="Location -" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Large}" />
+					<Label x:Name="lDroids" Text="Droïdes -" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Large}" />
 				</StackLayout>
 				</StackLayout>
 				<!--</StackLayout>
@@ -100,7 +100,7 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" Padding="6,24,6
 				<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource}" Padding="6">-->
 				<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Border}" Padding="6">
 				<StackLayout HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{local:ColorBgResource Box}" Padding="4">
-					<Label Text="{Binding Detail}" TextColor="{local:ColorTextResource BoxHigh}" FontSize="{local:FontSizeResource Large}" />
+					<Label Text="{Binding Detail}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Large}" />
 				</StackLayout>
 				</StackLayout>
 				</StackLayout>

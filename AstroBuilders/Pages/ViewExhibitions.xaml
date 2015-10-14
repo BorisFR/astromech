@@ -40,11 +40,11 @@ xmlns:local="clr-namespace:AstroBuilders;assembly=AstroBuilders" xmlns:other="cl
 					        			<Label Text="{Binding Title}" Font="Bold" TextColor="{local:ColorTextResource BoxHigh}" FontSize="{local:FontSizeResource Large}" />
 						        	</StackLayout>
 						        	<StackLayout Padding="12,0,12,0">
-				        				<Label Text="{Binding Description}" LineBreakMode="TailTruncation" TextColor="{local:ColorTextResource BoxLow}" FontSize="{local:FontSizeResource Large}" />
+				        				<Label Text="{Binding Description}" LineBreakMode="TailTruncation" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Large}" />
 				        				<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-					        				<Label Text="{Binding BuilderNickname}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Medium}" />
-					        				<Label Text="/" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Medium}" />
-					        				<Label Text="{Binding ClubName}" TextColor="{local:ColorTextResource Box}" FontSize="{local:FontSizeResource Medium}" />
+					        				<Label Text="{Binding BuilderNickname}" TextColor="{local:ColorTextResource BoxLow}" FontSize="{local:FontSizeResource Medium}" />
+					        				<Label Text="/" TextColor="{local:ColorTextResource BoxLow}" FontSize="{local:FontSizeResource Medium}" />
+					        				<Label Text="{Binding ClubName}" TextColor="{local:ColorTextResource BoxLow}" FontSize="{local:FontSizeResource Medium}" />
 				        				</StackLayout>
 				        			</StackLayout>
 					        	</StackLayout>
