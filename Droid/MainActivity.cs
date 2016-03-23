@@ -7,9 +7,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Toasts.Forms.Plugin.Droid;
 using Xamarin.Forms;
 using AltBeaconOrg.BoundBeacon;
+using Plugin.Toasts;
 
 namespace AstroBuilders.Droid
 {
@@ -22,8 +22,9 @@ namespace AstroBuilders.Droid
 			base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
-			Forms.SetTitleBarVisibility(AndroidTitleBarVisibility.Never);
-			ToastNotificatorImplementation.Init();
+			Forms.SetTitleBarVisibility (AndroidTitleBarVisibility.Never);
+			DependencyService.Register<ToastNotificatorImplementation> ();
+			ToastNotificatorImplementation.Init (this);
 
 			LoadApplication (new App ());
 		}
@@ -38,11 +39,13 @@ namespace AstroBuilders.Droid
 		}
 
 		#region IBeaconConsumer Implementation
-		public void OnBeaconServiceConnect()
+
+		public void OnBeaconServiceConnect ()
 		{
-			TheBeacon.StartMonitoring();
+			TheBeacon.StartMonitoring ();
 			TheBeacon.StartRanging ();
 		}
+
 		#endregion
 
 	}

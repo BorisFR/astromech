@@ -17,11 +17,12 @@ namespace AstroBuilders.iOS
 		private static CBPeripheralManager peripheralManager;
 
 		private static CLLocationManager locationMgr = new CLLocationManager ();
-		private static List<CLBeaconRegion> beaconRegion = new List<CLBeaconRegion>();
+		private static List<CLBeaconRegion> beaconRegion = new List<CLBeaconRegion> ();
 
-		private static Dictionary<string, string> _info = new Dictionary<string, string>();
+		private static Dictionary<string, string> _info = new Dictionary<string, string> ();
 
-		public static void CheckInit(Dictionary<string, string> info) {
+		public static void CheckInit (Dictionary<string, string> info)
+		{
 			if (peripheralManager != null)
 				return;
 
@@ -33,7 +34,7 @@ namespace AstroBuilders.iOS
 				try {
 					id = new NSUuid (kvp.Value); // beaconId);
 				} catch (Exception err) {
-					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, "iBeacon", "iBeacons UUID is wrong!");
+					Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, "iBeacon", "iBeacons UUID is wrong!");
 					return;
 				}
 				beaconRegion.Add (new CLBeaconRegion (id, kvp.Key)); //regionName);
@@ -41,7 +42,7 @@ namespace AstroBuilders.iOS
 			peripheralDelegate = new PeripheralManagerDelegate ();
 			peripheralDelegate.StateUpdatedEvent += PeripheralDelegate_StateUpdatedEvent;
 
-			peripheralManager = new CBPeripheralManager (peripheralDelegate, DispatchQueue.DefaultGlobalQueue, new NSDictionary());
+			peripheralManager = new CBPeripheralManager (peripheralDelegate, DispatchQueue.DefaultGlobalQueue, new NSDictionary ());
 			//peripheralManager = new CBPeripheralManager (ICBPeripheralManagerDelegate, DispatchQueue.DefaultGlobalQueue, new NSDictionary());
 			//peripheralManager.StateUpdated += HandleStateUpdated;
 		}
@@ -50,12 +51,12 @@ namespace AstroBuilders.iOS
 		{
 			peripheralDelegate.StateUpdatedEvent -= PeripheralDelegate_StateUpdatedEvent;
 			if (peripheralManager.State < CBPeripheralManagerState.PoweredOn) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, "iBeacon", "Bluetooth must be enabled.");
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, "iBeacon", "Bluetooth must be enabled.");
 			} else {
 				if (peripheralManager.State == CBPeripheralManagerState.PoweredOn) {
 					StartMonitoring ();
 				} else {
-					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, "iBeacon", "State: " + peripheralManager.State);
+					Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, "iBeacon", "State: " + peripheralManager.State);
 				}
 			}
 		}
@@ -64,7 +65,7 @@ namespace AstroBuilders.iOS
 		{
 			peripheralManager.StateUpdated -= HandleStateUpdated;
 			if (peripheralManager.State < CBPeripheralManagerState.PoweredOn) {
-				Global.ShowNotification(Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error ,"iBeacon", "Bluetooth must be enabled.");
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, "iBeacon", "Bluetooth must be enabled.");
 			} else {
 				if (peripheralManager.State == CBPeripheralManagerState.PoweredOn) {
 					StartMonitoring ();
@@ -74,7 +75,8 @@ namespace AstroBuilders.iOS
 
 
 		private static bool isMonitoring = false;
-		public static void StartMonitoring()
+
+		public static void StartMonitoring ()
 		{
 			if (isMonitoring)
 				return;
@@ -88,9 +90,9 @@ namespace AstroBuilders.iOS
 //			beaconRegion.NotifyOnEntry = true;
 //			beaconRegion.NotifyOnExit = true;
 			locationMgr.RequestWhenInUseAuthorization ();
-			try{
-			locationMgr.RequestAlwaysAuthorization ();
-			}catch(Exception err) {
+			try {
+				locationMgr.RequestAlwaysAuthorization ();
+			} catch (Exception err) {
 				Console.WriteLine ("ERROR: " + err.Message);
 			}
 			locationMgr.RegionEntered += HandleRegionEntered;
@@ -109,25 +111,25 @@ namespace AstroBuilders.iOS
 
 		static void HandleDidStartMonitoringForRegion (object sender, CLRegionEventArgs e)
 		{
-			string t_region = e.Region.Identifier.ToString();
-			Console.WriteLine(t_region);
+			string t_region = e.Region.Identifier.ToString ();
+			Console.WriteLine (t_region);
 		}
 
 		static void HandleDidDetermineState (object sender, CLRegionStateDeterminedEventArgs e)
 		{
 			switch (e.State) {
-			case CLRegionState.Inside:
-				Console.WriteLine ("region state inside");
-				break;
-			case CLRegionState.Outside:
-				Console.WriteLine ("region state outside");
-				break;
-			case CLRegionState.Unknown:
-				Console.WriteLine("region unknown");
-				break;
-			default:
-				Console.WriteLine ("region state unknown");
-				break;
+				case CLRegionState.Inside:
+					Console.WriteLine ("region state inside");
+					break;
+				case CLRegionState.Outside:
+					Console.WriteLine ("region state outside");
+					break;
+				case CLRegionState.Unknown:
+					Console.WriteLine ("region unknown");
+					break;
+				default:
+					Console.WriteLine ("region state unknown");
+					break;
 			}
 		}
 
@@ -168,7 +170,7 @@ namespace AstroBuilders.iOS
 					long v = 0;
 					try {
 						double tmp1 = Convert.ToDouble (val, CultureInfo.InvariantCulture);
-						double tmp2 = tmp1 *100;
+						double tmp2 = tmp1 * 100;
 						v = Convert.ToInt64 (tmp2, CultureInfo.InvariantCulture);
 					} catch (Exception) {
 						v = Convert.ToInt64 (Convert.ToDouble (val.Replace (".", ",")) * 100);
@@ -179,15 +181,15 @@ namespace AstroBuilders.iOS
 					ob.Distance = v;
 
 					switch (b.Proximity) {
-					case CLProximity.Far:
-						ob.Proximity = 10;
-						break;
-					case CLProximity.Near:
-						ob.Proximity = 5;
-						break;
-					case CLProximity.Immediate:
-						ob.Proximity = 1;
-						break;
+						case CLProximity.Far:
+							ob.Proximity = 10;
+							break;
+						case CLProximity.Near:
+							ob.Proximity = 5;
+							break;
+						case CLProximity.Immediate:
+							ob.Proximity = 1;
+							break;
 					}							
 					newBeacons.Add (id, ob);
 				} catch (Exception err) {

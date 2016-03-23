@@ -21,57 +21,56 @@ namespace AstroBuilders
 				CacheFontSizeLarge = Device.GetNamedSize (NamedSize.Large, typeof(Label));
 				System.Diagnostics.Debug.WriteLine ("*** FontSizeLarge=" + CacheFontSizeLarge.ToString ());
 				switch (Helper.DeviceInfo.Platform) {
-				case DeviceInfo.Plugin.Abstractions.Platform.iOS:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						CacheFontSizeLarge = 12; // default=22
-						System.Diagnostics.Debug.WriteLine ("*** FontSizeLarge change to=" + CacheFontSizeLarge.ToString ());
-						return CacheFontSizeLarge;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeLarge;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeLarge;
+					case Plugin.DeviceInfo.Abstractions.Platform.iOS:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								CacheFontSizeLarge = 12; // default=22
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeLarge change to=" + CacheFontSizeLarge.ToString ());
+								return CacheFontSizeLarge;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeLarge;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeLarge;
+							default:
+								return CacheFontSizeLarge;
+						}
+					case Plugin.DeviceInfo.Abstractions.Platform.Android:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								CacheFontSizeLarge = 12; // default=22
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeLarge change to=" + CacheFontSizeLarge.ToString ());
+								return CacheFontSizeLarge;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeLarge;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeLarge;
+							default:
+								return CacheFontSizeLarge;
+						}
+					case Plugin.DeviceInfo.Abstractions.Platform.Windows:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								return CacheFontSizeLarge;
+							case TargetIdiom.Tablet:
+								CacheFontSizeLarge = 24; // default=32
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeLarge change to=" + CacheFontSizeLarge.ToString ());
+								return CacheFontSizeLarge;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeLarge;
+							default:
+								return CacheFontSizeLarge;
+						}
 					default:
-						return CacheFontSizeLarge;
-					}
-				case DeviceInfo.Plugin.Abstractions.Platform.Android:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						CacheFontSizeLarge = 12; // default=22
-						System.Diagnostics.Debug.WriteLine ("*** FontSizeLarge change to=" + CacheFontSizeLarge.ToString ());
-						return CacheFontSizeLarge;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeLarge;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeLarge;
-					default:
-						return CacheFontSizeLarge;
-					}
-                case DeviceInfo.Plugin.Abstractions.Platform.Windows:
-                    switch (Device.Idiom)
-                    {
-                        case TargetIdiom.Phone:
-                            return CacheFontSizeLarge;
-                        case TargetIdiom.Tablet:
-                            CacheFontSizeLarge = 24; // default=32
-                            System.Diagnostics.Debug.WriteLine("*** FontSizeLarge change to=" + CacheFontSizeLarge.ToString());
-                            return CacheFontSizeLarge;
-                        case TargetIdiom.Desktop:
-                            return CacheFontSizeLarge;
-                        default:
-                            return CacheFontSizeLarge;
-                    }
-                default:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						return CacheFontSizeLarge;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeLarge;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeLarge;
-					default:
-						return CacheFontSizeLarge;
-					}
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								return CacheFontSizeLarge;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeLarge;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeLarge;
+							default:
+								return CacheFontSizeLarge;
+						}
 				}
 
 			}
@@ -84,57 +83,56 @@ namespace AstroBuilders
 				CacheFontSizeMedium = Device.GetNamedSize (NamedSize.Medium, typeof(Label));
 				System.Diagnostics.Debug.WriteLine ("*** FontSizeMedium=" + CacheFontSizeMedium.ToString ());
 				switch (Helper.DeviceInfo.Platform) {
-				case DeviceInfo.Plugin.Abstractions.Platform.iOS:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						CacheFontSizeMedium = 10; // default=17
-						System.Diagnostics.Debug.WriteLine ("*** FontSizeMedium change to=" + CacheFontSizeMedium.ToString ());
-						return CacheFontSizeMedium;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeMedium;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeMedium;
+					case Plugin.DeviceInfo.Abstractions.Platform.iOS:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								CacheFontSizeMedium = 10; // default=17
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeMedium change to=" + CacheFontSizeMedium.ToString ());
+								return CacheFontSizeMedium;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeMedium;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeMedium;
+							default:
+								return CacheFontSizeMedium;
+						}
+					case Plugin.DeviceInfo.Abstractions.Platform.Android:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								CacheFontSizeMedium = 10; // default=18
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeMedium change to=" + CacheFontSizeMedium.ToString ());
+								return CacheFontSizeMedium;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeMedium;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeMedium;
+							default:
+								return CacheFontSizeMedium;
+						}
+					case Plugin.DeviceInfo.Abstractions.Platform.Windows:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								return CacheFontSizeMedium;
+							case TargetIdiom.Tablet:
+								CacheFontSizeMedium = 20; // default=22
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeMedium change to=" + CacheFontSizeMedium.ToString ());
+								return CacheFontSizeMedium;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeMedium;
+							default:
+								return CacheFontSizeMedium;
+						}
 					default:
-						return CacheFontSizeMedium;
-					}
-				case DeviceInfo.Plugin.Abstractions.Platform.Android:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						CacheFontSizeMedium = 10; // default=18
-						System.Diagnostics.Debug.WriteLine ("*** FontSizeMedium change to=" + CacheFontSizeMedium.ToString ());
-						return CacheFontSizeMedium;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeMedium;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeMedium;
-					default:
-						return CacheFontSizeMedium;
-					}
-                case DeviceInfo.Plugin.Abstractions.Platform.Windows:
-                    switch (Device.Idiom)
-                    {
-                        case TargetIdiom.Phone:
-                            return CacheFontSizeMedium;
-                        case TargetIdiom.Tablet:
-                            CacheFontSizeMedium = 20; // default=22
-                            System.Diagnostics.Debug.WriteLine("*** FontSizeMedium change to=" + CacheFontSizeMedium.ToString());
-                            return CacheFontSizeMedium;
-                        case TargetIdiom.Desktop:
-                            return CacheFontSizeMedium;
-                        default:
-                            return CacheFontSizeMedium;
-                    }
-                default:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						return CacheFontSizeMedium;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeMedium;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeMedium;
-					default:
-						return CacheFontSizeMedium;
-					}
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								return CacheFontSizeMedium;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeMedium;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeMedium;
+							default:
+								return CacheFontSizeMedium;
+						}
 				}
 
 			}
@@ -147,57 +145,56 @@ namespace AstroBuilders
 				CacheFontSizeSmall = Device.GetNamedSize (NamedSize.Small, typeof(Label));
 				System.Diagnostics.Debug.WriteLine ("*** FontSizeSmall=" + CacheFontSizeSmall.ToString ());
 				switch (Helper.DeviceInfo.Platform) {
-				case DeviceInfo.Plugin.Abstractions.Platform.iOS:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						CacheFontSizeSmall = 7; // default=14
-						System.Diagnostics.Debug.WriteLine ("*** FontSizeSmall change to=" + CacheFontSizeSmall.ToString ());
-						return CacheFontSizeSmall;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeSmall;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeSmall;
+					case Plugin.DeviceInfo.Abstractions.Platform.iOS:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								CacheFontSizeSmall = 7; // default=14
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeSmall change to=" + CacheFontSizeSmall.ToString ());
+								return CacheFontSizeSmall;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeSmall;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeSmall;
+							default:
+								return CacheFontSizeSmall;
+						}
+					case Plugin.DeviceInfo.Abstractions.Platform.Android:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								CacheFontSizeSmall = 7; // default=14
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeSmall change to=" + CacheFontSizeSmall.ToString ());
+								return CacheFontSizeSmall;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeSmall;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeSmall;
+							default:
+								return CacheFontSizeSmall;
+						}
+					case Plugin.DeviceInfo.Abstractions.Platform.Windows:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								return CacheFontSizeSmall;
+							case TargetIdiom.Tablet:
+								CacheFontSizeSmall = 18; // default=18
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeSmall change to=" + CacheFontSizeSmall.ToString ());
+								return CacheFontSizeSmall;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeSmall;
+							default:
+								return CacheFontSizeSmall;
+						}
 					default:
-						return CacheFontSizeSmall;
-					}
-				case DeviceInfo.Plugin.Abstractions.Platform.Android:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						CacheFontSizeSmall = 7; // default=14
-						System.Diagnostics.Debug.WriteLine ("*** FontSizeSmall change to=" + CacheFontSizeSmall.ToString ());
-						return CacheFontSizeSmall;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeSmall;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeSmall;
-					default:
-						return CacheFontSizeSmall;
-					}
-                case DeviceInfo.Plugin.Abstractions.Platform.Windows:
-                    switch (Device.Idiom)
-                    {
-                        case TargetIdiom.Phone:
-                            return CacheFontSizeSmall;
-                        case TargetIdiom.Tablet:
-                            CacheFontSizeSmall = 18; // default=18
-                            System.Diagnostics.Debug.WriteLine("*** FontSizeSmall change to=" + CacheFontSizeSmall.ToString());
-                            return CacheFontSizeSmall;
-                        case TargetIdiom.Desktop:
-                            return CacheFontSizeSmall;
-                        default:
-                            return CacheFontSizeSmall;
-                    }
-                default:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						return CacheFontSizeSmall;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeSmall;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeSmall;
-					default:
-						return CacheFontSizeSmall;
-					}
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								return CacheFontSizeSmall;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeSmall;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeSmall;
+							default:
+								return CacheFontSizeSmall;
+						}
 				}
 
 			}
@@ -210,57 +207,56 @@ namespace AstroBuilders
 				CacheFontSizeMicro = Device.GetNamedSize (NamedSize.Micro, typeof(Label));
 				System.Diagnostics.Debug.WriteLine ("*** FontSizeMicro=" + CacheFontSizeMicro.ToString ());
 				switch (Helper.DeviceInfo.Platform) {
-				case DeviceInfo.Plugin.Abstractions.Platform.iOS:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						CacheFontSizeMicro = 6; // default=12
-						System.Diagnostics.Debug.WriteLine ("*** FontSizeMicro change to=" + CacheFontSizeMicro.ToString ());
-						return CacheFontSizeMicro;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeMicro;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeMicro;
+					case Plugin.DeviceInfo.Abstractions.Platform.iOS:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								CacheFontSizeMicro = 6; // default=12
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeMicro change to=" + CacheFontSizeMicro.ToString ());
+								return CacheFontSizeMicro;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeMicro;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeMicro;
+							default:
+								return CacheFontSizeMicro;
+						}
+					case Plugin.DeviceInfo.Abstractions.Platform.Android:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								CacheFontSizeMicro = 6; // default=10
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeMicro change to=" + CacheFontSizeMicro.ToString ());
+								return CacheFontSizeMicro;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeMicro;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeMicro;
+							default:
+								return CacheFontSizeMicro;
+						}
+					case Plugin.DeviceInfo.Abstractions.Platform.Windows:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								return CacheFontSizeMicro;
+							case TargetIdiom.Tablet:
+								CacheFontSizeMicro = 16; // default=15
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeMicro change to=" + CacheFontSizeMicro.ToString ());
+								return CacheFontSizeMicro;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeMicro;
+							default:
+								return CacheFontSizeMicro;
+						}
 					default:
-						return CacheFontSizeMicro;
-					}
-				case DeviceInfo.Plugin.Abstractions.Platform.Android:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						CacheFontSizeMicro = 6; // default=10
-						System.Diagnostics.Debug.WriteLine ("*** FontSizeMicro change to=" + CacheFontSizeMicro.ToString ());
-						return CacheFontSizeMicro;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeMicro;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeMicro;
-					default:
-						return CacheFontSizeMicro;
-					}
-                case DeviceInfo.Plugin.Abstractions.Platform.Windows:
-                    switch (Device.Idiom)
-                    {
-                        case TargetIdiom.Phone:
-                            return CacheFontSizeMicro;
-                        case TargetIdiom.Tablet:
-                            CacheFontSizeMicro = 16; // default=15
-                            System.Diagnostics.Debug.WriteLine("*** FontSizeMicro change to=" + CacheFontSizeMicro.ToString());
-                            return CacheFontSizeMicro;
-                        case TargetIdiom.Desktop:
-                            return CacheFontSizeMicro;
-                        default:
-                            return CacheFontSizeMicro;
-                    }
-                default:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						return CacheFontSizeMicro;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeMicro;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeMicro;
-					default:
-						return CacheFontSizeMicro;
-					}
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								return CacheFontSizeMicro;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeMicro;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeMicro;
+							default:
+								return CacheFontSizeMicro;
+						}
 				}
 
 			}
@@ -275,57 +271,56 @@ namespace AstroBuilders
 				//System.Diagnostics.Debug.WriteLine ("*** FontSizeDefault=" + CacheFontSizeDefault.ToString ());
 				System.Diagnostics.Debug.WriteLine ("*** Device.Idiom=" + Device.Idiom);
 				switch (Helper.DeviceInfo.Platform) {
-				case DeviceInfo.Plugin.Abstractions.Platform.iOS:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						CacheFontSizeDefault = 10; // default=17
-						System.Diagnostics.Debug.WriteLine ("*** FontSizeDefault change to=" + CacheFontSizeDefault);
-						return CacheFontSizeDefault;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeDefault;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeDefault;
+					case Plugin.DeviceInfo.Abstractions.Platform.iOS:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								CacheFontSizeDefault = 10; // default=17
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeDefault change to=" + CacheFontSizeDefault);
+								return CacheFontSizeDefault;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeDefault;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeDefault;
+							default:
+								return CacheFontSizeDefault;
+						}
+					case Plugin.DeviceInfo.Abstractions.Platform.Android:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								CacheFontSizeDefault = 10; // default=14
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeDefault change to=" + CacheFontSizeDefault);
+								return CacheFontSizeDefault;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeDefault;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeDefault;
+							default:
+								return CacheFontSizeDefault;
+						}
+					case Plugin.DeviceInfo.Abstractions.Platform.Windows:
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								return CacheFontSizeDefault;
+							case TargetIdiom.Tablet:
+								CacheFontSizeDefault = 20; // default=14
+								System.Diagnostics.Debug.WriteLine ("*** FontSizeDefault change to=" + CacheFontSizeDefault);
+								return CacheFontSizeDefault;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeDefault;
+							default:
+								return CacheFontSizeDefault;
+						}
 					default:
-						return CacheFontSizeDefault;
-					}
-				case DeviceInfo.Plugin.Abstractions.Platform.Android:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						CacheFontSizeDefault = 10; // default=14
-						System.Diagnostics.Debug.WriteLine ("*** FontSizeDefault change to=" + CacheFontSizeDefault);
-						return CacheFontSizeDefault;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeDefault;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeDefault;
-					default:
-						return CacheFontSizeDefault;
-					}
-                case DeviceInfo.Plugin.Abstractions.Platform.Windows:
-                    switch (Device.Idiom)
-                    {
-                        case TargetIdiom.Phone:
-                            return CacheFontSizeDefault;
-                        case TargetIdiom.Tablet:
-                            CacheFontSizeDefault = 20; // default=14
-                            System.Diagnostics.Debug.WriteLine("*** FontSizeDefault change to=" + CacheFontSizeDefault);
-                            return CacheFontSizeDefault;
-                        case TargetIdiom.Desktop:
-                            return CacheFontSizeDefault;
-                        default:
-                            return CacheFontSizeDefault;
-                    }
-                default:
-					switch (Device.Idiom) {
-					case TargetIdiom.Phone:
-						return CacheFontSizeDefault;
-					case TargetIdiom.Tablet:
-						return CacheFontSizeDefault;
-					case TargetIdiom.Desktop:
-						return CacheFontSizeDefault;
-					default:
-						return CacheFontSizeDefault;
-					}
+						switch (Device.Idiom) {
+							case TargetIdiom.Phone:
+								return CacheFontSizeDefault;
+							case TargetIdiom.Tablet:
+								return CacheFontSizeDefault;
+							case TargetIdiom.Desktop:
+								return CacheFontSizeDefault;
+							default:
+								return CacheFontSizeDefault;
+						}
 				}
 
 			}
@@ -338,18 +333,18 @@ namespace AstroBuilders
 			if (FontSize == null)
 				return GetDefaultValue;
 			switch (FontSize.Trim ().ToLower ()) {
-			case "large":
-				return GetLargeValue;
-			case "medium":
-				return GetMediumValue;
-			case "small":
-				return GetSmallValue;
-			case "micro":
-				return GetMicroValue;
-			case "default":
-				return GetDefaultValue;
-			default:
-				return GetDefaultValue;
+				case "large":
+					return GetLargeValue;
+				case "medium":
+					return GetMediumValue;
+				case "small":
+					return GetSmallValue;
+				case "micro":
+					return GetMicroValue;
+				case "default":
+					return GetDefaultValue;
+				default:
+					return GetDefaultValue;
 			}
 		}
 

@@ -16,7 +16,7 @@ namespace AstroBuilders
 			builder = ((Builder)Global.AllBuilders.GetByGuid<Builder> (Global.ConnectedUser.IdBuilder)).DeepCopy ();
 
 			Club club = (Club)Global.AllClubs.GetByGuid<Club> (builder.IdClub);
-			textClub.Text = string.Format (Translation.GetString("ViewMyBuilderMyClub"), club.Title);
+			textClub.Text = string.Format (Translation.GetString ("ViewMyBuilderMyClub"), club.Title);
 			logoClub.Source = club.Logo;
 
 			entryLogo.TextChanged += EntryLogo_TextChanged;
@@ -34,19 +34,20 @@ namespace AstroBuilders
 			Tools.DoUpdateBuilder (builder);
 		}
 
-		void Tools_UpdateDone (bool status, string result) {
+		void Tools_UpdateDone (bool status, string result)
+		{
 			Tools.JobDone -= Tools_UpdateDone;
 			try {
 				if (status) {
 					string json = Helper.Decrypt (result); //Tools.Result);
 					Global.AllBuilders.LoadFromJson (json);
 					builder = ((Builder)Global.AllBuilders.GetByGuid<Builder> (Global.ConnectedUser.IdBuilder)).DeepCopy ();
-					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, Translation.GetString("NotificationInformation"),Translation.GetString("ViewMyBuilderMessage1"));
+					Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Success, Translation.GetString ("NotificationInformation"), Translation.GetString ("ViewMyBuilderMessage1"));
 				} else {
-					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("ViewMyBuilderError1"));
+					Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewMyBuilderError1"));
 				}
 			} catch (Exception err) {
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString("NotificationError"), Translation.GetString("ViewMyBuilderError2"));
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewMyBuilderError2"));
 			}
 			theStack.BindingContext = builder;
 			theAI.IsRunning = false;

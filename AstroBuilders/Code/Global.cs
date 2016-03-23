@@ -1,11 +1,15 @@
 ﻿using System;
 using Xamarin.Forms;
 using AstroBuildersModel;
-using Toasts.Forms.Plugin.Abstractions;
-using Refractored.Xam.Vibrate;
-using Refractored.Xam.Vibrate.Abstractions;
+
+//using Toasts.Forms.Plugin.Abstractions;
+//using Refractored.Xam.Vibrate;
+//using Refractored.Xam.Vibrate.Abstractions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Plugin.Toasts;
+using Plugin.Vibrate.Abstractions;
+using Plugin.Vibrate;
 
 namespace AstroBuilders
 {
@@ -108,7 +112,7 @@ namespace AstroBuilders
 		public static IVibrate Vibrator = null;
 		public static string UniqueAppId = string.Empty;
 		public static IBeaconTools BeaconsTools = null;
-		public static Media.Plugin.Abstractions.IMedia AllMedia = Media.Plugin.CrossMedia.Current;
+		public static Plugin.Media.Abstractions.IMedia AllMedia = Plugin.Media.CrossMedia.Current;
 		public static IImageResizer ImageResizer = null;
 
 		public static Random Random;

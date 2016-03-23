@@ -1,18 +1,20 @@
 ﻿using System;
 using Xamarin.Forms;
+using Plugin.DeviceInfo.Abstractions;
 
 namespace AstroBuilders
 {
 	public class TieWing : Label
 	{
-		public const string Typeface = "TIE-Wing";  
+		public const string Typeface = "TIE-Wing";
 
-		public TieWing()
+		public TieWing ()
 		{
 			FontAttributes = FontAttributes.None;
-            if (DeviceInfo.Plugin.CrossDeviceInfo.Current.Platform == DeviceInfo.Plugin.Abstractions.Platform.Windows)
-                FontFamily = @"\Assets\TIE-Wing.ttf#TIE-Wing";
-            else FontFamily = Typeface; 
+			if (Plugin.DeviceInfo.CrossDeviceInfo.Current.Platform == Platform.Windows)
+				FontFamily = @"\Assets\TIE-Wing.ttf#TIE-Wing";
+			else
+				FontFamily = Typeface; 
 		}
 
 		/*

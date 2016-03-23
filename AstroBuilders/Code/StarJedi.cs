@@ -1,19 +1,20 @@
 ﻿using System;
 using Xamarin.Forms;
+using Plugin.DeviceInfo.Abstractions;
 
 namespace AstroBuilders
 {
 	public class StarJedi : Label
 	{
-		public const string Typeface = "Star Jedi";  
+		public const string Typeface = "Star Jedi";
 
-		public StarJedi()
+		public StarJedi ()
 		{
 			FontAttributes = FontAttributes.None;
-            if (DeviceInfo.Plugin.CrossDeviceInfo.Current.Platform == DeviceInfo.Plugin.Abstractions.Platform.Windows)
-                FontFamily = @"\Assets\Star Jedi.ttf#Star Jedi";
-            else
-                FontFamily = Typeface; 
+			if (Plugin.DeviceInfo.CrossDeviceInfo.Current.Platform == Platform.Windows)
+				FontFamily = @"\Assets\Star Jedi.ttf#Star Jedi";
+			else
+				FontFamily = Typeface; 
 		}
 
 		/*

@@ -16,11 +16,11 @@ namespace AstroBuilders
 
 
 			IDataServer x = new IDataServer ("users", true, true);
-			x.DataRefresh +=  delegate(bool status, string result) {
-				System.Diagnostics.Debug.WriteLine("Status: " + x.FileName + "=" + status);
-				if(!status)
+			x.DataRefresh += delegate(bool status, string result) {
+				System.Diagnostics.Debug.WriteLine ("Status: " + x.FileName + "=" + status);
+				if (!status)
 					return;
-				Global.AllUsers.LoadFromJson(Helper.Decrypt(result));
+				Global.AllUsers.LoadFromJson (Helper.Decrypt (result));
 				Device.BeginInvokeOnMainThread (() => {
 					theUsers.ItemsSource = Global.AllUsers.Collection;
 				});
@@ -61,12 +61,13 @@ namespace AstroBuilders
 			Tools.DoUpdateUserByAdmin (current);
 		}
 
-		void Tools_UpdateDone (bool status, string result) {
+		void Tools_UpdateDone (bool status, string result)
+		{
 			Tools.JobDone -= Tools_UpdateDone;
 			if (status) {
-				Global.ShowNotification(Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, "Information", "La mise à jour a bien été effectuée.");
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Success, "Information", "La mise à jour a bien été effectuée.");
 			} else {
-				Global.ShowNotification(Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, "Erreur", "Un problème est survenue pendant la mise à jour.");
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, "Erreur", "Un problème est survenue pendant la mise à jour.");
 			}
 			Device.BeginInvokeOnMainThread (() => {
 				theUsers.ItemsSource = Global.AllUsers.Collection;

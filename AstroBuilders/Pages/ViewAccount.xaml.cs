@@ -89,12 +89,12 @@ namespace AstroBuilders
 				entryLogin.Text = entryLogin.Text.Trim ();
 			if (string.IsNullOrEmpty (entryLogin.Text)) {
 				//Global.MainAppPage.DisplayAlert (Translation.GetString("NotificationError"), "Pour initialiser le processus de récupération du mot de passe, la saisie de l'identifiant est obligatoire.", "Ok");
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewAccountError1"));
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewAccountError1"));
 				clickInProgress = false;
 				return;
 			}
 			// TODO: forget password
-			Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Info, Translation.GetString ("NotificationInformation"), Translation.GetString ("ViewAccountError2"));
+			Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Info, Translation.GetString ("NotificationInformation"), Translation.GetString ("ViewAccountError2"));
 			clickInProgress = false;
 		}
 
@@ -131,18 +131,18 @@ namespace AstroBuilders
 			}
 			if (!entryOldPassword.Text.Equals (Global.ConnectedUser.Password)) {
 				//Global.MainAppPage.DisplayAlert (Translation.GetString("NotificationError"), "Le mot de passe n'est pas valide.", "Ok");
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewAccountError3"));
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewAccountError3"));
 				clickInProgress = false;
 				return;
 			}
 			if (!entryNewPassword.Text.Equals (entryNew2Password.Text)) {
 				//Global.MainAppPage.DisplayAlert (Translation.GetString("NotificationError"), "La saisie du nouveau mot de passe ne correspond pas.", "Ok");
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewAccountError4"));
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewAccountError4"));
 				clickInProgress = false;
 				return;
 			}
 			// TODO: change password
-			Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Info, Translation.GetString ("NotificationInformation"), Translation.GetString ("ViewAccountError2"));
+			Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Info, Translation.GetString ("NotificationInformation"), Translation.GetString ("ViewAccountError2"));
 			clickInProgress = false;
 		}
 
@@ -164,7 +164,7 @@ namespace AstroBuilders
 			}
 			if (!entryModifyPassword.Text.Equals (Global.ConnectedUser.Password)) {
 				//Global.MainAppPage.DisplayAlert (Translation.GetString("NotificationError"), "Le mot de passe n'est pas valide.", "Ok");
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewAccountError3"));
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewAccountError3"));
 				clickInProgress = false;
 				return;
 			}
@@ -197,7 +197,7 @@ namespace AstroBuilders
 					User user = JsonConvert.DeserializeObject<User> (json);
 					Global.ConnectedUser = user;
 					entryModifyPassword.Text = string.Empty;
-					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Info, Translation.GetString ("NotificationInformation"), Translation.GetString ("ViewAccountMessage1"));
+					Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Info, Translation.GetString ("NotificationInformation"), Translation.GetString ("ViewAccountMessage1"));
 				}
 			} catch (Exception) {
 			}
@@ -301,7 +301,7 @@ namespace AstroBuilders
 						return;
 					});
 					*/
-					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), message);
+					Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, Translation.GetString ("NotificationError"), message);
 					btCreate.IsEnabled = true;
 					clickInProgress = false;
 					return;
@@ -314,7 +314,7 @@ namespace AstroBuilders
 				Global.ConnectedUser = user;
 				Global.IsConnected = true;
 				Global.Menus.Refresh ();
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Success, Translation.GetString ("ViewAccountMessage2"), Translation.GetString ("ViewAccountMessage3"));
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Success, Translation.GetString ("ViewAccountMessage2"), Translation.GetString ("ViewAccountMessage3"));
 			} catch (Exception) {
 				/*
 				message = "Les informations saisies sont erronées. Merci de corriger votre saisie.";
@@ -338,7 +338,7 @@ namespace AstroBuilders
 			Global.ConnectedUser = null;
 			Global.Menus.Refresh ();
 			AdaptDisplay ();
-			Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Info, Translation.GetString ("NotificationInformation"), Translation.GetString ("ViewAccountMessage4"));
+			Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Info, Translation.GetString ("NotificationInformation"), Translation.GetString ("ViewAccountMessage4"));
 		}
 
 		private void AdaptDisplay ()
@@ -400,7 +400,7 @@ namespace AstroBuilders
 			if (!status) {
 				btLogin.IsEnabled = true;
 				clickInProgress = false;
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewAccountError8"));
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewAccountError8"));
 				return;
 			}
 			try {
@@ -417,7 +417,7 @@ namespace AstroBuilders
 						return;
 					});
 					*/
-					Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), message);
+					Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, Translation.GetString ("NotificationError"), message);
 					btLogin.IsEnabled = true;
 					clickInProgress = false;
 					return;
@@ -439,7 +439,7 @@ namespace AstroBuilders
 				clickInProgress = false;
 				Global.Menus.Refresh ();
 				AdaptDisplay ();
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Info, Translation.GetString ("ViewAccountMessage2"), Translation.GetString ("ViewAccountMessage5"));
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Info, Translation.GetString ("ViewAccountMessage2"), Translation.GetString ("ViewAccountMessage5"));
 			} catch (Exception) {
 				/*
 				message = "Les informations saisies sont erronées. Merci de corriger votre saisie.";
@@ -450,7 +450,7 @@ namespace AstroBuilders
 					return;
 				});
 				*/
-				Global.ShowNotification (Toasts.Forms.Plugin.Abstractions.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewAccountError6"));
+				Global.ShowNotification (Plugin.Toasts.ToastNotificationType.Error, Translation.GetString ("NotificationError"), Translation.GetString ("ViewAccountError6"));
 			}
 			btLogin.IsEnabled = true;
 			clickInProgress = false;
